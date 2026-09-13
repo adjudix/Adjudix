@@ -85,8 +85,8 @@ function CardFace({ card }: { card: FlipCard }) {
   );
 }
 
-/** The reverse of a turned page — a muted, darkened echo of its own face, not a blank box. */
-function CardBack({ card }: { card: FlipCard }) {
+/** The reverse of a turned page — a muted recap of its own face, not a blank box. */
+function CardBack({ card, isTopOfPile }: { card: FlipCard; isTopOfPile: boolean }) {
   return (
     <div className="relative h-full overflow-hidden bg-hero">
       {card.image && (
@@ -95,15 +95,31 @@ function CardBack({ card }: { card: FlipCard }) {
           alt=""
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover opacity-25 grayscale"
+          className="object-cover opacity-20 grayscale"
         />
       )}
-      <div className="absolute inset-0 bg-hero/80" aria-hidden="true" />
-      <div className="absolute inset-0 flex flex-col justify-between p-8 text-text-on-hero">
-        <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
-        <span className="font-heading text-4xl font-semibold text-text-on-hero-muted/40">
-          &sect;
-        </span>
+      <div className="absolute inset-0 bg-hero/85" aria-hidden="true" />
+      <div className="absolute inset-0 flex h-full flex-col p-8 text-text-on-hero md:p-10">
+        <div className="flex items-center justify-between">
+          <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
+          {card.eyebrow && (
+            <span className="font-mono text-xs tracking-widest uppercase text-text-on-hero-muted">
+              {card.eyebrow}
+            </span>
+          )}
+        </div>
+        <h3 className="mt-8 font-heading text-2xl font-semibold text-text-on-hero-muted md:text-3xl">
+          {card.title}
+        </h3>
+        <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted/80">
+          {card.description}
+        </p>
+        {isTopOfPile && (
+          <span className="mt-auto flex items-center gap-2 border-t border-border-on-hero pt-6 font-mono text-xs text-text-on-hero-muted">
+            <ChevronLeft className="size-3" aria-hidden="true" />
+            Click to turn back
+          </span>
+        )}
       </div>
     </div>
   );
@@ -184,7 +200,7 @@ export function FlipStack({ panel, cards, aspectClassName = "aspect-[4/5] md:asp
                   }`}
                   style={{ transform: "rotateY(180deg)" }}
                 >
-                  <CardBack card={card} />
+                  <CardBack card={card} isTopOfPile={isTopOfFlippedPile} />
                 </div>
               </div>
             );
