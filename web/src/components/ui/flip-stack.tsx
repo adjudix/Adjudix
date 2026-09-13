@@ -14,6 +14,9 @@ export interface FlipCard {
   eyebrow?: string;
   /** Optional supporting points shown below the description. */
   points?: string[];
+  /** Photo shown on the reverse of this card, with the title/description overlaid. */
+  backImage?: string;
+  backAlt?: string;
 }
 
 export interface FlipStackProps {
@@ -85,41 +88,44 @@ function CardFace({ card }: { card: FlipCard }) {
   );
 }
 
-/** The reverse of a turned page — a muted recap of its own face, not a blank box. */
+/** The reverse of a turned page — real photography with the same content, not a blank box. */
 function CardBack({ card, isTopOfPile }: { card: FlipCard; isTopOfPile: boolean }) {
+  const photo = card.backImage ?? card.image;
+
   return (
     <div className="relative h-full overflow-hidden bg-hero">
-      {card.image && (
+      {photo && (
         <Image
-          src={card.image}
-          alt=""
+          src={photo}
+          alt={card.backImage ? (card.backAlt ?? "") : ""}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover opacity-20 grayscale"
+          className="object-cover"
         />
       )}
-      <div className="absolute inset-0 bg-hero/85" aria-hidden="true" />
+      <div
+        className={`absolute inset-0 ${photo ? "bg-gradient-to-t from-hero via-hero/60 to-hero/10" : ""}`}
+        aria-hidden="true"
+      />
       <div className="absolute inset-0 flex h-full flex-col p-8 text-text-on-hero md:p-10">
         <div className="flex items-center justify-between">
           <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
           {card.eyebrow && (
-            <span className="font-mono text-xs tracking-widest uppercase text-text-on-hero-muted">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary">
               {card.eyebrow}
             </span>
           )}
         </div>
-        <h3 className="mt-8 font-heading text-2xl font-semibold text-text-on-hero-muted md:text-3xl">
-          {card.title}
-        </h3>
-        <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted/80">
-          {card.description}
-        </p>
-        {isTopOfPile && (
-          <span className="mt-auto flex items-center gap-2 border-t border-border-on-hero pt-6 font-mono text-xs text-text-on-hero-muted">
-            <ChevronLeft className="size-3" aria-hidden="true" />
-            Click to turn back
-          </span>
-        )}
+        <div className="mt-auto">
+          <h3 className="font-heading text-2xl font-semibold md:text-3xl">{card.title}</h3>
+          <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted">{card.description}</p>
+          {isTopOfPile && (
+            <span className="mt-6 flex items-center gap-2 border-t border-border-on-hero pt-6 font-mono text-xs text-text-on-hero-muted">
+              <ChevronLeft className="size-3" aria-hidden="true" />
+              Click to turn back
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -56,6 +56,8 @@ const MEMBERSHIP_CARDS = [
       "Access to Training Institute course discounts",
       "A defined path toward Associated membership",
     ],
+    backImage: "/images/training-workshop.jpg",
+    backAlt: "A presenter addressing a seated professional workshop group",
   },
   {
     eyebrow: "Tier 02",
@@ -66,6 +68,8 @@ const MEMBERSHIP_CARDS = [
       "Use of the Associated Member designation",
       "CPD tracking through the Training Institute",
     ],
+    backImage: "/images/legal-review.jpg",
+    backAlt: "Two people reviewing and signing paperwork",
   },
   {
     eyebrow: "Tier 03",
@@ -76,6 +80,8 @@ const MEMBERSHIP_CARDS = [
       "Use of the Fellow designation",
       "A voice in Code of Procedure review",
     ],
+    backImage: "/images/boardroom-collaboration.jpg",
+    backAlt: "A panel presenting a case analysis to a seated group around a conference table",
   },
 ];
 
