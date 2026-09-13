@@ -59,6 +59,8 @@ function Button({
   loading = false,
   disabled,
   children,
+  render,
+  nativeButton,
   ...props
 }: ButtonProps) {
   return (
@@ -66,6 +68,13 @@ function Button({
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       disabled={disabled || loading}
+      render={render}
+      // Base UI needs to know when it's rendering a non-<button> element (e.g.
+      // a Next.js Link via `render`) so it doesn't apply native-button-only
+      // behavior to it. Default to false whenever `render` swaps the element,
+      // but let a caller override explicitly if the rendered element really
+      // is a native button.
+      nativeButton={nativeButton ?? !render}
       {...props}
     >
       {loading ? (

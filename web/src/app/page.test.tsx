@@ -2,19 +2,31 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Home from "./page";
 
-describe("Home page shell", () => {
+describe("Home page", () => {
   it("renders the hero headline", () => {
     render(<Home />);
     expect(
-      screen.getByRole("heading", { name: /Adjudix Dispute Resolution Institute/i })
+      screen.getByRole("heading", { name: /Arbitration, mediation, and ADR under one roof/i })
     ).toBeInTheDocument();
   });
 
-  it("renders a primary CTA button", () => {
+  it("renders the primary CTA button", () => {
     render(<Home />);
-    // Exact match: an FAQ item's own trigger ("How do I file a dispute?") is
-    // also a button and would match a loose case-insensitive substring here.
-    expect(screen.getByRole("button", { name: "File a Dispute" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "File a Dispute" })).toBeInTheDocument();
+  });
+
+  it("renders all three pillar cards", () => {
+    render(<Home />);
+    expect(screen.getByText("Dispute Resolution")).toBeInTheDocument();
+    expect(screen.getByText("ODR Platform")).toBeInTheDocument();
+    expect(screen.getByText("Training Institute")).toBeInTheDocument();
+  });
+
+  it("renders the comparison table with all three criteria", () => {
+    render(<Home />);
+    expect(screen.getByText("Choosing the decision-maker")).toBeInTheDocument();
+    expect(screen.getByText("Timeline")).toBeInTheDocument();
+    expect(screen.getByText("Enforceability")).toBeInTheDocument();
   });
 
   it("renders an FAQ section with at least one question", () => {
