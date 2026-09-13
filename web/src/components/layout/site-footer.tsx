@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_GROUPS = [
   {
@@ -68,31 +69,39 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-border-on-hero pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-heading text-base">
-            Adjudix Dispute Resolution Institute
-          </p>
-          <div className="flex items-center gap-6 text-sm text-text-on-hero-muted">
-            <Link href="/privacy" className="hover:text-text-on-hero">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-text-on-hero">
-              Terms &amp; Conditions
-            </Link>
-            <div className="flex items-center gap-4">
-              <a href="https://linkedin.com" className="hover:text-text-on-hero">
-                LinkedIn
-              </a>
-              <a href="https://youtube.com" className="hover:text-text-on-hero">
-                YouTube
-              </a>
+        <div className="mt-12 border-t border-border-on-hero pt-8">
+          <div className="inline-block rounded-lg bg-white px-6 py-4">
+            <Image
+              src="/images/logo-horizontal.png"
+              alt="Adjudix Dispute Resolution Institute — Dialogue, Dispute, Resolution, A Better Tomorrow"
+              width={665}
+              height={167}
+              className="h-14 w-auto md:h-16"
+            />
+          </div>
+
+          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-text-on-hero-muted">
+              &copy; {new Date().getFullYear()} Adjudix Dispute Resolution Institute. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6 text-sm text-text-on-hero-muted">
+              <Link href="/privacy" className="hover:text-text-on-hero">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-text-on-hero">
+                Terms &amp; Conditions
+              </Link>
+              <div className="flex items-center gap-4">
+                <a href="https://linkedin.com" className="hover:text-text-on-hero">
+                  LinkedIn
+                </a>
+                <a href="https://youtube.com" className="hover:text-text-on-hero">
+                  YouTube
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
-        <p className="mt-6 text-xs text-text-on-hero-muted">
-          &copy; {new Date().getFullYear()} Adjudix Dispute Resolution Institute. All rights reserved.
-        </p>
       </div>
     </footer>
   );

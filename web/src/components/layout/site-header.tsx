@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -119,11 +120,15 @@ export function SiteHeader() {
       {/* Primary row: logo + nav only, no competing buttons */}
       <div className="border-b border-border">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <Link
-            href="/"
-            className="font-heading text-xl font-semibold tracking-tight text-text shrink-0"
-          >
-            Adjudix
+          <Link href="/" className="flex shrink-0 items-center">
+            <Image
+              src="/images/logo-icon.png"
+              alt="Adjudix"
+              width={480}
+              height={250}
+              priority
+              className="h-16 w-auto"
+            />
           </Link>
 
           <NavigationMenu className="hidden lg:flex">
@@ -182,7 +187,16 @@ export function SiteHeader() {
             />
             <SheetContent side="right" className="w-80">
               <SheetHeader>
-                <SheetTitle className="font-heading">Adjudix</SheetTitle>
+                <SheetTitle className="flex items-center gap-2.5 font-heading">
+                  <Image
+                    src="/images/logo-icon.png"
+                    alt=""
+                    width={480}
+                    height={250}
+                    className="h-7 w-auto"
+                  />
+                  Adjudix
+                </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4 pb-4" aria-label="Mobile">
                 {NAV_GROUPS.map((group) => (
