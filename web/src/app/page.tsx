@@ -35,6 +35,27 @@ const PILLARS = [
   },
 ];
 
+const SHOWCASE_TILES = [
+  {
+    image: "/images/columns-detail.jpg",
+    title: "Specialized Panels",
+    description: "Nine dispute-type categories, each with vetted specialists.",
+    href: "/dispute-resolution/panels",
+  },
+  {
+    image: "/images/training-workshop.jpg",
+    title: "Training Institute",
+    description: "Professional and student certification tracks.",
+    href: "/training",
+  },
+  {
+    image: "/images/handshake-resolution.jpg",
+    title: "Corporate Dispute Resolution",
+    description: "Disputes resolved without disrupting the relationship.",
+    href: "/dispute-resolution/corporate",
+  },
+];
+
 const COMPARISON_ROWS = [
   {
     criterion: "Choosing the decision-maker",
@@ -74,56 +95,45 @@ const FAQ_ITEMS = [
 export default function Home() {
   return (
     <main className="bg-canvas flex-1">
-      {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-28 text-center">
-        <Image
-          src="/images/hero-law-library.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Scrim: navy gradient over the photo for text contrast, per
-            design-system.md's hero requirement ("sufficient contrast scrim
-            between photo and text, contrast-checked"). */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-hero/90 via-hero/80 to-hero/95"
-          aria-hidden="true"
-        />
-        <div className="relative text-text-on-hero">
-          <h1 className="font-heading text-4xl md:text-5xl font-semibold text-balance max-w-3xl mx-auto">
-            Arbitration, mediation, and ADR under one roof
-          </h1>
-          <p className="mt-4 font-body text-lg text-text-on-hero-muted max-w-xl mx-auto">
-            Dialogue. Dispute. Resolution. A better tomorrow.
-          </p>
-          <div className="mt-8 flex justify-center gap-3 flex-wrap">
-            <LinkButton variant="primary" size="lg" href="/odr/file">
-              File a Dispute
-            </LinkButton>
-            <LinkButton
-              variant="secondary"
-              size="lg"
-              className="border-border-on-hero text-text-on-hero"
-              href="/training"
-            >
-              Explore Training
-            </LinkButton>
-            <LinkButton
-              variant="ghost"
-              size="lg"
-              className="text-text-on-hero"
-              href="/membership"
-            >
-              Become a Member
-            </LinkButton>
+      {/* Hero — Pattern D: photo shown whole, message in a floating card */}
+      <section className="relative">
+        <div className="relative h-[420px] md:h-[480px] w-full">
+          <Image
+            src="/images/hero-law-library.jpg"
+            alt="A grand institutional reading room"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="relative -mt-20 md:-mt-24 max-w-md rounded-lg bg-hero p-8 md:p-10 text-text-on-hero shadow-xl">
+            <h1 className="font-heading text-3xl md:text-4xl font-semibold text-balance">
+              Arbitration, mediation, and ADR under one roof
+            </h1>
+            <p className="mt-3 font-body text-text-on-hero-muted">
+              Dialogue. Dispute. Resolution. A better tomorrow.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <LinkButton variant="primary" size="default" href="/odr/file">
+                File a Dispute
+              </LinkButton>
+              <LinkButton
+                variant="secondary"
+                size="default"
+                className="border-border-on-hero text-text-on-hero"
+                href="/training"
+              >
+                Explore Training
+              </LinkButton>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Trust strip */}
-      <section className="border-b border-border bg-surface px-6 py-6">
+      <section className="border-b border-border bg-surface px-6 py-6 mt-10">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-center font-body text-sm text-text-muted">
           <span>Governed by a published Code of Procedure</span>
           <span aria-hidden="true">&middot;</span>
@@ -160,20 +170,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Corporate Dispute Resolution, image + text split */}
+      {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
+      <section className="bg-surface px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-3 md:grid-cols-[1.6fr_1fr]">
+            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center">
+              <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
+                A panel built around your dispute, not a generic roster
+              </h2>
+              <p className="mt-3 font-body text-sm text-text-on-hero-muted max-w-sm">
+                Nine specialized categories, each with panelists vetted for that
+                specific dispute type, from construction claims to intellectual
+                property.
+              </p>
+              <LinkButton
+                variant="primary"
+                size="default"
+                className="mt-6 self-start"
+                href="/dispute-resolution/panels"
+              >
+                View the full panel
+              </LinkButton>
+            </div>
+            <div className="rounded-lg border border-border bg-canvas p-6 flex flex-col justify-center">
+              <span className="font-mono text-3xl font-semibold text-primary">9</span>
+              <span className="mt-1 text-sm text-text-muted">
+                specialized dispute-type panels, each independently vetted
+              </span>
+            </div>
+          </div>
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            {SHOWCASE_TILES.map((tile) => (
+              <Link
+                key={tile.title}
+                href={tile.href}
+                className="group relative aspect-4/3 overflow-hidden rounded-lg"
+              >
+                <Image
+                  src={tile.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover transition-transform group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <h3 className="font-heading text-lg font-semibold text-white">
+                    {tile.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-white/80">{tile.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Corporate Dispute Resolution — Pattern A: editorial split, no scrim */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="relative aspect-4/3 overflow-hidden rounded-lg">
-            <Image
-              src="/images/boardroom-collaboration.jpg"
-              alt="A panel presenting a case analysis to a seated group around a conference table"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </div>
           <div>
-            <h2 className="font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              For businesses
+            </span>
+            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
               Corporate dispute resolution, built for how businesses actually decide
             </h2>
             <p className="mt-4 font-body text-text-muted">
@@ -191,15 +254,31 @@ export default function Home() {
               Corporate Dispute Resolution Services
             </LinkButton>
           </div>
+          <div className="relative aspect-4/3 overflow-hidden rounded-lg order-first md:order-last">
+            <Image
+              src="/images/boardroom-collaboration.jpg"
+              alt="A panel presenting a case analysis to a seated group around a conference table"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Why ADR-i comparison */}
+      {/* Why choose institutional ADR — Pattern B: confident serif statement */}
       <section className="bg-surface px-6 py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="font-heading text-2xl md:text-3xl font-semibold text-text text-center">
-            Why choose institutional ADR
-          </h2>
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold text-text text-balance max-w-md">
+              Certainty is not the <em className="italic text-primary">exception</em>,
+              it&apos;s the procedure
+            </h2>
+            <p className="font-body text-text-muted max-w-sm">
+              Every case follows the same published Code of Procedure, so the
+              outcome depends on the merits, not on how the other side behaves.
+            </p>
+          </div>
           <div className="mt-10 overflow-x-auto">
             <table className="w-full border-collapse text-left">
               <thead>
