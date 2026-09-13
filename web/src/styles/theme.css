@@ -13,9 +13,10 @@
   here propagates everywhere automatically, including into shadcn's own --primary/--border/etc.
   in globals.css, which are wired to read from these --adj-* tokens.
 
-  Dark mode is currently the "Layered Depth" treatment (three navy tones: canvas / hero / card)
-  chosen from four options compared in the theme-exploration artifact. Swap the dark block below
-  to try a different treatment (see the artifact's Options A/B/D for alternate dark hex sets).
+  Dark mode is currently the "Warm Charcoal" treatment (Option D from the theme-exploration
+  artifact): navy is dropped almost entirely for a neutral near-black, so gold has nothing
+  competing with it. Swap the dark block below to try a different treatment (see the artifact's
+  Options A/B/C for the near-black, soft-navy, and layered-navy alternatives).
 */
 
 /*
@@ -101,7 +102,8 @@
 }
 
 /* -------------------------------------------------------------------- */
-/* 3. SEMANTIC TOKENS — DARK MODE ("Layered Depth": canvas < hero < card) */
+/* 3. SEMANTIC TOKENS — DARK MODE ("Warm Charcoal": neutral near-black,   */
+/*    navy dropped so gold has nothing competing with it).               */
 /*    Keyed off the same `.dark` class Tailwind's custom-variant already  */
 /*    uses (see globals.css), which is what `next-themes` toggles once    */
 /*    it's wired up. The media query is a same-values fallback so dark    */
@@ -110,25 +112,25 @@
 /* -------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --adj-canvas:            #0A1526;
-    --adj-surface:           #16264A;
-    --adj-hero:              var(--color-navy-900);
-    --adj-text:              #EDEEF0;
-    --adj-text-muted:        #9AA7C0;
-    --adj-text-on-hero:      #EDEEF0;
-    --adj-text-on-hero-muted:#9AA7C0;
-    --adj-border:            #26355C;
-    --adj-border-on-hero:    var(--color-navy-500);
+    --adj-canvas:            #14141A;
+    --adj-surface:           #1D1D26;
+    --adj-hero:              #14141A;
+    --adj-text:              #F1F0EE;
+    --adj-text-muted:        #9C9BA3;
+    --adj-text-on-hero:      #F1F0EE;
+    --adj-text-on-hero-muted:#9C9BA3;
+    --adj-border:            #33333F;
+    --adj-border-on-hero:    #3A3A46;
 
     --adj-primary:            var(--color-gold-500);
     --adj-primary-foreground: #1A1508;
     --adj-primary-hover:      var(--color-gold-600);
 
-    --adj-secondary-text:    #EDEEF0;
-    --adj-secondary-border:  var(--color-navy-500);
+    --adj-secondary-text:    #F1F0EE;
+    --adj-secondary-border:  #3A3A46;
 
-    --adj-ember:             #E23A4E;
-    --adj-ember-foreground:  #0A1526;
+    --adj-ember:             #E6394D;
+    --adj-ember-foreground:  #14141A;
     --adj-ember-hover:       #F0576A;
 
     --adj-focus-ring:        var(--color-navy-500);
@@ -136,25 +138,25 @@
 }
 
 .dark {
-  --adj-canvas:            #0A1526;
-  --adj-surface:           #16264A;
-  --adj-hero:              var(--color-navy-900);
-  --adj-text:              #EDEEF0;
-  --adj-text-muted:        #9AA7C0;
-  --adj-text-on-hero:      #EDEEF0;
-  --adj-text-on-hero-muted:#9AA7C0;
-  --adj-border:            #26355C;
-  --adj-border-on-hero:    var(--color-navy-500);
+  --adj-canvas:            #14141A;
+  --adj-surface:           #1D1D26;
+  --adj-hero:              #14141A;
+  --adj-text:              #F1F0EE;
+  --adj-text-muted:        #9C9BA3;
+  --adj-text-on-hero:      #F1F0EE;
+  --adj-text-on-hero-muted:#9C9BA3;
+  --adj-border:            #33333F;
+  --adj-border-on-hero:    #3A3A46;
 
   --adj-primary:            var(--color-gold-500);
   --adj-primary-foreground: #1A1508;
   --adj-primary-hover:      var(--color-gold-600);
 
-  --adj-secondary-text:    #EDEEF0;
-  --adj-secondary-border:  var(--color-navy-500);
+  --adj-secondary-text:    #F1F0EE;
+  --adj-secondary-border:  #3A3A46;
 
-  --adj-ember:             #E23A4E;
-  --adj-ember-foreground:  #0A1526;
+  --adj-ember:             #E6394D;
+  --adj-ember-foreground:  #14141A;
   --adj-ember-hover:       #F0576A;
 
   --adj-focus-ring:        var(--color-navy-500);
