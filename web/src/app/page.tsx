@@ -2,23 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "@/components/ui/link-button";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { NumberedList } from "@/components/ui/numbered-list";
+import { ComparisonTable } from "@/components/ui/comparison-table";
 
 const PILLARS = [
   {
-    number: "01",
     title: "Dispute Resolution",
     description: "Arbitration, mediation, conciliation, Lok Adalat.",
     href: "/dispute-resolution",
   },
   {
-    number: "02",
     title: "ODR Platform",
     description: "File, respond, or request an ad hoc appointment.",
     href: "/odr",
   },
   {
-    number: "03",
     title: "Training Institute",
     description: "Professional and student certification tracks.",
     href: "/training",
@@ -134,25 +132,7 @@ export default function Home() {
 
       {/* Three pillars — numbered strip, thin dividers, no card boxes */}
       <section className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid divide-y divide-border border-t border-b border-border md:grid-cols-3 md:divide-x md:divide-y-0">
-          {PILLARS.map((pillar) => (
-            <Link
-              key={pillar.title}
-              href={pillar.href}
-              className="group block px-1 py-6 transition-colors md:px-8 md:py-8"
-            >
-              <span className="font-mono text-xs tracking-widest text-primary">
-                {pillar.number}
-              </span>
-              <h3 className="mt-3 text-lg font-semibold text-text group-hover:text-primary">
-                {pillar.title}
-              </h3>
-              <p className="mt-2 font-body text-sm text-text-muted">
-                {pillar.description}
-              </p>
-            </Link>
-          ))}
-        </div>
+        <NumberedList items={PILLARS} />
       </section>
 
       {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
@@ -326,49 +306,8 @@ export default function Home() {
               outcome depends on the merits, not on how the other side behaves.
             </p>
           </div>
-          <div className="mt-10 overflow-x-auto">
-            <table className="w-full border-collapse text-left">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="py-3 pr-4 font-body text-sm font-semibold text-text-muted">
-                    Criterion
-                  </th>
-                  <th className="py-3 pr-4 font-body text-sm font-semibold text-primary">
-                    Adjudix
-                  </th>
-                  <th className="py-3 font-body text-sm font-semibold text-text-muted">
-                    Ad hoc / litigation
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row) => (
-                  <tr key={row.criterion} className="border-b border-border align-top">
-                    <td className="py-4 pr-4 font-body text-sm font-medium text-text">
-                      {row.criterion}
-                    </td>
-                    <td className="py-4 pr-4 font-body text-sm text-text">
-                      <span className="flex gap-2">
-                        <CheckCircle2
-                          className="size-4 shrink-0 mt-0.5 text-primary"
-                          aria-hidden="true"
-                        />
-                        {row.adjudix}
-                      </span>
-                    </td>
-                    <td className="py-4 font-body text-sm text-text-muted">
-                      <span className="flex gap-2">
-                        <XCircle
-                          className="size-4 shrink-0 mt-0.5 text-text-muted"
-                          aria-hidden="true"
-                        />
-                        {row.other}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-10">
+            <ComparisonTable rows={COMPARISON_ROWS} />
           </div>
         </div>
       </section>

@@ -1,0 +1,16 @@
+import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+
+export default function Page() {
+  return (
+    <PanelCategoryPage
+      title="Tenancy Disputes"
+      intro="Rent, deposit, and possession disagreements between landlords and tenants, resolved faster than a typical rent-control or civil court timeline."
+      qualifies={[
+        "Rent arrears and payment disputes",
+        "Security deposit disagreements at the end of a tenancy",
+        "Possession and eviction disputes where both sides agree to arbitrate",
+        "Disputes over maintenance or repair obligations under a lease",
+      ]}
+    />
+  );
+}
