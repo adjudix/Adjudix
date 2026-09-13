@@ -5,6 +5,7 @@ import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { Reveal } from "@/components/ui/reveal";
+import { FlipStack } from "@/components/ui/flip-stack";
 
 const PILLARS = [
   {
@@ -24,37 +25,40 @@ const PILLARS = [
   },
 ];
 
-const SHOWCASE_TILES = [
+const DISPUTE_CARDS = [
   {
-    image: "/images/legal-review.jpg",
+    image: "/images/columns-detail.jpg",
+    alt: "A classical colonnade",
     title: "Specialized Panels",
     description: "Nine dispute-type categories, each with vetted specialists.",
-    href: "/dispute-resolution/panels",
-  },
-  {
-    image: "/images/training-workshop.jpg",
-    title: "Training Institute",
-    description: "Professional and student certification tracks.",
-    href: "/training",
   },
   {
     image: "/images/handshake-resolution.jpg",
+    alt: "Close-up handshake between two professionals",
     title: "Corporate Dispute Resolution",
     description: "Disputes resolved without disrupting the relationship.",
-    href: "/dispute-resolution/corporate",
+  },
+  {
+    image: "/images/legal-review.jpg",
+    alt: "Two people reviewing and signing paperwork",
+    title: "Rules & Governance",
+    description: "One published Code of Procedure, versioned and public.",
   },
 ];
 
-const MEMBERSHIP_TIERS = [
+const MEMBERSHIP_CARDS = [
   {
+    eyebrow: "Tier 01",
     title: "Affiliated",
     description: "Entry standing for early-career professionals building toward the register.",
   },
   {
+    eyebrow: "Tier 02",
     title: "Associated",
     description: "Full standing, case-eligible once CPD and experience thresholds are met.",
   },
   {
+    eyebrow: "Tier 03",
     title: "Fellow",
     description: "Senior recognition for a sustained record of panel appointments.",
   },
@@ -136,11 +140,11 @@ export default function Home() {
         <NumberedList items={PILLARS} />
       </section>
 
-      {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
+      {/* Specialized Panels — 1:1 split, interactive flip-stack instead of a static photo */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
-            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
+          <Reveal className="grid gap-6 md:grid-cols-2 md:items-stretch">
+            <div className="flex flex-col justify-center rounded-lg bg-hero p-8 md:p-10 text-text-on-hero h-[420px] md:h-[480px]">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
                 A panel built around your dispute, not a generic roster
               </h2>
@@ -158,53 +162,8 @@ export default function Home() {
                 View the full panel
               </LinkButton>
             </div>
-            <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
-              <Image
-                src="/images/columns-detail.jpg"
-                alt=""
-                fill
-                sizes="(min-width: 768px) 25vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
-                Panel coverage
-              </span>
-              <span className="mt-3 font-mono text-5xl font-semibold text-text">9</span>
-              <span className="mt-2 font-body text-sm text-text-muted">
-                specialized dispute-type panels, each independently vetted
-              </span>
-            </div>
+            <FlipStack cards={DISPUTE_CARDS} />
           </Reveal>
-          <div className="mt-3 grid gap-3 sm:grid-cols-3">
-            {SHOWCASE_TILES.map((tile, index) => (
-              <Reveal key={tile.title} delay={index * 90}>
-              <Link
-                href={tile.href}
-                className="group relative block aspect-4/3 overflow-hidden rounded-lg"
-              >
-                <Image
-                  src={tile.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <h3 className="font-heading text-lg font-semibold text-white">
-                    {tile.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-white/80">{tile.description}</p>
-                </div>
-              </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -245,20 +204,25 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Membership — Pattern C: layered bento, exact structure, text-card row */}
+      {/* Membership — 1:1 split, flip-through membership cards (no photos: a
+          deliberately different treatment from the Dispute Resolution
+          section above, not the same bento reused with new words) */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
-          <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
-            <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
+        <Reveal className="grid gap-6 md:grid-cols-2 md:items-stretch">
+          <div className="flex flex-col justify-center h-[420px] md:h-[480px]">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              Membership
+            </span>
+            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm text-text">
               A professional register, not a mailing list
             </h2>
-            <p className="mt-3 font-body text-sm text-text-on-hero-muted max-w-sm">
+            <p className="mt-3 font-body text-sm text-text-muted max-w-sm">
               Affiliated, Associated, and Fellow standing each carry defined
               eligibility and CPD requirements, so membership means something
               when a client checks it.
             </p>
             <LinkButton
-              variant="primary"
+              variant="secondary"
               size="default"
               className="mt-6 self-start"
               href="/membership"
@@ -266,35 +230,8 @@ export default function Home() {
               Explore Membership
             </LinkButton>
           </div>
-          <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
-            <Image
-              src="/images/membership-roundtable.jpg"
-              alt="Professionals in discussion around a conference roundtable"
-              fill
-              sizes="(min-width: 768px) 25vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
-              Membership ladder
-            </span>
-            <span className="mt-3 font-mono text-5xl font-semibold text-text">3</span>
-            <span className="mt-2 font-body text-sm text-text-muted">
-              tiers, from Affiliated to Fellow
-            </span>
-          </div>
+          <FlipStack cards={MEMBERSHIP_CARDS} />
         </Reveal>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {MEMBERSHIP_TIERS.map((tier, index) => (
-            <Reveal key={tier.title} delay={index * 90}>
-              <div className="h-full rounded-lg border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
-                <h3 className="font-heading text-lg font-semibold text-text">{tier.title}</h3>
-                <p className="mt-2 font-body text-sm text-text-muted">{tier.description}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
       {/* Why choose institutional ADR — Pattern B: confident serif statement */}
