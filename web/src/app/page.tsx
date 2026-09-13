@@ -1,36 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "@/components/ui/link-button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
-import { Scale, Laptop, GraduationCap, CheckCircle2, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 
 const PILLARS = [
   {
-    icon: Scale,
+    number: "01",
     title: "Dispute Resolution",
-    description:
-      "Arbitration, mediation, conciliation, and Lok Adalat, administered under a published Code of Procedure with a panel specialized by dispute type.",
+    description: "Arbitration, mediation, conciliation, Lok Adalat.",
     href: "/dispute-resolution",
   },
   {
-    icon: Laptop,
+    number: "02",
     title: "ODR Platform",
-    description:
-      "File a dispute, respond to one, or request an ad hoc appointment online, with a role-based portal for parties, arbitrators, and case managers.",
+    description: "File, respond, or request an ad hoc appointment.",
     href: "/odr",
   },
   {
-    icon: GraduationCap,
+    number: "03",
     title: "Training Institute",
-    description:
-      "Professional and student tracks for arbitrators, conciliators, and mediators, with certification tied to a published competence framework.",
+    description: "Professional and student certification tracks.",
     href: "/training",
   },
 ];
@@ -132,40 +122,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust strip */}
-      <section className="border-b border-border bg-surface px-6 py-6 mt-10">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-center font-body text-sm text-text-muted">
-          <span>Governed by a published Code of Procedure</span>
-          <span aria-hidden="true">&middot;</span>
-          <span>Panel specialized by dispute type</span>
-          <span aria-hidden="true">&middot;</span>
-          <span>Arbitration &middot; Mediation &middot; Conciliation &middot; ODR</span>
-        </div>
-      </section>
-
-      {/* Three pillars */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-6 md:grid-cols-3">
+      {/* Three pillars — numbered strip, thin dividers, no card boxes */}
+      <section className="mx-auto max-w-6xl px-6 py-14">
+        <div className="grid divide-y divide-border border-t border-b border-border md:grid-cols-3 md:divide-x md:divide-y-0">
           {PILLARS.map((pillar) => (
-            <Card key={pillar.title} className="border-border">
-              <CardHeader>
-                <pillar.icon className="size-6 text-primary" aria-hidden="true" />
-                <CardTitle className="font-heading text-xl mt-3">
-                  {pillar.title}
-                </CardTitle>
-                <CardDescription className="text-text-muted">
-                  {pillar.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link
-                  href={pillar.href}
-                  className="text-sm font-medium text-primary hover:underline"
-                >
-                  Learn more &rarr;
-                </Link>
-              </CardContent>
-            </Card>
+            <Link
+              key={pillar.title}
+              href={pillar.href}
+              className="group block px-1 py-6 transition-colors md:px-8 md:py-8"
+            >
+              <span className="font-mono text-xs tracking-widest text-primary">
+                {pillar.number}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-text group-hover:text-primary">
+                {pillar.title}
+              </h3>
+              <p className="mt-2 font-body text-sm text-text-muted">
+                {pillar.description}
+              </p>
+            </Link>
           ))}
         </div>
       </section>
