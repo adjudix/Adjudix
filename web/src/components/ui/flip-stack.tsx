@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type MouseEvent } from "react";
+import { useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface FlipCard {
@@ -15,12 +15,78 @@ export interface FlipCard {
 }
 
 export interface FlipStackProps {
+  /** Static content for the left page of the spread. */
+  panel: ReactNode;
   cards: FlipCard[];
-  /** Tailwind height classes for the stack; keep in sync with the paired text panel. */
-  heightClassName?: string;
+  /** Tailwind aspect-ratio class applied to both pages of the spread. */
+  aspectClassName?: string;
 }
 
-export function FlipStack({ cards, heightClassName = "h-[420px] md:h-[480px]" }: FlipStackProps) {
+function CardFace({ card }: { card: FlipCard }) {
+  if (card.image) {
+    return (
+      <>
+        <Image
+          src={card.image}
+          alt={card.alt ?? ""}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-x-0 bottom-0 p-6">
+          <h3 className="font-heading text-xl font-semibold text-white">{card.title}</h3>
+          <p className="mt-1 text-sm text-white/80">{card.description}</p>
+        </div>
+      </>
+    );
+  }
+  return (
+    <div className="flex h-full flex-col justify-between bg-hero p-8 text-text-on-hero">
+      <div className="flex items-center justify-between">
+        <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
+        {card.eyebrow && (
+          <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            {card.eyebrow}
+          </span>
+        )}
+      </div>
+      <div>
+        <h3 className="font-heading text-3xl font-semibold text-balance">{card.title}</h3>
+        <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted">{card.description}</p>
+      </div>
+    </div>
+  );
+}
+
+/** The reverse of a turned page — a muted, darkened echo of its own face, not a blank box. */
+function CardBack({ card }: { card: FlipCard }) {
+  return (
+    <div className="relative h-full overflow-hidden bg-hero">
+      {card.image && (
+        <Image
+          src={card.image}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover opacity-25 grayscale"
+        />
+      )}
+      <div className="absolute inset-0 bg-hero/80" aria-hidden="true" />
+      <div className="absolute inset-0 flex flex-col justify-between p-8 text-text-on-hero">
+        <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
+        <span className="font-heading text-4xl font-semibold text-text-on-hero-muted/40">
+          &sect;
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function FlipStack({ panel, cards, aspectClassName = "aspect-[4/5] md:aspect-[7/10]" }: FlipStackProps) {
   const [active, setActive] = useState(0);
   const canPrev = active > 0;
   const canNext = active < cards.length - 1;
@@ -32,95 +98,75 @@ export function FlipStack({ cards, heightClassName = "h-[420px] md:h-[480px]" }:
     setActive((a) => Math.max(0, a - 1));
   }
 
-  function handleFaceClick(event: MouseEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const clickedLeftHalf = event.clientX - rect.left < rect.width / 2;
-    if (clickedLeftHalf) goPrev();
-    else goNext();
-  }
-
   return (
     <div className="flex flex-col">
-      <div className={`relative ${heightClassName}`} style={{ perspective: "2000px" }}>
-        {cards.map((card, i) => {
-          const flipped = i < active;
-          const depth = Math.max(0, i - active);
-          return (
-            <div
-              key={card.title}
-              className="absolute inset-0 transition-transform duration-700 ease-in-out"
-              style={{
-                transformStyle: "preserve-3d",
-                transformOrigin: "left center",
-                transform: flipped
-                  ? "rotateY(-180deg)"
-                  : `translate(${depth * 7}px, ${depth * 7}px) rotateY(0deg)`,
-                zIndex: flipped ? i : cards.length - depth,
-              }}
-            >
-              {/* Front face */}
+      <div className="grid gap-0 md:grid-cols-2" style={{ perspective: "2000px" }}>
+        {/* Left page — static, sits behind any turned page that swings over it */}
+        <div className={`relative z-0 ${aspectClassName}`}>{panel}</div>
+
+        {/* Right page area — hosts the stack; flipped pages are allowed to
+            visually spill onto the left page since nothing here clips overflow */}
+        <div className={`relative ${aspectClassName}`}>
+          {cards.map((card, i) => {
+            const flipped = i < active;
+            const isFront = i === active;
+            const isTopOfFlippedPile = flipped && i === active - 1;
+            const waitingOffset = 6;
+
+            return (
               <div
-                role="button"
-                tabIndex={0}
-                aria-label={i === active ? `${card.title}, showing ${active + 1} of ${cards.length}` : undefined}
-                onClick={i === active ? handleFaceClick : undefined}
-                onKeyDown={(e) => {
-                  if (i !== active) return;
-                  if (e.key === "ArrowRight") goNext();
-                  if (e.key === "ArrowLeft") goPrev();
+                key={card.title}
+                className="absolute inset-0 transition-transform duration-700 ease-in-out"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transformOrigin: "left center",
+                  transform: flipped
+                    ? "rotateY(-180deg)"
+                    : isFront
+                      ? "translate(0px, 0px)"
+                      : `translate(${waitingOffset}px, ${waitingOffset}px)`,
+                  zIndex: flipped ? 20 + i : isFront ? 40 : 30 - i,
                 }}
-                className={`absolute inset-0 overflow-hidden rounded-lg shadow-xl [backface-visibility:hidden] ${
-                  i === active ? "cursor-pointer" : ""
-                }`}
               >
-                {card.image ? (
-                  <>
-                    <Image
-                      src={card.image}
-                      alt={card.alt ?? ""}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
-                      aria-hidden="true"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <h3 className="font-heading text-xl font-semibold text-white">{card.title}</h3>
-                      <p className="mt-1 text-sm text-white/80">{card.description}</p>
-                    </div>
-                  </>
-                ) : (
-                  <div className="flex h-full flex-col justify-between bg-hero p-8 text-text-on-hero">
-                    <div className="flex items-center justify-between">
-                      <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
-                      {card.eyebrow && (
-                        <span className="font-mono text-xs tracking-widest uppercase text-primary">
-                          {card.eyebrow}
-                        </span>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-3xl font-semibold text-balance">{card.title}</h3>
-                      <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted">
-                        {card.description}
-                      </p>
-                    </div>
-                    <span className="font-mono text-xs text-text-on-hero-muted">
-                      {String(i + 1).padStart(2, "0")} / {String(cards.length).padStart(2, "0")}
-                    </span>
-                  </div>
-                )}
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={isFront ? `${card.title}, showing ${active + 1} of ${cards.length}` : undefined}
+                  onClick={isFront ? goNext : undefined}
+                  onKeyDown={(e) => {
+                    if (!isFront) return;
+                    if (e.key === "ArrowRight") goNext();
+                    if (e.key === "ArrowLeft") goPrev();
+                  }}
+                  className={`absolute inset-0 overflow-hidden rounded-r-lg shadow-xl [backface-visibility:hidden] ${
+                    isFront ? "cursor-pointer" : ""
+                  }`}
+                >
+                  <CardFace card={card} />
+                </div>
+                <div
+                  role={isTopOfFlippedPile ? "button" : undefined}
+                  tabIndex={isTopOfFlippedPile ? 0 : undefined}
+                  aria-label={isTopOfFlippedPile ? `Back to ${cards[i].title}` : undefined}
+                  onClick={isTopOfFlippedPile ? goPrev : undefined}
+                  onKeyDown={
+                    isTopOfFlippedPile
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") goPrev();
+                        }
+                      : undefined
+                  }
+                  className={`absolute inset-0 overflow-hidden rounded-l-lg shadow-xl [backface-visibility:hidden] ${
+                    isTopOfFlippedPile ? "cursor-pointer" : ""
+                  }`}
+                  style={{ transform: "rotateY(180deg)" }}
+                >
+                  <CardBack card={card} />
+                </div>
               </div>
-              {/* Back face — shown once a card has been turned past */}
-              <div
-                className="absolute inset-0 rounded-lg border border-border bg-surface [backface-visibility:hidden]"
-                style={{ transform: "rotateY(180deg)" }}
-              />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       <div className="mt-4 flex items-center justify-between">

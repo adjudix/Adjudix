@@ -25,24 +25,24 @@ const PILLARS = [
   },
 ];
 
-const DISPUTE_CARDS = [
+const SHOWCASE_TILES = [
   {
-    image: "/images/columns-detail.jpg",
-    alt: "A classical colonnade",
+    image: "/images/legal-review.jpg",
     title: "Specialized Panels",
     description: "Nine dispute-type categories, each with vetted specialists.",
+    href: "/dispute-resolution/panels",
+  },
+  {
+    image: "/images/training-workshop.jpg",
+    title: "Training Institute",
+    description: "Professional and student certification tracks.",
+    href: "/training",
   },
   {
     image: "/images/handshake-resolution.jpg",
-    alt: "Close-up handshake between two professionals",
     title: "Corporate Dispute Resolution",
     description: "Disputes resolved without disrupting the relationship.",
-  },
-  {
-    image: "/images/legal-review.jpg",
-    alt: "Two people reviewing and signing paperwork",
-    title: "Rules & Governance",
-    description: "One published Code of Procedure, versioned and public.",
+    href: "/dispute-resolution/corporate",
   },
 ];
 
@@ -140,11 +140,11 @@ export default function Home() {
         <NumberedList items={PILLARS} />
       </section>
 
-      {/* Specialized Panels — 1:1 split, interactive flip-stack instead of a static photo */}
+      {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <Reveal className="grid gap-6 md:grid-cols-2 md:items-stretch">
-            <div className="flex flex-col justify-center rounded-lg bg-hero p-8 md:p-10 text-text-on-hero h-[420px] md:h-[480px]">
+          <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
                 A panel built around your dispute, not a generic roster
               </h2>
@@ -162,8 +162,53 @@ export default function Home() {
                 View the full panel
               </LinkButton>
             </div>
-            <FlipStack cards={DISPUTE_CARDS} />
+            <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
+              <Image
+                src="/images/columns-detail.jpg"
+                alt=""
+                fill
+                sizes="(min-width: 768px) 25vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                Panel coverage
+              </span>
+              <span className="mt-3 font-mono text-5xl font-semibold text-text">9</span>
+              <span className="mt-2 font-body text-sm text-text-muted">
+                specialized dispute-type panels, each independently vetted
+              </span>
+            </div>
           </Reveal>
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            {SHOWCASE_TILES.map((tile, index) => (
+              <Reveal key={tile.title} delay={index * 90}>
+                <Link
+                  href={tile.href}
+                  className="group relative block aspect-4/3 overflow-hidden rounded-lg"
+                >
+                  <Image
+                    src={tile.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="font-heading text-lg font-semibold text-white">
+                      {tile.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-white/80">{tile.description}</p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -204,33 +249,37 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Membership — 1:1 split, flip-through membership cards (no photos: a
-          deliberately different treatment from the Dispute Resolution
-          section above, not the same bento reused with new words) */}
+      {/* Membership — an open-book spread: a static left page and a stack of
+          flip-through membership cards on the right, deliberately different
+          from the Dispute Resolution section above (no photos, no bento) */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal className="grid gap-6 md:grid-cols-2 md:items-stretch">
-          <div className="flex flex-col justify-center h-[420px] md:h-[480px]">
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
-              Membership
-            </span>
-            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm text-text">
-              A professional register, not a mailing list
-            </h2>
-            <p className="mt-3 font-body text-sm text-text-muted max-w-sm">
-              Affiliated, Associated, and Fellow standing each carry defined
-              eligibility and CPD requirements, so membership means something
-              when a client checks it.
-            </p>
-            <LinkButton
-              variant="secondary"
-              size="default"
-              className="mt-6 self-start"
-              href="/membership"
-            >
-              Explore Membership
-            </LinkButton>
-          </div>
-          <FlipStack cards={MEMBERSHIP_CARDS} />
+        <Reveal>
+          <FlipStack
+            cards={MEMBERSHIP_CARDS}
+            panel={
+              <div className="flex h-full flex-col justify-center bg-surface p-8 md:p-10">
+                <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                  Membership
+                </span>
+                <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm text-text">
+                  A professional register, not a mailing list
+                </h2>
+                <p className="mt-3 font-body text-sm text-text-muted max-w-sm">
+                  Affiliated, Associated, and Fellow standing each carry defined
+                  eligibility and CPD requirements, so membership means something
+                  when a client checks it.
+                </p>
+                <LinkButton
+                  variant="secondary"
+                  size="default"
+                  className="mt-6 self-start"
+                  href="/membership"
+                >
+                  Explore Membership
+                </LinkButton>
+              </div>
+            }
+          />
         </Reveal>
       </section>
 
