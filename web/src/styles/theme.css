@@ -1,0 +1,190 @@
+/*
+  ADJUDIX THEME — single source of truth for color and type.
+
+  Locked direction: "Navy, Gold & Ember"
+    - Navy is the structural/dominant color (nav, hero bands, footers)
+    - Gold (E · Bright amber-gold) is the primary actionable accent (buttons, links, active states)
+    - Ember (crimson-red) is reserved for exactly one thing: urgent/destructive actions
+      ("Emergency Arbitration", "Withdraw application") — never a general-purpose color
+
+  TO CHANGE THE WHOLE SITE'S THEME: edit the hex values below. Nothing else needs to change —
+  every component reads from semantic tokens (--adj-primary, --adj-canvas, etc.) or their
+  Tailwind utility form (bg-primary, text-canvas, ...), never a literal hex, so a new value
+  here propagates everywhere automatically, including into shadcn's own --primary/--border/etc.
+  in globals.css, which are wired to read from these --adj-* tokens.
+
+  Dark mode is currently the "Layered Depth" treatment (three navy tones: canvas / hero / card)
+  chosen from four options compared in the theme-exploration artifact. Swap the dark block below
+  to try a different treatment (see the artifact's Options A/B/D for alternate dark hex sets).
+*/
+
+/*
+  Note: the actual @import url(...) fetching these three font families lives
+  at the very top of globals.css, not here — CSS requires every @import to
+  precede all other rules in the fully-resolved stylesheet, and this file is
+  itself imported partway through globals.css, so an @import here would land
+  after non-import rules and fail to parse. The font-family VALUES below,
+  which are what you'd actually edit to change the theme, still live here.
+*/
+
+/* ---------------------------------------------------------------------- */
+/* 1. RAW PALETTE — every hue and its full tint/shade scale.               */
+/*    Used directly by a few structural cases (e.g. the navy hero band)    */
+/*    that need a specific step of a scale rather than a semantic role.    */
+/* ---------------------------------------------------------------------- */
+:root {
+  --color-navy-950: #0A1526;
+  --color-navy-900: #0F1F3D;
+  --color-navy-800: #152A4E;
+  --color-navy-700: #1D3A66;
+  --color-navy-600: #2A4D82;
+  --color-navy-500: #3D659E;
+  --color-navy-100: #E4EAF3;
+  --color-navy-50:  #F4F7FB;
+
+  /* E · Bright amber-gold — the locked primary accent, and its scale */
+  --color-gold-700: #B3841F;
+  --color-gold-600: #D19E24;
+  --color-gold-500: #EEB32B;
+  --color-gold-100: #FCEFD2;
+
+  /* Ember — reserved for urgent/destructive actions only, never decorative */
+  --color-ember-700: #8F0E24;
+  --color-ember-600: #A81029;
+  --color-ember-500: #C41230;
+
+  --color-success-600: #1E7A45;
+  --color-success-100: #E3F5EA;
+  --color-warning-600: #B4740A;
+  --color-warning-100: #FBEEDA;
+  --color-info-600:    #205A9E;
+  --color-info-100:    #E6EEF8;
+
+  --color-ink-900: #131722;
+  --color-ink-700: #3A4152;
+  --color-ink-500: #6B7280;
+  --color-ink-300: #C5CAD3;
+  --color-ink-100: #EDEFF3;
+
+  /* -------------------------------------------------------------------- */
+  /* 2. SEMANTIC TOKENS — LIGHT MODE. Prefixed --adj- so they never        */
+  /*    collide with shadcn's own --primary / --border / etc. in          */
+  /*    globals.css, which reference these by name instead.               */
+  /* -------------------------------------------------------------------- */
+  --adj-canvas:            #FFFFFF;
+  --adj-surface:            var(--color-navy-50);
+  --adj-hero:               var(--color-navy-900);
+  --adj-text:               var(--color-ink-900);
+  --adj-text-muted:         var(--color-ink-700);
+  --adj-text-on-hero:       #FFFFFF;
+  --adj-text-on-hero-muted: #B9C4D9;
+  --adj-border:             #DDE3EC;
+  --adj-border-on-hero:     var(--color-navy-500);
+
+  --adj-primary:            var(--color-gold-500);
+  --adj-primary-foreground: #1A1508;
+  --adj-primary-hover:      var(--color-gold-600);
+
+  --adj-secondary-text:     var(--color-navy-800);
+  --adj-secondary-border:   var(--color-navy-500);
+
+  --adj-ember:              var(--color-ember-500);
+  --adj-ember-foreground:   #FFFFFF;
+  --adj-ember-hover:        var(--color-ember-600);
+
+  --adj-focus-ring:         var(--color-navy-500);
+
+  /* Fonts */
+  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body:    "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", "JetBrains Mono", monospace;
+}
+
+/* -------------------------------------------------------------------- */
+/* 3. SEMANTIC TOKENS — DARK MODE ("Layered Depth": canvas < hero < card) */
+/*    Keyed off the same `.dark` class Tailwind's custom-variant already  */
+/*    uses (see globals.css), which is what `next-themes` toggles once    */
+/*    it's wired up. The media query is a same-values fallback so dark    */
+/*    mode still respects the OS preference before any theme-switcher JS  */
+/*    runs or if one is never added.                                     */
+/* -------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --adj-canvas:            #0A1526;
+    --adj-surface:           #16264A;
+    --adj-hero:              var(--color-navy-900);
+    --adj-text:              #EDEEF0;
+    --adj-text-muted:        #9AA7C0;
+    --adj-text-on-hero:      #EDEEF0;
+    --adj-text-on-hero-muted:#9AA7C0;
+    --adj-border:            #26355C;
+    --adj-border-on-hero:    var(--color-navy-500);
+
+    --adj-primary:            var(--color-gold-500);
+    --adj-primary-foreground: #1A1508;
+    --adj-primary-hover:      var(--color-gold-600);
+
+    --adj-secondary-text:    #EDEEF0;
+    --adj-secondary-border:  var(--color-navy-500);
+
+    --adj-ember:             #E23A4E;
+    --adj-ember-foreground:  #0A1526;
+    --adj-ember-hover:       #F0576A;
+
+    --adj-focus-ring:        var(--color-navy-500);
+  }
+}
+
+.dark {
+  --adj-canvas:            #0A1526;
+  --adj-surface:           #16264A;
+  --adj-hero:              var(--color-navy-900);
+  --adj-text:              #EDEEF0;
+  --adj-text-muted:        #9AA7C0;
+  --adj-text-on-hero:      #EDEEF0;
+  --adj-text-on-hero-muted:#9AA7C0;
+  --adj-border:            #26355C;
+  --adj-border-on-hero:    var(--color-navy-500);
+
+  --adj-primary:            var(--color-gold-500);
+  --adj-primary-foreground: #1A1508;
+  --adj-primary-hover:      var(--color-gold-600);
+
+  --adj-secondary-text:    #EDEEF0;
+  --adj-secondary-border:  var(--color-navy-500);
+
+  --adj-ember:             #E23A4E;
+  --adj-ember-foreground:  #0A1526;
+  --adj-ember-hover:       #F0576A;
+
+  --adj-focus-ring:        var(--color-navy-500);
+}
+
+/* -------------------------------------------------------------------- */
+/* 4. Expose the tokens shadcn has no equivalent for as Tailwind          */
+/*    utilities (bg-canvas, bg-hero, text-on-hero, etc.). The tokens      */
+/*    shadcn DOES have an equivalent for (primary, border, destructive)   */
+/*    are exposed instead via globals.css's own @theme inline block,      */
+/*    which reads shadcn's --primary/--border/etc., which in turn read    */
+/*    --adj-primary/--adj-border/etc. above — one value, one path.        */
+/* -------------------------------------------------------------------- */
+@theme inline {
+  --color-canvas:              var(--adj-canvas);
+  --color-surface:              var(--adj-surface);
+  --color-hero:                 var(--adj-hero);
+  --color-text-on-hero:         var(--adj-text-on-hero);
+  --color-text-on-hero-muted:   var(--adj-text-on-hero-muted);
+  --color-border-on-hero:       var(--adj-border-on-hero);
+
+  --color-primary-hover:        var(--adj-primary-hover);
+  --color-secondary-text:       var(--adj-secondary-text);
+  --color-secondary-border:     var(--adj-secondary-border);
+
+  --color-ember:                var(--adj-ember);
+  --color-ember-foreground:     var(--adj-ember-foreground);
+  --color-ember-hover:          var(--adj-ember-hover);
+
+  --font-heading: var(--font-heading);
+  --font-body:    var(--font-body);
+  --font-mono:    var(--font-mono);
+}

@@ -2,56 +2,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "../styles/theme.css";
 
 @custom-variant dark (&:is(.dark *));
-
-/* Adjudix brand tokens — see design/color-system.md and design/typography.md */
-@theme {
-  --color-navy-950: #0A1526;
-  --color-navy-900: #0F1F3D;
-  --color-navy-800: #152A4E;
-  --color-navy-700: #1D3A66;
-  --color-navy-600: #2A4D82;
-  --color-navy-500: #3D659E;
-  --color-navy-100: #E4EAF3;
-  --color-navy-50: #F4F7FB;
-
-  --color-gold-700: #8A6A1D;
-  --color-gold-600: #A87F22;
-  --color-gold-500: #C9962B;
-  --color-gold-100: #F5E9CE;
-
-  --color-crimson-700: #8F0E24;
-  --color-crimson-600: #A81029;
-  --color-crimson-500: #C41230;
-
-  --color-success-600: #1E7A45;
-  --color-success-100: #E3F5EA;
-  --color-warning-600: #B4740A;
-  --color-warning-100: #FBEEDA;
-  --color-error-700: #B02A23;
-  --color-error-600: #D0342C;
-  --color-error-100: #FBE4E2;
-  --color-info-600: #205A9E;
-  --color-info-100: #E6EEF8;
-
-  --color-ink-900: #131722;
-  --color-ink-700: #3A4152;
-  --color-ink-500: #6B7280;
-  --color-ink-300: #C5CAD3;
-  --color-ink-100: #EDEFF3;
-
-  --font-sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
-  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
-}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-body);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -91,24 +49,25 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --background: var(--adj-canvas);
+  --foreground: var(--adj-text);
+  --card: var(--adj-canvas);
+  --card-foreground: var(--adj-text);
+  --popover: var(--adj-canvas);
+  --popover-foreground: var(--adj-text);
+  --primary: var(--adj-primary);
+  --primary-foreground: var(--adj-primary-foreground);
+  --secondary: var(--adj-surface);
+  --secondary-foreground: var(--adj-secondary-text);
+  --muted: var(--adj-surface);
+  --muted-foreground: var(--adj-text-muted);
+  --accent: var(--adj-surface);
+  --accent-foreground: var(--adj-text);
+  --destructive: var(--adj-ember);
+  --destructive-foreground: var(--adj-ember-foreground);
+  --border: var(--adj-border);
+  --input: var(--adj-border);
+  --ring: var(--adj-focus-ring);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -125,39 +84,14 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+/*
+  No .dark override block here: background, primary, border, and the rest
+  above already resolve to theme.css's adj- prefixed tokens, which
+  theme.css itself redefines under the dark class. One value, one path,
+  see theme.css's header comment. The chart and sidebar tokens are the
+  only exception, still on shadcn's generic defaults until Adjudix has
+  its own values for them.
+*/
 
 @layer base {
   * {
