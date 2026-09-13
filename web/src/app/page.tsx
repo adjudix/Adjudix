@@ -46,6 +46,21 @@ const SHOWCASE_TILES = [
   },
 ];
 
+const MEMBERSHIP_TIERS = [
+  {
+    title: "Affiliated",
+    description: "Entry standing for early-career professionals building toward the register.",
+  },
+  {
+    title: "Associated",
+    description: "Full standing, case-eligible once CPD and experience thresholds are met.",
+  },
+  {
+    title: "Fellow",
+    description: "Senior recognition for a sustained record of panel appointments.",
+  },
+];
+
 const COMPARISON_ROWS = [
   {
     criterion: "Choosing the decision-maker",
@@ -143,8 +158,8 @@ export default function Home() {
       {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-3 md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
-            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2">
+          <div className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
                 A panel built around your dispute, not a generic roster
               </h2>
@@ -162,7 +177,7 @@ export default function Home() {
                 View the full panel
               </LinkButton>
             </div>
-            <div className="relative min-h-32 overflow-hidden rounded-lg">
+            <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
               <Image
                 src="/images/columns-detail.jpg"
                 alt=""
@@ -171,9 +186,12 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="rounded-lg border border-border bg-canvas p-6 flex flex-col justify-center">
-              <span className="font-mono text-3xl font-semibold text-primary">9</span>
-              <span className="mt-1 text-sm text-text-muted">
+            <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                Panel coverage
+              </span>
+              <span className="mt-3 font-mono text-5xl font-semibold text-text">9</span>
+              <span className="mt-2 font-body text-sm text-text-muted">
                 specialized dispute-type panels, each independently vetted
               </span>
             </div>
@@ -242,6 +260,56 @@ export default function Home() {
               className="object-cover"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Membership — Pattern C: layered bento, exact structure, text-card row */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+          <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
+            <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
+              A professional register, not a mailing list
+            </h2>
+            <p className="mt-3 font-body text-sm text-text-on-hero-muted max-w-sm">
+              Affiliated, Associated, and Fellow standing each carry defined
+              eligibility and CPD requirements, so membership means something
+              when a client checks it.
+            </p>
+            <LinkButton
+              variant="primary"
+              size="default"
+              className="mt-6 self-start"
+              href="/membership"
+            >
+              Explore Membership
+            </LinkButton>
+          </div>
+          <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
+            <Image
+              src="/images/membership-roundtable.jpg"
+              alt="Professionals in discussion around a conference roundtable"
+              fill
+              sizes="(min-width: 768px) 25vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              Membership ladder
+            </span>
+            <span className="mt-3 font-mono text-5xl font-semibold text-text">3</span>
+            <span className="mt-2 font-body text-sm text-text-muted">
+              tiers, from Affiliated to Fellow
+            </span>
+          </div>
+        </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          {MEMBERSHIP_TIERS.map((tier) => (
+            <div key={tier.title} className="rounded-lg border border-border bg-surface p-6">
+              <h3 className="font-heading text-lg font-semibold text-text">{tier.title}</h3>
+              <p className="mt-2 font-body text-sm text-text-muted">{tier.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 

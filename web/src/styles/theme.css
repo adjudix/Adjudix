@@ -96,7 +96,7 @@
   --adj-focus-ring:         var(--color-navy-500);
 
   /* Fonts */
-  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
   --font-body:    "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
   --font-mono:    "IBM Plex Mono", "JetBrains Mono", monospace;
 }
