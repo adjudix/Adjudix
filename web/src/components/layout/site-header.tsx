@@ -41,6 +41,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Mediation", href: "/dispute-resolution/mediation" },
       { label: "Conciliation", href: "/dispute-resolution/conciliation" },
       { label: "Lok Adalat", href: "/dispute-resolution/lok-adalat" },
+      { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
       { label: "Specialized Panels", href: "/dispute-resolution/panels" },
       { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
       { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
@@ -128,7 +129,14 @@ export function SiteHeader() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="hidden lg:block shrink-0">
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <LinkButton
+            variant="ember"
+            size="sm"
+            href="/dispute-resolution/emergency"
+          >
+            Emergency Arbitration
+          </LinkButton>
           <LinkButton variant="primary" size="sm" href="/odr/portal">
             Portal Login
           </LinkButton>
@@ -175,9 +183,17 @@ export function SiteHeader() {
                 </div>
               ))}
               <LinkButton
-                variant="primary"
+                variant="ember"
                 size="sm"
                 className="mt-4"
+                href="/dispute-resolution/emergency"
+              >
+                Emergency Arbitration
+              </LinkButton>
+              <LinkButton
+                variant="primary"
+                size="sm"
+                className="mt-2"
                 href="/odr/portal"
               >
                 Portal Login

@@ -11,7 +11,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    /* the "light" class forces light mode regardless of OS preference while
+       we're actively building — theme.css's dark media query is guarded
+       with :not(.light) specifically for this. Remove once a real
+       theme-switcher (next-themes) is wired up and dark mode should follow
+       user/OS choice instead of being hardcoded. */
+    <html lang="en" className="h-full antialiased light">
       {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
           data-gr-* attributes onto <body> before React hydrates, which is a
           known false-positive hydration mismatch, not an app bug. */}
