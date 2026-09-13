@@ -4,6 +4,7 @@ import { LinkButton } from "@/components/ui/link-button";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { ComparisonTable } from "@/components/ui/comparison-table";
+import { Reveal } from "@/components/ui/reveal";
 
 const PILLARS = [
   {
@@ -138,7 +139,7 @@ export default function Home() {
       {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+          <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
             <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
                 A panel built around your dispute, not a generic roster
@@ -175,13 +176,13 @@ export default function Home() {
                 specialized dispute-type panels, each independently vetted
               </span>
             </div>
-          </div>
+          </Reveal>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
-            {SHOWCASE_TILES.map((tile) => (
+            {SHOWCASE_TILES.map((tile, index) => (
+              <Reveal key={tile.title} delay={index * 90}>
               <Link
-                key={tile.title}
                 href={tile.href}
-                className="group relative aspect-4/3 overflow-hidden rounded-lg"
+                className="group relative block aspect-4/3 overflow-hidden rounded-lg"
               >
                 <Image
                   src={tile.image}
@@ -201,6 +202,7 @@ export default function Home() {
                   <p className="mt-1 text-sm text-white/80">{tile.description}</p>
                 </div>
               </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -208,7 +210,7 @@ export default function Home() {
 
       {/* Corporate Dispute Resolution — Pattern A: editorial split, no scrim */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+        <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <span className="font-mono text-xs tracking-widest uppercase text-primary">
               For businesses
@@ -240,12 +242,12 @@ export default function Home() {
               className="object-cover"
             />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Membership — Pattern C: layered bento, exact structure, text-card row */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+        <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
           <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
             <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
               A professional register, not a mailing list
@@ -282,13 +284,15 @@ export default function Home() {
               tiers, from Affiliated to Fellow
             </span>
           </div>
-        </div>
+        </Reveal>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {MEMBERSHIP_TIERS.map((tier) => (
-            <div key={tier.title} className="rounded-lg border border-border bg-surface p-6">
-              <h3 className="font-heading text-lg font-semibold text-text">{tier.title}</h3>
-              <p className="mt-2 font-body text-sm text-text-muted">{tier.description}</p>
-            </div>
+          {MEMBERSHIP_TIERS.map((tier, index) => (
+            <Reveal key={tier.title} delay={index * 90}>
+              <div className="h-full rounded-lg border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
+                <h3 className="font-heading text-lg font-semibold text-text">{tier.title}</h3>
+                <p className="mt-2 font-body text-sm text-text-muted">{tier.description}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -296,7 +300,7 @@ export default function Home() {
       {/* Why choose institutional ADR — Pattern B: confident serif statement */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
+          <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold text-text text-balance max-w-md">
               Certainty is not the <em className="italic text-primary">exception</em>,
               it&apos;s the procedure
@@ -305,7 +309,7 @@ export default function Home() {
               Every case follows the same published Code of Procedure, so the
               outcome depends on the merits, not on how the other side behaves.
             </p>
-          </div>
+          </Reveal>
           <div className="mt-10">
             <ComparisonTable rows={COMPARISON_ROWS} />
           </div>
@@ -314,7 +318,7 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-6 py-20">
-        <div className="flex flex-col gap-4 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
+        <Reveal className="flex flex-col gap-4 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-text text-balance">
             Frequently Asked Questions
           </h2>
@@ -325,7 +329,7 @@ export default function Home() {
             </Link>{" "}
             directly.
           </p>
-        </div>
+        </Reveal>
         <FaqAccordion items={FAQ_ITEMS} />
       </section>
     </main>

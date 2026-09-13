@@ -1,4 +1,5 @@
 import { LinkButton } from "@/components/ui/link-button";
+import { Reveal } from "@/components/ui/reveal";
 
 export interface CtaBandProps {
   title: string;
@@ -10,7 +11,7 @@ export interface CtaBandProps {
 export function CtaBand({ title, description, primary, secondary }: CtaBandProps) {
   return (
     <section className="bg-hero px-6 py-16 text-text-on-hero">
-      <div className="mx-auto flex max-w-5xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <Reveal className="mx-auto flex max-w-5xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-lg">
             {title}
@@ -29,7 +30,7 @@ export function CtaBand({ title, description, primary, secondary }: CtaBandProps
             </LinkButton>
           )}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

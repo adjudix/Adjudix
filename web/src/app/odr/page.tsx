@@ -3,6 +3,7 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { LinkButton } from "@/components/ui/link-button";
+import { Reveal } from "@/components/ui/reveal";
 
 const STEPS = [
   { title: "File", description: "Submit your case online with claimant, respondent, and dispute details." },
@@ -40,16 +41,17 @@ export default function OdrPage() {
         eyebrow="ODR Platform"
         title="File, respond, or resolve — entirely online"
         intro="The ADR-i Portal takes a dispute from filing to a binding award or signed settlement, without either side needing to set foot in a courtroom."
+        image={{ src: "/images/odr-video-hearing.jpg", alt: "A person joining an online hearing by video call" }}
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex flex-wrap gap-3">
+        <Reveal className="flex flex-wrap gap-3">
           {ENTRY_POINTS.map((entry) => (
             <LinkButton key={entry.href} variant="secondary" size="lg" href={entry.href}>
               {entry.label}
             </LinkButton>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-surface px-6 py-16">
@@ -62,14 +64,16 @@ export default function OdrPage() {
       </section>
 
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <h2 className="font-heading text-xl font-semibold text-text">Built on a real legal basis</h2>
-        <p className="mt-3 font-body text-text-muted">
-          Every case filed through the platform is administered under the Arbitration and
-          Conciliation Act, 1996, or the Mediation Act, 2023, depending on the mechanism chosen —
-          not a private process with no statutory footing. See{" "}
-          <span className="font-medium text-text">Security &amp; Enforceability</span> for the
-          full legal and data-security basis.
-        </p>
+        <Reveal>
+          <h2 className="font-heading text-xl font-semibold text-text">Built on a real legal basis</h2>
+          <p className="mt-3 font-body text-text-muted">
+            Every case filed through the platform is administered under the Arbitration and
+            Conciliation Act, 1996, or the Mediation Act, 2023, depending on the mechanism chosen —
+            not a private process with no statutory footing. See{" "}
+            <span className="font-medium text-text">Security &amp; Enforceability</span> for the
+            full legal and data-security basis.
+          </p>
+        </Reveal>
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-16">

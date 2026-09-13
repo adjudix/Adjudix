@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { CardGrid } from "@/components/ui/card-grid";
 
 const CATEGORIES = [
   { title: "Education Partners", description: "Law schools and universities referring students into our Training Institute.", href: "/partners/education" },
@@ -15,23 +15,11 @@ export default function PartnersPage() {
         eyebrow="Our Partners"
         title="Institutional Partnerships"
         intro="Adjudix's network of education, training, and corporate partners — each category structured around a different kind of ongoing relationship."
+        image={{ src: "/images/handshake-resolution.jpg", alt: "Close-up handshake between two professionals" }}
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {CATEGORIES.map((cat) => (
-            <Link
-              key={cat.title}
-              href={cat.href}
-              className="group rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary"
-            >
-              <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">
-                {cat.title}
-              </h2>
-              <p className="mt-2 font-body text-sm text-text-muted">{cat.description}</p>
-            </Link>
-          ))}
-        </div>
+        <CardGrid items={CATEGORIES} />
       </section>
 
       <CtaBand

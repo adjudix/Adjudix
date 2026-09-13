@@ -1,4 +1,5 @@
 import { CheckCircle2, XCircle } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export interface ComparisonRow {
   criterion: string;
@@ -18,7 +19,7 @@ export function ComparisonTable({
   otherLabel = "Ad hoc / litigation",
 }: ComparisonTableProps) {
   return (
-    <div className="overflow-x-auto">
+    <Reveal className="overflow-x-auto">
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="border-b border-border">
@@ -33,7 +34,10 @@ export function ComparisonTable({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.criterion} className="border-b border-border align-top">
+            <tr
+              key={row.criterion}
+              className="border-b border-border align-top transition-colors hover:bg-surface"
+            >
               <td className="py-4 pr-4 font-body text-sm font-medium text-text">
                 {row.criterion}
               </td>
@@ -59,6 +63,6 @@ export function ComparisonTable({
           ))}
         </tbody>
       </table>
-    </div>
+    </Reveal>
   );
 }

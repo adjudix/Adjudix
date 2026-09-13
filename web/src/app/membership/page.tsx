@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { Reveal } from "@/components/ui/reveal";
 
 const TIERS = [
   {
@@ -36,10 +37,11 @@ export default function MembershipPage() {
         eyebrow="Membership"
         title="Compare Tiers"
         intro="A professional register, not a mailing list. Every tier carries defined eligibility, so membership means something when a client checks it."
+        image={{ src: "/images/membership-roundtable.jpg", alt: "Professionals in discussion around a conference roundtable" }}
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="overflow-x-auto">
+        <Reveal className="overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
               <tr className="border-b border-border">
@@ -50,7 +52,10 @@ export default function MembershipPage() {
             </thead>
             <tbody>
               {TIERS.map((tier) => (
-                <tr key={tier.title} className="border-b border-border align-top">
+                <tr
+                  key={tier.title}
+                  className="border-b border-border align-top transition-colors hover:bg-surface"
+                >
                   <td className="py-4 pr-4 font-body text-sm font-medium">
                     <Link href={tier.href} className="text-primary hover:underline">
                       {tier.title}
@@ -62,11 +67,11 @@ export default function MembershipPage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-surface px-6 py-16">
-        <div className="mx-auto max-w-3xl">
+        <Reveal className="mx-auto max-w-3xl">
           <h2 className="font-heading text-xl font-semibold text-text">
             Not sure which tier fits?
           </h2>
@@ -89,7 +94,7 @@ export default function MembershipPage() {
             </Link>
             .
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <CtaBand

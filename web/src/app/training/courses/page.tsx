@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { CardGrid } from "@/components/ui/card-grid";
 
 const TRACKS = [
   { title: "Arbitrator Track", href: "/training/courses/arbitrator", description: "Professional and student tracks toward panel-eligible arbitration practice." },
@@ -20,20 +20,7 @@ export default function CoursesPage() {
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-3 sm:grid-cols-2">
-          {TRACKS.map((track) => (
-            <Link
-              key={track.title}
-              href={track.href}
-              className="group rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary"
-            >
-              <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">
-                {track.title}
-              </h2>
-              <p className="mt-2 font-body text-sm text-text-muted">{track.description}</p>
-            </Link>
-          ))}
-        </div>
+        <CardGrid items={TRACKS} columns={2} />
       </section>
 
       <CtaBand
