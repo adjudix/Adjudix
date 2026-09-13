@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "@/components/ui/link-button";
 import {
@@ -74,33 +75,50 @@ export default function Home() {
   return (
     <main className="bg-canvas flex-1">
       {/* Hero */}
-      <section className="bg-hero text-text-on-hero px-6 py-24 text-center">
-        <h1 className="font-heading text-4xl md:text-5xl font-semibold text-balance max-w-3xl mx-auto">
-          Arbitration, mediation, and ADR under one roof
-        </h1>
-        <p className="mt-4 font-body text-lg text-text-on-hero-muted max-w-xl mx-auto">
-          Dialogue. Dispute. Resolution. A better tomorrow.
-        </p>
-        <div className="mt-8 flex justify-center gap-3 flex-wrap">
-          <LinkButton variant="primary" size="lg" href="/odr/file">
-            File a Dispute
-          </LinkButton>
-          <LinkButton
-            variant="secondary"
-            size="lg"
-            className="border-border-on-hero text-text-on-hero"
-            href="/training"
-          >
-            Explore Training
-          </LinkButton>
-          <LinkButton
-            variant="ghost"
-            size="lg"
-            className="text-text-on-hero"
-            href="/membership"
-          >
-            Become a Member
-          </LinkButton>
+      <section className="relative overflow-hidden px-6 py-28 text-center">
+        <Image
+          src="/images/hero-law-library.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Scrim: navy gradient over the photo for text contrast, per
+            design-system.md's hero requirement ("sufficient contrast scrim
+            between photo and text, contrast-checked"). */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-hero/90 via-hero/80 to-hero/95"
+          aria-hidden="true"
+        />
+        <div className="relative text-text-on-hero">
+          <h1 className="font-heading text-4xl md:text-5xl font-semibold text-balance max-w-3xl mx-auto">
+            Arbitration, mediation, and ADR under one roof
+          </h1>
+          <p className="mt-4 font-body text-lg text-text-on-hero-muted max-w-xl mx-auto">
+            Dialogue. Dispute. Resolution. A better tomorrow.
+          </p>
+          <div className="mt-8 flex justify-center gap-3 flex-wrap">
+            <LinkButton variant="primary" size="lg" href="/odr/file">
+              File a Dispute
+            </LinkButton>
+            <LinkButton
+              variant="secondary"
+              size="lg"
+              className="border-border-on-hero text-text-on-hero"
+              href="/training"
+            >
+              Explore Training
+            </LinkButton>
+            <LinkButton
+              variant="ghost"
+              size="lg"
+              className="text-text-on-hero"
+              href="/membership"
+            >
+              Become a Member
+            </LinkButton>
+          </div>
         </div>
       </section>
 
@@ -139,6 +157,40 @@ export default function Home() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Corporate Dispute Resolution, image + text split */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <div className="relative aspect-4/3 overflow-hidden rounded-lg">
+            <Image
+              src="/images/boardroom-collaboration.jpg"
+              alt="A panel presenting a case analysis to a seated group around a conference table"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <h2 className="font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
+              Corporate dispute resolution, built for how businesses actually decide
+            </h2>
+            <p className="mt-4 font-body text-text-muted">
+              Bespoke panel access, arbitration clauses ready to insert into commercial
+              contracts, and a dedicated relationship team, for businesses that need
+              disputes resolved without disrupting the underlying commercial
+              relationship.
+            </p>
+            <LinkButton
+              variant="secondary"
+              size="default"
+              className="mt-6"
+              href="/dispute-resolution/corporate"
+            >
+              Corporate Dispute Resolution Services
+            </LinkButton>
+          </div>
         </div>
       </section>
 
