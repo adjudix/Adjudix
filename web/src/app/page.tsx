@@ -51,16 +51,31 @@ const MEMBERSHIP_CARDS = [
     eyebrow: "Tier 01",
     title: "Affiliated",
     description: "Entry standing for early-career professionals building toward the register.",
+    points: [
+      "Open to students and recent graduates in law, CA/CS, or engineering",
+      "Access to Training Institute course discounts",
+      "A defined path toward Associated membership",
+    ],
   },
   {
     eyebrow: "Tier 02",
     title: "Associated",
     description: "Full standing, case-eligible once CPD and experience thresholds are met.",
+    points: [
+      "Eligibility for Specialized Panel appointment",
+      "Use of the Associated Member designation",
+      "CPD tracking through the Training Institute",
+    ],
   },
   {
     eyebrow: "Tier 03",
     title: "Fellow",
     description: "Senior recognition for a sustained record of panel appointments.",
+    points: [
+      "Priority consideration for high-value appointments",
+      "Use of the Fellow designation",
+      "A voice in Code of Procedure review",
+    ],
   },
 ];
 

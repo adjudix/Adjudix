@@ -12,6 +12,8 @@ export interface FlipCard {
   alt?: string;
   /** Small label shown on a card-mode face, e.g. a tier or step name. */
   eyebrow?: string;
+  /** Optional supporting points shown below the description. */
+  points?: string[];
 }
 
 export interface FlipStackProps {
@@ -25,27 +27,35 @@ export interface FlipStackProps {
 function CardFace({ card }: { card: FlipCard }) {
   if (card.image) {
     return (
-      <>
-        <Image
-          src={card.image}
-          alt={card.alt ?? ""}
-          fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/10 to-transparent"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-x-0 bottom-0 p-6">
-          <h3 className="font-heading text-xl font-semibold text-white">{card.title}</h3>
-          <p className="mt-1 text-sm text-white/80">{card.description}</p>
+      <div className="flex h-full flex-col">
+        <div className="relative flex-1">
+          <Image
+            src={card.image}
+            alt={card.alt ?? ""}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
-      </>
+        <div className="bg-hero p-6 text-text-on-hero md:p-8">
+          <h3 className="font-heading text-xl font-semibold md:text-2xl">{card.title}</h3>
+          <p className="mt-2 font-body text-sm text-text-on-hero-muted">{card.description}</p>
+          {card.points && (
+            <ul className="mt-4 flex flex-col gap-2">
+              {card.points.map((point) => (
+                <li key={point} className="flex gap-2 font-body text-sm text-text-on-hero-muted">
+                  <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     );
   }
   return (
-    <div className="flex h-full flex-col justify-between bg-hero p-8 text-text-on-hero">
+    <div className="flex h-full flex-col bg-hero p-8 text-text-on-hero md:p-10">
       <div className="flex items-center justify-between">
         <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
         {card.eyebrow && (
@@ -54,9 +64,22 @@ function CardFace({ card }: { card: FlipCard }) {
           </span>
         )}
       </div>
-      <div>
-        <h3 className="font-heading text-3xl font-semibold text-balance">{card.title}</h3>
-        <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted">{card.description}</p>
+      <h3 className="mt-8 font-heading text-3xl font-semibold text-balance md:text-4xl">
+        {card.title}
+      </h3>
+      <p className="mt-3 max-w-sm font-body text-sm text-text-on-hero-muted">{card.description}</p>
+      {card.points && (
+        <ul className="mt-6 flex flex-col gap-3">
+          {card.points.map((point) => (
+            <li key={point} className="flex gap-2.5 font-body text-sm text-text-on-hero-muted">
+              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="mt-auto flex items-center justify-between border-t border-border-on-hero pt-6">
+        <span className="font-mono text-xs text-text-on-hero-muted">Adjudix Dispute Resolution Institute</span>
       </div>
     </div>
   );
