@@ -7,7 +7,8 @@ const FOOTER_GROUPS = [
       { label: "Arbitration", href: "/dispute-resolution/arbitration" },
       { label: "Mediation", href: "/dispute-resolution/mediation" },
       { label: "Specialized Panels", href: "/dispute-resolution/panels" },
-      { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
+      { label: "Rules & Governance", href: "/dispute-resolution/rules" },
+      { label: "Corporate Services", href: "/dispute-resolution/corporate" },
     ],
   },
   {
@@ -35,6 +36,7 @@ const FOOTER_GROUPS = [
       { label: "Membership", href: "/membership" },
       { label: "Knowledge Centre", href: "/knowledge" },
       { label: "Events", href: "/events" },
+      { label: "Our Partners", href: "/partners" },
       { label: "Contact Us", href: "/contact" },
     ],
   },
