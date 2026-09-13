@@ -27,7 +27,7 @@ const PILLARS = [
 
 const SHOWCASE_TILES = [
   {
-    image: "/images/columns-detail.jpg",
+    image: "/images/legal-review.jpg",
     title: "Specialized Panels",
     description: "Nine dispute-type categories, each with vetted specialists.",
     href: "/dispute-resolution/panels",
@@ -106,15 +106,10 @@ export default function Home() {
               Dialogue. Dispute. Resolution. A better tomorrow.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <LinkButton variant="primary" size="default" href="/odr/file">
+              <LinkButton variant="primary" size="lg" href="/odr/file">
                 File a Dispute
               </LinkButton>
-              <LinkButton
-                variant="secondary"
-                size="default"
-                className="border-border-on-hero text-text-on-hero"
-                href="/training"
-              >
+              <LinkButton variant="secondaryInverse" size="lg" href="/training">
                 Explore Training
               </LinkButton>
             </div>
@@ -148,8 +143,8 @@ export default function Home() {
       {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-3 md:grid-cols-[1.6fr_1fr]">
-            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center">
+          <div className="grid gap-3 md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+            <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
                 A panel built around your dispute, not a generic roster
               </h2>
@@ -166,6 +161,15 @@ export default function Home() {
               >
                 View the full panel
               </LinkButton>
+            </div>
+            <div className="relative min-h-32 overflow-hidden rounded-lg">
+              <Image
+                src="/images/columns-detail.jpg"
+                alt=""
+                fill
+                sizes="(min-width: 768px) 25vw, 100vw"
+                className="object-cover"
+              />
             </div>
             <div className="rounded-lg border border-border bg-canvas p-6 flex flex-col justify-center">
               <span className="font-mono text-3xl font-semibold text-primary">9</span>
@@ -302,10 +306,19 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-2xl px-6 py-20">
-        <h2 className="font-heading text-2xl font-semibold text-text mb-6">
-          Frequently Asked Questions
-        </h2>
+      <section className="mx-auto max-w-4xl px-6 py-20">
+        <div className="flex flex-col gap-4 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-text text-balance">
+            Frequently Asked Questions
+          </h2>
+          <p className="font-body text-text-muted max-w-sm">
+            Can&apos;t find what you&apos;re looking for?{" "}
+            <Link href="/contact" className="text-primary hover:underline">
+              Contact the registry
+            </Link>{" "}
+            directly.
+          </p>
+        </div>
         <FaqAccordion items={FAQ_ITEMS} />
       </section>
     </main>

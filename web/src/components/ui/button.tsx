@@ -13,6 +13,12 @@ const buttonVariants = cva(
         // Supporting action alongside a primary — navy outline, no fill.
         secondary:
           "border-secondary-border text-secondary-text bg-transparent hover:bg-surface",
+        // Same role as secondary, for use on the dark hero/navy surface — the
+        // light hover fill above is invisible against text-on-hero, so this
+        // variant owns its own hover treatment instead of being overridden
+        // per-instance.
+        secondaryInverse:
+          "border-border-on-hero text-text-on-hero bg-transparent hover:bg-white/10",
         // Tertiary/inline action, lowest visual weight.
         ghost:
           "text-secondary-text bg-transparent underline-offset-4 hover:underline rounded-lg",

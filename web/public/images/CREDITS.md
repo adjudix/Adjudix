@@ -9,5 +9,6 @@ All images in this folder are sourced from Unsplash under the [Unsplash License]
 | `columns-detail.jpg` | Classical colonnade, generic (not a specific named building) | rhayader | https://unsplash.com/photos/KMTBaNMU2Y4 |
 | `training-workshop.jpg` | Presenter addressing a seated professional workshop group | Quilia | https://unsplash.com/photos/1-aA2Fadydc |
 | `handshake-resolution.jpg` | Close-up handshake between two professionals | Cytonn Photography | https://unsplash.com/photos/n95VMLxqM2I |
+| `legal-review.jpg` | Close-up of two people signing/reviewing paperwork at a table | Romain Dancre | https://unsplash.com/photos/doplSDELX7E |
 
 **Deliberately avoided**: a Getty/Unsplash+ licensed courthouse image (not free to use), and a free image with "GREENVILLE COUNTY COURTHOUSE" carved visibly into the stone (would misleadingly imply that specific real building is ours).
