@@ -23,6 +23,7 @@ const FALLBACK_MS = REEL_DURATION_MS + 400;
 export function PageLoader() {
   const [phase, setPhase] = useState<Phase>("hidden");
   const logoRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const handoffFiredRef = useRef(false);
   const triggerHandoffRef = useRef<() => void>(() => {});
   const postHandoffTimersRef = useRef<number[]>([]);
@@ -91,6 +92,22 @@ export function PageLoader() {
       window.setTimeout(() => triggerHandoffRef.current(), FALLBACK_MS),
     ];
 
+    // Safari (macOS and iOS) gates autoplay on the video element's live
+    // `.muted` DOM property, not the `muted=""` HTML attribute React's
+    // `muted` prop renders — after SSR hydration that property can be left
+    // `false` even though the attribute is present, so Safari blocks
+    // autoplay and shows its paused "tap to play" affordance. Chrome
+    // doesn't have this gap, which is why this only shows up on Mac/iPhone.
+    // Setting it imperatively and calling play() explicitly closes that
+    // gap; if it still gets rejected (e.g. Low Power Mode), skip straight
+    // to the handoff instead of leaving a paused play button on screen.
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.play()?.catch(() => triggerHandoffRef.current());
+    }
+
     return () => timers.forEach(window.clearTimeout);
   }, []);
 
@@ -113,6 +130,7 @@ export function PageLoader() {
         }`}
       >
         <video
+          ref={videoRef}
           src="/video/logo-loop.mp4"
           poster="/images/logo-full.png"
           width={1376}
