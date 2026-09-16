@@ -92,22 +92,6 @@ export function PageLoader() {
       window.setTimeout(() => triggerHandoffRef.current(), FALLBACK_MS),
     ];
 
-    // Safari (macOS and iOS) gates autoplay on the video element's live
-    // `.muted` DOM property, not the `muted=""` HTML attribute React's
-    // `muted` prop renders — after SSR hydration that property can be left
-    // `false` even though the attribute is present, so Safari blocks
-    // autoplay and shows its paused "tap to play" affordance. Chrome
-    // doesn't have this gap, which is why this only shows up on Mac/iPhone.
-    // Setting it imperatively and calling play() explicitly closes that
-    // gap; if it still gets rejected (e.g. Low Power Mode), skip straight
-    // to the handoff instead of leaving a paused play button on screen.
-    const video = videoRef.current;
-    if (video) {
-      video.defaultMuted = true;
-      video.muted = true;
-      video.play()?.catch(() => triggerHandoffRef.current());
-    }
-
     return () => timers.forEach(window.clearTimeout);
   }, []);
 
@@ -130,7 +114,20 @@ export function PageLoader() {
         }`}
       >
         <video
-          ref={videoRef}
+          // A callback ref fires the moment the node is attached — earlier
+          // than any effect — so `.muted` is true before Safari evaluates
+          // whether autoplay is allowed. The `muted` attribute below alone
+          // isn't reliably enough for Safari's autoplay gate, which checks
+          // the live DOM property rather than the reflected attribute; but
+          // don't also call `.play()` here — that was tried and made things
+          // worse; mutating `.muted` on a video with an autoplay attempt
+          // already in flight makes Safari reset the resource internally,
+          // which aborts that in-flight attempt and rejects its promise
+          // with a harmless AbortError, not a real autoplay failure.
+          ref={(el) => {
+            videoRef.current = el;
+            if (el) el.muted = true;
+          }}
           src="/video/logo-loop.mp4"
           poster="/images/logo-full.png"
           width={1376}
@@ -140,6 +137,7 @@ export function PageLoader() {
           muted
           playsInline
           onEnded={() => triggerHandoffRef.current()}
+          onError={(e) => console.error("[PageLoader] video failed to load", e.currentTarget.error)}
         />
       </div>
     </div>
