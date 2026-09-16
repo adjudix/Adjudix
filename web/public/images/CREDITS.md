@@ -12,5 +12,12 @@ All images in this folder are sourced from Unsplash under the [Unsplash License]
 | `legal-review.jpg` | Close-up of two people signing/reviewing paperwork at a table | Romain Dancre | https://unsplash.com/photos/doplSDELX7E |
 | `membership-roundtable.jpg` | Professionals in discussion around a conference roundtable | Evangeline Shaw | https://unsplash.com/photos/xRlI-L-kvrw |
 | `odr-video-hearing.jpg` | Over-the-shoulder view of a person on a video call with four participants | Surface | https://unsplash.com/photos/HJgaV1qjHS0 |
+| `logo-full.png` | Full Adjudix logo lockup (mark + full institute name + tagline), background removed — used as the intro page-loader's poster frame/fallback | Adjudix (client-supplied artwork) | — |
 
 **Deliberately avoided**: a Getty/Unsplash+ licensed courthouse image (not free to use), and a free image with "GREENVILLE COUNTY COURTHOUSE" carved visibly into the stone (would misleadingly imply that specific real building is ours).
+
+## Video (`../video/`)
+
+| File | Subject | Source |
+|---|---|---|
+| `logo-loop.mp4` | Animated version of the Adjudix logo (subtle premium shimmer loop), used as the intro page-loader's centerpiece | Adjudix (client-supplied, AI-animated from their own logo artwork) |

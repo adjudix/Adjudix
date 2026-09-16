@@ -73,9 +73,9 @@ export function SiteFooter() {
           <div className="inline-block rounded-lg bg-white px-6 py-4">
             <Image
               src="/images/logo-horizontal.png"
-              alt="Adjudix Dispute Resolution Institute — Dialogue, Dispute, Resolution, A Better Tomorrow"
-              width={665}
-              height={167}
+              alt="Adjudix Dispute Resolution Institute — Adjudication, Diligentia, Remèdes, Intelligence"
+              width={1876}
+              height={434}
               className="h-14 w-auto md:h-16"
             />
           </div>

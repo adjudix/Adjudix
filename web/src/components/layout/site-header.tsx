@@ -24,10 +24,19 @@ interface NavLink {
   href: string;
 }
 
+interface NavSection {
+  label: string;
+  links: NavLink[];
+}
+
 interface NavGroup {
   label: string;
   href?: string;
   children?: NavLink[];
+  // Grouped, labeled columns for a mega-menu-style dropdown — used where a
+  // flat list would bury an important distinction (Dispute Resolution's
+  // four types vs. its mechanisms/services) in one long list.
+  sections?: NavSection[];
 }
 
 // Structure per planning/sitemap.md's "Top-level nav" section, labels
@@ -38,23 +47,33 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Dispute Resolution",
     href: "/dispute-resolution",
-    children: [
-      { label: "Arbitration", href: "/dispute-resolution/arbitration" },
-      { label: "Mediation", href: "/dispute-resolution/mediation" },
-      { label: "Conciliation", href: "/dispute-resolution/conciliation" },
-      { label: "Lok Adalat", href: "/dispute-resolution/lok-adalat" },
-      { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
-      { label: "Specialized Panels", href: "/dispute-resolution/panels" },
-      { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
-      { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
-      { label: "Our Professional Panel", href: "/panel" },
+    sections: [
       {
-        label: "Corporate Dispute Resolution",
-        href: "/dispute-resolution/corporate",
+        label: "By Type",
+        links: [
+          { label: "Domestic Dispute Resolution", href: "/dispute-resolution/domestic" },
+          { label: "International Dispute Resolution", href: "/dispute-resolution/international" },
+          { label: "Online Dispute Resolution", href: "/odr" },
+          { label: "Hybrid Dispute Resolution", href: "/dispute-resolution/hybrid" },
+        ],
+      },
+      {
+        label: "Mechanisms & Services",
+        links: [
+          { label: "Arbitration", href: "/dispute-resolution/arbitration" },
+          { label: "Mediation", href: "/dispute-resolution/mediation" },
+          { label: "Conciliation", href: "/dispute-resolution/conciliation" },
+          { label: "Lok Adalat", href: "/dispute-resolution/lok-adalat" },
+          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
+          { label: "Specialized Panels", href: "/dispute-resolution/panels" },
+          { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
+          { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
+          { label: "Our Professional Panel", href: "/panel" },
+          { label: "Corporate Dispute Resolution", href: "/dispute-resolution/corporate" },
+        ],
       },
     ],
   },
-  { label: "ODR Platform", href: "/odr" },
   {
     label: "Training",
     href: "/training",
@@ -96,45 +115,63 @@ const navLinkClass =
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
-      {/* Utility bar: quiet, small, secondary actions only */}
+      {/* Top bar: brand mark only, centered */}
       <div className="hidden lg:block border-b border-border bg-surface">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-end gap-6 px-6 text-xs font-medium">
-          <Link
-            href="/dispute-resolution/emergency"
-            className="text-ember hover:opacity-80"
-          >
-            Emergency Arbitration
-          </Link>
-          <Link href="/contact" className="text-text-muted hover:text-text">
-            Contact
-          </Link>
-          <Link
-            href="/odr/portal"
-            className="text-text-muted hover:text-text"
-          >
-            Portal Login
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
+          <Link href="/" className="flex shrink-0 items-center">
+            <Image
+              id="site-logo-target"
+              src="/images/logo-horizontal.png"
+              alt="Adjudix Dispute Resolution Institute"
+              width={1876}
+              height={434}
+              priority
+              className="h-14 w-auto"
+            />
           </Link>
         </div>
       </div>
 
-      {/* Primary row: logo + nav only, no competing buttons */}
+      {/* Primary row: nav on the left, utility links on the right */}
       <div className="border-b border-border">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <Link href="/" className="flex shrink-0 items-center">
-            <Image
-              src="/images/logo-icon.png"
-              alt="Adjudix"
-              width={480}
-              height={250}
-              priority
-              className="h-16 w-auto"
-            />
-          </Link>
-
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="gap-1">
               {NAV_GROUPS.map((group) =>
-                group.children ? (
+                group.sections ? (
+                  <NavigationMenuItem key={group.label}>
+                    <NavigationMenuTrigger className={navLinkClass}>
+                      {group.label}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid w-[560px] grid-cols-2 gap-6 p-4">
+                        {group.sections.map((section) => (
+                          <div key={section.label}>
+                            <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                              {section.label}
+                            </p>
+                            <ul className="flex flex-col gap-1">
+                              {section.links.map((link) => (
+                                <li key={link.href}>
+                                  <NavigationMenuLink
+                                    render={
+                                      <Link
+                                        href={link.href}
+                                        className="block px-3 py-2 text-sm text-text hover:bg-surface hover:text-primary rounded-md"
+                                      >
+                                        {link.label}
+                                      </Link>
+                                    }
+                                  />
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ) : group.children ? (
                   <NavigationMenuItem key={group.label}>
                     <NavigationMenuTrigger className={navLinkClass}>
                       {group.label}
@@ -173,6 +210,33 @@ export function SiteHeader() {
             </NavigationMenuList>
           </NavigationMenu>
 
+          <div className="hidden items-center gap-6 text-xs font-medium lg:flex">
+            <Link
+              href="/dispute-resolution/emergency"
+              className="text-ember hover:opacity-80"
+            >
+              Emergency Arbitration
+            </Link>
+            <Link href="/contact" className="text-text-muted hover:text-text">
+              Contact
+            </Link>
+            <Link href="/odr/portal" className="text-text-muted hover:text-text">
+              Portal Login
+            </Link>
+          </div>
+
+          <Link href="/" className="flex shrink-0 items-center lg:hidden">
+            <Image
+              id="site-logo-target-mobile"
+              src="/images/logo-icon.png"
+              alt="Adjudix"
+              width={1191}
+              height={612}
+              priority
+              className="h-9 w-auto"
+            />
+          </Link>
+
           <Sheet>
             <SheetTrigger
               render={
@@ -191,8 +255,8 @@ export function SiteHeader() {
                   <Image
                     src="/images/logo-icon.png"
                     alt=""
-                    width={480}
-                    height={250}
+                    width={1191}
+                    height={612}
                     className="h-7 w-auto"
                   />
                   Adjudix
@@ -207,6 +271,28 @@ export function SiteHeader() {
                     >
                       {group.label}
                     </Link>
+                    {group.sections && (
+                      <div className="ml-3 mt-1 flex flex-col gap-3">
+                        {group.sections.map((section) => (
+                          <div key={section.label}>
+                            <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
+                              {section.label}
+                            </p>
+                            <div className="mt-1 flex flex-col gap-1">
+                              {section.links.map((link) => (
+                                <Link
+                                  key={link.href}
+                                  href={link.href}
+                                  className="py-1 text-sm text-text-muted"
+                                >
+                                  {link.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     {group.children && (
                       <div className="ml-3 mt-1 flex flex-col gap-1">
                         {group.children.map((child) => (

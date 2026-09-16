@@ -6,6 +6,7 @@ import { NumberedList } from "@/components/ui/numbered-list";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { Reveal } from "@/components/ui/reveal";
 import { FlipStack } from "@/components/ui/flip-stack";
+import { AudienceFinder } from "@/components/layout/audience-finder";
 
 const PILLARS = [
   {
@@ -137,20 +138,31 @@ export default function Home() {
           />
         </div>
         <div className="mx-auto max-w-6xl px-6">
-          <div className="relative -mt-20 md:-mt-24 max-w-md rounded-lg bg-hero p-8 md:p-10 text-text-on-hero shadow-xl">
-            <h1 className="font-heading text-3xl md:text-4xl font-semibold text-balance">
-              Arbitration, mediation, and ADR under one roof
-            </h1>
-            <p className="mt-3 font-body text-text-on-hero-muted">
-              Dialogue. Dispute. Resolution. A better tomorrow.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <LinkButton variant="primary" size="lg" href="/odr/file">
-                File a Dispute
-              </LinkButton>
-              <LinkButton variant="secondaryInverse" size="lg" href="/training">
-                Explore Training
-              </LinkButton>
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="relative -mt-20 md:-mt-24 max-w-md rounded-lg bg-hero p-8 md:p-10 text-text-on-hero shadow-xl">
+              <h1 className="font-heading text-3xl md:text-4xl font-semibold text-balance">
+                Arbitration, mediation, and ADR under one roof
+              </h1>
+              <p className="mt-3 font-body text-text-on-hero-muted">
+                Adjudication. Diligentia. Remèdes. Intelligence.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <LinkButton variant="primary" size="lg" href="/odr/file">
+                  File a Dispute
+                </LinkButton>
+                <LinkButton variant="secondaryInverse" size="lg" href="/training">
+                  Explore Training
+                </LinkButton>
+              </div>
+            </div>
+
+            {/* Audience finder — same overlap technique as the card above,
+                echoing iccwbo.org's homepage widget (290px card, 24px
+                padding, 52px dropdown, matching its real dimensions),
+                pulled up over the same hero image rather than stacked
+                below the section. */}
+            <div className="relative shrink-0 md:-mt-12 md:w-[290px]">
+              <AudienceFinder />
             </div>
           </div>
         </div>
