@@ -3,7 +3,7 @@ import { MechanismPage } from "@/components/patterns/mechanism-page";
 export default function HybridPage() {
   return (
     <MechanismPage
-      title="Hybrid / Arb-Med"
+      title="Hybrid ADR Mechanism (Med-Arb)"
       intro="Mediation first, with an automatic fallback to binding arbitration if a settlement isn't reached — the parties get a genuine chance to settle on their own terms, without losing the certainty of a final, binding outcome."
       howItWorks={[
         {

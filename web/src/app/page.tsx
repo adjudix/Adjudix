@@ -10,8 +10,8 @@ import { AudienceFinder } from "@/components/layout/audience-finder";
 
 const PILLARS = [
   {
-    title: "Dispute Resolution",
-    description: "Arbitration, mediation, conciliation, Lok Adalat.",
+    title: "Dispute Resolution & Implementation",
+    description: "ADR mechanisms and global implementation of orders and awards.",
     href: "/dispute-resolution",
   },
   {
@@ -21,7 +21,7 @@ const PILLARS = [
   },
   {
     title: "Training Institute",
-    description: "Professional and student certification tracks.",
+    description: "Professional and student certification programmes.",
     href: "/training",
   },
 ];
@@ -30,13 +30,13 @@ const SHOWCASE_TILES = [
   {
     image: "/images/legal-review.jpg",
     title: "Specialized Panels",
-    description: "Nine dispute-type categories, each with vetted specialists.",
+    description: "Ten dispute-type categories, each with vetted specialists.",
     href: "/dispute-resolution/panels",
   },
   {
     image: "/images/training-workshop.jpg",
     title: "Training Institute",
-    description: "Professional and student certification tracks.",
+    description: "Professional and student certification programmes.",
     href: "/training",
   },
   {
@@ -47,33 +47,10 @@ const SHOWCASE_TILES = [
   },
 ];
 
+// Stars replace "Tier 01/02/03" labels (client brief), highest standing first.
 const MEMBERSHIP_CARDS = [
   {
-    eyebrow: "Tier 01",
-    title: "Affiliated",
-    description: "Entry standing for early-career professionals building toward the register.",
-    points: [
-      "Open to students and recent graduates in law, CA/CS, or engineering",
-      "Access to Training Institute course discounts",
-      "A defined path toward Associated membership",
-    ],
-    backImage: "/images/training-workshop.jpg",
-    backAlt: "A presenter addressing a seated professional workshop group",
-  },
-  {
-    eyebrow: "Tier 02",
-    title: "Associated",
-    description: "Full standing, case-eligible once CPD and experience thresholds are met.",
-    points: [
-      "Eligibility for Specialized Panel appointment",
-      "Use of the Associated Member designation",
-      "CPD tracking through the Training Institute",
-    ],
-    backImage: "/images/legal-review.jpg",
-    backAlt: "Two people reviewing and signing paperwork",
-  },
-  {
-    eyebrow: "Tier 03",
+    eyebrow: "★★★★★",
     title: "Fellow",
     description: "Senior recognition for a sustained record of panel appointments.",
     points: [
@@ -84,12 +61,60 @@ const MEMBERSHIP_CARDS = [
     backImage: "/images/boardroom-collaboration.jpg",
     backAlt: "A panel presenting a case analysis to a seated group around a conference table",
   },
+  {
+    eyebrow: "★★★★",
+    title: "Associate",
+    description: "Full standing, case-eligible once CPD and experience thresholds are met.",
+    points: [
+      "Eligibility for Specialized Panel appointment",
+      "Use of the Associate Member designation",
+      "Free on completion of a Training Programme under Adjudix",
+    ],
+    backImage: "/images/legal-review.jpg",
+    backAlt: "Two people reviewing and signing paperwork",
+  },
+  {
+    eyebrow: "★★★",
+    title: "Affiliate",
+    description: "Standing for early-career professionals building toward the register.",
+    points: [
+      "Open to recent graduates in law, CA/CS, or engineering",
+      "Access to Training Institute course discounts",
+      "Free on completing an Apprenticeship or Internship",
+    ],
+    backImage: "/images/training-workshop.jpg",
+    backAlt: "A presenter addressing a seated professional workshop group",
+  },
+  {
+    eyebrow: "★★",
+    title: "Student",
+    description: "The first step on the register for students of law, commerce, and engineering.",
+    points: [
+      "Free for students",
+      "Access to competitions, webinars, and events",
+      "A defined path toward Affiliate membership",
+    ],
+    backImage: "/images/membership-roundtable.jpg",
+    backAlt: "Members in discussion around a table",
+  },
+  {
+    eyebrow: "Beyond stars",
+    title: "Honorary",
+    description: "Special Honorary Membership, conferred by the institute.",
+    points: [
+      "Cannot be applied for or claimed — it is earned",
+      "Conferred for exceptional contribution to ADR",
+      "Listed among Our Esteemed Members",
+    ],
+    backImage: "/images/columns-detail.jpg",
+    backAlt: "Classical stone columns",
+  },
 ];
 
 const COMPARISON_ROWS = [
   {
     criterion: "Choosing the decision-maker",
-    adjudix: "Parties nominate from a specialized panel; the institute appoints if they can't agree",
+    adjudix: "Parties nominate from a specialized panel; the institute appoints",
     other: "No structured process, appointment can stall indefinitely",
   },
   {
@@ -99,7 +124,7 @@ const COMPARISON_ROWS = [
   },
   {
     criterion: "Enforceability",
-    adjudix: "Awards enforceable under the Arbitration and Conciliation Act, 1996",
+    adjudix: "Awards enforceable under the Arbitration and Conciliation Act, 1996, or the applicable laws of the concerned country",
     other: "Depends entirely on how the matter was resolved",
   },
 ];
@@ -118,7 +143,27 @@ const FAQ_ITEMS = [
   {
     question: "Who can join the professional panel?",
     answer:
-      "Advocates, chartered accountants, and civil engineers with relevant experience can apply. Applications are reviewed and verified before a panelist is listed.",
+      "Advocates, chartered accountants, company secretaries, and engineers — civil, IT, and others — with relevant experience can apply. Applications are reviewed and verified before a panelist is listed.",
+  },
+  {
+    question: "Can Adjudix implement an award or order globally?",
+    answer:
+      "Yes. Adjudix carries arbitral awards, mediated settlements, and Lok Adalat orders through to implementation — in India and in any New York Convention country — through its professional panel. Book a consultation on the Implementation of ADR Orders page.",
+  },
+  {
+    question: "What kinds of membership are there?",
+    answer:
+      "Five: Fellow (★★★★★), Associate (★★★★), Affiliate (★★★), Student (★★, free for students), and Special Honorary Membership, which sits beyond stars — it cannot be claimed, it is earned.",
+  },
+  {
+    question: "What training and certification programmes do you offer?",
+    answer:
+      "Six tracks — ADR Overview, Arbitration, Mediation, Conciliation, Contract Drafting, and Hybrid ADR — offered as professional and student courses, each tied to a published Competence Framework.",
+  },
+  {
+    question: "Do you draft contracts and arbitration clauses?",
+    answer:
+      "Yes. Our Contract & Clause Drafting service tailors arbitration, mediation, and hybrid clauses to your agreement, and our Model Clauses page has ready-to-insert language.",
   },
 ];
 
@@ -141,11 +186,8 @@ export default function Home() {
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="relative -mt-20 md:-mt-24 max-w-md rounded-lg bg-hero p-8 md:p-10 text-text-on-hero shadow-xl">
               <h1 className="font-heading text-3xl md:text-4xl font-semibold text-balance">
-                Arbitration, mediation, and ADR under one roof
+                Dispute Resolution and assured Implementation under one roof
               </h1>
-              <p className="mt-3 font-body text-text-on-hero-muted">
-                Adjudication. Diligentia. Remèdes. Intelligence.
-              </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <LinkButton variant="primary" size="lg" href="/odr/file">
                   File a Dispute
@@ -182,9 +224,8 @@ export default function Home() {
                 A panel built around your dispute, not a generic roster
               </h2>
               <p className="mt-3 font-body text-sm text-text-on-hero-muted max-w-sm">
-                Nine specialized categories, each with panelists vetted for that
-                specific dispute type, from construction claims to intellectual
-                property.
+                Ten specialized categories, each with panelists vetted for that
+                specific dispute type.
               </p>
               <LinkButton
                 variant="primary"
@@ -208,7 +249,7 @@ export default function Home() {
               <span className="font-mono text-xs tracking-widest uppercase text-primary">
                 Panel coverage
               </span>
-              <span className="mt-3 font-mono text-5xl font-semibold text-text">9</span>
+              <span className="mt-3 font-mono text-5xl font-semibold text-text">10</span>
               <span className="mt-2 font-body text-sm text-text-muted">
                 specialized dispute-type panels, each independently vetted
               </span>
@@ -298,9 +339,9 @@ export default function Home() {
                   A professional register, not a mailing list
                 </h2>
                 <p className="mt-3 font-body text-sm text-text-muted max-w-sm">
-                  Affiliated, Associated, and Fellow standing each carry defined
-                  eligibility and CPD requirements, so membership means something
-                  when a client checks it.
+                  Five kinds of membership — Fellow, Associate, Affiliate, Student, and
+                  Honorary — each with defined eligibility, so membership means
+                  something when a client checks it.
                 </p>
                 <LinkButton
                   variant="secondary"

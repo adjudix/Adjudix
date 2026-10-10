@@ -6,7 +6,7 @@ describe("Home page", () => {
   it("renders the hero headline", () => {
     render(<Home />);
     expect(
-      screen.getByRole("heading", { name: /Arbitration, mediation, and ADR under one roof/i })
+      screen.getByRole("heading", { name: /Dispute Resolution and assured Implementation under one roof/i })
     ).toBeInTheDocument();
   });
 
@@ -19,7 +19,7 @@ describe("Home page", () => {
     render(<Home />);
     // Some labels (e.g. "Training Institute") also appear in the panel
     // showcase section below, a deliberate cross-link, not a duplicate bug.
-    expect(screen.getAllByText("Dispute Resolution").length).toBeGreaterThan(0);
+    expect(screen.getByText("Dispute Resolution & Implementation")).toBeInTheDocument();
     expect(screen.getByText("ODR Platform")).toBeInTheDocument();
     expect(screen.getAllByText("Training Institute").length).toBeGreaterThan(0);
   });

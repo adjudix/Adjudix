@@ -1,5 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
+import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
+
+// Edition history per the client's blueprint: 2018 first edition, 2021 added
+// Online Dispute Resolution, 2026 covers every mechanism.
+const VERSIONS = [
+  { year: "2026", note: "Current edition. Covers every mechanism — arbitration, mediation, conciliation, Lok Adalat, online, offline, hybrid, emergency, and corporate ADR." },
+  { year: "2021", note: "Introduced Online Dispute Resolution." },
+  { year: "2018", note: "First edition of the Adjudix Code of ADR Procedure." },
+];
 
 const SECTIONS = [
   { title: "1. Commencement", body: "How a case begins: notice, fees, and initial appointment of a panelist." },
@@ -38,6 +47,28 @@ export default function CodeOfProcedurePage() {
           accessible on request for cases filed under an earlier edition, in keeping with
           standard institutional arbitration practice.
         </p>
+        <p className="mt-4 font-body text-sm text-text-muted">
+          The detailed Code is available as a PDF.{" "}
+          <Link href="/contact" className="font-medium text-primary hover:underline">
+            Request the full Code (PDF)
+          </Link>
+        </p>
+      </section>
+
+      <section className="bg-surface px-6 py-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-heading text-2xl font-semibold text-text">Editions</h2>
+          <ul className="mt-6 divide-y divide-border border-t border-b border-border">
+            {VERSIONS.map((version) => (
+              <li key={version.year} className="flex gap-6 py-5">
+                <span className="w-16 shrink-0 font-mono text-lg font-semibold text-text">
+                  {version.year}
+                </span>
+                <p className="font-body text-sm text-text-muted">{version.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <CtaBand

@@ -4,7 +4,7 @@ export default function DomesticDisputeResolutionPage() {
   return (
     <MechanismPage
       title="Domestic Dispute Resolution"
-      intro="For disputes between parties within India — commercial, contractual, employment, or civil — resolved under Indian law through whichever mechanism fits the case: arbitration, mediation, conciliation, or Lok Adalat."
+      intro="For disputes between parties within India — commercial, contractual, employment, or civil — resolved under Indian law through whichever mechanism fits the case: arbitration, mediation, conciliation, Lok Adalat, emergency arbitration, hybrid Med-Arb, or corporate ADR."
       howItWorks={[
         {
           title: "Intake & mechanism fit",
@@ -27,7 +27,7 @@ export default function DomesticDisputeResolutionPage() {
       faqs={[
         {
           question: "Which mechanism should I choose for a domestic dispute?",
-          answer: "It depends on the relationship and the outcome you need: arbitration for a binding award, mediation or conciliation to preserve a relationship, or Lok Adalat for eligible matters. See the Arbitration, Mediation, Conciliation, and Lok Adalat pages for how each one works.",
+          answer: "It depends on the relationship and the outcome you need: arbitration for a binding award, mediation or conciliation to preserve a relationship, Lok Adalat for eligible matters, emergency arbitration for urgent interim relief, hybrid Med-Arb to try settlement before a binding award, or corporate ADR for an ongoing business relationship. Each has its own page under Dispute Resolution.",
         },
         {
           question: "Do both parties need to be based in India?",

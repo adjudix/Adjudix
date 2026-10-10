@@ -19,7 +19,8 @@ const AUDIENCE_OPTIONS = [
   { label: "I'm a corporate client", href: "/dispute-resolution/corporate" },
   { label: "I want training or certification", href: "/training" },
   { label: "I want to become a member", href: "/membership" },
-  { label: "I'm a partner institution", href: "/partners" },
+  { label: "I want to get my order implemented", href: "/implementation" },
+  { label: "I want my agreement or arbitration clause drafted", href: "/dispute-resolution/clause-drafting" },
   { label: "I'm researching arbitration & ADR", href: "/knowledge" },
 ];
 

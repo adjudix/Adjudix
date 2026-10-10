@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList, type NumberedListItem } from "@/components/ui/numbered-list";
@@ -14,6 +15,8 @@ export interface MechanismPageProps {
   filingLabel?: string;
   filingHref?: string;
   panelHref?: string;
+  // Optional page-specific section rendered after the legal basis.
+  extra?: ReactNode;
 }
 
 export function MechanismPage({
@@ -27,6 +30,7 @@ export function MechanismPage({
   filingLabel = "File a Dispute",
   filingHref = "/odr/file",
   panelHref = "/dispute-resolution/panels",
+  extra,
 }: MechanismPageProps) {
   return (
     <main className="bg-canvas flex-1">
@@ -50,6 +54,8 @@ export function MechanismPage({
           <p className="mt-3 font-body text-text-muted">{legalBasis}</p>
         </div>
       </section>
+
+      {extra}
 
       {faqs && faqs.length > 0 && (
         <section className="mx-auto max-w-3xl px-6 py-16">

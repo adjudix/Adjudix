@@ -9,7 +9,8 @@ const SLABS = [
   { upTo: Infinity, rate: 0.0075, label: "Above ₹2,00,00,000" },
 ];
 
-const MIN_FEE = 15_000;
+// Client marked the minimum as ₹10,000 (was ₹15,000) — pending confirmation.
+const MIN_FEE = 10_000;
 
 function estimateFee(amount: number): number {
   if (!Number.isFinite(amount) || amount <= 0) return MIN_FEE;
@@ -36,8 +37,10 @@ function formatINR(value: number): string {
 }
 
 export function FeeCalculator() {
+  // Digits only in state; shown with Indian digit grouping (10,00,000).
   const [amount, setAmount] = useState("1000000");
-  const numericAmount = Number(amount.replace(/,/g, ""));
+  const numericAmount = Number(amount);
+  const displayAmount = amount ? new Intl.NumberFormat("en-IN").format(numericAmount) : "";
   const estimate = useMemo(() => estimateFee(numericAmount), [numericAmount]);
 
   return (
@@ -49,20 +52,20 @@ export function FeeCalculator() {
         id="dispute-amount"
         type="text"
         inputMode="numeric"
-        value={amount}
+        value={displayAmount}
         onChange={(event) => setAmount(event.target.value.replace(/[^0-9]/g, ""))}
         className="mt-2 w-full rounded-md border border-border bg-canvas px-4 py-2.5 font-body text-text outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-        placeholder="e.g. 1000000"
+        placeholder="e.g. 10,00,000"
       />
       <div className="mt-6 flex flex-col gap-1 border-t border-border pt-6">
         <span className="font-mono text-xs tracking-widest uppercase text-primary">
-          Indicative administrative fee
+          Indicative administrative fee of the platform
         </span>
         <span className="font-mono text-3xl font-semibold text-text">
           {formatINR(estimate)}
         </span>
         <p className="mt-2 font-body text-xs text-text-muted">
-          Estimate only, based on a tiered percentage of the amount in dispute (minimum{" "}
+          Just for example — an estimate only, based on a tiered percentage of the amount in dispute (minimum{" "}
           {formatINR(MIN_FEE)}). Arbitrator fees are separate and depend on the panelist
           appointed. A final fee schedule is confirmed when a case is filed.
         </p>

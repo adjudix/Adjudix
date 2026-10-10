@@ -11,7 +11,8 @@ const CATEGORIES = [
   { title: "Employer–Employee Disputes", description: "Severance, non-compete, and workplace grievances.", href: "/dispute-resolution/panels/employment" },
   { title: "Tenancy Disputes", description: "Rent, deposit, and possession disagreements.", href: "/dispute-resolution/panels/tenancy" },
   { title: "Insurance Claims", description: "Repudiation, valuation, and coverage disputes.", href: "/dispute-resolution/panels/insurance" },
-  { title: "Miscellaneous", description: "Any other civil or commercial disagreement suited to ADR.", href: "/dispute-resolution/panels/miscellaneous" },
+  { title: "Partnership Disputes", description: "Profit-sharing, management, exit, and dissolution disputes between partners.", href: "/dispute-resolution/panels/partnership" },
+  { title: "Not Listed Otherwise", description: "Any other civil or commercial disagreement suited to ADR.", href: "/dispute-resolution/panels/miscellaneous" },
 ];
 
 export default function PanelsPage() {
@@ -21,7 +22,7 @@ export default function PanelsPage() {
         eyebrow="Dispute Resolution"
         title="Specialized Panels"
         breadcrumbs={[{ label: "Dispute Resolution", href: "/dispute-resolution" }, { label: "Specialized Panels" }]}
-        intro="Nine dispute-type categories, each with panelists vetted specifically for that kind of case — because a construction claim and an IP dispute need genuinely different expertise, not the same generalist roster."
+        intro="Ten dispute-type categories, each with panelists vetted specifically for that kind of case — because a construction claim and an IP dispute need genuinely different expertise, not the same generalist roster."
         image={{ src: "/images/legal-review.jpg", alt: "Two people reviewing and signing paperwork" }}
       />
 

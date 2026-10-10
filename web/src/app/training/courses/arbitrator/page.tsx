@@ -14,7 +14,7 @@ export default function Page() {
         { title: "Foundations of arbitration law", body: "The Arbitration and Conciliation Act, 1996, and how an institutional Code of Procedure applies it in practice." },
         { title: "Conducting a hearing", body: "Managing pleadings, evidence, and hearings within a published procedural timeline." },
         { title: "Drafting a reasoned award", body: "Structuring an award that withstands challenge under Section 34." },
-        { title: "Specialization module", body: "A focused module in one of the nine Specialized Panel dispute types." },
+        { title: "Specialization module", body: "A focused module in one of the ten Specialized Panel dispute types." },
       ]}
     />
   );

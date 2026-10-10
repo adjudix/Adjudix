@@ -27,7 +27,29 @@ const SPECTRUM = [
   },
 ];
 
+// Client brief: Emergency, Corporate, and Hybrid (Med-Arb) must appear
+// alongside the classic spectrum everywhere mechanisms are listed.
+const SPECTRUM_EXTRA = [
+  {
+    title: "Emergency Arbitration",
+    description: "Urgent interim relief from an emergency arbitrator, before a full tribunal is constituted.",
+  },
+  {
+    title: "Corporate ADR",
+    description: "Standing dispute resolution for businesses, preserving the commercial relationship.",
+  },
+  {
+    title: "Hybrid process of Med-Arb",
+    description: "Mediation first, converting to binding arbitration if a settlement isn't reached.",
+  },
+];
+
 const MECHANISMS = [
+  {
+    title: "Hybrid ADR Mechanism",
+    description: "Our flagship: mediation first, with an automatic fallback to binding arbitration if it doesn't settle.",
+    href: "/dispute-resolution/hybrid",
+  },
   {
     title: "Arbitration",
     description: "Domestic and international, decided by a neutral arbitrator under the Adjudix Code of ADR Procedure.",
@@ -49,14 +71,19 @@ const MECHANISMS = [
     href: "/dispute-resolution/lok-adalat",
   },
   {
-    title: "Hybrid / Arb-Med",
-    description: "Mediation first, with an automatic fallback to binding arbitration if it doesn't settle.",
-    href: "/dispute-resolution/hybrid",
-  },
-  {
     title: "Emergency Arbitration",
     description: "Urgent interim relief before a full tribunal is even constituted.",
     href: "/dispute-resolution/emergency",
+  },
+  {
+    title: "Corporate ADR",
+    description: "Standing panel access, clause drafting, and a relationship team for businesses.",
+    href: "/dispute-resolution/corporate",
+  },
+  {
+    title: "Implementation of ADR Orders",
+    description: "Awards, settlements, and orders carried through to implementation, in India and globally.",
+    href: "/implementation",
   },
 ];
 
@@ -88,6 +115,14 @@ export default function DisputeResolutionPage() {
             </Reveal>
           ))}
         </div>
+        <div className="grid gap-3 divide-y divide-border border-b border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {SPECTRUM_EXTRA.map((step, index) => (
+            <Reveal key={step.title} delay={index * 80} className="px-1 py-6 sm:px-4">
+              <h3 className="font-heading text-base font-semibold text-text">{step.title}</h3>
+              <p className="mt-2 font-body text-sm text-text-muted">{step.description}</p>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <section className="bg-surface px-6 py-16">
@@ -112,8 +147,7 @@ export default function DisputeResolutionPage() {
                 Specialized Panels
               </h2>
               <p className="mt-3 font-body text-sm text-text-muted">
-                Nine categories, from debt recovery to intellectual property, each with panelists
-                vetted specifically for that dispute type.
+                Ten categories, each with panelists vetted specifically for that dispute type.
               </p>
               <Link
                 href="/dispute-resolution/panels"

@@ -35,6 +35,21 @@ export default function LokAdalatPage() {
           answer: "Generally, compoundable civil disputes and certain matters at the pre-litigation stage. Adjudix can help you confirm whether your matter is eligible.",
         },
       ]}
+      extra={
+        <section className="mx-auto max-w-3xl px-6 py-16">
+          <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            Only at Adjudix
+          </span>
+          <h2 className="mt-3 font-heading text-2xl font-semibold text-text">Adjudix Lok Adalat</h2>
+          <p className="mt-3 font-body text-text-muted">
+            An Adjudix Lok Adalat can be convened during any ADR proceeding. For a single day, a
+            new ADR professional is engaged; each party submits its confidential settlement
+            proposal to them, and they act as a conciliator, keeping every proposal secret. That
+            secrecy is what makes an out-of-the-box settlement possible — one neither side would
+            have put on the table in open proceedings.
+          </p>
+        </section>
+      }
       filingLabel="Check Eligibility"
       filingHref="/contact"
     />

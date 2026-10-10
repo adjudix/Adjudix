@@ -37,7 +37,7 @@ export default function ModelClausesPage() {
         </div>
         <p className="mt-8 font-body text-sm text-text-muted">
           These clauses are starting points. For contracts with unusual value, jurisdiction, or
-          confidentiality requirements, our Contract &amp; Clause Drafting service will tailor
+          confidentiality requirements, our <strong className="font-semibold text-text">Contract &amp; Clause Drafting service</strong> will tailor
           language to your specific agreement.
         </p>
       </section>

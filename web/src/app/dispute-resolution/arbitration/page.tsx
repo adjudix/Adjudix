@@ -31,11 +31,35 @@ export default function ArbitrationPage() {
         },
         {
           question: "Can I choose my own arbitrator?",
-          answer: "Parties may jointly nominate an arbitrator from the specialized panel matched to their dispute type; if they can't agree, Adjudix appoints one.",
+          answer: "Parties may jointly nominate an arbitrator from the specialized panel matched to their dispute type; otherwise Adjudix appoints one.",
         },
         {
           question: "Does Adjudix handle international arbitration?",
           answer: "Yes, for both India-seated international commercial arbitration and cross-border matters where the parties choose Adjudix as the administering institution.",
+        },
+        {
+          question: "Will Adjudix help implement the award?",
+          answer: "Yes — implementation is our USP. Adjudix carries the award through to enforcement in India and in any New York Convention country, under the applicable laws of the concerned country.",
+        },
+        {
+          question: "What if I need urgent relief before the tribunal is formed?",
+          answer: "Apply for Emergency Arbitration. An emergency arbitrator can grant interim relief before the full tribunal is constituted.",
+        },
+        {
+          question: "Can we try mediation first and still get a binding award?",
+          answer: "Yes. Our Hybrid ADR Mechanism (Med-Arb) starts with mediation and converts to binding arbitration if a settlement isn't reached.",
+        },
+        {
+          question: "Can arbitration be conducted online or offline?",
+          answer: "Both. Hearings can run fully on the ODR Platform, fully in person, or a mix of the two.",
+        },
+        {
+          question: "Do you draft arbitration clauses?",
+          answer: "Yes. Our Contract & Clause Drafting service tailors the clause to your contract; ready-to-insert language is on the Model Clauses page.",
+        },
+        {
+          question: "How are fees calculated?",
+          answer: "The platform's administrative fee is a tiered percentage of the amount in dispute — see the Rules & Fees Calculator for an example estimate. Arbitrator fees are separate.",
         },
       ]}
     />
