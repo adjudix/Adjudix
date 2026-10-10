@@ -14,7 +14,7 @@ export default function ApprenticeshipsPage() {
       <PageHeader
         eyebrow="Training Institute"
         title="Apprenticeship & Internship Programme"
-        breadcrumbs={[{ label: "Training Institute", href: "/training" }, { label: "Apprenticeships" }]}
+        breadcrumbs={[{ label: "Training Institute", href: "/training" }, { label: "Apprenticeship & Internships" }]}
         intro="Classroom training only goes so far. The Apprenticeship Programme places Training Institute graduates alongside experienced panelists on real cases, under supervision, before independent appointment."
       />
 

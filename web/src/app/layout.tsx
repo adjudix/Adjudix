@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { PageLoader } from "@/components/layout/page-loader";
+import { ConsultationPopup } from "@/components/layout/consultation-popup";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Adjudix Dispute Resolution Institute",
   description:
-    "Arbitration, mediation, conciliation, and online dispute resolution under one roof.",
+    "Dispute resolution and assured implementation under one roof — arbitration, mediation, conciliation, Lok Adalat, emergency, hybrid, and corporate ADR.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <div className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
+        <ConsultationPopup />
       </body>
     </html>
   );

@@ -1,15 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 
+// Columns follow the client's Oct 2026 footer markup. The Institute column is
+// organised around their Who / What / Why / How / Where framing.
 const FOOTER_GROUPS = [
   {
     title: "Dispute Resolution",
     links: [
-      { label: "Arbitration", href: "/dispute-resolution/arbitration" },
-      { label: "Mediation", href: "/dispute-resolution/mediation" },
+      { label: "ADR Mechanisms", href: "/dispute-resolution" },
+      { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
       { label: "Specialized Panels", href: "/dispute-resolution/panels" },
       { label: "Rules & Governance", href: "/dispute-resolution/rules" },
       { label: "Corporate Services", href: "/dispute-resolution/corporate" },
+      { label: "Implementation", href: "/implementation" },
     ],
   },
   {
@@ -24,19 +27,19 @@ const FOOTER_GROUPS = [
   {
     title: "Training Institute",
     links: [
-      { label: "Courses", href: "/training/courses" },
-      { label: "Certification", href: "/training/certification" },
-      { label: "Calendar", href: "/training/calendar" },
-      { label: "Apprenticeships", href: "/training/apprenticeships" },
+      { label: "Professional Courses", href: "/training/courses" },
+      { label: "Student Courses", href: "/training/courses#student-courses" },
+      { label: "Apprenticeships & Internships", href: "/training/apprenticeships" },
     ],
   },
   {
     title: "Institute",
     links: [
-      { label: "About / Why ADR-i", href: "/about" },
-      { label: "Membership", href: "/membership" },
-      { label: "Knowledge Centre", href: "/knowledge" },
-      { label: "Events", href: "/events" },
+      { label: "Who We Are", href: "/about/our-story" },
+      { label: "What We Do", href: "/dispute-resolution" },
+      { label: "Why Us", href: "/about" },
+      { label: "Our Professional Panel", href: "/panel" },
+      { label: "Online & Offline", href: "/dispute-resolution/offline" },
       { label: "Our Partners", href: "/partners" },
       { label: "Contact Us", href: "/contact" },
     ],
@@ -55,7 +58,7 @@ export function SiteFooter() {
               </h3>
               <ul className="flex flex-col gap-2">
                 {group.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-sm text-text-on-hero-muted hover:text-text-on-hero"
@@ -73,7 +76,7 @@ export function SiteFooter() {
           <div className="inline-block rounded-lg bg-white px-6 py-4">
             <Image
               src="/images/logo-horizontal.png"
-              alt="Adjudix Dispute Resolution Institute — Dispute Resolved &amp; Implemented at your Doorstep"
+              alt="Adjudix Dispute Resolution Institute — Dispute Resolved & Implemented at your Doorstep"
               width={1876}
               height={434}
               className="h-14 w-auto md:h-16"
@@ -91,14 +94,6 @@ export function SiteFooter() {
               <Link href="/terms" className="hover:text-text-on-hero">
                 Terms &amp; Conditions
               </Link>
-              <div className="flex items-center gap-4">
-                <a href="https://linkedin.com" className="hover:text-text-on-hero">
-                  LinkedIn
-                </a>
-                <a href="https://youtube.com" className="hover:text-text-on-hero">
-                  YouTube
-                </a>
-              </div>
             </div>
           </div>
         </div>

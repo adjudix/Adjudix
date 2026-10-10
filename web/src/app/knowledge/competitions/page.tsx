@@ -1,13 +1,8 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
+import { COMPETITIONS } from "@/lib/competitions";
 
-const COMPETITIONS = [
-  { title: "Mock Arbitration", description: "A simulated arbitration hearing, scored by practicing arbitrators.", href: "/knowledge/competitions/mock-arbitration" },
-  { title: "Mock Conciliation", description: "A simulated conciliation, testing proposal-led settlement skill.", href: "/knowledge/competitions/mock-conciliation" },
-  { title: "Arbitral Award Writing", description: "Write a reasoned award on a set fact pattern.", href: "/knowledge/competitions/award-writing" },
-  { title: "Arbitral Blog/Article Writing", description: "Original writing on any ADR topic, judged for clarity and insight.", href: "/knowledge/competitions/blog-writing" },
-];
 
 export default function CompetitionsPage() {
   return (
@@ -15,7 +10,11 @@ export default function CompetitionsPage() {
       <PageHeader
         eyebrow="Knowledge Centre"
         title="Competitions"
-        breadcrumbs={[{ label: "Knowledge Centre", href: "/knowledge" }, { label: "Competitions" }]}
+        breadcrumbs={[
+          { label: "Knowledge Centre", href: "/knowledge" },
+          { label: "Events", href: "/events" },
+          { label: "Competitions" },
+        ]}
         intro="For students and early-career professionals to test and showcase ADR skills — mock proceedings and writing competitions, judged by practicing panelists."
       />
 

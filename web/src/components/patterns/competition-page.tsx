@@ -15,6 +15,7 @@ export function CompetitionPage({ title, intro, format }: CompetitionPageProps) 
         title={title}
         breadcrumbs={[
           { label: "Knowledge Centre", href: "/knowledge" },
+          { label: "Events", href: "/events" },
           { label: "Competitions", href: "/knowledge/competitions" },
           { label: title },
         ]}
