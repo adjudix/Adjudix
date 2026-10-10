@@ -13,7 +13,7 @@ export default function Page() {
       benefits={[
         "Use of the Fellow designation",
         "Priority consideration for complex and high-value panel appointments",
-        "Invitation to contribute to Code of Procedure review and Training Institute curriculum",
+        "Invitation to contribute to reviews of the Adjudix Code of ADR Procedure and Training Institute curriculum",
       ]}
       fee="By nomination or application, reviewed by the Advisory Council. No standard fee — details confirmed during review."
     />

@@ -39,9 +39,8 @@ export default function PortalPage() {
           ))}
         </div>
         <p className="mt-8 font-body text-sm text-text-muted">
-          Portal sign-in is being rolled out alongside our founding caseload. If you&apos;ve
-          already filed a case or accepted a panel appointment, contact us directly for your
-          access credentials.
+          Portal credentials are issued by the Secretariat. If you&apos;ve filed a case or
+          accepted a panel appointment, contact us directly for your access credentials.
         </p>
       </section>
     </main>

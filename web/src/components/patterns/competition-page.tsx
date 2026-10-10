@@ -35,17 +35,16 @@ export function CompetitionPage({ title, intro, format }: CompetitionPageProps) 
 
       <section className="bg-surface px-6 py-16">
         <div className="mx-auto max-w-4xl rounded-lg border border-border bg-canvas p-8">
-          <h2 className="font-heading text-lg font-semibold text-text">Next edition — dates TBD</h2>
+          <h2 className="font-heading text-lg font-semibold text-text">Apply now</h2>
           <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Register your interest and we&apos;ll notify you as soon as dates and rules for the
-            next edition are confirmed.
+            Apply now and we&apos;ll notify you with the dates and rules for the next edition.
           </p>
         </div>
       </section>
 
       <CtaBand
-        title="Register your interest"
-        primary={{ label: "Register Interest", href: "/contact" }}
+        title="Apply now, we will notify you"
+        primary={{ label: "Apply Now", href: "/contact" }}
         secondary={{ label: "All Competitions", href: "/knowledge/competitions" }}
       />
     </main>

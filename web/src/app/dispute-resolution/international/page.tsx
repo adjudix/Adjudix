@@ -23,7 +23,7 @@ export default function InternationalDisputeResolutionPage() {
           description: "The award or settlement is drafted for recognition and enforcement in the relevant foreign jurisdiction.",
         },
       ]}
-      legalBasis="India-seated international commercial arbitration is conducted under Part I of the Arbitration and Conciliation Act, 1996; enforcement of foreign awards is governed by Part II, which gives effect to the New York Convention, 1958. Adjudix's Code of Procedure applies to the conduct of proceedings in either case."
+      legalBasis="India-seated international commercial arbitration is conducted under Part I of the Arbitration and Conciliation Act, 1996; enforcement of foreign awards is governed by Part II, which gives effect to the New York Convention, 1958. The Adjudix Code of ADR Procedure applies to the conduct of proceedings in either case."
       faqs={[
         {
           question: "Is an Adjudix award enforceable outside India?",

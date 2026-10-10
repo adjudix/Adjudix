@@ -16,14 +16,14 @@ export default function ArbitrationPage() {
         },
         {
           title: "Hearing",
-          description: "The arbitrator hears arguments, in person or online, under the Code of Procedure's timelines.",
+          description: "The arbitrator hears arguments, in person or online, under the Adjudix Code of ADR Procedure's timelines.",
         },
         {
           title: "Award",
           description: "A reasoned, binding award is issued and is enforceable as a decree of court.",
         },
       ]}
-      legalBasis="Arbitration under Adjudix is conducted in accordance with the Arbitration and Conciliation Act, 1996 (as amended), and Adjudix's own Code of Procedure. Awards are enforceable in the same manner as a decree of a civil court, and international awards are enforceable under the New York Convention where applicable."
+      legalBasis="Arbitration under Adjudix is conducted in accordance with the Arbitration and Conciliation Act, 1996 (as amended), and the Adjudix Code of ADR Procedure, 2026. Awards are enforceable in the same manner as a decree of a civil court, and international awards are enforceable under the New York Convention where applicable."
       faqs={[
         {
           question: "Is an Adjudix arbitration award final?",

@@ -79,7 +79,7 @@ const MEMBERSHIP_CARDS = [
     points: [
       "Priority consideration for high-value appointments",
       "Use of the Fellow designation",
-      "A voice in Code of Procedure review",
+      "A voice in reviews of the Adjudix Code of ADR Procedure",
     ],
     backImage: "/images/boardroom-collaboration.jpg",
     backAlt: "A panel presenting a case analysis to a seated group around a conference table",
@@ -94,7 +94,7 @@ const COMPARISON_ROWS = [
   },
   {
     criterion: "Timeline",
-    adjudix: "Governed by the Code of Procedure, with an Emergency Arbitrator route for urgent relief",
+    adjudix: "Governed by the Adjudix Code of ADR Procedure, with an Emergency Arbitrator route for urgent relief",
     other: "No fixed procedural timeline",
   },
   {
@@ -108,7 +108,7 @@ const FAQ_ITEMS = [
   {
     question: "What is Adjudix?",
     answer:
-      "Adjudix Dispute Resolution Institute administers arbitration, mediation, conciliation, and online dispute resolution under a published Code of Procedure, alongside a Training Institute and professional membership programme.",
+      "Adjudix Dispute Resolution Institute administers arbitration, mediation, conciliation, and online dispute resolution under the Adjudix Code of ADR Procedure, 2026, alongside a Training Institute and professional membership programme.",
   },
   {
     question: "How do I file a dispute?",
@@ -325,7 +325,7 @@ export default function Home() {
               it&apos;s the procedure
             </h2>
             <p className="font-body text-text-muted max-w-sm">
-              Every case follows the same published Code of Procedure, so the
+              Every case follows the same Adjudix Code of ADR Procedure, 2026, so the
               outcome depends on the merits, not on how the other side behaves.
             </p>
           </Reveal>

@@ -19,7 +19,7 @@ export default function HybridPage() {
           description: "The case proceeds to a binding arbitral award, often before a different neutral than the mediator.",
         },
       ]}
-      legalBasis="The mediation phase is conducted under the Mediation Act, 2023, and the arbitration phase under the Arbitration and Conciliation Act, 1996. The two-stage structure is set out in the parties' arbitration clause or submission agreement, and in Adjudix's Code of Procedure."
+      legalBasis="The mediation phase is conducted under the Mediation Act, 2023, and the arbitration phase under the Arbitration and Conciliation Act, 1996. The two-stage structure is set out in the parties' arbitration clause or submission agreement, and in the Adjudix Code of ADR Procedure."
       faqs={[
         {
           question: "Why use a hybrid process instead of just arbitration?",

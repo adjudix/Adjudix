@@ -4,15 +4,15 @@ import { CtaBand } from "@/components/layout/cta-band";
 const CLAUSES = [
   {
     title: "Standard arbitration clause",
-    text: '"Any dispute arising out of or in connection with this contract, including any question regarding its existence, validity, or termination, shall be referred to and finally resolved by arbitration administered by the Adjudix Dispute Resolution Institute in accordance with its Code of Procedure."',
+    text: '"Any dispute arising out of or in connection with this contract, including any question regarding its existence, validity, or termination, shall be referred to and finally resolved by arbitration administered by the Adjudix Dispute Resolution Institute in accordance with the latest version of the Adjudix Code of ADR Procedure."',
   },
   {
     title: "Mediation-first (hybrid) clause",
-    text: '"The parties shall first attempt to resolve any dispute through mediation administered by the Adjudix Dispute Resolution Institute. If the dispute is not settled within 30 days of the request for mediation, it shall be finally resolved by arbitration administered by the Institute in accordance with its Code of Procedure."',
+    text: '"The parties shall first attempt to resolve any dispute through mediation administered by the Adjudix Dispute Resolution Institute. If the dispute is not settled within 30 days of the request for mediation, it shall be finally resolved by arbitration administered by the Institute in accordance with the latest version of the Adjudix Code of ADR Procedure."',
   },
   {
     title: "Emergency arbitration clause",
-    text: '"Either party may apply for emergency interim relief in accordance with the Adjudix Dispute Resolution Institute\'s Code of Procedure at any time before the constitution of the arbitral tribunal."',
+    text: '"Either party may apply for emergency interim relief in accordance with the latest version of the Adjudix Code of ADR Procedure at any time before the constitution of the arbitral tribunal."',
   },
 ];
 

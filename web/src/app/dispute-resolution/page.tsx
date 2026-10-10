@@ -30,7 +30,7 @@ const SPECTRUM = [
 const MECHANISMS = [
   {
     title: "Arbitration",
-    description: "Domestic and international, decided by a neutral arbitrator under the Code of Procedure.",
+    description: "Domestic and international, decided by a neutral arbitrator under the Adjudix Code of ADR Procedure.",
     href: "/dispute-resolution/arbitration",
   },
   {
@@ -66,7 +66,7 @@ export default function DisputeResolutionPage() {
       <PageHeader
         eyebrow="Dispute Resolution"
         title="One institute, the full ADR spectrum"
-        intro="From a facilitated conversation to a binding arbitral award, Adjudix administers every point on the alternative dispute resolution spectrum under a single published Code of Procedure."
+        intro="From a facilitated conversation to a binding arbitral award, Adjudix administers every point on the alternative dispute resolution spectrum under the Adjudix Code of ADR Procedure, 2026."
         image={{ src: "/images/columns-detail.jpg", alt: "A classical colonnade" }}
       />
 

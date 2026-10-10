@@ -16,7 +16,7 @@ const ARTICLES = [
   },
   {
     title: "IV. Procedural fairness",
-    body: "Every case is administered under the same published Code of Procedure, regardless of the size of the claim or the identity of the parties.",
+    body: "Every case is administered under the same Adjudix Code of ADR Procedure, 2026, regardless of the size of the claim or the identity of the parties.",
   },
   {
     title: "V. Accountability",
@@ -31,7 +31,7 @@ export default function MoralCodePage() {
         eyebrow="About Adjudix"
         title="Moral Code of Principles & Doctrines"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Moral Code" }]}
-        intro="The founding ethical charter governing every case, panelist, and member of the Adjudix Dispute Resolution Institute — the constitution behind our Code of Procedure."
+        intro="The founding ethical charter governing every case, panelist, and member of the Adjudix Dispute Resolution Institute — the constitution behind the Adjudix Code of ADR Procedure."
       />
 
       <section className="mx-auto max-w-3xl px-6 py-16">
@@ -55,14 +55,14 @@ export default function MoralCodePage() {
         <p className="mt-10 font-body text-sm text-text-muted">
           <strong className="text-text">Version 1.0</strong> — effective from the institute&apos;s
           founding. Future revisions will be dated and archived here, in the same manner as the
-          Code of Procedure.
+          Adjudix Code of ADR Procedure.
         </p>
       </section>
 
       <CtaBand
         title="See how this code applies in practice"
-        description="Read the Code of Procedure that governs how every case is actually administered."
-        primary={{ label: "Code of Procedure", href: "/dispute-resolution/rules/code-of-procedure" }}
+        description="Read the Adjudix Code of ADR Procedure that governs how every case is actually administered."
+        primary={{ label: "Adjudix Code of ADR Procedure", href: "/dispute-resolution/rules/code-of-procedure" }}
         secondary={{ label: "About Adjudix", href: "/about" }}
       />
     </main>

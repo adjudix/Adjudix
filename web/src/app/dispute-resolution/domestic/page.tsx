@@ -16,14 +16,14 @@ export default function DomesticDisputeResolutionPage() {
         },
         {
           title: "Proceedings",
-          description: "Hearings or sessions run under the Code of Procedure's domestic timelines, in person or online.",
+          description: "Hearings or sessions run under the Adjudix Code of ADR Procedure's domestic timelines, in person or online.",
         },
         {
           title: "Binding outcome",
           description: "An award, settlement, or consent decree is issued, enforceable under Indian law.",
         },
       ]}
-      legalBasis="Domestic matters are administered under the Arbitration and Conciliation Act, 1996, the Mediation Act, 2023, and — for Lok Adalat referrals — the Legal Services Authorities Act, 1987, alongside Adjudix's own Code of Procedure."
+      legalBasis="Domestic matters are administered under the Arbitration and Conciliation Act, 1996, the Mediation Act, 2023, and — for Lok Adalat referrals — the Legal Services Authorities Act, 1987, alongside the Adjudix Code of ADR Procedure, 2026."
       faqs={[
         {
           question: "Which mechanism should I choose for a domestic dispute?",

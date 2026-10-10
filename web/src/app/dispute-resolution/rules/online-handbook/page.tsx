@@ -19,7 +19,7 @@ export default function OnlineHandbookPage() {
           { label: "Rules & Governance", href: "/dispute-resolution/rules" },
           { label: "Online Handbook" },
         ]}
-        intro="Step-by-step guidance for parties, panelists, and case managers using the ODR Platform — everything the Code of Procedure requires, translated into the platform's actual screens and workflow."
+        intro="Step-by-step guidance for parties, panelists, and case managers using the ODR Platform — everything the Adjudix Code of ADR Procedure requires, translated into the platform's actual screens and workflow."
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">

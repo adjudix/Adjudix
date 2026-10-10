@@ -5,7 +5,7 @@ import { CardGrid } from "@/components/ui/card-grid";
 const CATEGORIES = [
   { title: "Education Partners", description: "Law schools and universities referring students into our Training Institute.", href: "/partners/education" },
   { title: "Training Partners", description: "Organizations co-delivering courses alongside the Training Institute.", href: "/partners/training" },
-  { title: "Corporate Partners", description: "Businesses with a preferred-rate relationship for dispute resolution services.", href: "/partners/corporate" },
+  { title: "Corporate Partners", description: "Businesses with a preferred-rate relationship for dispute resolution services. Kept confidential.", href: "/partners/corporate" },
 ];
 
 export default function PartnersPage() {

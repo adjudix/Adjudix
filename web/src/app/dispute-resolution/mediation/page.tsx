@@ -19,7 +19,7 @@ export default function MediationPage() {
           description: "If terms are reached, they're recorded in a written settlement agreement.",
         },
       ]}
-      legalBasis="Mediation at Adjudix follows the Mediation Act, 2023, and Adjudix's Code of Procedure. A settlement agreement reached in mediation is enforceable in the same manner as a judgment of a court, once registered as required under the Act."
+      legalBasis="Mediation at Adjudix follows the Mediation Act, 2023, and the Adjudix Code of ADR Procedure. A settlement agreement reached in mediation is enforceable in the same manner as a judgment of a court, once registered as required under the Act."
       faqs={[
         {
           question: "Is mediation binding?",

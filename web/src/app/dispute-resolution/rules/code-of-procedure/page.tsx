@@ -15,11 +15,11 @@ export default function CodeOfProcedurePage() {
     <main className="bg-canvas flex-1">
       <PageHeader
         eyebrow="Rules & Governance"
-        title="Code of Procedure"
+        title="The Adjudix Code of ADR Procedure, 2026"
         breadcrumbs={[
           { label: "Dispute Resolution", href: "/dispute-resolution" },
           { label: "Rules & Governance", href: "/dispute-resolution/rules" },
-          { label: "Code of Procedure" },
+          { label: "Adjudix Code of ADR Procedure" },
         ]}
         intro="The single procedure that governs every case Adjudix administers, regardless of mechanism or value — published in advance so no party is ever negotiating process after a dispute has already begun."
       />

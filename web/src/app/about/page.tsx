@@ -12,12 +12,12 @@ const ROWS = [
   },
   {
     criterion: "Procedure",
-    adjudix: "A single published Code of Procedure governs every case, known in advance",
+    adjudix: "The Adjudix Code of ADR Procedure, 2026 governs every case, known in advance",
     other: "Procedure is negotiated case-by-case, or set by court rules never designed for the dispute",
   },
   {
     criterion: "Timeline",
-    adjudix: "Bound by the Code of Procedure, with an Emergency Arbitrator route for urgent relief",
+    adjudix: "Bound by the Adjudix Code of ADR Procedure, with an Emergency Arbitrator route for urgent relief",
     other: "No fixed procedural timeline",
   },
   {
@@ -38,7 +38,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About Adjudix"
         title="Why ADR-i"
-        intro="Adjudix exists because the choice of forum shouldn't be an afterthought. Institutional alternative dispute resolution replaces an uncertain, case-by-case negotiation over process with one published, predictable Code of Procedure — known to both sides before a dispute ever arises."
+        intro="Adjudix exists because the choice of forum shouldn't be an afterthought. Institutional alternative dispute resolution replaces an uncertain, case-by-case negotiation over process with the published, predictable Adjudix Code of ADR Procedure, 2026 — known to both sides before a dispute ever arises."
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16">
@@ -48,7 +48,7 @@ export default function AboutPage() {
           and under rules designed for every kind of case rather than any one kind, or through
           ad hoc arbitration or mediation, where the parties negotiate procedure from a blank
           page every time a disagreement arises. Adjudix was founded to offer a third option: a
-          standing institution with a published Code of Procedure, a panel of vetted specialists
+          standing institution with the Adjudix Code of ADR Procedure, 2026, a panel of vetted specialists
           organized by dispute type, and a Training Institute that gives the next generation of
           arbitrators, conciliators, and mediators a defined path into the profession.
         </p>
@@ -80,7 +80,7 @@ export default function AboutPage() {
         <h2 className="font-heading text-2xl font-semibold text-text">Governance</h2>
         <p className="mt-4 font-body text-text-muted">
           Adjudix is governed by a Secretariat and Advisory Council responsible for maintaining
-          the Code of Procedure, empanelling and reviewing arbitrators, conciliators, and
+          the Adjudix Code of ADR Procedure, empanelling and reviewing arbitrators, conciliators, and
           mediators, and overseeing the Training Institute&apos;s curriculum. Full governance
           structure and named leadership are published on the{" "}
           <Link href="/about/leadership" className="text-primary hover:underline">

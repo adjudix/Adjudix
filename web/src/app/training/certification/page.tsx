@@ -5,7 +5,7 @@ import Link from "next/link";
 const RUBRIC = [
   {
     track: "Arbitrator",
-    attests: "Competence to conduct a hearing and issue a reasoned, enforceable award under the Code of Procedure.",
+    attests: "Competence to conduct a hearing and issue a reasoned, enforceable award under the Adjudix Code of ADR Procedure.",
   },
   {
     track: "Conciliator",

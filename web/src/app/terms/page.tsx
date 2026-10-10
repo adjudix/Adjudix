@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/layout/page-header";
 const SECTIONS = [
   {
     title: "Acceptance of terms",
-    body: "By using the ODR Platform or engaging Adjudix as an administering institution, you agree to these terms and to our published Code of Procedure.",
+    body: "By using the ODR Platform or engaging Adjudix as an administering institution, you agree to these terms and to the Adjudix Code of ADR Procedure, 2026.",
   },
   {
     title: "Scope of services",
@@ -45,7 +45,7 @@ export default function TermsPage() {
           <h2 className="font-heading text-xl font-semibold text-text">Grievance Redressal</h2>
           <p className="mt-3 font-body text-text-muted">
             If you believe Adjudix, a panelist, or the ODR Platform has fallen short of the
-            standards set out in our Moral Code of Principles or Code of Procedure, submit a
+            standards set out in our Moral Code of Principles or the Adjudix Code of ADR Procedure, submit a
             grievance through our{" "}
             <Link href="/contact" className="text-primary hover:underline">
               Contact Us

@@ -5,9 +5,14 @@ export interface PartnerCategoryPageProps {
   title: string;
   intro: string;
   benefits: string[];
+  status?: { title: string; body: string };
 }
 
-export function PartnerCategoryPage({ title, intro, benefits }: PartnerCategoryPageProps) {
+export function PartnerCategoryPage({ title, intro, benefits, status }: PartnerCategoryPageProps) {
+  const note = status ?? {
+    title: `Our ${title}`,
+    body: `The list of our ${title.toLowerCase()} is being prepared.`,
+  };
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
@@ -32,12 +37,9 @@ export function PartnerCategoryPage({ title, intro, benefits }: PartnerCategoryP
       <section className="bg-surface px-6 py-16">
         <div className="mx-auto max-w-4xl rounded-lg border border-border bg-canvas p-8">
           <h2 className="font-heading text-lg font-semibold text-text">
-            Partnerships coming soon
+            {note.title}
           </h2>
-          <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Adjudix is establishing its first {title.toLowerCase()} relationships. Get in touch
-            to discuss a partnership.
-          </p>
+          <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">{note.body}</p>
         </div>
       </section>
 

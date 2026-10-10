@@ -24,11 +24,11 @@ export default function EmergencyArbitrationPage() {
           description: "The Emergency Arbitrator issues interim relief, effective immediately and binding on the parties.",
         },
       ]}
-      legalBasis="Emergency Arbitration is available under Adjudix's Code of Procedure to any party with an existing or prospective arbitration clause naming Adjudix as the administering institution. Interim orders remain in force until the full tribunal is constituted and can confirm, modify, or vacate them."
+      legalBasis="Emergency Arbitration is available under the Adjudix Code of ADR Procedure to any party with an existing or prospective arbitration clause naming Adjudix as the administering institution. Interim orders remain in force until the full tribunal is constituted and can confirm, modify, or vacate them."
       faqs={[
         {
           question: "How fast can an emergency arbitrator be appointed?",
-          answer: "Adjudix's Code of Procedure sets a strict appointment timeline for emergency applications, designed to be measured in hours, not weeks — details are provided directly on request given the urgency involved.",
+          answer: "The Adjudix Code of ADR Procedure sets a strict appointment timeline for emergency applications, designed to be measured in hours, not weeks — details are provided directly on request given the urgency involved.",
         },
         {
           question: "Is emergency relief the same as a final award?",

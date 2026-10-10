@@ -103,4 +103,10 @@
   html {
     @apply font-sans;
   }
+  /* Client brief: body paragraphs are justified, not ragged-left. Kept in the
+     base layer so text-center / text-left utilities still win where set. */
+  main p {
+    text-align: justify;
+    hyphens: auto;
+  }
 }

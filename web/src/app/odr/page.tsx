@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui/reveal";
 const STEPS = [
   { title: "File", description: "Submit your case online with claimant, respondent, and dispute details." },
   { title: "Neutral appointed", description: "Adjudix appoints an arbitrator, mediator, or conciliator from the specialized panel." },
-  { title: "Hearing", description: "Document exchange and hearings proceed under the Code of Procedure's timelines." },
+  { title: "Hearing", description: "Document exchange and hearings proceed under the Adjudix Code of ADR Procedure's timelines." },
   { title: "Award / settlement", description: "A binding award or signed settlement agreement closes the case." },
 ];
 
@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     question: "Is an online hearing legally equivalent to an in-person one?",
-    answer: "Yes. Hearings conducted through the ODR Platform follow the same Code of Procedure as in-person hearings, and the resulting award or settlement has the same legal effect.",
+    answer: "Yes. Hearings conducted through the ODR Platform follow the same Adjudix Code of ADR Procedure as in-person hearings, and the resulting award or settlement has the same legal effect.",
   },
   {
     question: "What happens to my documents and data?",

@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/layout/cta-band";
 
 const DOCS = [
   {
-    title: "Code of Procedure",
+    title: "Adjudix Code of ADR Procedure",
     description: "The single governing procedure for every case Adjudix administers, versioned by year.",
     href: "/dispute-resolution/rules/code-of-procedure",
   },

@@ -7,7 +7,11 @@ export interface PanelCategoryPageProps {
   qualifies: string[];
 }
 
+const OPEN_ENDED_ITEM = "Any other such related issue";
+
 export function PanelCategoryPage({ title, intro, qualifies }: PanelCategoryPageProps) {
+  // Every list stays inclusive; the Miscellaneous page already ends with its own catch-all.
+  const items = qualifies.at(-1)?.startsWith("Any other") ? qualifies : [...qualifies, OPEN_ENDED_ITEM];
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
@@ -24,27 +28,13 @@ export function PanelCategoryPage({ title, intro, qualifies }: PanelCategoryPage
       <section className="mx-auto max-w-4xl px-6 py-16">
         <h2 className="font-heading text-2xl font-semibold text-text">What qualifies</h2>
         <ul className="mt-6 flex flex-col gap-3">
-          {qualifies.map((item) => (
+          {items.map((item) => (
             <li key={item} className="flex gap-3 font-body text-text-muted">
               <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
               {item}
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className="bg-surface px-6 py-16">
-        <div className="mx-auto max-w-4xl rounded-lg border border-border bg-canvas p-8">
-          <h2 className="font-heading text-xl font-semibold text-text">
-            Panel for this category — empanelling now
-          </h2>
-          <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Adjudix is building out its founding panel for {title.toLowerCase()}. Qualified
-            advocates, chartered accountants, and engineers can apply to join; parties with a
-            live matter in this category can proceed directly to filing and Adjudix will appoint
-            a suitably specialized panelist.
-          </p>
-        </div>
       </section>
 
       <CtaBand

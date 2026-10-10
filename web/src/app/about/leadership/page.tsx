@@ -8,7 +8,7 @@ export default function LeadershipPage() {
         eyebrow="About Adjudix"
         title="Leadership & Governance"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Leadership & Governance" }]}
-        intro="Adjudix is governed by a Secretariat and an Advisory Council, responsible for the Code of Procedure, panel empanelment, and the Training Institute's curriculum."
+        intro="Adjudix is governed by a Secretariat and an Advisory Council, responsible for the Adjudix Code of ADR Procedure, panel empanelment, and the Training Institute's curriculum."
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16">
@@ -23,7 +23,7 @@ export default function LeadershipPage() {
           <div className="rounded-lg border border-border bg-surface p-6">
             <h3 className="font-heading text-lg font-semibold text-text">Advisory Council</h3>
             <p className="mt-2 font-body text-sm text-text-muted">
-              Reviews and approves the Code of Procedure, and oversees panel empanelment
+              Reviews and approves the Adjudix Code of ADR Procedure, and oversees panel empanelment
               standards.
             </p>
           </div>
@@ -40,12 +40,11 @@ export default function LeadershipPage() {
 
         <div className="mt-12 rounded-lg border border-border bg-surface p-8">
           <h2 className="font-heading text-xl font-semibold text-text">
-            Named leadership — coming soon
+            Leadership enquiries
           </h2>
           <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Adjudix is finalizing its founding Secretariat and Advisory Council. Individual
-            profiles, credentials, and bios will be published here once appointments are
-            confirmed. In the meantime, governance queries can be directed to our team directly.
+            The Secretariat and Advisory Council respond to governance and leadership enquiries
+            directly. Write to the Secretariat for credentials or an introduction.
           </p>
         </div>
       </section>

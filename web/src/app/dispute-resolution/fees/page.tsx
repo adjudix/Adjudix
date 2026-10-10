@@ -20,7 +20,7 @@ export default function FeesPage() {
         title="Ready to file?"
         description="Start your case through the ODR Platform, with a confirmed fee before you submit."
         primary={{ label: "File a Dispute", href: "/odr/file" }}
-        secondary={{ label: "Code of Procedure", href: "/dispute-resolution/rules/code-of-procedure" }}
+        secondary={{ label: "Adjudix Code of ADR Procedure", href: "/dispute-resolution/rules/code-of-procedure" }}
       />
     </main>
   );
