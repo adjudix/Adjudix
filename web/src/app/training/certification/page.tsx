@@ -4,6 +4,10 @@ import Link from "next/link";
 
 const RUBRIC = [
   {
+    track: "ADR Overview",
+    attests: "A working understanding of every ADR mechanism and how outcomes are implemented. Eligible for all.",
+  },
+  {
     track: "Arbitrator",
     attests: "Competence to conduct a hearing and issue a reasoned, enforceable award under the Adjudix Code of ADR Procedure.",
   },
@@ -18,6 +22,10 @@ const RUBRIC = [
   {
     track: "Contract Drafting",
     attests: "Competence to draft enforceable dispute resolution clauses for commercial contracts.",
+  },
+  {
+    track: "Hybrid ADR",
+    attests: "Competence to run a hybrid process from mediation through to a binding award, keeping each phase's confidentiality intact.",
   },
 ];
 

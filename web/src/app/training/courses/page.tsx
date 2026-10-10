@@ -1,13 +1,8 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
+import { TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
 
-const TRACKS = [
-  { title: "Arbitrator Track", href: "/training/courses/arbitrator", description: "Professional and student tracks toward panel-eligible arbitration practice." },
-  { title: "Conciliator Track", href: "/training/courses/conciliator", description: "Active, proposal-led settlement facilitation." },
-  { title: "Mediator Track", href: "/training/courses/mediator", description: "Facilitative technique for guiding parties to their own settlement." },
-  { title: "Contract Drafting Track", href: "/training/courses/contract-drafting", description: "Drafting enforceable arbitration and mediation clauses." },
-];
 
 export default function CoursesPage() {
   return (
@@ -16,11 +11,25 @@ export default function CoursesPage() {
         eyebrow="Training Institute"
         title="Courses"
         breadcrumbs={[{ label: "Training Institute", href: "/training" }, { label: "Courses" }]}
-        intro="Four tracks, each tied to a published Competence Framework and a path into panel eligibility."
+        intro="Six tracks, each tied to a published Competence Framework and a path into panel eligibility."
       />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <CardGrid items={TRACKS} columns={2} />
+        <h2 className="font-heading text-2xl font-semibold text-text">Professional Courses</h2>
+        <div className="mt-8">
+          <CardGrid items={TRACKS} columns={2} />
+        </div>
+      </section>
+
+      <section id="student-courses" className="scroll-mt-40 bg-surface px-6 py-16">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-heading text-2xl font-semibold text-text">Student Courses</h2>
+          <p className="mt-3 font-body text-text-muted">
+            Every track is also offered as a student course for students of law, commerce, and
+            engineering — the same Competence Framework, taught for those building toward the
+            profession. Student members receive student pricing, and scholarships are available.
+          </p>
+        </div>
       </section>
 
       <CtaBand

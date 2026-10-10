@@ -1,14 +1,20 @@
 import { PageHeader } from "@/components/layout/page-header";
+import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
+import { LinkButton } from "@/components/ui/link-button";
+import { formatRupees, getTrack } from "@/lib/training-tracks";
 
 export interface CoursePageProps {
+  // Key into TRAINING_TRACKS, which holds the fee.
+  slug: string;
   title: string;
   intro: string;
   who: string[];
   curriculum: { title: string; body: string }[];
 }
 
-export function CoursePage({ title, intro, who, curriculum }: CoursePageProps) {
+export function CoursePage({ slug, title, intro, who, curriculum }: CoursePageProps) {
+  const track = getTrack(slug);
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
@@ -49,20 +55,35 @@ export function CoursePage({ title, intro, who, curriculum }: CoursePageProps) {
       </section>
 
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <div className="rounded-lg border border-border bg-surface p-8">
-          <h2 className="font-heading text-lg font-semibold text-text">Enrollment opening soon</h2>
-          <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Adjudix is finalizing the first scheduled cohort for this track, with real dates,
-            faculty, and fees. Register your interest and we&apos;ll notify you the moment
-            enrollment opens.
-          </p>
+        <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              Course fee
+            </span>
+            <p className="mt-2 font-heading text-3xl font-semibold text-text">
+              <span className="mr-3 text-lg text-text-muted line-through">
+                <span className="sr-only">Was </span>
+                {formatRupees(track.mrp)}
+              </span>
+              {formatRupees(track.price)}
+            </p>
+            <p className="mt-1 text-left font-body text-xs text-text-muted">Discounted fee</p>
+          </div>
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <LinkButton href="/contact" size="lg">
+              Apply Now
+            </LinkButton>
+            <Link href="/contact" className="text-sm font-medium text-primary hover:underline">
+              Apply for Scholarship
+            </Link>
+          </div>
         </div>
       </section>
 
       <CtaBand
-        title="Register your interest"
-        description="Be the first to know when enrollment opens for this track."
-        primary={{ label: "Register Interest", href: "/contact" }}
+        title="Apply now"
+        description="Apply for this track, or ask about a scholarship."
+        primary={{ label: "Apply Now", href: "/contact" }}
         secondary={{ label: "Certification Framework", href: "/training/certification" }}
       />
     </main>

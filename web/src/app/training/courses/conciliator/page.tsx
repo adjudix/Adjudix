@@ -3,6 +3,7 @@ import { CoursePage } from "@/components/patterns/course-page";
 export default function Page() {
   return (
     <CoursePage
+      slug="conciliator"
       title="Conciliator Track"
       intro="Training in active, proposal-led settlement facilitation — for practitioners who want to help parties reach terms, not just hear a case and decide it."
       who={[

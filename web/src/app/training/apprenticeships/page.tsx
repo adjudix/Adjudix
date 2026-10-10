@@ -3,7 +3,7 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 
 const STEPS = [
-  { title: "Complete a track", description: "Finish the Arbitrator, Conciliator, or Mediator track relevant to your interest." },
+  { title: "Complete a track (optional)", description: "Finishing the Arbitrator, Conciliator, or Mediator track relevant to your interest helps, but isn't required." },
   { title: "Apply for placement", description: "Apply for an apprenticeship placement shadowing an active panelist on real cases." },
   { title: "Supervised practice", description: "Work under supervision before independent panel appointment." },
 ];

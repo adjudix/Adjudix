@@ -3,6 +3,7 @@ import { CoursePage } from "@/components/patterns/course-page";
 export default function Page() {
   return (
     <CoursePage
+      slug="mediator"
       title="Mediator Track"
       intro="Facilitative technique for guiding parties toward their own settlement — the skill of asking the right question, not proposing the answer."
       who={[
