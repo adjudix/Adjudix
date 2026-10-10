@@ -8,6 +8,7 @@ export default function Page() {
       intro="The first step on Adjudix's membership ladder, for students of law, commerce, and engineering who want to build a career in ADR."
       eligibility={[
         "Currently enrolled students of law, CA/CS, commerce, or engineering",
+        "Or anyone who has attended an Adjudix webinar or event",
         "No prior ADR experience or certification required",
       ]}
       benefits={[

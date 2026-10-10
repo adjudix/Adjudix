@@ -32,13 +32,23 @@ const ROWS = [
   },
 ];
 
+// The USP the client asked every reframed paragraph to carry.
+const USP = [
+  { title: "Hybrid model of dispute resolution", body: "Our flagship: mediation first, converting to a binding award only if it's needed." },
+  { title: "Global implementation", body: "Awards, settlements, and orders carried through to implementation, in India and worldwide." },
+  { title: "Corporate resolution", body: "Standing dispute resolution for businesses, without disrupting the relationship." },
+  { title: "Emergency arbitration", body: "Urgent interim relief before a full tribunal is constituted." },
+  { title: "Contract & clause drafting", body: "Contracts and arbitration clauses drafted to hold up when a dispute arises." },
+  { title: "Trainings", body: "Six certification tracks for professionals and students." },
+];
+
 export default function AboutPage() {
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
         eyebrow="About Adjudix"
         title="Why ADR-i"
-        intro="Adjudix exists because the choice of forum shouldn't be an afterthought. Institutional alternative dispute resolution replaces an uncertain, case-by-case negotiation over process with the published, predictable Adjudix Code of ADR Procedure, 2026 — known to both sides before a dispute ever arises."
+        intro="Adjudix exists because the choice of forum shouldn't be an afterthought. Institutional alternative dispute resolution replaces an uncertain, case-by-case negotiation over process with the published, predictable Adjudix Code of ADR Procedure, 2026 — known to both sides before a dispute ever arises. Our unique, hybrid approach covers both the resolution of a dispute and its implementation, globally."
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16">
@@ -61,6 +71,18 @@ export default function AboutPage() {
         </p>
       </section>
 
+      <section className="mx-auto max-w-5xl px-6 pb-16">
+        <h2 className="font-heading text-2xl font-semibold text-text">What sets Adjudix apart</h2>
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {USP.map((item) => (
+            <li key={item.title} className="rounded-lg border border-border bg-surface p-6">
+              <h3 className="font-heading text-lg font-semibold text-text">{item.title}</h3>
+              <p className="mt-2 font-body text-sm text-text-muted">{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="bg-surface px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-heading text-2xl font-semibold text-text">
@@ -81,8 +103,8 @@ export default function AboutPage() {
         <p className="mt-4 font-body text-text-muted">
           Adjudix is governed by a Secretariat and Advisory Council responsible for maintaining
           the Adjudix Code of ADR Procedure, empanelling and reviewing arbitrators, conciliators, and
-          mediators, and overseeing the Training Institute&apos;s curriculum. Full governance
-          structure and named leadership are published on the{" "}
+          mediators, and overseeing the Training Institute&apos;s curriculum. The full governance
+          structure is set out on the{" "}
           <Link href="/about/leadership" className="text-primary hover:underline">
             Leadership &amp; Governance
           </Link>{" "}

@@ -8,7 +8,7 @@ const SECTIONS = [
   },
   {
     title: "Scope of services",
-    body: "Adjudix administers arbitration, mediation, conciliation, and access to Lok Adalat, and operates a Training Institute and membership programme, as described throughout this site.",
+    body: "Adjudix administers arbitration, mediation, conciliation, emergency arbitration, hybrid (Med-Arb) and corporate ADR, and access to Lok Adalat, online and offline; supports the implementation of orders and awards; drafts contracts and dispute resolution clauses; and operates a Training Institute and membership programme, as described throughout this site.",
   },
   {
     title: "Fees",

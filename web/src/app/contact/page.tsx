@@ -1,6 +1,15 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
 
+// Mail IDs by purpose, as listed by the client. The domain is written as
+// "adjudixADR.com" in their notes — confirm the exact spelling before launch.
+const MAILBOXES = [
+  { team: "Secretariat", purpose: "For all formal communications", email: "secretariat@adjudixadr.com" },
+  { team: "HR", purpose: "For relationship building", email: "hr@adjudixadr.com" },
+  { team: "Customer Support", purpose: "For any help or support", email: "support@adjudixadr.com" },
+  { team: "Director", purpose: "Only in an emergency", email: "director@adjudixadr.com" },
+];
+
 export default function ContactPage() {
   return (
     <main className="bg-canvas flex-1">
@@ -14,20 +23,19 @@ export default function ContactPage() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr]">
           <div>
             <h2 className="font-heading text-xl font-semibold text-text">Get in touch</h2>
-            <div className="mt-6 flex flex-col gap-4 font-body text-sm text-text-muted">
-              <div>
-                <span className="block font-medium text-text">Email</span>
-                <span>contact@adjudix.org</span>
-              </div>
-              <div>
-                <span className="block font-medium text-text">Phone</span>
-                <span>Available on request via the form</span>
-              </div>
-              <div>
-                <span className="block font-medium text-text">Office</span>
-                <span>Details published once our registered office is confirmed.</span>
-              </div>
-            </div>
+            <dl className="mt-6 flex flex-col gap-5 font-body text-sm text-text-muted">
+              {MAILBOXES.map((box) => (
+                <div key={box.email}>
+                  <dt className="font-medium text-text">{box.team}</dt>
+                  <dd className="mt-0.5">{box.purpose}</dd>
+                  <dd>
+                    <a href={`mailto:${box.email}`} className="text-primary hover:underline">
+                      {box.email}
+                    </a>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <QueryForm
             fields={[
@@ -44,6 +52,9 @@ export default function ContactPage() {
                   "Membership Application",
                   "Training Enrollment",
                   "Partnership Inquiry",
+                  "Implementation of an Order or Award",
+                  "Contract / Clause Drafting",
+                  "Free Consultation",
                 ],
               },
               { name: "location", label: "City / Location (optional)" },

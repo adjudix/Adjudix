@@ -33,8 +33,11 @@ export default function FileDisputePage() {
               ],
             },
             { name: "amount", label: "Amount in dispute (₹, approximate)", type: "text" },
+            { name: "claimant", label: "Claimant name(s)", required: true },
             { name: "respondent", label: "Respondent name(s)", required: true },
           ]}
+          messageLabel="Message (brief)"
+          attachmentsLabel="Attach relevant documents"
           submitLabel="Submit Filing"
           successTitle="Filing received"
           successBody="Thank you — our Secretariat will review your filing and appoint a panelist from the relevant specialized panel. You'll receive a case reference number shortly."
