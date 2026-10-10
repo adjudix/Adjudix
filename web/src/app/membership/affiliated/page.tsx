@@ -3,19 +3,20 @@ import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
 export default function Page() {
   return (
     <MembershipTierPage
-      title="Affiliated"
-      intro="Entry standing for students and early-career professionals building toward the register — the first step on Adjudix's membership ladder."
+      title="Affiliate"
+      stars={3}
+      intro="Standing for early-career professionals building toward the register."
       eligibility={[
-        "Law, CA/CS, or engineering students, or recent graduates",
+        "Recent graduates in law, CA/CS, or engineering",
         "Early-career advocates, CAs, CS, or engineers with an interest in ADR",
-        "No prior Training Institute certification required",
+        "Completed an Apprenticeship or Internship with Adjudix",
       ]}
       benefits={[
         "Access to Training Institute course discounts",
         "Invitations to Adjudix events and webinars",
-        "A defined path toward Associated membership",
+        "A defined path toward Associate membership",
       ]}
-      fee="Free, after verification of student or early-career status."
+      fee="Free, after completing an Apprenticeship or Internship."
     />
   );
 }

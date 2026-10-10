@@ -14,11 +14,11 @@ export default function DirectoryPage() {
       <section className="mx-auto max-w-3xl px-6 py-16">
         <div className="rounded-lg border border-border bg-surface p-8">
           <h2 className="font-heading text-xl font-semibold text-text">
-            Our founding members are joining now
+            Member profiles
           </h2>
           <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            As Adjudix&apos;s membership register grows, consenting members will be featured here with
-            their tier, specialization, and credentials. Interested in being among the first?
+            Consenting members are featured here with their membership, specialization, and
+            credentials. To verify a member&apos;s standing, contact the Secretariat.
           </p>
         </div>
       </section>

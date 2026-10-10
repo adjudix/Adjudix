@@ -8,6 +8,11 @@ export interface MembershipTierPageProps {
   benefits: string[];
   fee: string;
   applyHref?: string;
+  // Star rating shown as the eyebrow; "beyond" for Honorary (beyond stars).
+  stars?: number | "beyond";
+  applyLabel?: string;
+  // Honorary membership cannot be applied for.
+  applyable?: boolean;
 }
 
 export function MembershipTierPage({
@@ -17,11 +22,16 @@ export function MembershipTierPage({
   benefits,
   fee,
   applyHref = "/contact",
+  stars,
+  applyLabel = `Apply for ${title} Membership`,
+  applyable = true,
 }: MembershipTierPageProps) {
+  const eyebrow =
+    stars === "beyond" ? "Membership · Beyond stars" : stars ? `Membership · ${"★".repeat(stars)}` : "Membership";
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
-        eyebrow="Membership"
+        eyebrow={eyebrow}
         title={`${title} Membership`}
         breadcrumbs={[{ label: "Membership", href: "/membership" }, { label: title }]}
         intro={intro}
@@ -61,11 +71,20 @@ export function MembershipTierPage({
         </div>
       </section>
 
-      <CtaBand
-        title={`Apply for ${title} Membership`}
-        primary={{ label: `Apply for ${title}`, href: applyHref }}
-        secondary={{ label: "Compare All Tiers", href: "/membership" }}
-      />
+      {applyable ? (
+        <CtaBand
+          title={applyLabel}
+          primary={{ label: applyLabel, href: applyHref }}
+          secondary={{ label: "Compare All Tiers", href: "/membership" }}
+        />
+      ) : (
+        <CtaBand
+          title="Conferred, never claimed"
+          description="Honorary membership is conferred by the institute and cannot be applied for."
+          primary={{ label: "Our Esteemed Members", href: "/membership/directory" }}
+          secondary={{ label: "Compare All Tiers", href: "/membership" }}
+        />
+      )}
     </main>
   );
 }

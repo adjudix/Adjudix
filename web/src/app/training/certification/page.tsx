@@ -54,7 +54,7 @@ export default function CertificationPage() {
             </Link>{" "}
             eligibility and{" "}
             <Link href="/membership" className="text-primary hover:underline">
-              Associated membership
+              Associate membership
             </Link>
             . Certification alone doesn&apos;t guarantee panel appointment — panelists are also
             vetted for experience and conduct — but it is the defined starting point.

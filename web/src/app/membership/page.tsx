@@ -3,30 +3,43 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { Reveal } from "@/components/ui/reveal";
 
+// Per the client's compare-tiers markup: five kinds, stars not tier numbers,
+// highest standing first, Corporate removed.
 const TIERS = [
   {
-    title: "Affiliated",
-    eligibility: "Open to students and early-career professionals",
-    entry: "Free, after verification",
-    href: "/membership/affiliated",
-  },
-  {
-    title: "Associated",
-    eligibility: "Completed a Training Institute track, or equivalent experience",
-    entry: "Free, after verification",
-    href: "/membership/associated",
-  },
-  {
     title: "Fellow",
+    stars: "★★★★★",
     eligibility: "Senior practitioners with a sustained record of panel appointments",
     entry: "By nomination or application, reviewed by the Advisory Council",
     href: "/membership/fellow",
   },
   {
-    title: "Corporate",
-    eligibility: "Businesses and institutions seeking an ongoing relationship",
-    entry: "Contact us for terms",
-    href: "/membership/corporate",
+    title: "Associate",
+    stars: "★★★★",
+    eligibility: "Completed a Training Institute track, or equivalent experience",
+    entry: "Free, after completion of a Training Programme under Adjudix",
+    href: "/membership/associated",
+  },
+  {
+    title: "Affiliate",
+    stars: "★★★",
+    eligibility: "Open to early-career professionals",
+    entry: "Free, after completing an Apprenticeship or Internship",
+    href: "/membership/affiliated",
+  },
+  {
+    title: "Student",
+    stars: "★★",
+    eligibility: "Students of law, CA/CS, commerce, or engineering",
+    entry: "Free for students",
+    href: "/membership/student",
+  },
+  {
+    title: "Special Honorary",
+    stars: "Beyond stars",
+    eligibility: "Conferred for exceptional contribution to ADR",
+    entry: "Cannot be claimed — it is earned",
+    href: "/membership/honorary",
   },
 ];
 
@@ -35,7 +48,7 @@ export default function MembershipPage() {
     <main className="bg-canvas flex-1">
       <PageHeader
         eyebrow="Membership"
-        title="Compare Tiers"
+        title="Five Kinds of Membership"
         intro="A professional register, not a mailing list. Every tier carries defined eligibility, so membership means something when a client checks it."
         image={{ src: "/images/membership-roundtable.jpg", alt: "Professionals in discussion around a conference roundtable" }}
       />
@@ -45,7 +58,7 @@ export default function MembershipPage() {
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
               <tr className="border-b border-border">
-                <th className="py-3 pr-4 font-body text-sm font-semibold text-text-muted">Tier</th>
+                <th className="py-3 pr-4 font-body text-sm font-semibold text-text-muted">Membership</th>
                 <th className="py-3 pr-4 font-body text-sm font-semibold text-text-muted">Eligibility</th>
                 <th className="py-3 font-body text-sm font-semibold text-text-muted">Entry</th>
               </tr>
@@ -60,6 +73,9 @@ export default function MembershipPage() {
                     <Link href={tier.href} className="text-primary hover:underline">
                       {tier.title}
                     </Link>
+                    <span className="mt-1 block text-primary-hover" aria-label={tier.stars}>
+                      {tier.stars}
+                    </span>
                   </td>
                   <td className="py-4 pr-4 font-body text-sm text-text">{tier.eligibility}</td>
                   <td className="py-4 font-body text-sm text-text-muted">{tier.entry}</td>
@@ -76,21 +92,22 @@ export default function MembershipPage() {
             Not sure which tier fits?
           </h2>
           <p className="mt-3 font-body text-text-muted">
-            If you&apos;re a student or new to the field, start with{" "}
+            If you&apos;re a student, start with{" "}
+            <Link href="/membership/student" className="text-primary hover:underline">
+              Student
+            </Link>{" "}
+            membership — it&apos;s free. Early-career professionals who have completed an
+            Apprenticeship or Internship qualify for{" "}
             <Link href="/membership/affiliated" className="text-primary hover:underline">
-              Affiliated
+              Affiliate
             </Link>
-            . If you&apos;ve completed a Training Institute track, you likely qualify for{" "}
+            . If you&apos;ve completed a Training Programme, you likely qualify for{" "}
             <Link href="/membership/associated" className="text-primary hover:underline">
-              Associated
+              Associate
             </Link>
             . Senior practitioners with an established record should look at{" "}
             <Link href="/membership/fellow" className="text-primary hover:underline">
               Fellow
-            </Link>
-            . Businesses should see{" "}
-            <Link href="/membership/corporate" className="text-primary hover:underline">
-              Corporate Membership
             </Link>
             .
           </p>

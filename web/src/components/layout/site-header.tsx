@@ -98,6 +98,8 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Fellow", href: "/membership/fellow", stars: 5 },
       { label: "Associate", href: "/membership/associated", stars: 4 },
       { label: "Affiliate", href: "/membership/affiliated", stars: 3 },
+      { label: "Student", href: "/membership/student", stars: 2 },
+      { label: "Special Honorary (beyond stars)", href: "/membership/honorary" },
       { label: "Our Esteemed Members", href: "/membership/directory", highlight: true },
     ],
   },

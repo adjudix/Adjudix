@@ -1,0 +1,21 @@
+import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+
+export default function Page() {
+  return (
+    <MembershipTierPage
+      title="Student"
+      stars={2}
+      intro="The first step on Adjudix's membership ladder, for students of law, commerce, and engineering who want to build a career in ADR."
+      eligibility={[
+        "Currently enrolled students of law, CA/CS, commerce, or engineering",
+        "No prior ADR experience or certification required",
+      ]}
+      benefits={[
+        "Access to competitions, webinars, and events",
+        "Student pricing on Training Institute courses",
+        "A defined path toward Affiliate membership through an Apprenticeship or Internship",
+      ]}
+      fee="Free for students."
+    />
+  );
+}
