@@ -41,7 +41,7 @@ export default function FileDisputePage() {
           attachmentsLabel="Attach relevant documents"
           submitLabel="Submit Filing"
           successTitle="Filing received"
-          successBody="Thank you — our Secretariat will review your filing and appoint a panelist from the relevant specialized panel. You'll receive a case reference number shortly."
+          successBody="Thank you — our Secretariat will review your filing and appoint a neutral from our Professional Panel for the relevant practice area. You'll receive a case reference number shortly."
         />
       </section>
     </main>

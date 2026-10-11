@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Debt Recovery & Financial Claims"
       intro="Unpaid invoices, loan defaults, and other financial claims resolved through arbitration or conciliation, without the years a civil recovery suit can take."
       qualifies={[

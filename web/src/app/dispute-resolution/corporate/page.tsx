@@ -6,7 +6,7 @@ import { NumberedList } from "@/components/ui/numbered-list";
 const BENEFITS = [
   {
     title: "Bespoke panel access",
-    description: "A relationship team matches your disputes to the right specialized panel, every time.",
+    description: "A relationship team matches each dispute to the right practice area and neutral, every time.",
   },
   {
     title: "Ready-to-insert clauses",
@@ -38,7 +38,7 @@ export default function CorporatePage() {
               Corporate clients rarely have just one dispute. Adjudix&apos;s corporate service sets up
               a standing relationship: pre-agreed clause language for your contracts, a
               relationship team that already understands your business, and priority routing to
-              the specialized panel for whatever category of dispute arises.
+              the right practice area for whatever category of dispute arises.
             </p>
           </div>
           <div className="relative aspect-4/3 overflow-hidden rounded-lg">

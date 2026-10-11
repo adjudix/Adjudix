@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 
 const STEPS = [
   { title: "File", description: "Submit your case online with claimant, respondent, and dispute details." },
-  { title: "Neutral appointed", description: "Adjudix appoints an arbitrator, mediator, or conciliator from the specialized panel." },
+  { title: "Neutral appointed", description: "Adjudix appoints an arbitrator, mediator, or conciliator from its Professional Panel, matched to the practice area of the dispute." },
   { title: "Hearing", description: "Document exchange and hearings proceed under the Adjudix Code of ADR Procedure's timelines." },
   { title: "Award / settlement", description: "A binding award or signed settlement agreement closes the case." },
 ];

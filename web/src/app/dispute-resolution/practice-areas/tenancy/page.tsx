@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Tenancy Disputes"
       intro="Rent, deposit, and possession disagreements between landlords and tenants, resolved faster than a typical rent-control or civil court timeline."
       qualifies={[

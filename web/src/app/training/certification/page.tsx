@@ -57,8 +57,8 @@ export default function CertificationPage() {
           </h2>
           <p className="mt-3 font-body text-text-muted">
             Completing a track is the entry route into{" "}
-            <Link href="/dispute-resolution/panels" className="text-primary hover:underline">
-              Specialized Panel
+            <Link href="/panel" className="text-primary hover:underline">
+              Professional Panel
             </Link>{" "}
             eligibility and{" "}
             <Link href="/membership" className="text-primary hover:underline">

@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Insurance Claims"
       intro="Claim repudiation, valuation, and coverage disputes between policyholders and insurers, heard by panelists familiar with policy wording and claims practice."
       qualifies={[

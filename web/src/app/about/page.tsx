@@ -7,7 +7,7 @@ const ROWS = [
   {
     criterion: "Choosing the decision-maker",
     adjudix:
-      "Parties nominate from a specialized panel matched to the dispute type; the institute appoints if they can't agree",
+      "Parties nominate from our Professional Panel, matched to the practice area of the dispute; the institute appoints if they can't agree",
     other: "No structured process, appointment can stall indefinitely",
   },
   {

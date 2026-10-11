@@ -29,7 +29,7 @@ export function MechanismPage({
   faqs,
   filingLabel = "File a Dispute",
   filingHref = "/odr/file",
-  panelHref = "/dispute-resolution/panels",
+  panelHref = "/panel",
   extra,
 }: MechanismPageProps) {
   return (
@@ -68,7 +68,7 @@ export function MechanismPage({
 
       <CtaBand
         title={`Ready to start a ${title.toLowerCase()} case?`}
-        description="File online through the ODR Platform, or view the relevant specialized panel."
+        description="File online through the ODR Platform, or meet the Professional Panel who hear these matters."
         primary={{ label: filingLabel, href: filingHref }}
         secondary={{ label: "View Our Panel", href: panelHref }}
       />

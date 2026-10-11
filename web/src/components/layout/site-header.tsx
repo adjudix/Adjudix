@@ -64,6 +64,7 @@ const NAV_GROUPS: NavGroup[] = [
           { label: "Offline Dispute Resolution", href: "/dispute-resolution/offline" },
           { label: "Hybrid Dispute Resolution", href: "/dispute-resolution/hybrid" },
           { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
+          { label: "Practice Areas", href: "/dispute-resolution/practice-areas" },
         ],
       },
       {

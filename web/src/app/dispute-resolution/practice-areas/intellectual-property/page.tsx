@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Intellectual Property Disputes"
       intro="Licensing, infringement, and ownership disputes over patents, trademarks, copyright, and trade secrets, heard by panelists with genuine IP subject-matter experience."
       qualifies={[

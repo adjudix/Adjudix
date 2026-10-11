@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { CodeExplainer } from "@/components/patterns/code-explainer";
 import MORAL_PRINCIPLES from "@/lib/moral-principles.json";
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"];
@@ -18,10 +19,11 @@ export default function MoralCodePage() {
         eyebrow="About Adjudix"
         title="Moral Code of Principles & Doctrines"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Moral Code" }]}
-        intro="The founding ethical charter governing every case, panelist, and member of the Adjudix Dispute Resolution Institute — the constitution behind the Adjudix Code of ADR Procedure."
+        intro="The Adjudix code of conduct: the ethical principles binding every case, neutral, and member of the Institute. It is not the rule book — it forms the Preamble of the rule book, the Adjudix Code of ADR Procedure."
       />
 
       <section className="mx-auto max-w-3xl px-6 py-16">
+        <CodeExplainer className="mb-12" />
         <p className="font-body text-text-muted">
           <strong className="text-text">Preamble.</strong> Innovation in the means of resolving
           disputes must never be purchased at the cost of fairness. The following Moral

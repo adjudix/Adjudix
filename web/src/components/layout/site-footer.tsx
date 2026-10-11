@@ -9,7 +9,7 @@ const FOOTER_GROUPS = [
     links: [
       { label: "ADR Mechanisms", href: "/dispute-resolution" },
       { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
-      { label: "Specialized Panels", href: "/dispute-resolution/panels" },
+      { label: "Practice Areas", href: "/dispute-resolution/practice-areas" },
       { label: "Rules & Governance", href: "/dispute-resolution/rules" },
       { label: "Corporate Services", href: "/dispute-resolution/corporate" },
       { label: "Implementation", href: "/implementation" },

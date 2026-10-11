@@ -144,16 +144,16 @@ export default function DisputeResolutionPage() {
                 By dispute type
               </span>
               <h2 className="mt-3 font-heading text-xl font-semibold text-text">
-                Specialized Panels
+                Practice Areas
               </h2>
               <p className="mt-3 font-body text-sm text-text-muted">
-                Ten categories, each with panelists vetted specifically for that dispute type.
+                Ten subject-matter streams, each heard by neutrals with the right professional background.
               </p>
               <Link
-                href="/dispute-resolution/panels"
+                href="/dispute-resolution/practice-areas"
                 className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
               >
-                Browse Specialized Panels &rarr;
+                Browse Practice Areas &rarr;
               </Link>
             </div>
           </Reveal>

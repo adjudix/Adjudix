@@ -12,7 +12,7 @@ export default function Page() {
         "In good standing with any relevant professional body (Bar Council, ICAI, ICSI, or engineering council)",
       ]}
       benefits={[
-        "Eligibility for Specialized Panel appointment",
+        "Eligibility for appointment to the Professional Panel",
         "Use of the Associate Member designation",
         "Continuing education and CPD tracking through the Training Institute",
       ]}

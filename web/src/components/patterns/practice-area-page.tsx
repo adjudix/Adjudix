@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 
-export interface PanelCategoryPageProps {
+export interface PracticeAreaPageProps {
   title: string;
   intro: string;
   qualifies: string[];
@@ -9,17 +9,17 @@ export interface PanelCategoryPageProps {
 
 const OPEN_ENDED_ITEM = "Any other such related issue";
 
-export function PanelCategoryPage({ title, intro, qualifies }: PanelCategoryPageProps) {
+export function PracticeAreaPage({ title, intro, qualifies }: PracticeAreaPageProps) {
   // Every list stays inclusive; the Miscellaneous page already ends with its own catch-all.
   const items = qualifies.at(-1)?.startsWith("Any other") ? qualifies : [...qualifies, OPEN_ENDED_ITEM];
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
-        eyebrow="Specialized Panels"
+        eyebrow="Practice Areas"
         title={title}
         breadcrumbs={[
           { label: "Dispute Resolution", href: "/dispute-resolution" },
-          { label: "Specialized Panels", href: "/dispute-resolution/panels" },
+          { label: "Practice Areas", href: "/dispute-resolution/practice-areas" },
           { label: title },
         ]}
         intro={intro}
@@ -41,7 +41,7 @@ export function PanelCategoryPage({ title, intro, qualifies }: PanelCategoryPage
         title={`Have a ${title.toLowerCase()} matter?`}
         description="File online, or speak with our team about which mechanism fits your case."
         primary={{ label: "File a Dispute", href: "/odr/file" }}
-        secondary={{ label: "View Full Panel", href: "/panel" }}
+        secondary={{ label: "Meet Our Professional Panel", href: "/panel" }}
       />
     </main>
   );

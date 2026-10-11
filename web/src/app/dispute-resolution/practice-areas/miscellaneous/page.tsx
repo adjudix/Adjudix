@@ -1,10 +1,10 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Not Listed Otherwise"
-      intro="Disputes that don't fit neatly into the other nine categories still deserve a specialized panel — tell us the nature of your case and we'll match a suitable panelist."
+      intro="Disputes that don't fit neatly into the other nine categories still deserve a specialist neutral — tell us the nature of your case and we'll match a suitable panelist."
       qualifies={[
         "Family-business disputes",
         "Consumer disputes both sides agree to arbitrate",

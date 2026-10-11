@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CODE_EDITIONS } from "@/lib/code-editions";
+import { CodeExplainer } from "@/components/patterns/code-explainer";
 
 // Edition history per the client's blueprint: 2018 first edition, 2021 added
 // Online Dispute Resolution, 2026 covers every mechanism. Newest first here.
@@ -22,7 +23,7 @@ export default function CodeOfProcedurePage() {
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
-        eyebrow="Rules & Governance"
+        eyebrow="The Adjudix Rule Book"
         title="The Adjudix Code of ADR Procedure, 2026"
         breadcrumbs={[
           { label: "Dispute Resolution", href: "/dispute-resolution" },
@@ -33,6 +34,7 @@ export default function CodeOfProcedurePage() {
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16">
+        <CodeExplainer className="mb-12" />
         <div className="divide-y divide-border border-t border-b border-border">
           {PARTS.map((section) => (
             <div key={section.title} className="py-6">

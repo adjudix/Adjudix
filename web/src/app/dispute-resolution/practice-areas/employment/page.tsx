@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Employer–Employee Disputes"
       intro="Disagreements arising from an employment relationship, resolved confidentially and without the reputational exposure of a public tribunal filing."
       qualifies={[

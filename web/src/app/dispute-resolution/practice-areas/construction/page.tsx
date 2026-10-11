@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Construction Disputes"
       intro="Delay, defect, and payment claims on construction and infrastructure projects, heard by panelists with real engineering and quantity-surveying background."
       qualifies={[

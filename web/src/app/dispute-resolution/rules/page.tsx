@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { CodeExplainer } from "@/components/patterns/code-explainer";
 
 const DOCS = [
   {
-    title: "Adjudix Code of ADR Procedure",
-    description: "The single governing procedure for every case Adjudix administers, versioned by year.",
+    title: "Adjudix Code of ADR Procedure — the Rule Book",
+    description: "The single governing procedure for every case Adjudix administers, in its 2018, 2021, and 2026 editions.",
     href: "/dispute-resolution/rules/code-of-procedure",
+  },
+  {
+    title: "Moral Code of Principles & Doctrines — the Code of Conduct",
+    description: "The ethical principles binding every neutral; they form the Preamble of the Rule Book.",
+    href: "/about/moral-code",
   },
   {
     title: "Online Procedure Handbook",
@@ -41,6 +47,7 @@ export default function RulesHubPage() {
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16">
+        <CodeExplainer className="mb-12" />
         <div className="flex flex-col divide-y divide-border border-t border-b border-border">
           {DOCS.map((doc) => (
             <Link

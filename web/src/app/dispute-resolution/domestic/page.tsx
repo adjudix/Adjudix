@@ -12,7 +12,7 @@ export default function DomesticDisputeResolutionPage() {
         },
         {
           title: "Panel assignment",
-          description: "A neutral is appointed from the specialized panel matched to the subject matter.",
+          description: "A neutral is appointed from our Professional Panel, matched to the practice area of the dispute.",
         },
         {
           title: "Proceedings",

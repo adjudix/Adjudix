@@ -4,7 +4,7 @@ import { NumberedList } from "@/components/ui/numbered-list";
 
 const STEPS = [
   { title: "Tell us your case", description: "Describe the dispute you and the other party are already resolving yourselves." },
-  { title: "We appoint a neutral", description: "Adjudix appoints an arbitrator or neutral from the relevant specialized panel." },
+  { title: "We appoint a neutral", description: "Adjudix appoints an arbitrator or neutral from our Professional Panel for the relevant practice area." },
   { title: "You run the process", description: "The appointed neutral joins your existing process rather than starting a new one." },
 ];
 

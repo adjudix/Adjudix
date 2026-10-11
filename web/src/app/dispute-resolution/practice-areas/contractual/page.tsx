@@ -1,8 +1,8 @@
-import { PanelCategoryPage } from "@/components/patterns/panel-category-page";
+import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
 
 export default function Page() {
   return (
-    <PanelCategoryPage
+    <PracticeAreaPage
       title="Contractual Disputes"
       intro="Breach, interpretation, and performance disagreements arising from any commercial contract — the broadest and most common category Adjudix administers."
       qualifies={[

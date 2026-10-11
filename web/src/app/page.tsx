@@ -30,9 +30,9 @@ const PILLARS = [
 const SHOWCASE_TILES = [
   {
     image: "/images/legal-review.jpg",
-    title: "Specialized Panels",
-    description: "Ten dispute-type categories, each with vetted specialists.",
-    href: "/dispute-resolution/panels",
+    title: "Practice Areas",
+    description: "Ten subject-matter streams, from construction to insurance.",
+    href: "/dispute-resolution/practice-areas",
   },
   {
     image: "/images/training-workshop.jpg",
@@ -67,7 +67,7 @@ const MEMBERSHIP_CARDS = [
     title: "Associate",
     description: "Full standing, case-eligible once CPD and experience thresholds are met.",
     points: [
-      "Eligibility for Specialized Panel appointment",
+      "Eligibility for appointment to the Professional Panel",
       "Use of the Associate Member designation",
       "Free on completion of a Training Programme under Adjudix",
     ],
@@ -115,7 +115,7 @@ const MEMBERSHIP_CARDS = [
 const COMPARISON_ROWS = [
   {
     criterion: "Choosing the decision-maker",
-    adjudix: "Parties nominate from a specialized panel; the institute appoints",
+    adjudix: "Parties nominate from our Professional Panel; the institute appoints",
     other: "No structured process, appointment can stall indefinitely",
   },
   {
@@ -216,25 +216,25 @@ export default function Home() {
         <NumberedList items={PILLARS} />
       </section>
 
-      {/* Specialized Panels showcase — Pattern C: layered bento, mixed tiles */}
+      {/* Practice Areas showcase — Pattern C: layered bento, mixed tiles */}
       <section className="bg-surface px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <Reveal className="grid gap-3 md:h-[440px] md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
             <div className="rounded-lg bg-hero p-8 md:p-10 text-text-on-hero flex flex-col justify-center md:row-span-2 md:h-full">
               <h2 className="font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm">
-                A panel built around your dispute, not a generic roster
+                Expertise matched to your dispute, not a generic roster
               </h2>
               <p className="mt-3 font-body text-sm text-text-on-hero-muted max-w-sm">
-                Ten specialized categories, each with panelists vetted for that
-                specific dispute type.
+                Ten practice areas, each heard by neutrals from our Professional Panel
+                with the right background for that kind of dispute.
               </p>
               <LinkButton
                 variant="primary"
                 size="default"
                 className="mt-6 self-start"
-                href="/dispute-resolution/panels"
+                href="/dispute-resolution/practice-areas"
               >
-                View the full panel
+                Explore Practice Areas
               </LinkButton>
             </div>
             <div className="relative min-h-40 overflow-hidden rounded-lg md:h-full">
@@ -337,8 +337,9 @@ export default function Home() {
                 The Adjudix Code of ADR Procedure, in three editions
               </h2>
               <p className="mt-4 max-w-xl text-left font-body text-text-on-hero-muted">
-                Every case at Adjudix runs on a published Code. Each edition builds on the one
-                before it, and every edition opens with the Moral Principles we follow strictly.
+                Our rule book: every case at Adjudix runs on this published Code. Each edition builds
+                on the one before it, and every edition opens with our code of conduct, the Moral
+                Principles we follow strictly.
               </p>
             </div>
             <LinkButton

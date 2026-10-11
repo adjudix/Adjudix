@@ -8,7 +8,7 @@ export default function ArbitrationPage() {
       howItWorks={[
         {
           title: "Notice & appointment",
-          description: "The claimant files a notice; an arbitrator is appointed from the specialized panel.",
+          description: "The claimant files a notice; an arbitrator is appointed from our Professional Panel.",
         },
         {
           title: "Pleadings & evidence",
@@ -31,7 +31,7 @@ export default function ArbitrationPage() {
         },
         {
           question: "Can I choose my own arbitrator?",
-          answer: "Parties may jointly nominate an arbitrator from the specialized panel matched to their dispute type; otherwise Adjudix appoints one.",
+          answer: "Parties may jointly nominate an arbitrator from our Professional Panel, matched to the practice area of the dispute; otherwise Adjudix appoints one.",
         },
         {
           question: "Does Adjudix handle international arbitration?",

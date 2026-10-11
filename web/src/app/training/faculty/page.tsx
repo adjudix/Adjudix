@@ -8,7 +8,7 @@ export default function FacultyPage() {
         eyebrow="Training Institute"
         title="Faculty"
         breadcrumbs={[{ label: "Training Institute", href: "/training" }, { label: "Faculty" }]}
-        intro="Adjudix's course faculty is drawn from practicing arbitrators, conciliators, mediators, and subject-matter specialists across our Specialized Panels."
+        intro="Adjudix's course faculty is drawn from practicing arbitrators, conciliators, mediators, and subject-matter specialists across our practice areas."
       />
 
       <CtaBand
