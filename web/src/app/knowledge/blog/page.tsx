@@ -1,14 +1,7 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
-
-const TOPICS = [
-  "Basics of arbitration",
-  "The most relevant sections of the Arbitration Act and their practical implementation",
-  "The hybrid ADR process (Med-Arb)",
-  "Emergency arbitration",
-  "How arbitral awards are implemented, in India and globally",
-  "Corporate ADR and contract & arbitration clause drafting",
-];
+import { ARTICLES, readingMinutes } from "@/lib/articles";
 
 export default function BlogPage() {
   return (
@@ -17,15 +10,24 @@ export default function BlogPage() {
         eyebrow="Knowledge Centre"
         title="Blogs & Articles"
         breadcrumbs={[{ label: "Knowledge Centre", href: "/knowledge" }, { label: "Blogs & Articles" }]}
-        intro="Plain-language explainers on ADR mechanisms, procedure, and practice — filterable by dispute type and mechanism."
+        intro="Plain-language explainers on ADR mechanisms, procedure, and practice — from the basics of arbitration to how awards are implemented worldwide."
       />
 
-      <section className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="font-heading text-xl font-semibold text-text">Topics we write on</h2>
-        <ul className="mt-6 divide-y divide-border border-y border-border">
-          {TOPICS.map((topic) => (
-            <li key={topic} className="py-4 font-body text-text">
-              {topic}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <ul className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {ARTICLES.map((article) => (
+            <li key={article.slug}>
+              <Link
+                href={`/knowledge/blog/${article.slug}`}
+                className="group flex h-full flex-col rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary/50"
+              >
+                <span className="font-mono text-xs tracking-widest uppercase text-primary">{article.category}</span>
+                <h2 className="mt-3 font-heading text-lg leading-snug font-semibold text-text group-hover:text-primary">
+                  {article.title}
+                </h2>
+                <p className="mt-2 mb-4 text-left font-body text-sm text-text-muted">{article.summary}</p>
+                <span className="mt-auto font-body text-xs text-text-muted">{readingMinutes(article)} min read</span>
+              </Link>
             </li>
           ))}
         </ul>
