@@ -7,6 +7,7 @@ import { ComparisonTable } from "@/components/ui/comparison-table";
 import { Reveal } from "@/components/ui/reveal";
 import { FlipStack } from "@/components/ui/flip-stack";
 import { AudienceFinder } from "@/components/layout/audience-finder";
+import { CODE_EDITIONS } from "@/lib/code-editions";
 
 const PILLARS = [
   {
@@ -321,6 +322,118 @@ export default function Home() {
             />
           </div>
         </Reveal>
+      </section>
+
+      {/* Rule Book — the three editions of the Code side by side, each one
+          building on the last; the current edition is the lit card */}
+      <section className="bg-hero px-6 py-20 text-text-on-hero">
+        <div className="mx-auto max-w-6xl">
+          <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                The Rule Book
+              </span>
+              <h2 className="mt-3 max-w-xl font-heading text-2xl font-semibold text-balance md:text-3xl">
+                The Adjudix Code of ADR Procedure, in three editions
+              </h2>
+              <p className="mt-4 max-w-xl text-left font-body text-text-on-hero-muted">
+                Every case at Adjudix runs on a published Code. Each edition builds on the one
+                before it, and every edition opens with the Moral Principles we follow strictly.
+              </p>
+            </div>
+            <LinkButton
+              variant="secondaryInverse"
+              size="default"
+              className="self-start md:self-auto"
+              href="/dispute-resolution/rules/code-of-procedure"
+            >
+              Explore the Code
+            </LinkButton>
+          </Reveal>
+
+          <ol className="mt-12 grid gap-6 md:grid-cols-3">
+            {CODE_EDITIONS.map((edition, index) => (
+              <li key={edition.year} className="relative">
+                <Reveal
+                  delay={index * 120}
+                  className={`flex h-full flex-col rounded-lg p-6 ${
+                    edition.current
+                      ? "bg-canvas text-foreground shadow-2xl"
+                      : "border border-border-on-hero"
+                  }`}
+                >
+                  {index > 0 && (
+                    <span
+                      className="absolute -left-5 top-10 hidden size-8 -translate-x-1/2 items-center justify-center rounded-full bg-primary font-body text-sm font-semibold text-primary-foreground md:flex"
+                      title={`Builds on the ${CODE_EDITIONS[index - 1].year} edition`}
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  )}
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                      {edition.edition}
+                    </span>
+                    {edition.current && (
+                      <span className="rounded-full bg-primary/15 px-2.5 py-0.5 font-mono text-[0.7rem] font-semibold text-primary">
+                        Current
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-3 font-heading text-5xl font-semibold">{edition.year}</p>
+                  <p
+                    className={`mt-3 text-left font-body text-sm ${
+                      edition.current ? "text-muted-foreground" : "text-text-on-hero-muted"
+                    }`}
+                  >
+                    {edition.summary}
+                  </p>
+
+                  <p className="mt-5 font-mono text-[0.7rem] tracking-widest uppercase opacity-70">
+                    {index === 0 ? "Established" : `New since ${CODE_EDITIONS[index - 1].year}`}
+                  </p>
+                  <ul className="mt-2 flex flex-col gap-1.5">
+                    {edition.additions.map((item) => (
+                      <li key={item} className="flex gap-2 font-body text-sm">
+                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-6">
+                    <dl
+                      className={`grid grid-cols-3 gap-2 border-t pt-4 ${
+                        edition.current ? "border-border" : "border-border-on-hero"
+                      }`}
+                    >
+                      {[
+                        { label: "Sections", value: edition.sections },
+                        { label: "Pages", value: edition.pages },
+                        { label: "Principles", value: edition.principles },
+                      ].map((stat) => (
+                        <div key={stat.label}>
+                          <dt className="font-mono text-[0.65rem] tracking-widest uppercase opacity-70">
+                            {stat.label}
+                          </dt>
+                          <dd className="font-heading text-lg font-semibold">{stat.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <a
+                      href={edition.pdf}
+                      download
+                      className="mt-5 inline-flex items-center gap-1.5 self-start font-body text-sm font-medium text-primary hover:underline"
+                    >
+                      Download the {edition.year} Code (PDF)
+                    </a>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       {/* Membership — an open-book spread: a static left page and a stack of

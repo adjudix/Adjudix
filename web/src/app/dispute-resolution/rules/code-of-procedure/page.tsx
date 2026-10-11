@@ -1,17 +1,12 @@
 import { PageHeader } from "@/components/layout/page-header";
 import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
+import { CODE_EDITIONS } from "@/lib/code-editions";
 
 // Edition history per the client's blueprint: 2018 first edition, 2021 added
-// Online Dispute Resolution, 2026 covers every mechanism. The PDFs are built
-// by web/scripts/adjudix-code/build.py.
-const VERSIONS = [
-  { year: "2026", note: "Current edition. Covers every mechanism — adds Emergency Arbitration, the Hybrid Med-Arb Protocol, Adjudix Lok Adalat, and global implementation of awards and settlements." },
-  { year: "2021", note: "Introduced Online Dispute Resolution: the Adjudix E-Portal, electronic filing and service, and virtual hearings." },
-  { year: "2018", note: "First edition of the Adjudix Code of ADR Procedure." },
-];
-
-const pdfHref = (year: string) => `/code/adjudix-code-of-adr-procedure-${year}.pdf`;
+// Online Dispute Resolution, 2026 covers every mechanism. Newest first here.
+const VERSIONS = [...CODE_EDITIONS].reverse();
+const CURRENT = CODE_EDITIONS.find((edition) => edition.current)!;
 
 const PARTS = [
   { title: "Part I · Preliminary & General Provisions", body: "Scope, definitions, party autonomy, and the Online Dispute Resolution platform — e-filing, digital service, and electronic signatures." },
@@ -54,15 +49,15 @@ export default function CodeOfProcedurePage() {
           that bind the Institute and every neutral acting under the Code.
         </p>
         <a
-          href={pdfHref("2026")}
+          href={CURRENT.pdf}
           download
           className="mt-6 inline-flex items-center rounded-md bg-primary px-5 py-2.5 font-body text-sm font-medium text-primary-foreground hover:bg-primary-hover"
         >
-          Download the 2026 Code (PDF)
+          Download the {CURRENT.year} Code (PDF)
         </a>
       </section>
 
-      <section className="bg-surface px-6 py-16">
+      <section id="editions" className="bg-surface px-6 py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-heading text-2xl font-semibold text-text">Editions</h2>
           <ul className="mt-6 divide-y divide-border border-t border-b border-border">
@@ -72,9 +67,12 @@ export default function CodeOfProcedurePage() {
                   {version.year}
                 </span>
                 <div>
-                  <p className="font-body text-sm text-text-muted">{version.note}</p>
+                  <p className="font-body text-sm text-text-muted">
+                    <strong className="font-medium text-text">{version.edition}.</strong>{" "}
+                    {version.summary}
+                  </p>
                   <a
-                    href={pdfHref(version.year)}
+                    href={version.pdf}
                     download
                     className="mt-2 inline-block font-body text-sm font-medium text-primary hover:underline"
                   >
