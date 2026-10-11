@@ -1,28 +1,15 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import MORAL_PRINCIPLES from "@/lib/moral-principles.json";
 
-const ARTICLES = [
-  {
-    title: "I. Impartiality",
-    body: "Every arbitrator, conciliator, and mediator empanelled by Adjudix must disclose any conflict of interest before accepting an appointment, and must withdraw the moment one arises during a case.",
-  },
-  {
-    title: "II. Competence",
-    body: "Panel appointments are made only from members who hold the relevant certification or demonstrated professional standing for the dispute type at hand — never by convenience or availability alone.",
-  },
-  {
-    title: "III. Confidentiality",
-    body: "Proceedings, submissions, and outcomes are confidential to the parties unless the parties themselves agree otherwise, or disclosure is required by law.",
-  },
-  {
-    title: "IV. Procedural fairness",
-    body: "Every case is administered under the same Adjudix Code of ADR Procedure, 2026, regardless of the size of the claim or the identity of the parties.",
-  },
-  {
-    title: "V. Accountability",
-    body: "Adjudix maintains a grievance redressal mechanism for any party, panelist, or member who believes this Code has been breached, detailed on our Terms & Conditions page.",
-  },
-];
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"];
+
+// The Moral Principles form the Preamble of the Adjudix Code of ADR
+// Procedure; the JSON is generated with the Code (scripts/adjudix-code).
+const ARTICLES = MORAL_PRINCIPLES.principles.map((principle, i) => ({
+  title: `${ROMAN[i]}. ${principle.title}`,
+  body: principle.body,
+}));
 
 export default function MoralCodePage() {
   return (
@@ -36,11 +23,12 @@ export default function MoralCodePage() {
 
       <section className="mx-auto max-w-3xl px-6 py-16">
         <p className="font-body text-text-muted">
-          <strong className="text-text">Preamble.</strong> Adjudix Dispute Resolution Institute
-          is founded on the conviction that a dispute resolution process is only as trustworthy
-          as the principles behind it. The following articles bind every arbitrator,
-          conciliator, mediator, and staff member acting on the institute&apos;s behalf, and
-          apply regardless of the value or nature of the dispute.
+          <strong className="text-text">Preamble.</strong> Innovation in the means of resolving
+          disputes must never be purchased at the cost of fairness. The following Moral
+          Principles form the Preamble of the Adjudix Code of ADR Procedure, 2026. They bind the
+          Institute, its Secretariat, and every arbitrator, emergency arbitrator, mediator, and
+          conciliator acting under it, and every provision of the Code is read in the manner that
+          best gives effect to them.
         </p>
 
         <div className="mt-10 divide-y divide-border border-t border-b border-border">
@@ -53,9 +41,9 @@ export default function MoralCodePage() {
         </div>
 
         <p className="mt-10 font-body text-sm text-text-muted">
-          <strong className="text-text">Version 1.0</strong> — effective from the institute&apos;s
-          founding. Future revisions will be dated and archived here, in the same manner as the
-          Adjudix Code of ADR Procedure.
+          <strong className="text-text">Edition 2026.</strong> Every neutral subscribes to these
+          Principles in writing on accepting an appointment. The 2018 and 2021 editions of the
+          Code carry their own Preambles, available with each edition on the Code page.
         </p>
       </section>
 

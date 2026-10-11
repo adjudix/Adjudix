@@ -3,20 +3,24 @@ import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 
 // Edition history per the client's blueprint: 2018 first edition, 2021 added
-// Online Dispute Resolution, 2026 covers every mechanism.
+// Online Dispute Resolution, 2026 covers every mechanism. The PDFs are built
+// by web/scripts/adjudix-code/build.py.
 const VERSIONS = [
-  { year: "2026", note: "Current edition. Covers every mechanism — arbitration, mediation, conciliation, Lok Adalat, online, offline, hybrid, emergency, and corporate ADR." },
-  { year: "2021", note: "Introduced Online Dispute Resolution." },
+  { year: "2026", note: "Current edition. Covers every mechanism — adds Emergency Arbitration, the Hybrid Med-Arb Protocol, Adjudix Lok Adalat, and global implementation of awards and settlements." },
+  { year: "2021", note: "Introduced Online Dispute Resolution: the Adjudix E-Portal, electronic filing and service, and virtual hearings." },
   { year: "2018", note: "First edition of the Adjudix Code of ADR Procedure." },
 ];
 
-const SECTIONS = [
-  { title: "1. Commencement", body: "How a case begins: notice, fees, and initial appointment of a panelist." },
-  { title: "2. Appointment of Neutrals", body: "How arbitrators, conciliators, and mediators are nominated and appointed from the specialized panel." },
-  { title: "3. Conduct of Proceedings", body: "Pleadings, evidence, hearings, and timelines that apply to every case regardless of value." },
-  { title: "4. Emergency Relief", body: "The procedure for Emergency Arbitration applications, including appointment timelines." },
-  { title: "5. Awards & Settlements", body: "Form, delivery, and correction of awards and settlement agreements." },
-  { title: "6. Fees", body: "How the administrative fee is calculated and when it is payable — see the Fees Calculator for an estimate." },
+const pdfHref = (year: string) => `/code/adjudix-code-of-adr-procedure-${year}.pdf`;
+
+const PARTS = [
+  { title: "Part I · Preliminary & General Provisions", body: "Scope, definitions, party autonomy, and the Online Dispute Resolution platform — e-filing, digital service, and electronic signatures." },
+  { title: "Part II · Common Procedural Rules", body: "Commencement and pleadings, case management, virtual, physical, and hybrid hearings, interim measures, and evidence." },
+  { title: "Part III · Arbitration Procedure", body: "The arbitral tribunal, emergency arbitration, fast-track procedure, and the making, form, and correction of awards." },
+  { title: "Part IV · Mediation & Conciliation Procedures", body: "Mediation, conciliation, and the Adjudix Lok Adalat — a one-day sitting for confidential settlement proposals." },
+  { title: "Part V · Hybrid Processes (Med-Arb)", body: "The Med-Arb Protocol: transition from mediation to arbitration, consent requirements, and protection of mediation disclosures." },
+  { title: "Part VI · Corporate & Commercial ADR", body: "Shareholder and board disputes, cross-border commercial ADR, financial and M&A disputes, and IP and technology disputes." },
+  { title: "Part VII · Enforcement, Costs, & Miscellaneous", body: "Implementation and enforcement of awards in India and abroad, fees and costs, confidentiality, ethics, and grievance redressal." },
 ];
 
 export default function CodeOfProcedurePage() {
@@ -35,7 +39,7 @@ export default function CodeOfProcedurePage() {
 
       <section className="mx-auto max-w-4xl px-6 py-16">
         <div className="divide-y divide-border border-t border-b border-border">
-          {SECTIONS.map((section) => (
+          {PARTS.map((section) => (
             <div key={section.title} className="py-6">
               <h2 className="font-heading text-lg font-semibold text-text">{section.title}</h2>
               <p className="mt-2 font-body text-sm text-text-muted">{section.body}</p>
@@ -43,16 +47,19 @@ export default function CodeOfProcedurePage() {
           ))}
         </div>
         <p className="mt-8 font-body text-sm text-text-muted">
-          <strong className="text-text">Current version: 2026.1.</strong> Prior versions remain
-          accessible on request for cases filed under an earlier edition, in keeping with
-          standard institutional arbitration practice.
+          Every edition opens with a Preamble of{" "}
+          <Link href="/about/moral-code" className="font-medium text-primary hover:underline">
+            Moral Principles
+          </Link>{" "}
+          that bind the Institute and every neutral acting under the Code.
         </p>
-        <p className="mt-4 font-body text-sm text-text-muted">
-          The detailed Code is available as a PDF.{" "}
-          <Link href="/contact" className="font-medium text-primary hover:underline">
-            Request the full Code (PDF)
-          </Link>
-        </p>
+        <a
+          href={pdfHref("2026")}
+          download
+          className="mt-6 inline-flex items-center rounded-md bg-primary px-5 py-2.5 font-body text-sm font-medium text-primary-foreground hover:bg-primary-hover"
+        >
+          Download the 2026 Code (PDF)
+        </a>
       </section>
 
       <section className="bg-surface px-6 py-16">
@@ -64,7 +71,16 @@ export default function CodeOfProcedurePage() {
                 <span className="w-16 shrink-0 font-mono text-lg font-semibold text-text">
                   {version.year}
                 </span>
-                <p className="font-body text-sm text-text-muted">{version.note}</p>
+                <div>
+                  <p className="font-body text-sm text-text-muted">{version.note}</p>
+                  <a
+                    href={pdfHref(version.year)}
+                    download
+                    className="mt-2 inline-block font-body text-sm font-medium text-primary hover:underline"
+                  >
+                    Download PDF
+                  </a>
+                </div>
               </li>
             ))}
           </ul>

@@ -1,0 +1,57 @@
+{
+  "edition": 2026,
+  "principles": [
+    {
+      "title": "Independence and Impartiality",
+      "body": "Every neutral shall be, and shall remain throughout the proceeding and after it, independent of the parties and their counsel and impartial between them. A neutral shall disclose in writing, before accepting an appointment and at any time thereafter, every circumstance that may give rise to justifiable doubts as to their independence or impartiality, and shall decline or withdraw from an appointment where such doubts cannot be dispelled. Doubt shall be resolved in favour of disclosure."
+    },
+    {
+      "title": "Equality of Parties and Procedural Fairness",
+      "body": "The parties shall be treated with equality, regardless of their size, resources, nationality, or standing. Each party shall have a full and fair opportunity to know the case against it and to present its own. No procedure, however expeditious or innovative, shall be applied in a manner that denies a party this opportunity."
+    },
+    {
+      "title": "Party Autonomy",
+      "body": "The parties are the authors of their own process. Their agreement on procedure shall be respected and given effect, save where it conflicts with the non-derogable provisions of this Code or of the law, or with these Principles."
+    },
+    {
+      "title": "Confidentiality and Discretion",
+      "body": "Proceedings, submissions, evidence, deliberations, and outcomes are confidential to the parties, save as they agree or the law requires. To protect the independence of every proceeding and to shield neutrals from approach, pressure, or interference, the Institute exercises discretion in publishing the personal particulars and likenesses of its neutrals, and no person shall seek to communicate with a neutral about a pending matter except as this Code permits."
+    },
+    {
+      "title": "Integrity and Probity",
+      "body": "No neutral, officer, or member of staff shall solicit or accept any gift, hospitality, favour, or benefit from a party or its representatives, or engage in any private communication with one party concerning a pending matter, save as expressly permitted in mediation and conciliation. Every person acting under this Code shall conduct themselves so as to uphold public confidence in the Institute."
+    },
+    {
+      "title": "Competence and Diligence",
+      "body": "Neutrals shall be appointed for their competence in the subject matter of the dispute and the procedure to be followed, and shall devote to each proceeding the time and attention it requires. A neutral who cannot do so shall not accept the appointment."
+    },
+    {
+      "title": "Efficiency and Proportionality",
+      "body": "Proceedings shall be conducted without unnecessary delay or expense, with procedures proportionate to the value and complexity of the dispute. Time limits under this Code are commitments to the parties, not formalities."
+    },
+    {
+      "title": "Transparency of Rules and Fees",
+      "body": "The procedure applicable to every proceeding, and the fees chargeable for it, are published in advance. No party shall be required to negotiate procedure or cost after a dispute has arisen, and every sum received shall be accounted for."
+    },
+    {
+      "title": "Innovation with Integrity",
+      "body": "The Institute embraces new means of resolving disputes — online proceedings, emergency arbitration, the hybrid model of Mediation-Arbitration, and the Adjudix Lok Adalat — because they serve the parties better. Every innovation shall be introduced with safeguards at least equal to those of the procedures it supplements, and the consent of the parties shall be obtained wherever the law or fairness requires it."
+    },
+    {
+      "title": "Technology and Data Stewardship",
+      "body": "Electronic records and personal data shall be collected only for the purposes of the proceeding, kept secure, accessed only by those entitled, retained only as long as necessary, and handled in accordance with the law on data protection. No party shall be disadvantaged by the medium in which a proceeding is conducted."
+    },
+    {
+      "title": "Finality and Implementation",
+      "body": "A dispute is resolved only when its outcome is implemented. The Institute shall render awards and record settlements in a form capable of enforcement, and shall, where the parties so request, support the implementation of awards, orders, and settlements in India and throughout the world."
+    },
+    {
+      "title": "Accessibility",
+      "body": "The Institute shall make its services accessible to parties of every size and means, including through online proceedings, the small cause schedule of fees, and reasonable accommodation for parties and witnesses with disabilities or language needs."
+    },
+    {
+      "title": "Accountability",
+      "body": "The Institute is answerable for the conduct of proceedings under its administration. It shall maintain an independent mechanism for the redress of grievances arising from any breach of this Code or these Principles, and shall act on its findings."
+    }
+  ]
+}
