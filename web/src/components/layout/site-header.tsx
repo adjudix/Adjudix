@@ -294,7 +294,9 @@ export function SiteHeader() {
                 </button>
               }
             />
-            <SheetContent side="right" className="w-80 overflow-y-auto">
+            {/* The list scrolls inside its own area, sized to the visible viewport
+                (dvh) so iOS Safari's toolbar can't hide the bottom links. */}
+            <SheetContent side="right" className="w-80 gap-0 overflow-hidden data-[side=right]:h-dvh">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2.5 font-heading">
                   <Image
@@ -307,7 +309,10 @@ export function SiteHeader() {
                   Adjudix
                 </SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-1 px-4 pb-4" aria-label="Mobile">
+              <nav
+                className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-4 pb-8"
+                aria-label="Mobile"
+              >
                 {NAV_GROUPS.map((group) => (
                   <div key={group.label} className="border-b border-border py-2">
                     <Link

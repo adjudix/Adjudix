@@ -145,7 +145,9 @@ export function FlipStack({ panel, cards, aspectClassName = "aspect-[4/5] md:asp
 
   return (
     <div className="flex flex-col">
-      <div className="grid gap-0 md:grid-cols-2" style={{ perspective: "2000px" }}>
+      {/* Single column below md: a turned page swings off the screen edge, so
+          clip it there or iOS Safari lets the whole page pan sideways. */}
+      <div className="grid gap-0 max-md:overflow-x-clip md:grid-cols-2" style={{ perspective: "2000px" }}>
         {/* Left page — static, sits behind any turned page that swings over it */}
         <div className={`relative z-0 ${aspectClassName}`}>{panel}</div>
 
