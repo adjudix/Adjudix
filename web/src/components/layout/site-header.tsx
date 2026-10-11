@@ -127,7 +127,7 @@ const SECONDARY_LINKS: NavLink[] = [
 ];
 
 const navLinkClass =
-  "inline-flex items-center px-2.5 py-2 text-[0.92rem] font-medium tracking-tight text-text transition-colors hover:text-primary data-popup-open:text-primary data-open:text-primary rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
+  "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2.5 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary data-popup-open:text-primary data-open:text-primary rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
 
 const dropdownLinkClass =
   "flex items-center justify-between gap-3 px-3 py-2 text-sm text-text hover:bg-surface hover:text-primary rounded-md";
@@ -153,7 +153,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
-      <div className="hidden xl:block border-b border-border bg-surface">
+      <div className="hidden md:block border-b border-border bg-surface">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
@@ -169,11 +169,12 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Main row (desktop): the primary navigation */}
-      <div className="hidden xl:block border-b border-border">
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-center px-6">
+      {/* Main row (tablet and up): the primary navigation. Below xl (iPads)
+          the links wrap onto a second line rather than collapsing to a menu. */}
+      <div className="hidden md:block border-b border-border">
+        <div className="mx-auto flex min-h-14 max-w-7xl items-center justify-center px-4 py-1 xl:px-6 xl:py-0">
           <NavigationMenu>
-            <NavigationMenuList className="gap-0.5">
+            <NavigationMenuList className="flex-wrap xl:gap-0.5">
               {NAV_GROUPS.map((group) =>
                 group.sections ? (
                   <NavigationMenuItem key={group.label}>
@@ -243,10 +244,10 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Secondary row (desktop, small): services on the left, utility links on the right */}
-      <div className="hidden xl:block border-b border-border bg-surface">
-        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-xs font-medium">
-          <nav aria-label="Services" className="flex items-center gap-5">
+      {/* Secondary row (tablet and up, small): services on the left, utility links on the right */}
+      <div className="hidden md:block border-b border-border bg-surface">
+        <div className="mx-auto flex min-h-10 max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-1 px-4 py-2 text-xs font-medium xl:justify-between xl:px-6 xl:py-0">
+          <nav aria-label="Services" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
             {SECONDARY_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="text-text-muted hover:text-text">
                 {link.label}
@@ -267,8 +268,8 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Compact bar (below xl): logo + menu sheet */}
-      <div className="border-b border-border xl:hidden">
+      {/* Compact bar (phones, below md): logo + menu sheet */}
+      <div className="border-b border-border md:hidden">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex shrink-0 items-center">
             <Image

@@ -21,7 +21,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <section id="student-courses" className="scroll-mt-40 bg-surface px-6 py-16">
+      <section id="student-courses" className="scroll-mt-20 md:scroll-mt-64 bg-surface px-6 py-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-2xl font-semibold text-text">Student Courses</h2>
           <p className="mt-3 font-body text-text-muted">
