@@ -1,8 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
 
-// Mail IDs by purpose, as listed by the client. The domain is written as
-// "adjudixADR.com" in their notes — confirm the exact spelling before launch.
+// Mail IDs by purpose, as confirmed by the client (domain adjudixADR.com).
 const MAILBOXES = [
   { team: "Secretariat", purpose: "For all formal communications", email: "secretariat@adjudixadr.com" },
   { team: "HR", purpose: "For relationship building", email: "hr@adjudixadr.com" },
@@ -38,6 +37,7 @@ export default function ContactPage() {
             </dl>
           </div>
           <QueryForm
+            formName="Contact enquiry"
             fields={[
               {
                 name: "queryType",

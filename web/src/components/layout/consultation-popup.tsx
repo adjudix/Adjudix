@@ -11,16 +11,34 @@ import { LinkButton } from "@/components/ui/link-button";
 const SHOW_AFTER_MS = 12_000;
 const SEEN_KEY = "adjudix-consultation-popup-seen";
 
-function secondsUntilMidnight() {
-  const now = new Date();
-  const midnight = new Date(now);
-  midnight.setHours(24, 0, 0, 0);
-  return Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+// The offer window ends at midnight after an irregular 3–5 day cycle, so the
+// deadline isn't an obvious daily reset. Cycle lengths come from a fixed
+// sequence, so every visitor (and every reload) sees the same deadline.
+const CYCLE_EPOCH = new Date(2026, 0, 1).getTime();
+const CYCLE_DAYS = [4, 3, 5, 4, 5, 3, 4];
+const DAY_MS = 86_400_000;
+
+function offerDeadline(now: number) {
+  let end = CYCLE_EPOCH;
+  for (let i = 0; end <= now; i++) {
+    const next = new Date(end);
+    next.setDate(next.getDate() + CYCLE_DAYS[i % CYCLE_DAYS.length]);
+    end = next.getTime();
+  }
+  return end;
+}
+
+function secondsLeft() {
+  const now = Date.now();
+  return Math.max(0, Math.floor((offerDeadline(now) - now) / 1000));
 }
 
 function formatCountdown(total: number) {
   const pad = (n: number) => String(n).padStart(2, "0");
-  return `${pad(Math.floor(total / 3600))}:${pad(Math.floor((total % 3600) / 60))}:${pad(total % 60)}`;
+  const days = Math.floor(total / (DAY_MS / 1000));
+  const rest = total % (DAY_MS / 1000);
+  const clock = `${pad(Math.floor(rest / 3600))}:${pad(Math.floor((rest % 3600) / 60))}:${pad(rest % 60)}`;
+  return days > 0 ? `${days}d ${clock}` : clock;
 }
 
 export function ConsultationPopup() {
@@ -31,7 +49,7 @@ export function ConsultationPopup() {
     if (sessionStorage.getItem(SEEN_KEY)) return;
     const timer = window.setTimeout(() => {
       sessionStorage.setItem(SEEN_KEY, "1");
-      setRemaining(secondsUntilMidnight());
+      setRemaining(secondsLeft());
       setOpen(true);
     }, SHOW_AFTER_MS);
     return () => window.clearTimeout(timer);
@@ -39,7 +57,7 @@ export function ConsultationPopup() {
 
   useEffect(() => {
     if (!open) return;
-    const tick = window.setInterval(() => setRemaining(secondsUntilMidnight()), 1000);
+    const tick = window.setInterval(() => setRemaining(secondsLeft()), 1000);
     return () => window.clearInterval(tick);
   }, [open]);
 

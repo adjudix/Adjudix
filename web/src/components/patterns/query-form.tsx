@@ -16,6 +16,8 @@ export interface QueryField {
 }
 
 export interface QueryFormProps {
+  // Names the form in the email the Secretariat receives.
+  formName: string;
   fields: QueryField[];
   submitLabel?: string;
   successTitle?: string;
@@ -90,6 +92,7 @@ function Label({ htmlFor, field }: { htmlFor?: string; field: QueryField }) {
 }
 
 export function QueryForm({
+  formName,
   fields,
   submitLabel = "Submit",
   successTitle = "Received",
@@ -101,6 +104,7 @@ export function QueryForm({
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [sendError, setSendError] = useState("");
   const emailRef = useRef<HTMLInputElement | null>(null);
 
   const allFields: QueryField[] = [
@@ -110,7 +114,14 @@ export function QueryForm({
     ...(attachmentsLabel ? [{ name: "attachments", label: attachmentsLabel, type: "file" as const }] : []),
   ];
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  // Field labels travel with the submission so the email reads naturally.
+  const labels = Object.fromEntries(
+    allFields.flatMap((field) =>
+      field.group ? field.group.map((sub) => [sub.name, `${field.label} — ${sub.label}`]) : [[field.name, field.label]],
+    ),
+  );
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = String(data.get("email") ?? "").trim();
@@ -121,12 +132,22 @@ export function QueryForm({
       return;
     }
     setContactError(false);
+    setSendError("");
     setLoading(true);
-    // Frontend intake only — wire to case-management backend before launch.
-    window.setTimeout(() => {
-      setLoading(false);
+    data.set("_form", formName);
+    data.set("_labels", JSON.stringify(labels));
+    try {
+      const response = await fetch("/api/enquiry", { method: "POST", body: data });
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        throw new Error(body?.error ?? "We couldn't send your submission. Please try again.");
+      }
       setSubmitted(true);
-    }, 500);
+    } catch (cause) {
+      setSendError(cause instanceof Error ? cause.message : "We couldn't send your submission. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -142,6 +163,8 @@ export function QueryForm({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      {/* Honeypot for bots; hidden from people and assistive tech. */}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       {allFields.map((field) => {
         const fieldId = `${formId}-${field.name}`;
 
@@ -194,7 +217,7 @@ export function QueryForm({
         );
       })}
       <p role="alert" className="text-left font-body text-sm text-ember empty:hidden">
-        {contactError ? "Please enter either an email address or a phone number." : ""}
+        {contactError ? "Please enter either an email address or a phone number." : sendError}
       </p>
       <Button type="submit" variant="primary" size="lg" loading={loading} className="mt-2 self-start">
         {submitLabel}

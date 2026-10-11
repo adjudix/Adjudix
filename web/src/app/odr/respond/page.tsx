@@ -13,6 +13,7 @@ export default function RespondPage() {
 
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
+          formName="Response to a dispute"
           fields={[
             {
               name: "caseReference",

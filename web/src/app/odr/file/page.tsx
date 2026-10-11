@@ -13,6 +13,7 @@ export default function FileDisputePage() {
 
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
+          formName="New dispute filing"
           fields={[
             {
               name: "disputeType",
