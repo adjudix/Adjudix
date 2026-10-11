@@ -84,9 +84,27 @@ export function SiteFooter() {
           </div>
 
           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-text-on-hero-muted">
-              &copy; {new Date().getFullYear()} Adjudix Dispute Resolution Institute. All rights reserved.
-            </p>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+              <p className="text-xs text-text-on-hero-muted">
+                &copy; {new Date().getFullYear()} Adjudix Dispute Resolution Institute. All rights reserved.
+              </p>
+              <span className="hidden text-xs text-text-on-hero-muted sm:inline" aria-hidden="true">
+                &middot;
+              </span>
+              <Link
+                href="/credits"
+                className="inline-flex items-center gap-2 self-start border-b border-transparent pb-px text-xs font-semibold text-primary transition-colors hover:border-primary hover:text-text-on-hero"
+              >
+                <Image
+                  src="/images/kapivic-logo.png"
+                  alt=""
+                  width={545}
+                  height={569}
+                  className="size-4 rounded-sm bg-white p-px"
+                />
+                Built by Kapivic — get one like this →
+              </Link>
+            </div>
             <div className="flex items-center gap-6 text-sm text-text-on-hero-muted">
               <Link href="/privacy" className="hover:text-text-on-hero">
                 Privacy Policy
