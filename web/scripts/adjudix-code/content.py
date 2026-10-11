@@ -286,6 +286,7 @@ PARTS = [
                         "title": "Joinder of Additional Parties and Consolidation of Claims",
                         "body": [
                             "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
+                            "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
                             "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction.",
                         ],
                     },
@@ -299,15 +300,16 @@ PARTS = [
                         "body": {
                             2018: [
                                 "As soon as practicable after constitution, the neutral shall convene a case management conference with the parties.",
-                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, the place of hearings, and any other procedural matter.",
+                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, the place of hearings, and any other procedural matter. The timetable, and any modification of it, shall be communicated to the Secretariat and the parties.",
                             ],
                             2021: [
                                 "As soon as practicable after constitution, the neutral shall convene a case management conference with the parties, which may be held by video conference.",
-                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, whether hearings will be in person, virtual, or hybrid, and any other procedural matter.",
+                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, whether hearings will be in person, virtual, or hybrid, and any other procedural matter. The timetable, and any modification of it, shall be communicated to the Secretariat and the parties.",
                             ],
                             2026: [
                                 "As soon as practicable after constitution, the neutral shall convene a case management conference with the parties, which may be held by video conference.",
-                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, whether hearings will be in person, virtual, or hybrid, the suitability of the fast-track procedure, and any other procedural matter.",
+                                "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, whether hearings will be in person, virtual, or hybrid, the suitability of the fast-track procedure, and any other procedural matter. The timetable, and any modification of it, shall be communicated to the Secretariat and the parties.",
+                                "The neutral may ask the parties to submit case management proposals before the conference, and may request that each party attend in person or through an internal representative with authority to take procedural decisions.",
                                 "The neutral shall also enquire whether the parties wish to explore settlement, including through mediation, an Adjudix Lok Adalat sitting, or, where they have so agreed, the Med-Arb Protocol.",
                             ],
                         },
@@ -315,7 +317,7 @@ PARTS = [
                     {
                         "title": "Procedural Timelines and Time Extensions",
                         "body": [
-                            "The neutral and the parties shall observe the timelines fixed under this Code and by the neutral.",
+                            "The neutral and the parties shall make every effort to conduct the proceeding in an expeditious and cost-effective manner, having regard to the complexity and value of the dispute, and shall observe the timelines fixed under this Code and by the neutral. The parties undertake to comply with every procedural order of the neutral.",
                             "The neutral may extend a time limit fixed by the neutral where the circumstances justify it. A time limit fixed by the Act may be extended only as the Act permits.",
                             "The Secretariat shall monitor timelines in every proceeding and may draw the attention of the neutral and the parties to any delay.",
                         ],
@@ -326,17 +328,21 @@ PARTS = [
                             2018: [
                                 "Hearings shall be held at the place fixed by the neutral after consulting the parties, which may be the premises of the Institute or any other suitable place.",
                                 "The neutral shall give the parties sufficient advance notice of every hearing.",
-                                "Unless the parties agree otherwise, hearings shall be held in private.",
+                                "Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
+                                "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it.",
                             ],
                             2021: [
                                 "Hearings may be conducted in person, as virtual hearings, or as hybrid hearings, as the neutral directs after consulting the parties.",
                                 "A virtual or hybrid hearing shall be conducted so that every participant can see and hear every other participant and the documents under consideration, and the neutral shall ensure that no party is prejudiced by the medium.",
-                                "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private.",
+                                "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
+                                "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it.",
                             ],
                             2026: [
                                 "Hearings may be conducted in person, as virtual hearings, or as hybrid hearings, as the neutral directs after consulting the parties, having regard to the nature of the evidence, the location of the participants, and cost.",
                                 "A virtual or hybrid hearing shall be conducted so that every participant can see and hear every other participant and the documents under consideration. The neutral may issue a protocol on the presence of persons in each participant's room, the sharing of documents, and the examination of witnesses, and shall ensure that no party is prejudiced by the medium.",
-                                "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private.",
+                                "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
+                                "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it.",
+                                "In an arbitration, an oral hearing shall be held if a party so requests, in accordance with Section 24 of the Act; otherwise the tribunal may, after consulting the parties, decide the dispute on documents and written submissions alone.",
                             ],
                         },
                     },
@@ -356,6 +362,7 @@ PARTS = [
                             "An arbitral tribunal may, at the request of a party, order any interim measure that the tribunal may order under Section 17 of the Act, including for the preservation, interim custody, or sale of goods, securing the amount in dispute, the detention, preservation, or inspection of property, and interim injunctions.",
                             "The tribunal may require the party requesting an interim measure to provide appropriate security.",
                             "An order under this Section is enforceable in the manner provided by Section 17(2) of the Act.",
+                            "An application by a party to a court for interim measures under Section 9 of the Act shall not be deemed incompatible with, or a waiver of, the agreement to refer the dispute under this Code. The party shall inform the Secretariat of any such application and of any order made on it without delay.",
                         ],
                     },
                 ],
@@ -456,11 +463,25 @@ PARTS = [
                     },
                     {
                         "title": "Challenge to Arbitrator Appointment and Disclosure Obligations",
-                        "body": [
-                            "Before accepting an appointment, every arbitrator shall make a written disclosure in the form set out in the Sixth Schedule to the Act, and shall subscribe to the Preamble of this Code. The duty of disclosure continues throughout the proceeding.",
-                            "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
-                            "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act.",
-                        ],
+                        "body": {
+                            2018: [
+                                "Before accepting an appointment, every arbitrator shall sign a statement of acceptance, availability, impartiality, and independence, make a written disclosure in the form set out in the Sixth Schedule to the Act, and subscribe to the Preamble of this Code. The Secretariat shall communicate the disclosure to the parties and fix a time within which they may comment on it. The duty of disclosure continues throughout the proceeding.",
+                                "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
+                                "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act.",
+                            ],
+                            2021: [
+                                "Before accepting an appointment, every arbitrator shall sign a statement of acceptance, availability, impartiality, and independence, make a written disclosure in the form set out in the Sixth Schedule to the Act, and subscribe to the Preamble of this Code. The Secretariat shall communicate the disclosure to the parties and fix a time within which they may comment on it. The duty of disclosure continues throughout the proceeding.",
+                                "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
+                                "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act.",
+                            ],
+                            2026: [
+                                "Before accepting an appointment, every arbitrator shall sign a statement of acceptance, availability, impartiality, and independence, make a written disclosure in the form set out in the Sixth Schedule to the Act, and subscribe to the Preamble of this Code. The Secretariat shall communicate the disclosure to the parties and fix a time within which they may comment on it. The duty of disclosure continues throughout the proceeding.",
+                                "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
+                                "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act.",
+                                "Each party shall promptly disclose to the Secretariat, the tribunal, and the other parties the existence and identity of any person not a party who has agreed to fund its claim or defence and has an economic interest in the outcome, so that arbitrators can fulfil their duty of disclosure.",
+                                "Each party shall promptly inform the Secretariat, the tribunal, and the other parties of any change in its representation. The tribunal may, after giving the parties an opportunity to comment, take any measure necessary to avoid a conflict of interest of an arbitrator arising from such a change, including excluding a new representative from the proceeding in whole or in part.",
+                            ],
+                        },
                     },
                     {
                         "title": "Termination and Replacement of Arbitrators",
@@ -488,15 +509,18 @@ PARTS = [
                         "title": "Application for Emergency Relief",
                         "body": [
                             "A party in need of urgent interim relief that cannot await the constitution of the arbitral tribunal may file an application for emergency relief with the Secretariat, whether before or after filing the request under this Code.",
-                            "The application shall set out the relief sought, the reasons for urgency, the facts and the agreement on which it is based, and shall be accompanied by the emergency arbitrator's fee and the emergency administrative fee in full.",
+                            "The application shall set out the names and contact details of the parties and their representatives; the agreement under which the dispute is referred; a description of the dispute and of the claims known at the time; the emergency measures sought; the reasons why they cannot await the constitution of the tribunal; why harm not adequately reparable by an award of damages is likely if they are refused, and how that harm outweighs the harm to the other party; and why the applicant has a reasonable possibility of success on the merits. It shall be accompanied by the emergency arbitrator's fee and the emergency administrative fee in full.",
                             "The applicant shall serve a copy of the application on every other party at the time of filing, unless it applies for, and justifies, relief without prior notice.",
+                            "Where the application is made before the request for commencement, the applicant shall file the request within ten days of filing the application, failing which the Secretariat shall terminate the emergency proceeding.",
+                            "This Chapter applies to every agreement that refers disputes to this Code, unless the parties have agreed to exclude it; and to an agreement made before this Code came into force only if the parties so agree. Nothing in it prevents a party from seeking interim measures from a court under Section 9 of the Act.",
                         ],
                     },
                     {
                         "title": "Appointment of Emergency Arbitrator",
                         "body": [
                             "The Secretariat shall appoint an emergency arbitrator from the Panel within two days of receiving a complete application.",
-                            "Before accepting the appointment, the emergency arbitrator shall make the written disclosure required by this Code. A challenge to the emergency arbitrator shall be made within two days of the party being informed of the appointment and shall be decided by the Secretariat.",
+                            "Before accepting the appointment, the emergency arbitrator shall sign a statement of acceptance, availability, impartiality, and independence and make the written disclosure required by this Code. A challenge to the emergency arbitrator shall be made within three days of the party being informed of the appointment, or of the circumstances giving rise to the challenge, and shall be decided by the Secretariat after giving the emergency arbitrator and the other parties an opportunity to comment.",
+                            "If the emergency arbitrator is replaced, the substitute shall decide whether to resume the proceeding at the stage reached or to begin it again.",
                             "Unless the parties agree otherwise, the emergency arbitrator shall not act as an arbitrator in any subsequent arbitration relating to the dispute.",
                         ],
                     },
@@ -504,7 +528,8 @@ PARTS = [
                         "title": "Emergency Proceedings and Timelines",
                         "body": [
                             "The emergency arbitrator shall, within two days of appointment, fix a schedule for the consideration of the application, which shall ordinarily be heard by video conference.",
-                            "The emergency arbitrator shall have the powers of an arbitral tribunal under {ref:interim}, and shall make a reasoned order within fourteen days of appointment, which the Secretariat may extend in exceptional circumstances.",
+                            "The emergency arbitrator shall have the powers of an arbitral tribunal under {ref:interim}, and may make an order subject to conditions, including the provision of appropriate security. The emergency arbitrator shall decide any objection to jurisdiction for the purposes of the application, without prejudice to the tribunal's later decision.",
+                            "The order shall be in writing, dated, signed, and reasoned, and shall fix the costs of the emergency proceeding and which party shall bear them, subject to the final decision of the tribunal. It shall be made within fifteen days of appointment, which the Secretariat may extend on a reasoned request in exceptional circumstances.",
                             "The emergency arbitrator may make an order without prior notice to the other party only where giving notice would defeat the purpose of the relief, and any such order shall be reviewed after hearing the other party at the earliest opportunity.",
                         ],
                     },
@@ -513,7 +538,8 @@ PARTS = [
                         "body": [
                             "An order of an emergency arbitrator binds the parties from the date it is made. The parties undertake to comply with it without delay.",
                             "In an arbitration seated in India, an order of an emergency arbitrator is an order under Section 17(1) of the Act and is enforceable under Section 17(2) of the Act, as held by the Supreme Court of India.",
-                            "The arbitral tribunal, once constituted, may confirm, modify, or set aside the order. The order ceases to bind the parties if the tribunal is not constituted within ninety days of the order, or if the claim is withdrawn.",
+                            "A party that obtains emergency relief shall immediately disclose any material change in the circumstances on which it was sought or granted. Before the tribunal is constituted, the emergency arbitrator may, on a reasoned request and after hearing the parties, modify or revoke the order.",
+                            "The order does not bind the arbitral tribunal on any question decided in it. The tribunal, once constituted, may confirm, modify, or set aside the order, and shall decide any claim concerning compliance with it and the reallocation of its costs. The order ceases to bind the parties if a challenge to the emergency arbitrator is upheld, on the final award unless the tribunal decides otherwise, if the claim is withdrawn, or if the tribunal is not constituted within ninety days of the order.",
                         ],
                     },
                 ],
@@ -523,25 +549,41 @@ PARTS = [
                 "sections": [
                     {
                         "title": "Fast-Track and Expedited Arbitration Procedure",
-                        "body": [
-                            "The parties may agree in writing, before or at the time of the constitution of the tribunal, that the arbitration be conducted under the fast-track procedure in Section 29B of the Act.",
-                            "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
-                            "Fees for fast-track arbitration are payable as provided in the Schedule of Fees.",
-                        ],
+                        "body": {
+                            2018: [
+                                "The parties may agree in writing, before or at the time of the constitution of the tribunal, that the arbitration be conducted under the fast-track procedure in Section 29B of the Act.",
+                                "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
+                                "Fees for fast-track arbitration are payable as provided in the Schedule of Fees.",
+                            ],
+                            2021: [
+                                "The parties may agree in writing, before or at the time of the constitution of the tribunal, that the arbitration be conducted under the fast-track procedure in Section 29B of the Act.",
+                                "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
+                                "Fees for fast-track arbitration are payable as provided in the Schedule of Fees.",
+                            ],
+                            2026: [
+                                "The parties may agree in writing, before or at the time of the constitution of the tribunal, that the arbitration be conducted under the fast-track procedure in Section 29B of the Act.",
+                                "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
+                                "Fees for fast-track arbitration are payable as provided in the Schedule of Fees.",
+                                "In a fast-track arbitration, the tribunal shall hold the case management conference within fifteen days of its constitution; no party may make a new claim without the tribunal's leave; and the tribunal may, after consulting the parties, decline requests for document production and limit the number, length, and scope of written submissions and witness statements.",
+                            ],
+                        },
                     },
                     {
                         "title": "Making of Arbitral Award and Decision-Making",
                         "body": {
                             2018: [
                                 "In a tribunal of more than one arbitrator, any decision shall be made by a majority. Questions of procedure may be decided by the presiding arbitrator if so authorised by the parties or the other arbitrators.",
+                                "As soon as possible after the last hearing or the last authorised submission, the tribunal shall declare the proceedings closed as to the matters to be decided in the award and inform the Secretariat and the parties of the date by which it expects to submit its draft award. No further submission or evidence may be made after closure unless the tribunal requests or authorises it.",
                                 "The award shall be made within twelve months from the date on which the tribunal enters upon the reference, which the parties may by consent extend by up to six months, in accordance with Section 29A of the Act.",
                             ],
                             2021: [
                                 "In a tribunal of more than one arbitrator, any decision shall be made by a majority. Questions of procedure may be decided by the presiding arbitrator if so authorised by the parties or the other arbitrators.",
+                                "As soon as possible after the last hearing or the last authorised submission, the tribunal shall declare the proceedings closed as to the matters to be decided in the award and inform the Secretariat and the parties of the date by which it expects to submit its draft award. No further submission or evidence may be made after closure unless the tribunal requests or authorises it.",
                                 "In an arbitration other than an international commercial arbitration, the award shall be made within twelve months from the date of completion of pleadings, which the parties may by consent extend by up to six months, in accordance with Section 29A of the Act. In an international commercial arbitration, the tribunal shall endeavour to make the award within the same period.",
                             ],
                             2026: [
                                 "In a tribunal of more than one arbitrator, any decision shall be made by a majority. Questions of procedure may be decided by the presiding arbitrator if so authorised by the parties or the other arbitrators.",
+                                "As soon as possible after the last hearing or the last authorised submission, the tribunal shall declare the proceedings closed as to the matters to be decided in the award and inform the Secretariat and the parties of the date by which it expects to submit its draft award. No further submission or evidence may be made after closure unless the tribunal requests or authorises it.",
                                 "In an arbitration other than an international commercial arbitration, the award shall be made within twelve months from the date of completion of pleadings, which the parties may by consent extend by up to six months, in accordance with Section 29A of the Act. In an international commercial arbitration, the tribunal shall endeavour to make the award within the same period.",
                                 "If, during the arbitration, the parties settle the dispute, including through mediation, an Adjudix Lok Adalat sitting, or the Med-Arb Protocol, the tribunal shall terminate the proceedings and, if requested by the parties, record the settlement as an arbitral award on agreed terms under Section 30 of the Act.",
                             ],
@@ -549,11 +591,23 @@ PARTS = [
                     },
                     {
                         "title": "Form, Contents, and Dating of Award",
-                        "body": [
-                            "The award shall be in writing and signed by the members of the tribunal, or by a majority with the reason for any omitted signature stated. It shall state the reasons on which it is based, unless the parties have agreed otherwise or the award is on agreed terms.",
-                            "The award shall state its date and the seat of arbitration, and shall determine interest and costs in accordance with Sections 31(7) and 31A of the Act.",
-                            "Before signing, the tribunal shall submit the draft award to the Secretariat, which may draw attention to matters of form without affecting the tribunal's liberty of decision. A signed copy shall be delivered to each party.",
-                        ],
+                        "body": {
+                            2018: [
+                                "The award shall be in writing and signed by the members of the tribunal, or by a majority with the reason for any omitted signature stated. It shall state the reasons on which it is based, unless the parties have agreed otherwise or the award is on agreed terms.",
+                                "The award shall state its date and the seat of arbitration, and shall determine interest and costs in accordance with Sections 31(7) and 31A of the Act.",
+                                "Before signing, the tribunal shall submit the draft award to the Secretariat, which may draw attention to matters of form without affecting the tribunal's liberty of decision. A signed copy shall be delivered to each party.",
+                            ],
+                            2021: [
+                                "The award shall be in writing and signed by the members of the tribunal, or by a majority with the reason for any omitted signature stated. It shall state the reasons on which it is based, unless the parties have agreed otherwise or the award is on agreed terms.",
+                                "The award shall state its date and the seat of arbitration, and shall determine interest and costs in accordance with Sections 31(7) and 31A of the Act.",
+                                "Before signing, the tribunal shall submit the draft award to the Secretariat, which may draw attention to matters of form without affecting the tribunal's liberty of decision. A signed copy shall be delivered to each party.",
+                            ],
+                            2026: [
+                                "The award shall be in writing and signed by the members of the tribunal, or by a majority with the reason for any omitted signature stated. It shall state the reasons on which it is based, unless the parties have agreed otherwise or the award is on agreed terms.",
+                                "The award shall state its date and the seat of arbitration, and shall determine interest and costs in accordance with Sections 31(7) and 31A of the Act.",
+                                "Before signing, the tribunal shall submit the draft award to the Secretariat for scrutiny. The Secretariat may require modifications as to the form of the award and, without affecting the tribunal's liberty of decision, may draw its attention to points of substance. The Secretariat shall complete its scrutiny within ten days so that no statutory time limit is put at risk. A signed copy of the award shall be delivered to each party.",
+                            ],
+                        },
                     },
                     {
                         "title": "Termination of Arbitral Proceedings",
@@ -592,7 +646,7 @@ PARTS = [
                                 "Where the other party does not accept the request within fifteen days, the requesting party may treat the request as rejected. Mediation sessions may be held in person or online.",
                             ],
                             2026: [
-                                "Mediation commences when a party's request for mediation is accepted by the other party, or on the date fixed by the parties' agreement to mediate, and shall be conducted in accordance with this Code and the Mediation Act, 2023, to the extent applicable.",
+                                "Where the parties have agreed to mediate under this Code, mediation commences on the date the Secretariat receives a party's request for mediation. In any other case, it commences when the other party accepts the request. Mediation shall be conducted in accordance with this Code and the Mediation Act, 2023, to the extent applicable.",
                                 "Where the other party does not accept the request within fifteen days, the requesting party may treat the request as rejected. Mediation sessions may be held in person or online.",
                                 "Unless the parties agree to extend it, the mediation shall be completed within one hundred and twenty days of the first appearance before the mediator.",
                             ],
@@ -602,7 +656,7 @@ PARTS = [
                         "title": "Selection, Appointment, and Independence of Mediator",
                         "body": [
                             "The parties may agree on a mediator from the Panel. Failing agreement within fifteen days, the Secretariat shall appoint a mediator having regard to the subject matter of the dispute.",
-                            "Before accepting the appointment, the mediator shall disclose in writing any circumstance that may give rise to doubts as to their independence or impartiality.",
+                            "Before accepting the appointment, the mediator shall sign a statement of acceptance, availability, impartiality, and independence, and disclose in writing any circumstance that may give rise to doubts as to their independence or impartiality. A party may object to an appointment made by the Secretariat within fifteen days of being notified of it, in which case the Secretariat shall appoint another mediator.",
                         ],
                     },
                     {
@@ -615,7 +669,8 @@ PARTS = [
                     {
                         "title": "Role of Mediator and Facilitation Protocol",
                         "body": [
-                            "The mediator shall assist the parties in an independent and impartial manner to reach an amicable settlement of their dispute. The mediator shall not impose a settlement.",
+                            "The mediator shall assist the parties in an independent and impartial manner to reach an amicable settlement of their dispute, treating them with fairness. The mediator shall not impose a settlement.",
+                            "After consulting the parties, the mediator shall promptly issue a written note setting out the manner in which the mediation will be conducted. Each party shall act in good faith throughout the mediation.",
                             "The mediator may, at the request of the parties, make suggestions as to options for settlement.",
                         ],
                     },
@@ -625,21 +680,25 @@ PARTS = [
                             2018: [
                                 "Where the parties reach a settlement, it shall be reduced to writing and signed by the parties and authenticated by the mediator.",
                                 "Where the parties so agree, the settlement may be executed as a settlement agreement under Section 73 of the Act, so as to have the status and effect of an arbitral award on agreed terms under Section 74 of the Act.",
+                                "Mediation terminates on the signing of a settlement agreement; on a party's written notice that it withdraws; on the mediator's written notice that, in the mediator's opinion, further efforts are unlikely to resolve the dispute; or on the expiry of the agreed period for the mediation. The Secretariat shall confirm the termination to the parties in writing.",
                             ],
                             2021: [
                                 "Where the parties reach a settlement, it shall be reduced to writing and signed by the parties and authenticated by the mediator.",
                                 "Where the parties so agree, the settlement may be executed as a settlement agreement under Section 73 of the Act, so as to have the status and effect of an arbitral award on agreed terms under Section 74 of the Act.",
+                                "Mediation terminates on the signing of a settlement agreement; on a party's written notice that it withdraws; on the mediator's written notice that, in the mediator's opinion, further efforts are unlikely to resolve the dispute; or on the expiry of the agreed period for the mediation. The Secretariat shall confirm the termination to the parties in writing.",
                             ],
                             2026: [
                                 "Where the parties reach a settlement, it shall be reduced to writing as a mediated settlement agreement, signed by the parties and authenticated by the mediator.",
                                 "A mediated settlement agreement is final and binding on the parties and enforceable in accordance with the Mediation Act, 2023, to the extent applicable, or, where the parties so agree, may be executed as a settlement agreement under Section 73 of the Act with the status and effect provided by Section 74 of the Act.",
+                                "Mediation terminates on the signing of a settlement agreement; on a party's written notice that it withdraws; on the mediator's written notice that, in the mediator's opinion, further efforts are unlikely to resolve the dispute; or on the expiry of the agreed period for the mediation. The Secretariat shall confirm the termination to the parties in writing.",
                             ],
                         },
                     },
                     {
                         "title": "Without-Prejudice Privilege and Confidentiality",
                         "body": [
-                            "Every statement, proposal, admission, and document made or exchanged in mediation is made without prejudice and is confidential.",
+                            "Every statement, proposal, admission, and document made or exchanged in mediation is made without prejudice and is confidential. The fact that a mediation is taking place is not confidential.",
+                            "Unless the law requires otherwise, no party shall rely in any other proceeding on any view or suggestion made by another party regarding settlement, any admission made in the mediation, any proposal made by the mediator, or the fact that a party indicated its willingness to accept a proposal.",
                             "The mediator shall not act as an arbitrator, representative, or counsel of a party in any proceeding relating to the dispute, and shall not be presented as a witness, save as the law otherwise provides.",
                         ],
                     },
@@ -860,7 +919,9 @@ PARTS = [
                         "title": "Deposits and Allocation of Costs",
                         "body": [
                             "The parties shall deposit the fees in the instalments set out in the Schedule of Fees, in equal shares unless the Schedule provides otherwise. Where a party fails to pay its share, the other party may pay it.",
-                            "The tribunal shall, in its award, determine the costs of the arbitration and which party shall bear them, in accordance with Section 31A of the Act, having regard to the conduct of the parties, the outcome, and any offer of settlement.",
+                            "The costs of the arbitration comprise the fees of the Institute and of the tribunal, the fees and expenses of any expert appointed by the tribunal, and the reasonable legal and other costs incurred by the parties.",
+                            "The tribunal shall, in its award, determine the costs of the arbitration and which party shall bear them, in accordance with Section 31A of the Act, having regard to the conduct of the parties, including the extent to which each has conducted the arbitration in an expeditious and cost-effective manner, the outcome, and any offer of settlement.",
+                            "Where all claims are withdrawn or the proceeding ends before a final award, the Secretariat shall fix the fees payable to the Institute and the neutral, and any refund due.",
                         ],
                     },
                 ],
@@ -910,6 +971,7 @@ PARTS = [
                         "title": "Practice Directions",
                         "body": [
                             "The Secretariat may issue practice directions, consistent with this Code, on matters of procedure and administration. Practice directions shall be published before they take effect.",
+                            "In all matters not expressly provided for in this Code, the Institute, the neutrals, and the parties shall act in the spirit of this Code and shall make every effort to ensure that every award and settlement is enforceable at law.",
                         ],
                     },
                 ],
