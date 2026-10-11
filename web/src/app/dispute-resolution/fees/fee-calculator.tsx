@@ -1,32 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-const SLABS = [
-  { upTo: 1_000_000, rate: 0.03, label: "Up to ₹10,00,000" },
-  { upTo: 5_000_000, rate: 0.02, label: "₹10,00,001 – ₹50,00,000" },
-  { upTo: 20_000_000, rate: 0.0125, label: "₹50,00,001 – ₹2,00,00,000" },
-  { upTo: Infinity, rate: 0.0075, label: "Above ₹2,00,00,000" },
-];
-
-// Client marked the minimum as ₹10,000 (was ₹15,000) — pending confirmation.
-const MIN_FEE = 10_000;
-
-function estimateFee(amount: number): number {
-  if (!Number.isFinite(amount) || amount <= 0) return MIN_FEE;
-  let remaining = amount;
-  let lower = 0;
-  let fee = 0;
-  for (const slab of SLABS) {
-    const slabAmount = Math.min(remaining, slab.upTo - lower);
-    if (slabAmount <= 0) break;
-    fee += slabAmount * slab.rate;
-    remaining -= slabAmount;
-    lower = slab.upTo;
-    if (remaining <= 0) break;
-  }
-  return Math.max(fee, MIN_FEE);
-}
+import { cn } from "@/lib/utils";
+import { estimateFees } from "@/lib/fee-schedule";
 
 function formatINR(value: number): string {
   return new Intl.NumberFormat("en-IN", {
@@ -36,12 +12,58 @@ function formatINR(value: number): string {
   }).format(value);
 }
 
+function Toggle<T extends string | number>({
+  legend,
+  options,
+  value,
+  onChange,
+}: {
+  legend: string;
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <fieldset>
+      <legend className="font-body text-sm font-medium text-text">{legend}</legend>
+      <div className="mt-2 inline-flex rounded-md border border-border bg-canvas p-1">
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={value === option.value}
+            onClick={() => onChange(option.value)}
+            className={cn(
+              "rounded px-3 py-1.5 font-body text-sm transition-colors",
+              value === option.value ? "bg-primary text-primary-foreground" : "text-text-muted hover:text-text",
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
 export function FeeCalculator() {
   // Digits only in state; shown with Indian digit grouping (10,00,000).
   const [amount, setAmount] = useState("1000000");
-  const numericAmount = Number(amount);
+  const [arbitrators, setArbitrators] = useState<1 | 3>(1);
+  const [fastTrack, setFastTrack] = useState(false);
+  const numericAmount = Number(amount) || 0;
   const displayAmount = amount ? new Intl.NumberFormat("en-IN").format(numericAmount) : "";
-  const estimate = useMemo(() => estimateFee(numericAmount), [numericAmount]);
+  const fees = useMemo(() => estimateFees(numericAmount, arbitrators, fastTrack), [numericAmount, arbitrators, fastTrack]);
+
+  const rows = [
+    { label: "Filing fee", value: fees.filing },
+    {
+      label: arbitrators === 1 ? "Arbitral tribunal fee (sole arbitrator)" : `Arbitral tribunal fee (3 × ${formatINR(fees.tribunalPerArbitrator)})`,
+      value: fees.tribunal,
+    },
+    { label: "Administrative fee", value: fees.admin },
+    { label: "GST @ 18% (on filing and administrative fees)", value: fees.gst },
+  ];
 
   return (
     <div className="rounded-lg border border-border bg-surface p-8">
@@ -57,19 +79,53 @@ export function FeeCalculator() {
         className="mt-2 w-full rounded-md border border-border bg-canvas px-4 py-2.5 font-body text-text outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         placeholder="e.g. 10,00,000"
       />
-      <div className="mt-6 flex flex-col gap-1 border-t border-border pt-6">
-        <span className="font-mono text-xs tracking-widest uppercase text-primary">
-          Indicative administrative fee of the platform
-        </span>
-        <span className="font-mono text-3xl font-semibold text-text">
-          {formatINR(estimate)}
-        </span>
-        <p className="mt-2 font-body text-xs text-text-muted">
-          Just for example — an estimate only, based on a tiered percentage of the amount in dispute (minimum{" "}
-          {formatINR(MIN_FEE)}). Arbitrator fees are separate and depend on the panelist
-          appointed. A final fee schedule is confirmed when a case is filed.
+      {fees.smallCause && numericAmount > 0 && (
+        <p className="mt-2 text-left font-body text-xs text-text-muted">
+          Claims below ₹5,00,000 fall under the small cause schedule.
         </p>
+      )}
+
+      <div className="mt-6 flex flex-wrap gap-6">
+        <Toggle
+          legend="Arbitral tribunal"
+          value={arbitrators}
+          onChange={setArbitrators}
+          options={[
+            { value: 1, label: "Sole arbitrator" },
+            { value: 3, label: "Three arbitrators" },
+          ]}
+        />
+        <Toggle
+          legend="Procedure"
+          value={fastTrack ? "fast" : "regular"}
+          onChange={(value) => setFastTrack(value === "fast")}
+          options={[
+            { value: "regular", label: "Regular" },
+            { value: "fast", label: "Fast track" },
+          ]}
+        />
       </div>
+
+      <dl className="mt-6 divide-y divide-border border-t border-border">
+        {rows.map((row) => (
+          <div key={row.label} className="flex items-baseline justify-between gap-4 py-3">
+            <dt className="font-body text-sm text-text-muted">{row.label}</dt>
+            <dd className="font-mono text-sm tabular-nums text-text">{formatINR(row.value)}</dd>
+          </div>
+        ))}
+      </dl>
+      <div className="flex items-baseline justify-between gap-4 border-t border-border pt-4">
+        <span className="font-mono text-xs tracking-widest uppercase text-primary">
+          Indicative total of the platform
+        </span>
+        <span className="font-mono text-3xl font-semibold tabular-nums text-text">{formatINR(fees.total)}</span>
+      </div>
+      <p className="mt-4 text-left font-body text-xs text-text-muted">
+        Just for example — an estimate under the Adjudix fee schedule below. A sole arbitrator
+        receives 20% more than each member of a three-member tribunal; fast-track tribunal fees
+        are 80% of the regular fee. Travel, hearing-room, and other charges are extra. The
+        confirmed fee is set when a case is registered.
+      </p>
     </div>
   );
 }
