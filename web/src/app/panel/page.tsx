@@ -1,13 +1,11 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
+import { IDENTITY_NOTE, MEMBERS, PROFESSIONS } from "@/lib/members";
 
 // The panel is shown by profession (client brief): one common panel rather
 // than a separate roster per dispute type.
-const PROFESSIONS = [
-  { numeral: "I", title: "Lawyers", description: "Advocates and legal practitioners, including senior counsel and retired judicial officers." },
-  { numeral: "II", title: "CA / CS", description: "Chartered accountants and company secretaries for financial, accounts, and corporate disputes." },
-  { numeral: "III", title: "Engineers", description: "Civil, IT, and other engineers for construction, technology, and technical disputes." },
-];
+const PANEL = MEMBERS.filter((member) => member.panel);
 
 export default function PanelPage() {
   return (
@@ -15,27 +13,41 @@ export default function PanelPage() {
       <PageHeader
         eyebrow="Dispute Resolution"
         title="Our Professional Panel"
-        intro="Filterable by dispute type, profession, and jurisdiction — advocates, chartered accountants, civil engineers, IT engineers, and other professionals vetted before appointment to any case."
+        intro="Advocates, chartered accountants, civil engineers, IT engineers, and other professionals — vetted before appointment to any case and bound by the Adjudix Code of ADR Procedure, 2026."
       />
 
-      <section className="mx-auto max-w-4xl px-6 py-16">
-        <h2 className="font-heading text-2xl font-semibold text-text">Panel categories</h2>
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          {PROFESSIONS.map((profession) => (
-            <div key={profession.title} className="rounded-lg border border-border bg-surface p-6">
-              <span className="font-mono text-sm font-semibold text-primary">{profession.numeral}.</span>
-              <h3 className="mt-2 font-heading text-lg font-semibold text-text">{profession.title}</h3>
-              <p className="mt-2 font-body text-sm text-text-muted">{profession.description}</p>
-            </div>
-          ))}
-        </div>
+      <section className="mx-auto max-w-6xl px-6 pt-16">
+        <IdentityNote {...IDENTITY_NOTE} />
       </section>
+
+      {PROFESSIONS.map((profession) => {
+        const members = PANEL.filter((member) => member.profession === profession.id);
+        return (
+          <section key={profession.id} aria-labelledby={`panel-${profession.id}`} className="mx-auto max-w-6xl px-6 py-12">
+            <div className="flex items-baseline gap-3">
+              <span className="font-mono text-sm font-semibold text-primary">{profession.numeral}.</span>
+              <h2 id={`panel-${profession.id}`} className="font-heading text-2xl font-semibold text-text">
+                {profession.title}
+              </h2>
+              <span className="font-body text-sm text-text-muted">({members.length})</span>
+            </div>
+            <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">{profession.description}</p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {members.map((member) => (
+                <li key={member.name}>
+                  <MemberCard member={member} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
 
       <CtaBand
         title="Apply to join our panel"
         description="Advocates, chartered accountants, company secretaries, and engineers of every discipline with relevant experience can apply."
         primary={{ label: "Apply to the Panel", href: "/contact" }}
-        secondary={{ label: "Specialized Panels", href: "/dispute-resolution/panels" }}
+        secondary={{ label: "Our Esteemed Members", href: "/membership/directory" }}
       />
     </main>
   );

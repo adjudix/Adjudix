@@ -1,5 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
+import { IDENTITY_NOTE, MEMBERS, TIERS, TIER_ORDER } from "@/lib/members";
 
 export default function DirectoryPage() {
   return (
@@ -8,25 +10,41 @@ export default function DirectoryPage() {
         eyebrow="Membership"
         title="Our Esteemed Members"
         breadcrumbs={[{ label: "Membership", href: "/membership" }, { label: "Our Esteemed Members" }]}
-        intro="A public showcase of Adjudix members, filterable by tier, specialization, and location — published only with each member's explicit consent."
+        intro="The professionals who make up Adjudix, by membership. To verify a member's standing, contact the Secretariat."
       />
 
-      <section className="mx-auto max-w-3xl px-6 py-16">
-        <div className="rounded-lg border border-border bg-surface p-8">
-          <h2 className="font-heading text-xl font-semibold text-text">
-            Member profiles
-          </h2>
-          <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
-            Consenting members are featured here with their membership, specialization, and
-            credentials. To verify a member&apos;s standing, contact the Secretariat.
-          </p>
-        </div>
+      <section className="mx-auto max-w-6xl px-6 pt-16">
+        <IdentityNote {...IDENTITY_NOTE} />
       </section>
+
+      {TIER_ORDER.map((tierId) => {
+        const members = MEMBERS.filter((member) => member.tier === tierId);
+        if (members.length === 0) return null;
+        const tier = TIERS[tierId];
+        return (
+          <section key={tierId} aria-labelledby={`tier-${tierId}`} className="mx-auto max-w-6xl px-6 py-12">
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h2 id={`tier-${tierId}`} className="font-heading text-2xl font-semibold text-text">
+                {tier.label}s
+              </h2>
+              <span className="font-mono text-xs tracking-wider text-primary">[{tier.postNominal}]</span>
+              <span className="font-body text-sm text-text-muted">({members.length})</span>
+            </div>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {members.map((member) => (
+                <li key={member.name}>
+                  <MemberCard member={member} role={member.panel ? `${tier.label} · Panel Arbitrator` : undefined} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
 
       <CtaBand
         title="Become a member"
         primary={{ label: "Compare Tiers", href: "/membership" }}
-        secondary={{ label: "Talk to Us", href: "/contact" }}
+        secondary={{ label: "Our Professional Panel", href: "/panel" }}
       />
     </main>
   );
