@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -153,6 +154,8 @@ function LinkLabel({ link }: { link: NavLink }) {
 }
 
 export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
@@ -289,7 +292,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
 
           <div className="flex items-center gap-2">
             <SiteSearch items={searchItems} className="w-9 justify-center px-0" />
-            <Sheet>
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger
                 render={
                   <button
@@ -319,6 +322,10 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                 <nav
                   className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-4 pb-8"
                   aria-label="Mobile"
+                  // Any link tapped in the menu closes it, so the page it opens is visible.
+                  onClick={(event) => {
+                    if ((event.target as HTMLElement).closest("a")) setMenuOpen(false);
+                  }}
                 >
                   {NAV_GROUPS.map((group) => (
                     <div key={group.label} className="border-b border-border py-2">
