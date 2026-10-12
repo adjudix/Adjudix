@@ -8,10 +8,10 @@ import { INTRO_DONE_EVENT } from "@/components/layout/page-loader";
 
 // Client brief (Oct 2026): pop-up offering the first professional
 // consultation free (₹4,999 struck to ₹0), with a countdown timer.
-// Shown once per browser session, a few seconds after the intro loader has
+// Shown once per browser session, about a minute after the intro loader has
 // finished — the intro now waits for the visitor to scroll, so the delay
 // counts from its end rather than from page load.
-const SHOW_AFTER_INTRO_MS = 4_000;
+const SHOW_AFTER_INTRO_MS = 60_000;
 const SEEN_KEY = "adjudix-consultation-popup-seen";
 
 // The offer window ends at midnight after an irregular 3–5 day cycle, so the
