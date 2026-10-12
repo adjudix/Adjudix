@@ -1,0 +1,708 @@
+{
+ "year": 2018,
+ "title": "The Adjudix Code of ADR Procedure, 2018",
+ "note": "First edition. Governs arbitration, mediation, conciliation, and corporate ADR administered by Adjudix, conducted in person.",
+ "intro": [
+  "Adjudix Dispute Resolution Institute is established to provide parties with a fair, efficient, and dependable alternative to litigation. A procedure is only as trustworthy as the principles that govern it. This Code therefore begins with the Moral Principles that bind the Institute, its Secretariat, and every arbitrator, mediator, and conciliator acting under it.",
+  "These principles are not aspirations. They are binding, and every provision of this Code shall be read and applied in accordance with them."
+ ],
+ "principles": [
+  {
+   "title": "Independence and Impartiality",
+   "body": "Every neutral shall be, and remain, independent of the parties and impartial between them, and shall disclose any circumstance that may give rise to doubts about either."
+  },
+  {
+   "title": "Equality and Fairness",
+   "body": "The parties shall be treated with equality, and each shall be given a full opportunity to present its case."
+  },
+  {
+   "title": "Party Autonomy",
+   "body": "The parties' agreement on procedure shall be respected, save where it conflicts with this Code's non-derogable provisions or the law."
+  },
+  {
+   "title": "Confidentiality",
+   "body": "Proceedings, documents, and outcomes are confidential, save as the parties agree or the law requires."
+  },
+  {
+   "title": "Integrity",
+   "body": "No neutral or member of staff shall accept any gift, favour, or communication that could compromise, or appear to compromise, their integrity."
+  },
+  {
+   "title": "Competence and Diligence",
+   "body": "Neutrals shall be appointed for their competence in the subject matter, and shall conduct proceedings with diligence and without unnecessary delay."
+  },
+  {
+   "title": "Accountability",
+   "body": "The Institute shall maintain a mechanism for the redress of grievances arising from any breach of these Principles."
+  }
+ ],
+ "close": "Every neutral shall, on accepting an appointment, confirm in writing that they have read and will abide by these Principles.",
+ "parts": [
+  {
+   "no": "I",
+   "title": "Preliminary & General Provisions",
+   "chapters": [
+    {
+     "no": "I",
+     "title": "Preliminary",
+     "sections": [
+      {
+       "no": "1",
+       "title": "Short Title, Extent, and Commencement",
+       "body": [
+        "This Code may be called the Adjudix Code of ADR Procedure, 2018.",
+        "It applies to every proceeding administered by the Institute, whether the parties are in India or elsewhere, and whether the proceeding is domestic or international.",
+        "It shall come into force on the first day of January, 2018, and shall apply to every proceeding commenced on or after that date."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "2",
+       "title": "Definitions and Interpretation",
+       "body": null,
+       "since": 2018,
+       "definitions": [
+        {
+         "term": "Adjudix” or “the Institute",
+         "text": "means Adjudix Dispute Resolution Institute, acting through its governing body and the Secretariat."
+        },
+        {
+         "term": "Act",
+         "text": "means the Arbitration and Conciliation Act, 1996, as amended from time to time."
+        },
+        {
+         "term": "award",
+         "text": "includes an interim award, a partial award, and an award on agreed terms."
+        },
+        {
+         "term": "Code",
+         "text": "means this Adjudix Code of ADR Procedure, 2018, including its Schedules and the Schedule of Fees."
+        },
+        {
+         "term": "electronic record",
+         "text": "has the meaning assigned to it in the Information Technology Act, 2000."
+        },
+        {
+         "term": "neutral",
+         "text": "means an arbitrator, mediator, or conciliator appointed under this Code."
+        },
+        {
+         "term": "Panel",
+         "text": "means the Professional Panel of the Institute, comprising lawyers, chartered accountants and company secretaries, engineers, and other professionals approved by the Institute."
+        },
+        {
+         "term": "party",
+         "text": "means a party to the dispute, and includes its authorised representative where the context so permits."
+        },
+        {
+         "term": "Schedule of Fees",
+         "text": "means the schedule of fees and costs published by the Institute and in force on the date of commencement of the proceeding."
+        },
+        {
+         "term": "Secretariat",
+         "text": "means the Secretariat of the Institute, which administers proceedings under this Code."
+        }
+       ]
+      },
+      {
+       "no": "3",
+       "title": "Scope of Application and Exclusions",
+       "body": [
+        "This Code applies where the parties have agreed, before or after a dispute has arisen, to refer the dispute to the Institute, or to resolve it under the rules of the Institute or under this Code.",
+        "It governs arbitration, mediation, conciliation, and corporate dispute resolution administered by the Institute.",
+        "This Code does not apply to disputes which, under the law applicable to them, are not capable of settlement by arbitration or other alternative dispute resolution."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "4",
+       "title": "Party Autonomy and Non-Derogable Provisions",
+       "body": [
+        "Subject to this Section, the parties may agree on the procedure to be followed, and the neutral shall give effect to that agreement.",
+        "The parties may not derogate from the Preamble, from the provisions of this Code on the independence and disclosure of neutrals, the equal treatment of parties, confidentiality, and fees, or from any provision of the law from which derogation is not permitted.",
+        "Where this Code and the parties' agreement are silent, the neutral may conduct the proceeding in such manner as the neutral considers appropriate, consistently with the Preamble."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "5",
+       "title": "Waiver of Right to Object",
+       "body": [
+        "A party which knows that a provision of this Code or of the parties' agreement has not been complied with, and proceeds without stating its objection without undue delay, or within the time limit provided, shall be deemed to have waived its right to object."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  },
+  {
+   "no": "II",
+   "title": "Common Procedural Rules",
+   "chapters": [
+    {
+     "no": "II",
+     "title": "Commencement of Proceedings & Pleadings",
+     "sections": [
+      {
+       "no": "6",
+       "title": "Request for Dispute Resolution and Notice of Dispute",
+       "body": [
+        "A proceeding commences on the date on which a request for its commencement is received by the Secretariat, together with the filing fee prescribed by the Schedule of Fees.",
+        "The request shall state the names and contact details of the parties, a brief description of the dispute and the relief sought, the agreement under which the dispute is referred, and any proposal on the mechanism, the number of neutrals, and the language of the proceeding.",
+        "The claimant shall serve a copy of the request on every other party."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "7",
+       "title": "Registration of Case and Issuance of Summons",
+       "body": [
+        "On being satisfied that the request is complete and the filing fee paid, the Secretariat shall register the proceeding, assign it a case number, and issue notice to every other party.",
+        "Registration is administrative and does not determine any question of jurisdiction or of the validity of the agreement, which shall be decided by the neutral."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "8",
+       "title": "Response, Statement of Defence, and Counterclaims",
+       "body": [
+        "The respondent shall file a response to the request within fifteen days of receiving notice under the preceding Section.",
+        "The statement of claim and the statement of defence, together with any counter-claim or set-off, shall be filed within such time as the arbitral tribunal may direct."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "9",
+       "title": "Amendment of Pleadings and Statements",
+       "body": [
+        "A party may amend or supplement its claim or defence unless the neutral considers it inappropriate to allow the amendment, having regard to the delay in making it, the prejudice to the other party, and any other relevant circumstance.",
+        "A claim may not be amended so as to fall outside the scope of the agreement under which the dispute is referred."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "10",
+       "title": "Joinder of Additional Parties and Consolidation of Claims",
+       "body": [
+        "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
+        "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
+        "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "III",
+     "title": "Case Management & Hearings",
+     "sections": [
+      {
+       "no": "11",
+       "title": "Preliminary Case Management Conference (CMC)",
+       "body": [
+        "As soon as practicable after constitution, the neutral shall convene a case management conference with the parties.",
+        "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, the place of hearings, and any other procedural matter. The timetable, and any modification of it, shall be communicated to the Secretariat and the parties."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "12",
+       "title": "Procedural Timelines and Time Extensions",
+       "body": [
+        "The neutral and the parties shall make every effort to conduct the proceeding in an expeditious and cost-effective manner, having regard to the complexity and value of the dispute, and shall observe the timelines fixed under this Code and by the neutral. The parties undertake to comply with every procedural order of the neutral.",
+        "The neutral may extend a time limit fixed by the neutral where the circumstances justify it. A time limit fixed by the Act may be extended only as the Act permits.",
+        "The Secretariat shall monitor timelines in every proceeding and may draw the attention of the neutral and the parties to any delay."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "13",
+       "title": "Conduct of Hearings",
+       "body": [
+        "Hearings shall be held at the place fixed by the neutral after consulting the parties, which may be the premises of the Institute or any other suitable place.",
+        "The neutral shall give the parties sufficient advance notice of every hearing.",
+        "Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
+        "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "14",
+       "title": "Recording of Proceedings and Transcript Management",
+       "body": [
+        "The neutral may direct that a hearing be recorded or transcribed, and shall do so where the parties so agree.",
+        "A transcript or recording shall form part of the confidential record of the proceeding and shall be made available only to the parties and the neutral.",
+        "Mediation and conciliation sessions shall not be recorded."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "15",
+       "title": "Interim Measures by Tribunal or Neutral Authority",
+       "body": [
+        "An arbitral tribunal may, at the request of a party, order any interim measure that the tribunal may order under Section 17 of the Act, including for the preservation, interim custody, or sale of goods, securing the amount in dispute, the detention, preservation, or inspection of property, and interim injunctions.",
+        "The tribunal may require the party requesting an interim measure to provide appropriate security.",
+        "An order under this Section is enforceable in the manner provided by Section 17(2) of the Act.",
+        "An application by a party to a court for interim measures under Section 9 of the Act shall not be deemed incompatible with, or a waiver of, the agreement to refer the dispute under this Code. The party shall inform the Secretariat of any such application and of any order made on it without delay."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "IV",
+     "title": "Evidence & Discovery",
+     "sections": [
+      {
+       "no": "16",
+       "title": "Disclosure and Production of Documents",
+       "body": [
+        "Each party shall file with its pleading the documents on which it relies.",
+        "The neutral may, on the application of a party, order the production of specific documents or categories of documents that are relevant and material to the outcome, and are in the possession or control of the other party.",
+        "The neutral may draw such inferences as are appropriate from a party's failure, without satisfactory explanation, to produce a document it has been ordered to produce."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "17",
+       "title": "Admissibility and Assessment of Evidence",
+       "body": [
+        "The neutral is not bound by the Code of Civil Procedure, 1908 or the Indian Evidence Act, 1872, but shall be guided by the principles of natural justice.",
+        "The neutral shall determine the admissibility, relevance, materiality, and weight of any evidence."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "18",
+       "title": "Examination of Witnesses and Expert Testimony",
+       "body": [
+        "The evidence of a witness shall ordinarily be given by written statement, and the witness shall attend the hearing for cross-examination if the neutral so directs.",
+        "The neutral may, after consulting the parties, appoint one or more experts to report on specific issues, and the parties may present expert witnesses of their own."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "19",
+       "title": "Electronic Records as Evidence",
+       "body": [
+        "Electronic records may be relied upon as evidence. The neutral may require such certification as to the source and integrity of an electronic record as the neutral considers appropriate, guided by Section 65B of the Indian Evidence Act, 1872."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "20",
+       "title": "Evidentiary Privileges and Confidentiality",
+       "body": [
+        "The neutral shall give effect to legal professional privilege and to any other privilege recognised by the applicable law.",
+        "Statements made, documents prepared, and proposals exchanged in mediation or conciliation shall not be admissible in any arbitral or judicial proceeding, save as the law otherwise provides."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  },
+  {
+   "no": "III",
+   "title": "Arbitration Procedure",
+   "chapters": [
+    {
+     "no": "V",
+     "title": "The Arbitral Tribunal",
+     "sections": [
+      {
+       "no": "21",
+       "title": "Number, Qualification, and Nomination of Arbitrators",
+       "body": [
+        "The parties may agree on the number of arbitrators, which shall not be an even number. Failing agreement, the tribunal shall consist of a sole arbitrator, unless the Secretariat, having regard to the value and complexity of the dispute, determines that it shall consist of three arbitrators.",
+        "Arbitrators shall ordinarily be appointed from the Panel, having regard to the subject matter of the dispute and the professional discipline it calls for. The parties may agree to nominate a person who is not on the Panel, subject to confirmation by the Secretariat."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "22",
+       "title": "Appointment Procedure by Adjudix Institute",
+       "body": [
+        "Where the tribunal is to consist of a sole arbitrator, the parties may jointly nominate the arbitrator within fifteen days of the registration of the proceeding, failing which the Secretariat shall appoint the arbitrator within a further fifteen days.",
+        "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
+        "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
+        "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "23",
+       "title": "Challenge to Arbitrator Appointment and Disclosure Obligations",
+       "body": [
+        "Before accepting an appointment, every arbitrator shall sign a statement of acceptance, availability, impartiality, and independence, make a written disclosure in the form set out in the Sixth Schedule to the Act, and subscribe to the Preamble of this Code. The Secretariat shall communicate the disclosure to the parties and fix a time within which they may comment on it. The duty of disclosure continues throughout the proceeding.",
+        "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
+        "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "24",
+       "title": "Termination and Replacement of Arbitrators",
+       "body": [
+        "The mandate of an arbitrator terminates where the arbitrator withdraws, where the parties so agree, where the arbitrator becomes unable to perform their functions or fails to act without undue delay, or on a successful challenge.",
+        "A substitute arbitrator shall be appointed by the same procedure that applied to the arbitrator being replaced. Unless the parties agree otherwise, hearings previously held may be repeated at the discretion of the tribunal."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "25",
+       "title": "Competence of Arbitral Tribunal to Rule on its Jurisdiction (Competence-Competence)",
+       "body": [
+        "The tribunal may rule on its own jurisdiction, including on any objection with respect to the existence or validity of the arbitration agreement. For this purpose, an arbitration clause shall be treated as an agreement independent of the other terms of the contract.",
+        "A plea that the tribunal does not have jurisdiction shall be raised not later than the submission of the statement of defence. A plea that the tribunal is exceeding the scope of its authority shall be raised as soon as the matter alleged to be beyond its authority is raised."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "VI",
+     "title": "Arbitral Proceedings & Awards",
+     "sections": [
+      {
+       "no": "26",
+       "title": "Fast-Track and Expedited Arbitration Procedure",
+       "body": [
+        "The parties may agree in writing, before or at the time of the constitution of the tribunal, that the arbitration be conducted under the fast-track procedure in Section 29B of the Act.",
+        "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
+        "Fees for fast-track arbitration are payable as provided in the Schedule of Fees."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "27",
+       "title": "Making of Arbitral Award and Decision-Making",
+       "body": [
+        "In a tribunal of more than one arbitrator, any decision shall be made by a majority. Questions of procedure may be decided by the presiding arbitrator if so authorised by the parties or the other arbitrators.",
+        "As soon as possible after the last hearing or the last authorised submission, the tribunal shall declare the proceedings closed as to the matters to be decided in the award and inform the Secretariat and the parties of the date by which it expects to submit its draft award. No further submission or evidence may be made after closure unless the tribunal requests or authorises it.",
+        "The award shall be made within twelve months from the date on which the tribunal enters upon the reference, which the parties may by consent extend by up to six months, in accordance with Section 29A of the Act."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "28",
+       "title": "Form, Contents, and Dating of Award",
+       "body": [
+        "The award shall be in writing and signed by the members of the tribunal, or by a majority with the reason for any omitted signature stated. It shall state the reasons on which it is based, unless the parties have agreed otherwise or the award is on agreed terms.",
+        "The award shall state its date and the seat of arbitration, and shall determine interest and costs in accordance with Sections 31(7) and 31A of the Act.",
+        "Before signing, the tribunal shall submit the draft award to the Secretariat, which may draw attention to matters of form without affecting the tribunal's liberty of decision. A signed copy shall be delivered to each party."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "29",
+       "title": "Termination of Arbitral Proceedings",
+       "body": [
+        "The proceedings terminate with the final award, or by order of the tribunal where the claimant withdraws its claim (unless the respondent objects and the tribunal recognises a legitimate interest in a final settlement), where the parties agree to terminate them, or where the tribunal finds that their continuation has become unnecessary or impossible.",
+        "Where the parties fail to pay the deposits required under the Schedule of Fees, the tribunal may suspend or terminate the proceedings in respect of the claim or counter-claim concerned."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "30",
+       "title": "Correction, Interpretation, and Additional Awards",
+       "body": [
+        "Within thirty days of receiving the award, a party may, with notice to the other party, request the tribunal to correct any computational, clerical, or typographical error, or, if the parties so agree, to give an interpretation of a specific point or part of the award.",
+        "A party may, within the same period, request an additional award as to claims presented in the proceedings but omitted from the award.",
+        "The tribunal shall make the correction or give the interpretation within thirty days, and any additional award within sixty days, of receiving the request."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  },
+  {
+   "no": "IV",
+   "title": "Mediation & Conciliation Procedures",
+   "chapters": [
+    {
+     "no": "VII",
+     "title": "Mediation Procedure",
+     "sections": [
+      {
+       "no": "31",
+       "title": "Commencement of Mediation Proceedings",
+       "body": [
+        "Mediation commences when a party's request for mediation is accepted by the other party, or on the date fixed by the parties' agreement to mediate.",
+        "Where the other party does not accept the request within fifteen days, the requesting party may treat the request as rejected."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "32",
+       "title": "Selection, Appointment, and Independence of Mediator",
+       "body": [
+        "The parties may agree on a mediator from the Panel. Failing agreement within fifteen days, the Secretariat shall appoint a mediator having regard to the subject matter of the dispute.",
+        "Before accepting the appointment, the mediator shall sign a statement of acceptance, availability, impartiality, and independence, and disclose in writing any circumstance that may give rise to doubts as to their independence or impartiality. A party may object to an appointment made by the Secretariat within fifteen days of being notified of it, in which case the Secretariat shall appoint another mediator."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "33",
+       "title": "Conduct of Mediation Sessions and Private Caucuses",
+       "body": [
+        "The mediator may meet the parties jointly or separately, and may communicate with each party in private session.",
+        "Information given to the mediator in a private session shall not be disclosed to the other party without the consent of the party that gave it."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "34",
+       "title": "Role of Mediator and Facilitation Protocol",
+       "body": [
+        "The mediator shall assist the parties in an independent and impartial manner to reach an amicable settlement of their dispute, treating them with fairness. The mediator shall not impose a settlement.",
+        "After consulting the parties, the mediator shall promptly issue a written note setting out the manner in which the mediation will be conducted. Each party shall act in good faith throughout the mediation.",
+        "The mediator may, at the request of the parties, make suggestions as to options for settlement."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "35",
+       "title": "Mediated Settlement Agreement (MSA) and Finality",
+       "body": [
+        "Where the parties reach a settlement, it shall be reduced to writing and signed by the parties and authenticated by the mediator.",
+        "Where the parties so agree, the settlement may be executed as a settlement agreement under Section 73 of the Act, so as to have the status and effect of an arbitral award on agreed terms under Section 74 of the Act.",
+        "Mediation terminates on the signing of a settlement agreement; on a party's written notice that it withdraws; on the mediator's written notice that, in the mediator's opinion, further efforts are unlikely to resolve the dispute; or on the expiry of the agreed period for the mediation. The Secretariat shall confirm the termination to the parties in writing."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "36",
+       "title": "Without-Prejudice Privilege and Confidentiality",
+       "body": [
+        "Every statement, proposal, admission, and document made or exchanged in mediation is made without prejudice and is confidential. The fact that a mediation is taking place is not confidential.",
+        "Unless the law requires otherwise, no party shall rely in any other proceeding on any view or suggestion made by another party regarding settlement, any admission made in the mediation, any proposal made by the mediator, or the fact that a party indicated its willingness to accept a proposal.",
+        "The mediator shall not act as an arbitrator, representative, or counsel of a party in any proceeding relating to the dispute, and shall not be presented as a witness, save as the law otherwise provides."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "VIII",
+     "title": "Conciliation Procedure",
+     "sections": [
+      {
+       "no": "37",
+       "title": "Commencement of Conciliation and Notice",
+       "body": [
+        "A party initiating conciliation shall send the other party a written invitation to conciliate, briefly identifying the subject of the dispute.",
+        "Conciliation commences when the other party accepts the invitation in writing. If the other party rejects the invitation, or does not reply within thirty days, there shall be no conciliation proceeding."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "38",
+       "title": "Appointment and Role of Conciliators",
+       "body": [
+        "There shall be one conciliator unless the parties agree that there shall be two or three. The parties may agree on the conciliator from the Panel, failing which the Secretariat shall appoint the conciliator.",
+        "The conciliator shall assist the parties in an independent and impartial manner, guided by principles of objectivity, fairness, and justice, giving consideration to the rights and obligations of the parties and the circumstances surrounding the dispute."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "39",
+       "title": "Conciliator's Proposals for Settlement",
+       "body": [
+        "The conciliator may, at any stage of the proceedings, make proposals for a settlement of the dispute. Such proposals need not be in writing and need not be accompanied by reasons.",
+        "Where it appears to the conciliator that there exist elements of a settlement acceptable to the parties, the conciliator shall formulate the terms of a possible settlement and submit them to the parties for their observations."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "40",
+       "title": "Settlement Agreement and Enforceability",
+       "body": [
+        "Where the parties reach agreement, they shall draw up and sign a written settlement agreement, which the conciliator shall authenticate and furnish to each party.",
+        "The settlement agreement shall be final and binding on the parties and shall have the same status and effect as an arbitral award on agreed terms, in accordance with Sections 73 and 74 of the Act."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "41",
+       "title": "Termination of Conciliation Proceedings",
+       "body": [
+        "Conciliation terminates on the signing of the settlement agreement; by a written declaration of the conciliator, after consulting the parties, that further efforts are no longer justified; or by a written declaration of a party that the proceedings are terminated.",
+        "The conciliator shall not act as an arbitrator, representative, or counsel of a party in any arbitral or judicial proceeding in respect of the dispute, and views, proposals, and admissions made in conciliation shall not be relied on in any such proceeding."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  },
+  {
+   "no": "V",
+   "title": "Corporate & Commercial ADR",
+   "chapters": [
+    {
+     "no": "IX",
+     "title": "Specialized Corporate ADR",
+     "sections": [
+      {
+       "no": "42",
+       "title": "Shareholder, Board, and Intra-Corporate Disputes",
+       "body": [
+        "Disputes between shareholders, between shareholders and the company, between directors, or among promoters, arising under a shareholders' agreement, articles of association, or joint venture agreement, may be referred under this Code to the extent that they are capable of settlement by arbitration or other ADR under the applicable law.",
+        "The Secretariat shall, where practicable, appoint neutrals with experience in corporate governance, and may propose mediation as a first step where the parties' continuing relationship is at stake."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "43",
+       "title": "Cross-Border and Multi-Jurisdictional Commercial ADR",
+       "body": [
+        "In an international commercial dispute, the parties may agree on the seat, the language, and the law applicable to the substance of the dispute and to the arbitration agreement. Failing agreement on the law applicable to the substance, the tribunal shall apply the rules of law it considers appropriate.",
+        "A sole or presiding arbitrator in an international commercial arbitration shall, where any party so requests, be of a nationality other than that of the parties."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "44",
+       "title": "High-Value Financial and M&A Dispute Resolution",
+       "body": [
+        "In disputes arising from financial transactions, mergers, acquisitions, and investments, including disputes over price adjustments, earn-outs, and warranty claims, the tribunal may, after consulting the parties, appoint an independent expert to determine specified accounting or valuation questions.",
+        "The tribunal may make such orders as are appropriate for the protection of commercially sensitive information, including confidentiality rings."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "45",
+       "title": "Intellectual Property and Technology Dispute Protocol",
+       "body": [
+        "In disputes concerning intellectual property, technology, licensing, and information systems, the Secretariat shall, where practicable, appoint neutrals with technical expertise relevant to the dispute.",
+        "The tribunal may order inspection of source code, systems, or products under protocols that protect trade secrets, and its award shall bind only the parties and shall not affect the validity of any intellectual property right as against third parties."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  },
+  {
+   "no": "VI",
+   "title": "Enforcement, Costs, & Miscellaneous",
+   "chapters": [
+    {
+     "no": "X",
+     "title": "Implementation and Enforcement",
+     "sections": [
+      {
+       "no": "46",
+       "title": "Implementation and Enforcement of Awards and Settlements",
+       "body": [
+        "The parties undertake to carry out every award and settlement without delay.",
+        "An award shall be enforced in accordance with Section 36 of the Act, in the same manner as if it were a decree of a court."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "47",
+       "title": "Recognition and Enforcement Outside India",
+       "body": [
+        "On the request of a party, the Secretariat shall furnish certified copies of the award and the arbitration agreement, and such certificates as to the conduct of the proceeding as may be required for recognition and enforcement of the award in another country under the New York Convention."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "XI",
+     "title": "Costs & Fees",
+     "sections": [
+      {
+       "no": "48",
+       "title": "Fees of the Institute and of Neutrals",
+       "body": [
+        "The filing fee, administrative fee, and the fees of arbitrators and other neutrals shall be as set out in the Schedule of Fees in force on the date of commencement of the proceeding.",
+        "The tribunal and administrative fees shall be fixed on the basis of the claim or counter-claim, whichever is higher. For disputes that cannot be quantified, the Secretariat shall fix the fee having regard to the facts of the case.",
+        "No neutral shall accept any fee or payment from a party other than through, or as directed by, the Secretariat."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "49",
+       "title": "Deposits and Allocation of Costs",
+       "body": [
+        "The parties shall deposit the fees in the instalments set out in the Schedule of Fees, in equal shares unless the Schedule provides otherwise. Where a party fails to pay its share, the other party may pay it.",
+        "The costs of the arbitration comprise the fees of the Institute and of the tribunal, the fees and expenses of any expert appointed by the tribunal, and the reasonable legal and other costs incurred by the parties.",
+        "The tribunal shall, in its award, determine the costs of the arbitration and which party shall bear them, in accordance with Section 31A of the Act, having regard to the conduct of the parties, including the extent to which each has conducted the arbitration in an expeditious and cost-effective manner, the outcome, and any offer of settlement.",
+        "Where all claims are withdrawn or the proceeding ends before a final award, the Secretariat shall fix the fees payable to the Institute and the neutral, and any refund due."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    },
+    {
+     "no": "XII",
+     "title": "Miscellaneous",
+     "sections": [
+      {
+       "no": "50",
+       "title": "Confidentiality and Publication",
+       "body": [
+        "The Institute, the neutral, and the parties shall keep confidential all matters relating to the proceeding, except the award where its disclosure is necessary for its implementation, enforcement, or a challenge to it, or as required by law.",
+        "The Institute may publish anonymised extracts of awards for educational purposes, unless a party objects within thirty days of the award."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "51",
+       "title": "Code of Ethics, Disqualification, and Grievance Redressal",
+       "body": [
+        "Every neutral shall comply with the Preamble of this Code. A neutral who breaches it may be removed from the Panel, in addition to any other consequence under this Code or the law.",
+        "Any party, neutral, or member who believes that this Code has been breached may file a written grievance with the Secretariat, which shall be considered and decided by a committee of the Institute independent of the proceeding concerned. The decision shall be communicated to the complainant in writing."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "52",
+       "title": "Exclusion of Liability",
+       "body": [
+        "No neutral, and neither the Institute nor any of its officers or staff, shall be liable to any person for any act or omission in connection with a proceeding under this Code, save for conscious and deliberate wrongdoing."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "53",
+       "title": "Amendments, Repeal, and Savings",
+       "body": [
+        "The Institute may amend this Code from time to time. An amendment shall apply to proceedings commenced after it comes into force, unless the parties agree otherwise."
+       ],
+       "since": 2018
+      },
+      {
+       "no": "54",
+       "title": "Practice Directions",
+       "body": [
+        "The Secretariat may issue practice directions, consistent with this Code, on matters of procedure and administration. Practice directions shall be published before they take effect.",
+        "In all matters not expressly provided for in this Code, the Institute, the neutrals, and the parties shall act in the spirit of this Code and shall make every effort to ensure that every award and settlement is enforceable at law."
+       ],
+       "since": 2018
+      }
+     ],
+     "since": 2018
+    }
+   ]
+  }
+ ],
+ "closingNote": "Words and expressions used but not defined in this Code have the meanings assigned to them in the Act."
+}

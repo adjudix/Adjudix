@@ -181,11 +181,22 @@ PARTS = [
                 "sections": [
                     {
                         "title": "The Adjudix E-Portal and Digital Portal Standard",
-                        "body": [
-                            "Every proceeding under this Code may be filed, administered, and conducted through the Adjudix E-Portal, which shall maintain the official record of the proceeding.",
-                            "The Secretariat shall publish the technical standards of the E-Portal, including supported file formats, size limits, and minimum requirements for virtual hearings, and shall ensure that the E-Portal is accessible to parties without specialist equipment.",
-                            "Where a party is unable to use the E-Portal, the Secretariat shall provide reasonable assistance or permit filing by other means.",
-                        ],
+                        "body": {
+                            2021: [
+                                "Every proceeding under this Code may be filed, administered, and conducted through the Adjudix E-Portal, which shall maintain the official record of the proceeding.",
+                                "The Secretariat shall publish the technical standards of the E-Portal, including supported file formats, size limits, and minimum requirements for virtual hearings, and shall ensure that the E-Portal is accessible to parties without specialist equipment.",
+                                "Where a party is unable to use the E-Portal, the Secretariat shall provide reasonable assistance or permit filing by other means.",
+                                "Before a proceeding is conducted online, the Secretariat shall explain to the parties, in plain language, how the online proceeding will be conducted, the role of the neutral, and the safeguards for their data, so that their participation is informed.",
+                            ],
+                            2026: [
+                                "Every proceeding under this Code may be filed, administered, and conducted through the Adjudix E-Portal, which shall maintain the official record of the proceeding.",
+                                "The Secretariat shall publish the technical standards of the E-Portal, including supported file formats, size limits, and minimum requirements for virtual hearings, and shall ensure that the E-Portal is accessible to parties without specialist equipment.",
+                                "Where a party is unable to use the E-Portal, the Secretariat shall provide reasonable assistance or permit filing by other means.",
+                                "Before a proceeding is conducted online, the Secretariat shall explain to the parties, in plain language, how the online proceeding will be conducted, the role of the neutral, and the safeguards for their data, so that their participation is informed.",
+                                "The Secretariat shall disclose to the parties any automated or artificial-intelligence tool used in administering their proceeding and the purpose for which it is used. No such tool shall decide any question affecting the rights of a party, which shall be decided only by the neutral.",
+                                "The E-Portal may offer the parties assisted online negotiation before or alongside a proceeding. A settlement reached through it may be recorded under this Code, and nothing said or offered in the course of it shall be relied on in any later proceeding.",
+                            ],
+                        },
                     },
                     {
                         "title": "Filing of Electronic Pleadings and Statements",
@@ -228,6 +239,7 @@ PARTS = [
                             2026: [
                                 "The Secretariat shall maintain the E-Portal with reasonable security practices and procedures, and shall restrict access to the record of each proceeding to the parties, their representatives, the neutral, and authorised staff.",
                                 "Personal data shall be processed in accordance with the Digital Personal Data Protection Act, 2023, and only for the purposes of the proceeding and its implementation.",
+                                "The Secretariat shall publish its policies on access to, retention of, and destruction of records. A party may obtain a copy of the record of its proceeding in an accessible electronic format.",
                                 "Electronic records shall be retained for such period after the conclusion of the proceeding as the Secretariat may determine, and shall thereafter be securely deleted, save as the law requires.",
                                 "No participant shall record a virtual hearing, or capture or disseminate any part of it, except as directed under {ref:recording}.",
                             ],
@@ -284,11 +296,24 @@ PARTS = [
                     },
                     {
                         "title": "Joinder of Additional Parties and Consolidation of Claims",
-                        "body": [
-                            "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
-                            "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
-                            "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction.",
-                        ],
+                        "body": {
+                            2018: [
+                                "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
+                                "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
+                                "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction.",
+                            ],
+                            2021: [
+                                "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
+                                "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
+                                "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction.",
+                            ],
+                            2026: [
+                                "An additional party may be joined where all the parties, including the additional party, consent, or where the additional party is bound by the agreement under which the dispute is referred.",
+                                "After the tribunal has been constituted, no additional party shall be joined unless the additional party accepts the constitution of the tribunal and agrees to the procedural timetable, subject to such modifications as the tribunal may direct.",
+                                "The Secretariat may, on the application of a party and after hearing all parties, consolidate two or more proceedings where the parties so agree, or where the claims arise under the same agreement or under compatible agreements concerning the same transaction.",
+                                "Where the same tribunal is constituted in two or more proceedings that raise a common question of law or fact, the tribunal may, on a party's application and after consulting all parties, conduct them concurrently or one after another, hear them together, or suspend any of them pending the determination of another. Each proceeding remains separate, and a separate award shall be made in each, unless the parties agree otherwise.",
+                            ],
+                        },
                     },
                 ],
             },
@@ -311,6 +336,7 @@ PARTS = [
                                 "At the conference, the neutral shall, after hearing the parties, settle the procedural timetable, the manner of taking evidence, whether hearings will be in person, virtual, or hybrid, the suitability of the fast-track procedure, and any other procedural matter. The timetable, and any modification of it, shall be communicated to the Secretariat and the parties.",
                                 "The neutral may ask the parties to submit case management proposals before the conference, and may request that each party attend in person or through an internal representative with authority to take procedural decisions.",
                                 "The neutral shall also enquire whether the parties wish to explore settlement, including through mediation, an Adjudix Lok Adalat sitting, or, where they have so agreed, the Med-Arb Protocol.",
+                                "The neutral shall consult the parties on the measures needed to protect the security of information exchanged in the proceeding and may give directions on them. A party that fails to comply with such directions may be ordered to bear the resulting costs.",
                             ],
                         },
                     },
@@ -334,12 +360,14 @@ PARTS = [
                             2021: [
                                 "Hearings may be conducted in person, as virtual hearings, or as hybrid hearings, as the neutral directs after consulting the parties.",
                                 "A virtual or hybrid hearing shall be conducted so that every participant can see and hear every other participant and the documents under consideration, and the neutral shall ensure that no party is prejudiced by the medium.",
+                                "If a technical failure prevents a party, a witness, or the neutral from participating fully in a virtual or hybrid hearing, the neutral shall suspend or adjourn the hearing, or take such other steps as are necessary, so that no party is prejudiced.",
                                 "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
                                 "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it.",
                             ],
                             2026: [
                                 "Hearings may be conducted in person, as virtual hearings, or as hybrid hearings, as the neutral directs after consulting the parties, having regard to the nature of the evidence, the location of the participants, and cost.",
                                 "A virtual or hybrid hearing shall be conducted so that every participant can see and hear every other participant and the documents under consideration. The neutral may issue a protocol on the presence of persons in each participant's room, the sharing of documents, and the examination of witnesses, and shall ensure that no party is prejudiced by the medium.",
+                                "If a technical failure prevents a party, a witness, or the neutral from participating fully in a virtual or hybrid hearing, the neutral shall suspend or adjourn the hearing, or take such other steps as are necessary, so that no party is prejudiced.",
                                 "The neutral shall give the parties sufficient advance notice of every hearing. Unless the parties agree otherwise, hearings shall be held in private, and no person who is not involved in the proceeding shall be admitted without the approval of the neutral and the parties.",
                                 "If a party, having been duly notified, fails to appear at a hearing without sufficient cause, the neutral may proceed with the hearing and make an award or decision on the evidence before it.",
                                 "In an arbitration, an oral hearing shall be held if a party so requests, in accordance with Section 24 of the Act; otherwise the tribunal may, after consulting the parties, decide the dispute on documents and written submissions alone.",
@@ -454,12 +482,27 @@ PARTS = [
                     },
                     {
                         "title": "Appointment Procedure by Adjudix Institute",
-                        "body": [
-                            "Where the tribunal is to consist of a sole arbitrator, the parties may jointly nominate the arbitrator within fifteen days of the registration of the proceeding, failing which the Secretariat shall appoint the arbitrator within a further fifteen days.",
-                            "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
-                            "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
-                            "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section.",
-                        ],
+                        "body": {
+                            2018: [
+                                "Where the tribunal is to consist of a sole arbitrator, the parties may jointly nominate the arbitrator within fifteen days of the registration of the proceeding, failing which the Secretariat shall appoint the arbitrator within a further fifteen days.",
+                                "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
+                                "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
+                                "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section.",
+                            ],
+                            2021: [
+                                "Where the tribunal is to consist of a sole arbitrator, the parties may jointly nominate the arbitrator within fifteen days of the registration of the proceeding, failing which the Secretariat shall appoint the arbitrator within a further fifteen days.",
+                                "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
+                                "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
+                                "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section.",
+                            ],
+                            2026: [
+                                "Where the tribunal is to consist of a sole arbitrator, the parties may jointly nominate the arbitrator within fifteen days of the registration of the proceeding, failing which the Secretariat shall appoint the arbitrator within a further fifteen days.",
+                                "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
+                                "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
+                                "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section.",
+                                "Where a party is a frequent user of the Institute, the Secretariat shall disclose to the other parties, on request, the number of proceedings involving that party in which the proposed arbitrator has been appointed in the preceding three years, and shall rotate appointments in such proceedings so that no neutral becomes dependent on the repeat appointments of one party.",
+                            ],
+                        },
                     },
                     {
                         "title": "Challenge to Arbitrator Appointment and Disclosure Obligations",
@@ -478,7 +521,7 @@ PARTS = [
                                 "Before accepting an appointment, every arbitrator shall sign a statement of acceptance, availability, impartiality, and independence, make a written disclosure in the form set out in the Sixth Schedule to the Act, and subscribe to the Preamble of this Code. The Secretariat shall communicate the disclosure to the parties and fix a time within which they may comment on it. The duty of disclosure continues throughout the proceeding.",
                                 "A person whose relationship with the parties, their counsel, or the subject matter of the dispute falls under any category in the Seventh Schedule to the Act is ineligible to be appointed, unless the parties, after the dispute has arisen, expressly waive this by an agreement in writing.",
                                 "A party may challenge an arbitrator within fifteen days of becoming aware of the constitution of the tribunal or of the circumstances giving rise to the challenge, by a written statement of reasons. Unless the arbitrator withdraws or the other party agrees to the challenge, the tribunal shall decide on it in accordance with the Act.",
-                                "Each party shall promptly disclose to the Secretariat, the tribunal, and the other parties the existence and identity of any person not a party who has agreed to fund its claim or defence and has an economic interest in the outcome, so that arbitrators can fulfil their duty of disclosure.",
+                                "Each party shall promptly disclose to the Secretariat, the tribunal, and the other parties the existence and identity of any person not a party who has agreed to fund its claim or defence and has an economic interest in the outcome, so that arbitrators can fulfil their duty of disclosure. After the tribunal has been constituted, no party shall enter into a funding arrangement that would give rise to a conflict of interest with a member of the tribunal, and the tribunal may take any funding arrangement into account in apportioning costs.",
                                 "Each party shall promptly inform the Secretariat, the tribunal, and the other parties of any change in its representation. The tribunal may, after giving the parties an opportunity to comment, take any measure necessary to avoid a conflict of interest of an arbitrator arising from such a change, including excluding a new representative from the proceeding in whole or in part.",
                             ],
                         },
@@ -519,7 +562,7 @@ PARTS = [
                         "title": "Appointment of Emergency Arbitrator",
                         "body": [
                             "The Secretariat shall appoint an emergency arbitrator from the Panel within two days of receiving a complete application.",
-                            "Before accepting the appointment, the emergency arbitrator shall sign a statement of acceptance, availability, impartiality, and independence and make the written disclosure required by this Code. A challenge to the emergency arbitrator shall be made within three days of the party being informed of the appointment, or of the circumstances giving rise to the challenge, and shall be decided by the Secretariat after giving the emergency arbitrator and the other parties an opportunity to comment.",
+                            "Before accepting the appointment, the emergency arbitrator shall sign a statement of acceptance, availability, impartiality, and independence and make the written disclosure required by this Code. A challenge to the emergency arbitrator shall be made within one business day of the party being informed of the appointment, or of the circumstances giving rise to the challenge, and shall be decided by the Secretariat after giving the emergency arbitrator and the other parties an opportunity to comment.",
                             "If the emergency arbitrator is replaced, the substitute shall decide whether to resume the proceeding at the stage reached or to begin it again.",
                             "Unless the parties agree otherwise, the emergency arbitrator shall not act as an arbitrator in any subsequent arbitration relating to the dispute.",
                         ],
@@ -530,7 +573,7 @@ PARTS = [
                             "The emergency arbitrator shall, within two days of appointment, fix a schedule for the consideration of the application, which shall ordinarily be heard by video conference.",
                             "The emergency arbitrator shall have the powers of an arbitral tribunal under {ref:interim}, and may make an order subject to conditions, including the provision of appropriate security. The emergency arbitrator shall decide any objection to jurisdiction for the purposes of the application, without prejudice to the tribunal's later decision.",
                             "The order shall be in writing, dated, signed, and reasoned, and shall fix the costs of the emergency proceeding and which party shall bear them, subject to the final decision of the tribunal. It shall be made within fifteen days of appointment, which the Secretariat may extend on a reasoned request in exceptional circumstances.",
-                            "The emergency arbitrator may make an order without prior notice to the other party only where giving notice would defeat the purpose of the relief, and any such order shall be reviewed after hearing the other party at the earliest opportunity.",
+                            "Where giving notice would defeat the purpose of the relief, the applicant may seek a protective preliminary order, without notice to the other party, directing that party not to frustrate the relief sought. The emergency arbitrator shall decide the request within twenty-four hours of appointment. The applicant shall serve the application, the order, and all related communications on every other party within twelve hours of receiving the order, failing which the order lapses three days after it is made; and the other party shall be heard at the earliest opportunity, after which the emergency arbitrator may confirm, modify, or revoke it.",
                         ],
                     },
                     {
@@ -565,6 +608,7 @@ PARTS = [
                                 "Under the fast-track procedure, the tribunal shall consist of a sole arbitrator, the dispute shall be decided on written pleadings, documents, and submissions unless the tribunal considers an oral hearing necessary, and the award shall be made within six months of the tribunal entering upon the reference.",
                                 "Fees for fast-track arbitration are payable as provided in the Schedule of Fees.",
                                 "In a fast-track arbitration, the tribunal shall hold the case management conference within fifteen days of its constitution; no party may make a new claim without the tribunal's leave; and the tribunal may, after consulting the parties, decline requests for document production and limit the number, length, and scope of written submissions and witness statements.",
+                                "Where the amount in dispute does not exceed the small-claims limit fixed in the Schedule of Fees, the fast-track procedure shall apply unless a party objects in its first submission or the Secretariat, on a party's application, directs otherwise having regard to the complexity of the dispute. In such a case the award shall ordinarily be made within three months of the constitution of the tribunal, and fees shall be charged at the reduced rates fixed for small claims.",
                             ],
                         },
                     },
@@ -585,6 +629,7 @@ PARTS = [
                                 "In a tribunal of more than one arbitrator, any decision shall be made by a majority. Questions of procedure may be decided by the presiding arbitrator if so authorised by the parties or the other arbitrators.",
                                 "As soon as possible after the last hearing or the last authorised submission, the tribunal shall declare the proceedings closed as to the matters to be decided in the award and inform the Secretariat and the parties of the date by which it expects to submit its draft award. No further submission or evidence may be made after closure unless the tribunal requests or authorises it.",
                                 "In an arbitration other than an international commercial arbitration, the award shall be made within twelve months from the date of completion of pleadings, which the parties may by consent extend by up to six months, in accordance with Section 29A of the Act. In an international commercial arbitration, the tribunal shall endeavour to make the award within the same period.",
+                                "The tribunal may, on a party's application and after hearing the parties, decide any issue of fact or law as a preliminary question, by a partial award under Section 31(6) of the Act or by an order, where the parties agree, where doing so is likely to save time or costs, or where the circumstances otherwise warrant it. A preliminary question so accepted shall be decided within ninety days of the application.",
                                 "If, during the arbitration, the parties settle the dispute, including through mediation, an Adjudix Lok Adalat sitting, or the Med-Arb Protocol, the tribunal shall terminate the proceedings and, if requested by the parties, record the settlement as an arbitral award on agreed terms under Section 30 of the Act.",
                             ],
                         },

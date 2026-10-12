@@ -25,6 +25,7 @@ ROOT = HERE.parents[2]  # repo root
 PDF_DIR = ROOT / "web" / "public" / "code"
 DOCX_DIR = ROOT / "client-review" / "code-drafts"
 JSON_OUT = ROOT / "web" / "src" / "lib" / "moral-principles.json"
+READER_DIR = ROOT / "web" / "src" / "lib" / "code"  # full text for the on-site reader
 CHROME = Path(r"C:/Program Files/Google/Chrome/Application/chrome.exe")
 EDITIONS = [2018, 2021, 2026]
 PREV = {2021: 2018, 2026: 2021}
@@ -65,6 +66,7 @@ def build_edition(ed):
             chap_no = f"{roman(c_no)}-A" if inserted else roman(c_no)
             if "key" in chap:
                 chaps[chap["key"]] = chap_no
+            chap_since = max(min(chap.get("eds", C.ALL)), min(part.get("eds", C.ALL)))
             sections = []
             letter = 0
             for sec in chap["sections"]:
@@ -81,8 +83,12 @@ def build_edition(ed):
                     number = str(s_no)
                 if "key" in sec:
                     refs[sec["key"]] = number
-                sections.append({"no": number, "title": pick(sec["title"], ed), "body": body})
-            chapters.append({"no": chap_no, "title": chap["title"], "sections": sections})
+                sections.append(
+                    {"no": number, "title": pick(sec["title"], ed), "body": body, "since": max(min(sec.get("eds", C.ALL)), chap_since)}
+                )
+            chapters.append(
+                {"no": chap_no, "title": chap["title"], "sections": sections, "since": chap_since}
+            )
         parts.append({"no": roman(p_no), "title": part["title"], "chapters": chapters})
 
     def fill(text):
@@ -280,6 +286,26 @@ def to_docx(doc, target):
     d.save(target)
 
 
+def write_reader_json(doc, target):
+    data = {
+        "year": doc["year"],
+        "title": doc["title"],
+        "note": doc["note"],
+        "intro": doc["intro"],
+        "principles": [{"title": t, "body": b} for t, b in doc["principles"]],
+        "close": doc["close"],
+        "parts": doc["parts"],
+        "closingNote": "Words and expressions used but not defined in this Code have the meanings assigned to them in the Act.",
+    }
+    for part in data["parts"]:
+        for chap in part["chapters"]:
+            for sec in chap["sections"]:
+                if sec.get("definitions"):
+                    sec["definitions"] = [{"term": t, "text": x} for t, x in sec["definitions"]]
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
 def main():
     PDF_DIR.mkdir(parents=True, exist_ok=True)
     DOCX_DIR.mkdir(parents=True, exist_ok=True)
@@ -292,6 +318,7 @@ def main():
         n_sec = sum(len(c["sections"]) for p in doc["parts"] for c in p["chapters"])
         n_chap = sum(len(p["chapters"]) for p in doc["parts"])
         summary.append({"year": ed, "parts": len(doc["parts"]), "chapters": n_chap, "sections": n_sec})
+        write_reader_json(doc, READER_DIR / f"code-{ed}.json")
         if ed == 2026:
             JSON_OUT.write_text(
                 json.dumps(

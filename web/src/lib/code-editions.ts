@@ -61,7 +61,7 @@ export const CODE_EDITIONS: CodeEdition[] = [
       "Mediation Act, 2023 and Bharatiya Sakshya Adhiniyam, 2023",
     ],
     sections: 71,
-    pages: 28,
+    pages: 30,
     principles: 13,
     pdf: "/code/adjudix-code-of-adr-procedure-2026.pdf",
   },
