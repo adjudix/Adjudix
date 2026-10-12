@@ -160,7 +160,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
       <div className="hidden md:block border-b border-border bg-surface">
-        <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
               id="site-logo-target"
@@ -172,7 +172,6 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
               className="h-14 w-auto"
             />
           </Link>
-          <SiteSearch items={searchItems} className="absolute right-6" />
         </div>
       </div>
 
@@ -262,6 +261,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
             ))}
           </nav>
           <div className="flex items-center gap-5">
+            <SiteSearch items={searchItems} className="h-7" />
             <Link href="/dispute-resolution/emergency" className="text-ember hover:opacity-80">
               Emergency Arbitration
             </Link>
@@ -281,10 +281,10 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
           <Link href="/" className="flex shrink-0 items-center">
             <Image
               id="site-logo-target-mobile"
-              src="/images/logo-icon.png"
+              src="/images/logo-mini.png"
               alt="Adjudix"
-              width={1191}
-              height={612}
+              width={512}
+              height={512}
               priority
               className="h-9 w-auto"
             />
@@ -310,10 +310,10 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2.5 font-heading">
                     <Image
-                      src="/images/logo-icon.png"
+                      src="/images/logo-mini.png"
                       alt=""
-                      width={1191}
-                      height={612}
+                      width={512}
+                      height={512}
                       className="h-7 w-auto"
                     />
                     Adjudix

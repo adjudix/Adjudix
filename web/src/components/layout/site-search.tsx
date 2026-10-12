@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -84,33 +85,36 @@ export function SiteSearch({ items, className }: { items: SearchItem[]; classNam
       <SheetContent side="top" className="gap-0 p-0" initialFocus={inputRef}>
         <div className="mx-auto w-full max-w-3xl pt-5 pr-14 pb-4 pl-4 md:px-6 md:pt-8">
           <SheetTitle className="sr-only">Search the site</SheetTitle>
-          <div className="flex items-center gap-3 rounded-lg border border-border bg-surface px-4 focus-within:border-primary">
-            <Search className="size-5 shrink-0 text-primary" aria-hidden="true" />
-            <input
-              ref={inputRef}
-              type="search"
-              value={query}
-              onChange={(event) => {
-                setQuery(event.target.value);
-                setActive(0);
-              }}
-              onKeyDown={(event) => {
-                if (event.key === "ArrowDown") {
-                  event.preventDefault();
-                  setActive((i) => Math.min(i + 1, results.length - 1));
-                } else if (event.key === "ArrowUp") {
-                  event.preventDefault();
-                  setActive((i) => Math.max(i - 1, 0));
-                } else if (event.key === "Enter") {
-                  event.preventDefault();
-                  go(results[active]);
-                }
-              }}
-              placeholder="Search services, courses, the rule book…"
-              aria-label="Search"
-              aria-controls="site-search-results"
-              className="h-13 min-w-0 flex-1 bg-transparent font-body text-base text-text outline-none placeholder:text-text-muted"
-            />
+          <div className="flex items-center gap-3">
+            <Image src="/images/logo-mini.png" alt="" width={512} height={512} className="size-11 shrink-0" />
+            <div className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-surface px-4 focus-within:border-primary">
+              <Search className="size-5 shrink-0 text-primary" aria-hidden="true" />
+              <input
+                ref={inputRef}
+                type="search"
+                value={query}
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  setActive(0);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    setActive((i) => Math.min(i + 1, results.length - 1));
+                  } else if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    setActive((i) => Math.max(i - 1, 0));
+                  } else if (event.key === "Enter") {
+                    event.preventDefault();
+                    go(results[active]);
+                  }
+                }}
+                placeholder="Search services, courses, the rule book…"
+                aria-label="Search"
+                aria-controls="site-search-results"
+                className="h-13 min-w-0 flex-1 bg-transparent font-body text-base text-text outline-none placeholder:text-text-muted"
+              />
+            </div>
           </div>
 
           <div id="site-search-results" className="mt-3 max-h-[min(28rem,60dvh)] overflow-y-auto overscroll-contain">
