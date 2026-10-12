@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 type Phase = "hidden" | "appear" | "waiting" | "handoff" | "done";
@@ -8,11 +9,11 @@ type Phase = "hidden" | "appear" | "waiting" | "handoff" | "done";
 /** Fired on window (and marked on <html>) once the intro is out of the way. */
 export const INTRO_DONE_EVENT = "adjudix:intro-done";
 
-// The reel is 5.875s. The fallback fires a little after that in case the
+// The reel is 5.375s. The fallback fires a little after that in case the
 // video's "ended" event never arrives (autoplay blocked, load failure) —
 // normally the scroll prompt is triggered by playback actually finishing,
 // not by this guess.
-const REEL_DURATION_MS = 5875;
+const REEL_DURATION_MS = 5375;
 const FALLBACK_MS = REEL_DURATION_MS + 400;
 
 /**
@@ -177,7 +178,7 @@ export function PageLoader() {
       <div
         ref={logoRef}
         aria-hidden="true"
-        className={`transition-all duration-1200 ease-in-out ${
+        className={`relative transition-all duration-1200 ease-in-out ${
           isHidden ? "scale-95 opacity-0" : inHandoff ? "opacity-0" : "scale-100 opacity-100"
         }`}
       >
@@ -206,6 +207,19 @@ export function PageLoader() {
           playsInline
           onEnded={endReel}
           onError={(e) => console.error("[PageLoader] video failed to load", e.currentTarget.error)}
+        />
+        {/* The reel's last frame is still mid-sway; its first frame is the
+            logo at rest. Fade that frame in over the end so the intro holds
+            on the original logo while it waits for the visitor. */}
+        <Image
+          src="/images/logo-loader-rest.webp"
+          alt=""
+          width={1376}
+          height={768}
+          loading="eager"
+          className={`absolute inset-0 h-full w-full transition-opacity duration-500 ease-out ${
+            waiting || inHandoff ? "opacity-100" : "opacity-0"
+          }`}
         />
       </div>
 
