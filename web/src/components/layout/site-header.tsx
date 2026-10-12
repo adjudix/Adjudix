@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SiteSearch } from "@/components/layout/site-search";
+import type { SearchItem } from "@/lib/search-index";
 
 interface NavLink {
   label: string;
@@ -150,12 +152,12 @@ function LinkLabel({ link }: { link: NavLink }) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
       <div className="hidden md:block border-b border-border bg-surface">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
+        <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
               id="site-logo-target"
@@ -167,6 +169,7 @@ export function SiteHeader() {
               className="h-14 w-auto"
             />
           </Link>
+          <SiteSearch items={searchItems} className="absolute right-6" />
         </div>
       </div>
 
@@ -284,107 +287,110 @@ export function SiteHeader() {
             />
           </Link>
 
-          <Sheet>
-            <SheetTrigger
-              render={
-                <button
-                  type="button"
-                  aria-label="Open menu"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-text hover:bg-surface"
+          <div className="flex items-center gap-2">
+            <SiteSearch items={searchItems} className="w-9 justify-center px-0" />
+            <Sheet>
+              <SheetTrigger
+                render={
+                  <button
+                    type="button"
+                    aria-label="Open menu"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-text hover:bg-surface"
+                  >
+                    <Menu className="size-5" aria-hidden="true" />
+                  </button>
+                }
+              />
+              {/* The list scrolls inside its own area, sized to the visible viewport
+                  (dvh) so iOS Safari's toolbar can't hide the bottom links. */}
+              <SheetContent side="right" className="w-80 gap-0 overflow-hidden data-[side=right]:h-dvh">
+                <SheetHeader>
+                  <SheetTitle className="flex items-center gap-2.5 font-heading">
+                    <Image
+                      src="/images/logo-icon.png"
+                      alt=""
+                      width={1191}
+                      height={612}
+                      className="h-7 w-auto"
+                    />
+                    Adjudix
+                  </SheetTitle>
+                </SheetHeader>
+                <nav
+                  className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-4 pb-8"
+                  aria-label="Mobile"
                 >
-                  <Menu className="size-5" aria-hidden="true" />
-                </button>
-              }
-            />
-            {/* The list scrolls inside its own area, sized to the visible viewport
-                (dvh) so iOS Safari's toolbar can't hide the bottom links. */}
-            <SheetContent side="right" className="w-80 gap-0 overflow-hidden data-[side=right]:h-dvh">
-              <SheetHeader>
-                <SheetTitle className="flex items-center gap-2.5 font-heading">
-                  <Image
-                    src="/images/logo-icon.png"
-                    alt=""
-                    width={1191}
-                    height={612}
-                    className="h-7 w-auto"
-                  />
-                  Adjudix
-                </SheetTitle>
-              </SheetHeader>
-              <nav
-                className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-4 pb-8"
-                aria-label="Mobile"
-              >
-                {NAV_GROUPS.map((group) => (
-                  <div key={group.label} className="border-b border-border py-2">
-                    <Link
-                      href={group.href ?? "#"}
-                      className="block py-1.5 text-sm font-medium text-text"
-                    >
-                      {group.label}
-                    </Link>
-                    {group.sections && (
-                      <div className="ml-3 mt-1 flex flex-col gap-3">
-                        {group.sections.map((section) => (
-                          <div key={section.label}>
-                            <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
-                              {section.label}
-                            </p>
-                            <div className="mt-1 flex flex-col gap-1">
-                              {section.links.map((link) => (
-                                <Link
-                                  key={link.label}
-                                  href={link.href}
-                                  className="py-1 text-sm text-text-muted"
-                                >
-                                  {link.label}
-                                </Link>
-                              ))}
+                  {NAV_GROUPS.map((group) => (
+                    <div key={group.label} className="border-b border-border py-2">
+                      <Link
+                        href={group.href ?? "#"}
+                        className="block py-1.5 text-sm font-medium text-text"
+                      >
+                        {group.label}
+                      </Link>
+                      {group.sections && (
+                        <div className="ml-3 mt-1 flex flex-col gap-3">
+                          {group.sections.map((section) => (
+                            <div key={section.label}>
+                              <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
+                                {section.label}
+                              </p>
+                              <div className="mt-1 flex flex-col gap-1">
+                                {section.links.map((link) => (
+                                  <Link
+                                    key={link.label}
+                                    href={link.href}
+                                    className="py-1 text-sm text-text-muted"
+                                  >
+                                    {link.label}
+                                  </Link>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {group.children && (
-                      <div className="ml-3 mt-1 flex flex-col gap-1">
-                        {group.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            className={cn(
-                              "flex items-center justify-between gap-3 py-1 text-sm text-text-muted",
-                              child.nested && "ml-3"
-                            )}
-                          >
-                            <LinkLabel link={child} />
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                <div className="flex flex-col gap-1 border-b border-border py-2">
-                  {SECONDARY_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className="py-1 text-sm text-text-muted">
-                      {link.label}
-                    </Link>
+                          ))}
+                        </div>
+                      )}
+                      {group.children && (
+                        <div className="ml-3 mt-1 flex flex-col gap-1">
+                          {group.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className={cn(
+                                "flex items-center justify-between gap-3 py-1 text-sm text-text-muted",
+                                child.nested && "ml-3"
+                              )}
+                            >
+                              <LinkLabel link={child} />
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
-                </div>
-                <Link
-                  href="/dispute-resolution/emergency"
-                  className="mt-4 text-sm font-medium text-ember"
-                >
-                  Emergency Arbitration
-                </Link>
-                <Link href="/contact" className="mt-2 text-sm text-text-muted">
-                  Contact
-                </Link>
-                <Link href="/odr/portal" className="mt-2 text-sm text-text-muted">
-                  Portal Login
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
+                  <div className="flex flex-col gap-1 border-b border-border py-2">
+                    {SECONDARY_LINKS.map((link) => (
+                      <Link key={link.href} href={link.href} className="py-1 text-sm text-text-muted">
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href="/dispute-resolution/emergency"
+                    className="mt-4 text-sm font-medium text-ember"
+                  >
+                    Emergency Arbitration
+                  </Link>
+                  <Link href="/contact" className="mt-2 text-sm text-text-muted">
+                    Contact
+                  </Link>
+                  <Link href="/odr/portal" className="mt-2 text-sm text-text-muted">
+                    Portal Login
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

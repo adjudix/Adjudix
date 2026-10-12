@@ -422,13 +422,21 @@ export default function Home() {
                         </div>
                       ))}
                     </dl>
-                    <a
-                      href={edition.pdf}
-                      download
-                      className="mt-5 inline-flex items-center gap-1.5 self-start font-body text-sm font-medium text-primary hover:underline"
-                    >
-                      Download the {edition.year} Code (PDF)
-                    </a>
+                    <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-body text-sm font-medium">
+                      <Link
+                        href={`/dispute-resolution/rules/code-of-procedure/${edition.year}`}
+                        className={
+                          edition.current
+                            ? "rounded-full bg-primary px-4 py-2 text-primary-foreground hover:bg-primary-hover"
+                            : "rounded-full border border-primary px-4 py-2 text-primary hover:bg-primary hover:text-primary-foreground"
+                        }
+                      >
+                        Read online
+                      </Link>
+                      <a href={edition.pdf} download className="text-primary hover:underline">
+                        PDF
+                      </a>
+                    </div>
                   </div>
                 </Reveal>
               </li>

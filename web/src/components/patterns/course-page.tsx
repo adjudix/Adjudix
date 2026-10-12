@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 import { LinkButton } from "@/components/ui/link-button";
-import { formatRupees, getTrack } from "@/lib/training-tracks";
+import { enquiryHref, formatRupees, getTrack } from "@/lib/training-tracks";
 
 export interface CoursePageProps {
   // Key into TRAINING_TRACKS, which holds the fee.
@@ -15,6 +15,8 @@ export interface CoursePageProps {
 
 export function CoursePage({ slug, title, intro, who, curriculum }: CoursePageProps) {
   const track = getTrack(slug);
+  const applyHref = enquiryHref("Course Enrollment", "Professional Course", track.title);
+  const scholarshipHref = enquiryHref("Scholarship Application", "Professional Course", track.title);
   return (
     <main className="bg-canvas flex-1">
       <PageHeader
@@ -70,10 +72,10 @@ export function CoursePage({ slug, title, intro, who, curriculum }: CoursePagePr
             <p className="mt-1 text-left font-body text-xs text-text-muted">Discounted fee</p>
           </div>
           <div className="flex flex-col items-start gap-3 sm:items-end">
-            <LinkButton href="/contact" size="lg">
+            <LinkButton href={applyHref} size="lg">
               Apply Now
             </LinkButton>
-            <Link href="/contact" className="text-sm font-medium text-primary hover:underline">
+            <Link href={scholarshipHref} className="text-sm font-medium text-primary hover:underline">
               Apply for Scholarship
             </Link>
           </div>
@@ -83,8 +85,8 @@ export function CoursePage({ slug, title, intro, who, curriculum }: CoursePagePr
       <CtaBand
         title="Apply now"
         description="Apply for this track, or ask about a scholarship."
-        primary={{ label: "Apply Now", href: "/contact" }}
-        secondary={{ label: "Certification Framework", href: "/training/certification" }}
+        primary={{ label: "Apply Now", href: applyHref }}
+        secondary={{ label: "Apply for Scholarship", href: scholarshipHref }}
       />
     </main>
   );

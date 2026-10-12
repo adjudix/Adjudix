@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
+import { buildSearchIndex } from "@/lib/search-index";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { PageLoader } from "@/components/layout/page-loader";
 import { ConsultationPopup } from "@/components/layout/consultation-popup";
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           known false-positive hydration mismatch, not an app bug. */}
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <PageLoader />
-        <SiteHeader />
+        <SiteHeader searchItems={buildSearchIndex()} />
         <div className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
         <ConsultationPopup />

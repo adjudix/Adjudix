@@ -9,6 +9,13 @@ export interface QueryField {
   type?: "text" | "email" | "tel" | "textarea" | "select" | "file";
   required?: boolean;
   options?: string[];
+  // A select's options in labelled groups (rendered as <optgroup>s).
+  optionGroups?: { label: string; options: string[] }[];
+  // A select whose options depend on another select's current value.
+  optionsFrom?: { field: string; map: Record<string, string[]> };
+  // Only shown (and submitted) while another select has one of these values.
+  showWhen?: { field: string; values: string[] };
+  defaultValue?: string;
   inputMode?: "numeric" | "text";
   // Renders the sub-fields side by side under one label (e.g. a case
   // reference split into case type | case number | year).
@@ -39,13 +46,30 @@ const BASE_FIELDS: QueryField[] = [
 const controlClass =
   "rounded-md border border-border bg-canvas px-4 py-2.5 font-body text-text outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
-function Control({ field, id }: { field: QueryField; id: string }) {
+function Control({
+  field,
+  id,
+  value,
+  onSelect,
+}: {
+  field: QueryField;
+  id: string;
+  value?: string;
+  onSelect?: (name: string, value: string) => void;
+}) {
   if (field.type === "textarea") {
     return <textarea id={id} name={field.name} required={field.required} rows={4} className={controlClass} />;
   }
   if (field.type === "select") {
     return (
-      <select id={id} name={field.name} required={field.required} className={controlClass} defaultValue="">
+      <select
+        id={id}
+        name={field.name}
+        required={field.required}
+        className={controlClass}
+        value={value ?? ""}
+        onChange={(event) => onSelect?.(field.name, event.target.value)}
+      >
         <option value="" disabled>
           Select&hellip;
         </option>
@@ -53,6 +77,15 @@ function Control({ field, id }: { field: QueryField; id: string }) {
           <option key={option} value={option}>
             {option}
           </option>
+        ))}
+        {field.optionGroups?.map((group) => (
+          <optgroup key={group.label} label={group.label}>
+            {group.options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </optgroup>
         ))}
       </select>
     );
@@ -107,16 +140,39 @@ export function QueryForm({
   const [sendError, setSendError] = useState("");
   const emailRef = useRef<HTMLInputElement | null>(null);
 
-  const allFields: QueryField[] = [
+  const declaredFields: QueryField[] = [
     ...BASE_FIELDS,
     ...fields,
     { name: "message", label: messageLabel, type: "textarea" },
     ...(attachmentsLabel ? [{ name: "attachments", label: attachmentsLabel, type: "file" as const }] : []),
   ];
 
+  // Current select values, so dependent fields can appear and re-filter.
+  const [selected, setSelected] = useState<Record<string, string>>(() =>
+    Object.fromEntries(declaredFields.filter((f) => f.defaultValue).map((f) => [f.name, f.defaultValue!])),
+  );
+  const isShown = (field: QueryField) =>
+    !field.showWhen || field.showWhen.values.includes(selected[field.showWhen.field] ?? "");
+  const resolve = (field: QueryField): QueryField =>
+    field.optionsFrom ? { ...field, options: field.optionsFrom.map[selected[field.optionsFrom.field] ?? ""] ?? [] } : field;
+  const allFields = declaredFields.filter(isShown).map(resolve);
+
+  function onSelect(name: string, value: string) {
+    setSelected((current) => {
+      const next = { ...current, [name]: value };
+      // Clear dependants whose options no longer include their value.
+      for (const field of declaredFields) {
+        if (field.optionsFrom?.field === name && !(field.optionsFrom.map[value] ?? []).includes(next[field.name])) {
+          delete next[field.name];
+        }
+      }
+      return next;
+    });
+  }
+
   // Field labels travel with the submission so the email reads naturally.
   const labels = Object.fromEntries(
-    allFields.flatMap((field) =>
+    declaredFields.flatMap((field) =>
       field.group ? field.group.map((sub) => [sub.name, `${field.label} — ${sub.label}`]) : [[field.name, field.label]],
     ),
   );
@@ -182,7 +238,12 @@ export function QueryForm({
                       <label htmlFor={subId} className="font-body text-xs text-text-muted">
                         {sub.label}
                       </label>
-                      <Control field={{ ...sub, required: sub.required ?? field.required }} id={subId} />
+                      <Control
+                        field={{ ...sub, required: sub.required ?? field.required }}
+                        id={subId}
+                        value={selected[sub.name]}
+                        onSelect={onSelect}
+                      />
                     </div>
                   );
                 })}
@@ -206,7 +267,7 @@ export function QueryForm({
                 className={controlClass}
               />
             ) : (
-              <Control field={field} id={fieldId} />
+              <Control field={field} id={fieldId} value={selected[field.name]} onSelect={onSelect} />
             )}
             {field.name === "email" && (
               <p id={contactHintId} className="text-left font-body text-xs text-text-muted">

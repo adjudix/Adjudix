@@ -93,4 +93,20 @@ function SelectItem({
   );
 }
 
-export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem };
+function SelectGroup(props: React.ComponentProps<typeof SelectPrimitive.Group>) {
+  return <SelectPrimitive.Group {...props} />;
+}
+
+function SelectGroupLabel({ className, ...props }: React.ComponentProps<typeof SelectPrimitive.GroupLabel>) {
+  return (
+    <SelectPrimitive.GroupLabel
+      className={cn(
+        "px-2.5 pt-3 pb-1 font-mono text-[0.68rem] font-semibold tracking-widest text-primary uppercase",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectGroupLabel };

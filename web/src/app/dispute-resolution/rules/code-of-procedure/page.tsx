@@ -3,11 +3,16 @@ import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CODE_EDITIONS } from "@/lib/code-editions";
 import { CodeExplainer } from "@/components/patterns/code-explainer";
+import { buttonVariants } from "@/components/ui/button";
+
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
 // Edition history per the client's blueprint: 2018 first edition, 2021 added
 // Online Dispute Resolution, 2026 covers every mechanism. Newest first here.
 const VERSIONS = [...CODE_EDITIONS].reverse();
 const CURRENT = CODE_EDITIONS.find((edition) => edition.current)!;
+
+const READ = (year: string, anchor = "") => `/dispute-resolution/rules/code-of-procedure/${year}${anchor}`;
 
 const PARTS = [
   { title: "Part I · Preliminary & General Provisions", body: "Scope, definitions, party autonomy, and the Online Dispute Resolution platform — e-filing, digital service, and electronic signatures." },
@@ -36,11 +41,20 @@ export default function CodeOfProcedurePage() {
       <section className="mx-auto max-w-4xl px-6 py-16">
         <CodeExplainer className="mb-12" />
         <div className="divide-y divide-border border-t border-b border-border">
-          {PARTS.map((section) => (
-            <div key={section.title} className="py-6">
-              <h2 className="font-heading text-lg font-semibold text-text">{section.title}</h2>
-              <p className="mt-2 font-body text-sm text-text-muted">{section.body}</p>
-            </div>
+          {PARTS.map((section, i) => (
+            <Link
+              key={section.title}
+              href={READ(CURRENT.year, `#part-${ROMAN[i].toLowerCase()}`)}
+              className="group flex items-start justify-between gap-6 py-6"
+            >
+              <div>
+                <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">{section.title}</h2>
+                <p className="mt-2 font-body text-sm text-text-muted">{section.body}</p>
+              </div>
+              <span className="mt-1 shrink-0 font-body text-sm font-medium text-primary" aria-hidden="true">
+                Read &rarr;
+              </span>
+            </Link>
           ))}
         </div>
         <p className="mt-8 font-body text-sm text-text-muted">
@@ -50,13 +64,14 @@ export default function CodeOfProcedurePage() {
           </Link>{" "}
           that bind the Institute and every neutral acting under the Code.
         </p>
-        <a
-          href={CURRENT.pdf}
-          download
-          className="mt-6 inline-flex items-center rounded-md bg-primary px-5 py-2.5 font-body text-sm font-medium text-primary-foreground hover:bg-primary-hover"
-        >
-          Download the {CURRENT.year} Code (PDF)
-        </a>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href={READ(CURRENT.year)} className={buttonVariants({ variant: "primary", size: "lg" })}>
+            Read the {CURRENT.year} Code online
+          </Link>
+          <a href={CURRENT.pdf} download className={buttonVariants({ variant: "secondary", size: "lg" })}>
+            Download PDF
+          </a>
+        </div>
       </section>
 
       <section id="editions" className="bg-surface px-6 py-16">
@@ -73,13 +88,14 @@ export default function CodeOfProcedurePage() {
                     <strong className="font-medium text-text">{version.edition}.</strong>{" "}
                     {version.summary}
                   </p>
-                  <a
-                    href={version.pdf}
-                    download
-                    className="mt-2 inline-block font-body text-sm font-medium text-primary hover:underline"
-                  >
-                    Download PDF
-                  </a>
+                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 font-body text-sm font-medium text-primary">
+                    <Link href={READ(version.year)} className="hover:underline">
+                      Read online &rarr;
+                    </Link>
+                    <a href={version.pdf} download className="hover:underline">
+                      Download PDF
+                    </a>
+                  </div>
                 </div>
               </li>
             ))}
