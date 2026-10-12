@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Conciliator Training Course",
+  description:
+    "Training in active, proposal-led settlement facilitation — for practitioners who want to help parties reach terms, not just hear a case and decide it.",
+  path: "/training/courses/conciliator",
+});
 
 export default function Page() {
   return (

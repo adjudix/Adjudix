@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "@/components/ui/link-button";
@@ -9,6 +10,30 @@ import { FlipStack } from "@/components/ui/flip-stack";
 import { AudienceFinder } from "@/components/layout/audience-finder";
 import { CODE_EDITIONS } from "@/lib/code-editions";
 import { applyHref } from "@/lib/apply-forms";
+import { SITE_NAME } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-url";
+
+export const metadata: Metadata = {
+  title: { absolute: `${SITE_NAME} — Arbitration, Mediation & ODR in India` },
+  alternates: { canonical: "/" },
+  openGraph: { url: "/", siteName: SITE_NAME, locale: "en_IN", type: "website" },
+};
+
+// Tells Google who the site belongs to (name, logo) for the knowledge panel
+// and the search-result site name.
+const ORGANIZATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: SITE_NAME,
+      alternateName: ["Adjudix", "ADR-i"],
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/logo-mini.png`,
+    },
+    { "@type": "WebSite", name: SITE_NAME, alternateName: "Adjudix", url: SITE_URL },
+  ],
+};
 
 const PILLARS = [
   {
@@ -172,6 +197,10 @@ const FAQ_ITEMS = [
 export default function Home() {
   return (
     <main className="bg-canvas flex-1">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+      />
       {/* Hero — Pattern D: photo shown whole, message in a floating card */}
       <section className="relative">
         <div className="relative h-[420px] md:h-[480px] w-full">

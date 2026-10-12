@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Offline Dispute Resolution",
+  description:
+    "For parties who prefer to meet in person and file on paper, Adjudix administers every mechanism offline — with the same panel, the same timelines, and the…",
+  path: "/dispute-resolution/offline",
+});
 
 export default function OfflinePage() {
   return (

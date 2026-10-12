@@ -3,7 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
 import { Reveal } from "@/components/ui/reveal";
+import { pageMetadata } from "@/lib/seo";
 
+export const metadata = pageMetadata({
+  title: "Training & Certification Institute",
+  description:
+    "Six professional and student tracks — ADR Overview, Arbitration, Mediation, Conciliation, Contract Drafting, and Hybrid ADR — each tied to a published…",
+  path: "/training",
+});
 
 export default function TrainingPage() {
   return (

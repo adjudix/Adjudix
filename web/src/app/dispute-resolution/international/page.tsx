@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "International Dispute Resolution",
+  description:
+    "For cross-border disputes involving a foreign party, foreign-seated proceedings, or a foreign award — administered with the choice-of-law, seat, and…",
+  path: "/dispute-resolution/international",
+});
 
 export default function InternationalDisputeResolutionPage() {
   return (

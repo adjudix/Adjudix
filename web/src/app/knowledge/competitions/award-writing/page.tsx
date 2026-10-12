@@ -1,4 +1,12 @@
 import { CompetitionPage } from "@/components/patterns/competition-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Arbitral Award Writing Competition",
+  description:
+    "Write a reasoned arbitral award on a set fact pattern, judged on legal reasoning, clarity, and structure — the exact skill a certified arbitrator needs.",
+  path: "/knowledge/competitions/award-writing",
+});
 
 export default function Page() {
   return (

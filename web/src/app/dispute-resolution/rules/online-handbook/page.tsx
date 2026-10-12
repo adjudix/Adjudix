@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Online Procedure Handbook",
+  description:
+    "Step-by-step guidance for parties, panelists, and case managers using the ODR Platform — everything the Adjudix Code of ADR Procedure requires, translated…",
+  path: "/dispute-resolution/rules/online-handbook",
+});
 
 const STEPS = [
   { title: "Create an account", description: "Register on the ODR Platform as a party, then verify your identity." },

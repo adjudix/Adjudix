@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Model Clauses",
+  description:
+    "Ready-to-insert clause language for your commercial contracts. Naming Adjudix as the administering institution in advance means there's no negotiation over…",
+  path: "/dispute-resolution/model-clauses",
+});
 
 const CLAUSES = [
   {

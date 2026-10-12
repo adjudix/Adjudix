@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Arbitration",
+  description:
+    "A neutral arbitrator (or panel of arbitrators) hears both sides and issues a binding, enforceable award — for both domestic disputes and cross-border…",
+  path: "/dispute-resolution/arbitration",
+});
 
 export default function ArbitrationPage() {
   return (

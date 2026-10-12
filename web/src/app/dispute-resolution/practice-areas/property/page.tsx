@@ -1,4 +1,12 @@
 import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Property Disputes",
+  description:
+    "Title, possession, and co-ownership disagreements resolved by panelists who understand property law and valuation, not just general civil procedure.",
+  path: "/dispute-resolution/practice-areas/property",
+});
 
 export default function Page() {
   return (

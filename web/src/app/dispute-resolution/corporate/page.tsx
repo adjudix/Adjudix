@@ -3,6 +3,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Corporate Dispute Resolution Services",
+  description:
+    "Built for how businesses actually decide: disputes resolved through a standing relationship with Adjudix, without disrupting the underlying commercial…",
+  path: "/dispute-resolution/corporate",
+});
 
 const BENEFITS = [
   {

@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Hybrid ADR Mechanism (Med-Arb)",
+  description:
+    "Mediation first, with an automatic fallback to binding arbitration if a settlement isn't reached — the parties get a genuine chance to settle on their own…",
+  path: "/dispute-resolution/hybrid",
+});
 
 export default function HybridPage() {
   return (

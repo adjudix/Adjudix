@@ -12,6 +12,14 @@ import {
   formatSlab,
 } from "@/lib/fee-schedule";
 import { FeeCalculator } from "./fee-calculator";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Rules & Fees Calculator",
+  description:
+    "Estimate the cost of an arbitration under the Adjudix fee schedule — filing, tribunal, and administrative fees — then read the full schedule below.",
+  path: "/dispute-resolution/fees",
+});
 
 const inr = (n: number) => `₹${new Intl.NumberFormat("en-IN").format(n)}`;
 

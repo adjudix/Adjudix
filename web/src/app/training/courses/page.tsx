@@ -4,7 +4,14 @@ import { CardGrid } from "@/components/ui/card-grid";
 import Link from "next/link";
 import { STUDENT_COURSES, TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
 
+export const metadata = pageMetadata({
+  title: "Professional & Student Courses",
+  description:
+    "Six professional tracks, each tied to a published Competence Framework and a path into panel eligibility, and student courses for those starting out in ADR.",
+  path: "/training/courses",
+});
 
 export default function CoursesPage() {
   return (

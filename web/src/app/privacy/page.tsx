@@ -1,4 +1,12 @@
 import { PageHeader } from "@/components/layout/page-header";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Privacy Policy",
+  description:
+    "How Adjudix collects, uses, and protects your personal and case data. Effective from the institute's founding; version 1.0.",
+  path: "/privacy",
+});
 
 const SECTIONS = [
   {

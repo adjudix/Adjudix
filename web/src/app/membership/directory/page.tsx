@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
 import { IDENTITY_NOTE, MEMBERS, TIERS, TIER_ORDER } from "@/lib/members";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Our Esteemed Members",
+  description:
+    "The professionals who make up Adjudix, by membership. To verify a member's standing, contact the Secretariat.",
+  path: "/membership/directory",
+});
 
 export default function DirectoryPage() {
   return (

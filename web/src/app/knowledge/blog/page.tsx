@@ -3,6 +3,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { ARTICLES, readingMinutes } from "@/lib/articles";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Blogs & Articles",
+  description:
+    "Plain-language explainers on ADR mechanisms, procedure, and practice — from the basics of arbitration to how awards are implemented worldwide.",
+  path: "/knowledge/blog",
+});
 
 export default function BlogPage() {
   return (

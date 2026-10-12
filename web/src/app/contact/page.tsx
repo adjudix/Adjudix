@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { ApplyFormBody } from "@/components/patterns/apply-form";
 import { ENQUIRY_FORM } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contact Us",
+  description:
+    "One form, routed to the right team — whether you're filing a dispute, joining our panel, enrolling in training, or just have a question.",
+  path: "/contact",
+});
 
 // Mail IDs by purpose, as confirmed by the client (domain adjudixADR.com).
 const MAILBOXES = [

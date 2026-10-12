@@ -1,4 +1,12 @@
 import { PartnerCategoryPage } from "@/components/patterns/partner-category-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Training Partners",
+  description:
+    "Organizations co-delivering courses alongside the Training Institute, from professional bodies to corporate learning teams.",
+  path: "/partners/training",
+});
 
 export default function Page() {
   return (

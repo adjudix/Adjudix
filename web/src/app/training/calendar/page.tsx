@@ -3,6 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { TRAINING_TRACKS } from "@/lib/training-tracks";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Upcoming Courses",
+  description:
+    "Course cohorts across every Training Institute track, with format and faculty confirmed before you enroll.",
+  path: "/training/calendar",
+});
 
 export default function CalendarPage() {
   return (

@@ -4,6 +4,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { Reveal } from "@/components/ui/reveal";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Dispute Resolution Services",
+  description:
+    "From a facilitated conversation to a binding arbitral award, Adjudix administers every point on the alternative dispute resolution spectrum under the Adjudix…",
+  path: "/dispute-resolution",
+});
 
 const SPECTRUM = [
   {

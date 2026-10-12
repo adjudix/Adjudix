@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Mediator Training Course",
+  description:
+    "Facilitative technique for guiding parties toward their own settlement — the skill of asking the right question, not proposing the answer.",
+  path: "/training/courses/mediator",
+});
 
 export default function Page() {
   return (

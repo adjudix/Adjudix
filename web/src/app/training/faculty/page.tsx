@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Faculty",
+  description:
+    "Adjudix's course faculty is drawn from practicing arbitrators, conciliators, mediators, and subject-matter specialists across our practice areas.",
+  path: "/training/faculty",
+});
 
 export default function FacultyPage() {
   return (

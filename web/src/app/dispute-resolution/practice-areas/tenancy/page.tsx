@@ -1,4 +1,12 @@
 import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Tenancy Disputes",
+  description:
+    "Rent, deposit, and possession disagreements between landlords and tenants, resolved faster than a typical rent-control or civil court timeline.",
+  path: "/dispute-resolution/practice-areas/tenancy",
+});
 
 export default function Page() {
   return (

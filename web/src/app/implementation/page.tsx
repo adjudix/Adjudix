@@ -1,5 +1,13 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Implementation of ADR Orders & Awards",
+  description:
+    "An award or settlement only matters once it is carried out. Adjudix takes your arbitral award, mediated settlement, or Lok Adalat order through to…",
+  path: "/implementation",
+});
 
 export default function ImplementationPage() {
   return (

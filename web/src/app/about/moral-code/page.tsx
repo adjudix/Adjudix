@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CodeExplainer } from "@/components/patterns/code-explainer";
 import MORAL_PRINCIPLES from "@/lib/moral-principles.json";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Moral Code of Principles & Doctrines",
+  description:
+    "The Adjudix code of conduct: the ethical principles binding every case, neutral, and member of the Institute. It is not the rule book — it forms the Preamble…",
+  path: "/about/moral-code",
+});
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"];
 

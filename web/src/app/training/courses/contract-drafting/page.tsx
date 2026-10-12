@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contract Drafting Course",
+  description:
+    "Drafting arbitration and mediation clauses that actually hold up when a dispute arises — not boilerplate copied from the last contract template.",
+  path: "/training/courses/contract-drafting",
+});
 
 export default function Page() {
   return (

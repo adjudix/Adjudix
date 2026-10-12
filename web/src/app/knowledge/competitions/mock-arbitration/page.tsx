@@ -1,4 +1,12 @@
 import { CompetitionPage } from "@/components/patterns/competition-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Mock Arbitration Competition",
+  description:
+    "A simulated arbitration hearing on a set fact pattern, scored by practicing arbitrators on advocacy, procedure, and case theory.",
+  path: "/knowledge/competitions/mock-arbitration",
+});
 
 export default function Page() {
   return (

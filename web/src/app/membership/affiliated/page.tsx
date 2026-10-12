@@ -1,4 +1,12 @@
 import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Affiliate Membership",
+  description:
+    "Standing for early-career professionals building toward the register.",
+  path: "/membership/affiliated",
+});
 
 export default function Page() {
   return (

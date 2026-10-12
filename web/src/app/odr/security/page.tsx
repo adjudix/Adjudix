@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Security & Enforceability",
+  description:
+    "A dispute resolved online is only worth something if the outcome actually holds up. Here's the legal and data-security basis behind every case filed through…",
+  path: "/odr/security",
+});
 
 const POINTS = [
   {

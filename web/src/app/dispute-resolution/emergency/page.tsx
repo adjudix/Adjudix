@@ -1,5 +1,13 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Emergency Arbitration",
+  description:
+    "Urgent interim relief — an asset freeze, an injunction, preservation of evidence — before a full arbitral tribunal is even constituted. Built for the cases…",
+  path: "/dispute-resolution/emergency",
+});
 
 export default function EmergencyArbitrationPage() {
   return (

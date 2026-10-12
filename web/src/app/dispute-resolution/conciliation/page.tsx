@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Conciliation",
+  description:
+    "A more active neutral than a mediator, a conciliator actively proposes settlement terms for both sides to accept, reject, or refine — a middle path between…",
+  path: "/dispute-resolution/conciliation",
+});
 
 export default function ConciliationPage() {
   return (

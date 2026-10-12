@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Offline Procedure Handbook",
+  description:
+    "Not every party wants to file online. This handbook covers the same Adjudix Code of ADR Procedure, applied to paper-based filings and in-person hearings.",
+  path: "/dispute-resolution/rules/offline-handbook",
+});
 
 const STEPS = [
   { title: "Written notice", description: "File a paper notice of arbitration or request for mediation with the Secretariat." },

@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "ADR Overview Course",
+  description:
+    "A complete grounding in alternative dispute resolution — every mechanism Adjudix administers, when each one fits, and how the outcome is implemented. Open to…",
+  path: "/training/courses/adr-overview",
+});
 
 export default function Page() {
   return (

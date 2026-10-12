@@ -3,7 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { COMPETITIONS } from "@/lib/competitions";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
 
+export const metadata = pageMetadata({
+  title: "Competitions",
+  description:
+    "For students and early-career professionals to test and showcase ADR skills — mock proceedings and writing competitions, judged by practicing panelists.",
+  path: "/knowledge/competitions",
+});
 
 export default function CompetitionsPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -20,7 +21,9 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: PageProps<"/dispute-resolution/rules/code-of-procedure/[year]">): Promise<Metadata> {
   const { year } = await params;
   const code = getCodeText(year);
-  return code ? { title: code.title, description: code.note } : {};
+  return code
+    ? pageMetadata({ title: code.title, description: code.note, path: `/dispute-resolution/rules/code-of-procedure/${year}` })
+    : {};
 }
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"];

@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Ad Hoc Platform",
+  description:
+    "An appointment-only service: Adjudix appoints a qualified arbitrator or neutral for a case the parties are otherwise running themselves, without requiring…",
+  path: "/odr/ad-hoc",
+});
 
 const STEPS = [
   { title: "Tell us your case", description: "Describe the dispute you and the other party are already resolving yourselves." },

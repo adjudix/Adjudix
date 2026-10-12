@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Arbitrator Training Course",
+  description:
+    "A Professional track for practicing advocates, CAs, and engineers, and a Student track for those building toward the profession — both leading toward…",
+  path: "/training/courses/arbitrator",
+});
 
 export default function Page() {
   return (

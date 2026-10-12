@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Annual Reports",
+  description:
+    "Adjudix usually publishes an annual report covering caseload, panel growth, and Training Institute outcomes.",
+  path: "/about/annual-reports",
+});
 
 export default function AnnualReportsPage() {
   return (

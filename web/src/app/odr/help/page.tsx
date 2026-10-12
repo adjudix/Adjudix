@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Help & FAQs",
+  description:
+    "Answers to the most common questions about filing, responding, and using the ODR Platform.",
+  path: "/odr/help",
+});
 
 const FAQS = [
   {

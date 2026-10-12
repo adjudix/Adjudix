@@ -4,6 +4,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { CODE_EDITIONS } from "@/lib/code-editions";
 import { CodeExplainer } from "@/components/patterns/code-explainer";
 import { buttonVariants } from "@/components/ui/button";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Code of ADR Procedure",
+  description:
+    "The single procedure that governs every case Adjudix administers, regardless of mechanism or value — published in advance so no party is ever negotiating…",
+  path: "/dispute-resolution/rules/code-of-procedure",
+});
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 

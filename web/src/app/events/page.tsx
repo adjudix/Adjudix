@@ -4,6 +4,14 @@ import { Reveal } from "@/components/ui/reveal";
 import { CardGrid } from "@/components/ui/card-grid";
 import { COMPETITIONS } from "@/lib/competitions";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Upcoming & Past Events",
+  description:
+    "CPD-style events, courses, and Adjudix's flagship annual conference, browsable by date.",
+  path: "/events",
+});
 
 export default function EventsPage() {
   return (

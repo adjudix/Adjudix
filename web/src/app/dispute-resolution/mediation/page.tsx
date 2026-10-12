@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Mediation",
+  description:
+    "A neutral mediator facilitates a structured conversation between the parties — the outcome is whatever the parties themselves agree to, not something imposed…",
+  path: "/dispute-resolution/mediation",
+});
 
 export default function MediationPage() {
   return (

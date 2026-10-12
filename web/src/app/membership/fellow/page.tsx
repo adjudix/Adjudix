@@ -1,4 +1,12 @@
 import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Fellow Membership",
+  description:
+    "Senior recognition for a sustained record of panel appointments — the credential that signals a practitioner has genuinely built a career in institutional…",
+  path: "/membership/fellow",
+});
 
 export default function Page() {
   return (

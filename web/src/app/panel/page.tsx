@@ -3,6 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
 import { IDENTITY_NOTE, MEMBERS, PROFESSIONS } from "@/lib/members";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Our Professional Panel",
+  description:
+    "Advocates, chartered accountants, civil engineers, IT engineers, and other professionals — vetted before appointment to any case and bound by the Adjudix…",
+  path: "/panel",
+});
 
 // The panel is shown by profession (client brief): one common panel rather
 // than a separate roster per dispute type.

@@ -3,6 +3,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { Reveal } from "@/components/ui/reveal";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Membership",
+  description:
+    "A professional register, not a mailing list. Every tier carries defined eligibility, so membership means something when a client checks it.",
+  path: "/membership",
+});
 
 // Per the client's compare-tiers markup: five kinds, stars not tier numbers,
 // highest standing first, Corporate removed.

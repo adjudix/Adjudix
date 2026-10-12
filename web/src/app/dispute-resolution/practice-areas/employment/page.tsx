@@ -1,4 +1,12 @@
 import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Employer–Employee Disputes",
+  description:
+    "Disagreements arising from an employment relationship, resolved confidentially and without the reputational exposure of a public tribunal filing.",
+  path: "/dispute-resolution/practice-areas/employment",
+});
 
 export default function Page() {
   return (

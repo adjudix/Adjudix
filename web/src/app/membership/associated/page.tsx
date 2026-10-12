@@ -1,4 +1,12 @@
 import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Associate Membership",
+  description:
+    "Full standing, case-eligible once CPD and experience thresholds are met — the membership most Training Institute graduates move into.",
+  path: "/membership/associated",
+});
 
 export default function Page() {
   return (

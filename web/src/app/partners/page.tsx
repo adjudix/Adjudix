@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Institutional Partners",
+  description:
+    "Adjudix's network of education, training, and corporate partners — each category structured around a different kind of ongoing relationship.",
+  path: "/partners",
+});
 
 const CATEGORIES = [
   { title: "Education Partners", description: "Law schools and universities referring students into our Training Institute.", href: "/partners/education" },

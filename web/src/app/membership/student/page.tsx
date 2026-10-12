@@ -1,4 +1,12 @@
 import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Student Membership",
+  description:
+    "The first step on Adjudix's membership ladder, for students of law, commerce, and engineering who want to build a career in ADR.",
+  path: "/membership/student",
+});
 
 export default function Page() {
   return (

@@ -1,5 +1,13 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Lok Adalat",
+  description:
+    "A statutory forum for compromise settlement under the Legal Services Authorities Act, 1987 — distinct from arbitration or mediation in that its jurisdiction…",
+  path: "/dispute-resolution/lok-adalat",
+});
 
 export default function LokAdalatPage() {
   return (

@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contract & Arbitration Clause Drafting",
+  description:
+    "A dispute resolution clause written after a disagreement starts is a negotiation. Written before, it's a formality. We draft clauses that hold up when…",
+  path: "/dispute-resolution/clause-drafting",
+});
 
 const STEPS = [
   { title: "Share your contract", description: "Send us the commercial contract or template you want to protect." },

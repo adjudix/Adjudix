@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Site Credits",
   description:
     "This website was designed, built, and is maintained by Kapivic — a software studio that builds digital systems for institutions, legal practices, and businesses.",
-};
+  path: "/credits",
+});
 
 const KAPIVIC_URL = "https://www.kapivic.com/";
 const KAPIVIC_WHATSAPP_URL =

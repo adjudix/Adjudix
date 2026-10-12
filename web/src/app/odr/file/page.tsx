@@ -1,5 +1,13 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "File a Dispute",
+  description:
+    "Tell us about your dispute. We'll confirm your dispute-type panel and an indicative fee before anything is finalized.",
+  path: "/odr/file",
+});
 
 export default function FileDisputePage() {
   return (

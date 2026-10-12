@@ -1,4 +1,12 @@
 import { CoursePage } from "@/components/patterns/course-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Hybrid ADR Training Course",
+  description:
+    "Training in the hybrid model of dispute resolution — running a matter through mediation first and converting it to binding arbitration when settlement isn't…",
+  path: "/training/courses/hybrid",
+});
 
 export default function Page() {
   return (

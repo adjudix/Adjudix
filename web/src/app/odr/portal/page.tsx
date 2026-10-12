@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { LinkButton } from "@/components/ui/link-button";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Portal Login",
+  description:
+    "Role-based access for parties, arbitrators, and case managers. Portal accounts are issued once a case is filed or an appointment is confirmed.",
+  path: "/odr/portal",
+});
 
 const PORTALS = [
   {

@@ -1,5 +1,13 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Respond to a Dispute",
+  description:
+    "Been named as a respondent in a case? Enter your reference number below to confirm your participation and view the claim against you.",
+  path: "/odr/respond",
+});
 
 export default function RespondPage() {
   return (

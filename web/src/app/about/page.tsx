@@ -3,6 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import Link from "next/link";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "About Adjudix",
+  description:
+    "Adjudix exists because the choice of forum shouldn't be an afterthought. Institutional alternative dispute resolution replaces an uncertain, case-by-case…",
+  path: "/about",
+});
 
 const ROWS = [
   {

@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Practice Areas",
+  description:
+    "The ten subject-matter streams in which Adjudix resolves disputes. Each matter is heard by neutrals from our Professional Panel with the right background for…",
+  path: "/dispute-resolution/practice-areas",
+});
 
 const CATEGORIES = [
   { title: "Debt Recovery & Financial Claims", description: "Unpaid invoices, loan defaults, and disputed accounts.", href: "/dispute-resolution/practice-areas/debt-recovery" },

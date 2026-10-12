@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Terms & Conditions",
+  description:
+    "The terms governing use of this website and Adjudix's dispute resolution services. Effective from the institute's founding; version 1.0.",
+  path: "/terms",
+});
 
 const SECTIONS = [
   {

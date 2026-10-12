@@ -3,6 +3,14 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
 import { LinkButton } from "@/components/ui/link-button";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Apprenticeship & Internship Programme",
+  description:
+    "Classroom training only goes so far. Internships give students hands-on exposure to ADR practice; the Apprenticeship Programme places Training Institute…",
+  path: "/training/apprenticeships",
+});
 
 const STEPS = [
   { title: "Complete a track (optional)", description: "Finishing the Arbitrator, Conciliator, or Mediator track relevant to your interest helps, but isn't required." },

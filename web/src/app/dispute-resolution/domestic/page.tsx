@@ -1,4 +1,12 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Domestic Dispute Resolution",
+  description:
+    "For disputes between parties within India — commercial, contractual, employment, or civil — resolved under Indian law through whichever mechanism fits the…",
+  path: "/dispute-resolution/domestic",
+});
 
 export default function DomesticDisputeResolutionPage() {
   return (

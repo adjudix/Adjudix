@@ -1,4 +1,12 @@
 import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contractual Disputes",
+  description:
+    "Breach, interpretation, and performance disagreements arising from any commercial contract — the broadest and most common category Adjudix administers.",
+  path: "/dispute-resolution/practice-areas/contractual",
+});
 
 export default function Page() {
   return (

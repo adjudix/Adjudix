@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Research & Publications",
+  description:
+    "Longer-form research on institutional ADR in India and internationally, including redacted award and case summaries, in the interest of transparency.",
+  path: "/knowledge/research",
+});
 
 export default function ResearchPage() {
   return (

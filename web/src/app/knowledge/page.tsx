@@ -2,6 +2,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Knowledge Centre",
+  description:
+    "Blogs, research, and competition output, filterable and searchable — a narrow, curated library rather than a sprawling, unstructured blog.",
+  path: "/knowledge",
+});
 
 const SECTIONS = [
   {

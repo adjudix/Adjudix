@@ -4,12 +4,32 @@ import { buildSearchIndex } from "@/lib/search-index";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { PageLoader } from "@/components/layout/page-loader";
 import { ConsultationPopup } from "@/components/layout/consultation-popup";
+import { SITE_NAME } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
+const DESCRIPTION =
+  "Dispute resolution and assured implementation under one roof — arbitration, mediation, conciliation, Lok Adalat, emergency, hybrid, and corporate ADR.";
+
 export const metadata: Metadata = {
-  title: "Adjudix Dispute Resolution Institute",
-  description:
-    "Dispute resolution and assured implementation under one roof — arbitration, mediation, conciliation, Lok Adalat, emergency, hybrid, and corporate ADR.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  // No canonical here: pages would inherit it and all point at the home page.
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_IN",
+    title: SITE_NAME,
+    description: DESCRIPTION,
+  },
+  twitter: { card: "summary", title: SITE_NAME, description: DESCRIPTION },
+  // Search Console ownership: set GOOGLE_SITE_VERIFICATION in Vercel to the
+  // content="…" value of the HTML-tag method (not needed for DNS verification).
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({ children, modal }: LayoutProps<"/">) {

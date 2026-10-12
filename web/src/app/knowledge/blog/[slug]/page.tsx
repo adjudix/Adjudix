@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/page-header";
@@ -12,7 +13,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/knowledge/blog/[slug]">): Promise<Metadata> {
   const article = getArticle((await params).slug);
-  return article ? { title: `${article.title} | Adjudix`, description: article.summary } : {};
+  if (!article) return {};
+  const metadata = pageMetadata({ title: article.title, description: article.summary, path: `/knowledge/blog/${article.slug}` });
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article" } };
 }
 
 export default async function ArticlePage({ params }: PageProps<"/knowledge/blog/[slug]">) {

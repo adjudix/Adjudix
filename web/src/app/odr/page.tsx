@@ -4,6 +4,14 @@ import { NumberedList } from "@/components/ui/numbered-list";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { LinkButton } from "@/components/ui/link-button";
 import { Reveal } from "@/components/ui/reveal";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Online Dispute Resolution (ODR) Platform",
+  description:
+    "The ADR-i Portal takes a dispute from filing to a binding award or signed settlement, without either side needing to set foot in a courtroom.",
+  path: "/odr",
+});
 
 const STEPS = [
   { title: "File", description: "Submit your case online with claimant, respondent, and dispute details." },

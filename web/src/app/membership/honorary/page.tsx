@@ -1,4 +1,12 @@
 import { MembershipTierPage } from "@/components/patterns/membership-tier-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Special Honorary Membership",
+  description:
+    "Beyond stars: Special Honorary Membership is conferred by the institute on individuals whose contribution to dispute resolution stands apart. It cannot be…",
+  path: "/membership/honorary",
+});
 
 export default function Page() {
   return (

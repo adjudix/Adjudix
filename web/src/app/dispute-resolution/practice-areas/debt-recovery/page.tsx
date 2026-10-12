@@ -1,4 +1,12 @@
 import { PracticeAreaPage } from "@/components/patterns/practice-area-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Debt Recovery & Financial Claims",
+  description:
+    "Unpaid invoices, loan defaults, and other financial claims resolved through arbitration or conciliation, without the years a civil recovery suit can take.",
+  path: "/dispute-resolution/practice-areas/debt-recovery",
+});
 
 export default function Page() {
   return (

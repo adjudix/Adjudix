@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Leadership & Governance",
+  description:
+    "Adjudix is governed by a Secretariat and an Advisory Council, responsible for the Adjudix Code of ADR Procedure, panel empanelment, and the Training…",
+  path: "/about/leadership",
+});
 
 export default function LeadershipPage() {
   return (

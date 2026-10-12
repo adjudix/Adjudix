@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/apply/[form]">): Promise<Metadata> {
   const form = getApplyForm((await params).form);
-  return { title: form ? `${form.title} · Adjudix` : "Adjudix" };
+  return { title: form?.title, robots: { index: false, follow: true } };
 }
 
 // The same form as the modal, as a page of its own — for shared links,

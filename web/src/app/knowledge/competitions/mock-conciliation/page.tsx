@@ -1,4 +1,12 @@
 import { CompetitionPage } from "@/components/patterns/competition-page";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Mock Conciliation Competition",
+  description:
+    "A simulated conciliation on a set fact pattern, testing a participant's ability to actively propose settlement terms both sides can accept.",
+  path: "/knowledge/competitions/mock-conciliation",
+});
 
 export default function Page() {
   return (

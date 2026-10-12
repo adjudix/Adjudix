@@ -3,6 +3,14 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CodeExplainer } from "@/components/patterns/code-explainer";
 import { applyHref } from "@/lib/apply-forms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Rules & Governance",
+  description:
+    "Every document that defines how a case at Adjudix is actually run — kept versioned and publicly accessible, the same way we'd want the other side's institute…",
+  path: "/dispute-resolution/rules",
+});
 
 const DOCS = [
   {

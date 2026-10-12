@@ -1,6 +1,14 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Certification & Competence Framework",
+  description:
+    "What each Adjudix certificate actually attests to — published plainly, so a client evaluating a certificate-holder knows exactly what they're trusting.",
+  path: "/training/certification",
+});
 
 const RUBRIC = [
   {

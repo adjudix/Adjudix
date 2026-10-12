@@ -1,5 +1,13 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Our Story",
+  description:
+    "Adjudix Dispute Resolution Institute was founded on a simple observation: the parties to a dispute rarely disagree about wanting it resolved fairly and…",
+  path: "/about/our-story",
+});
 
 export default function OurStoryPage() {
   return (
