@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { COMPETITIONS } from "@/lib/competitions";
+import { applyHref } from "@/lib/apply-forms";
 
 
 export default function CompetitionsPage() {
@@ -24,7 +25,7 @@ export default function CompetitionsPage() {
 
       <CtaBand
         title="Want to be notified of the next competition?"
-        primary={{ label: "Register Interest", href: "/contact" }}
+        primary={{ label: "Register Interest", href: applyHref("competition") }}
         secondary={{ label: "Knowledge Centre", href: "/knowledge" }}
       />
     </main>

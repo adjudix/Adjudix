@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function FacultyPage() {
   return (
@@ -14,7 +15,7 @@ export default function FacultyPage() {
       <CtaBand
         title="Interested in teaching a module?"
         description="Practicing arbitrators, conciliators, and mediators can apply to join our faculty."
-        primary={{ label: "Apply to Teach", href: "/contact" }}
+        primary={{ label: "Apply to Teach", href: applyHref("faculty") }}
         secondary={{ label: "Browse Courses", href: "/training/courses" }}
       />
     </main>

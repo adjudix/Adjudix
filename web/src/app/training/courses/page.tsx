@@ -2,7 +2,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import Link from "next/link";
-import { STUDENT_COURSES, TRAINING_TRACKS as TRACKS, enquiryHref } from "@/lib/training-tracks";
+import { STUDENT_COURSES, TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
+import { applyHref } from "@/lib/apply-forms";
 
 
 export default function CoursesPage() {
@@ -37,13 +38,13 @@ export default function CoursesPage() {
                 <p className="mt-2 flex-1 text-left font-body text-sm text-muted-foreground">{course.description}</p>
                 <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-body text-sm font-medium">
                   <Link
-                    href={enquiryHref("Course Enrollment", "Student Course", course.title)}
+                    href={applyHref("course", { courseLevel: "Student Course", course: course.title, status: "Student" })}
                     className="rounded-full bg-primary px-4 py-2 text-primary-foreground hover:bg-primary-hover"
                   >
                     Enrol
                   </Link>
                   <Link
-                    href={enquiryHref("Scholarship Application", "Student Course", course.title)}
+                    href={applyHref("scholarship", { courseLevel: "Student Course", course: course.title, status: "Student" })}
                     className="text-primary hover:underline"
                   >
                     Apply for Scholarship
@@ -66,7 +67,7 @@ export default function CoursesPage() {
 
       <CtaBand
         title="Not sure which track fits?"
-        primary={{ label: "Talk to Us", href: "/contact" }}
+        primary={{ label: "Enrol in a Course", href: applyHref("course") }}
         secondary={{ label: "Certification Framework", href: "/training/certification" }}
       />
     </main>

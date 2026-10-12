@@ -3,6 +3,7 @@ import { CtaBand } from "@/components/layout/cta-band";
 import { Reveal } from "@/components/ui/reveal";
 import { CardGrid } from "@/components/ui/card-grid";
 import { COMPETITIONS } from "@/lib/competitions";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function EventsPage() {
   return (
@@ -40,7 +41,7 @@ export default function EventsPage() {
 
       <CtaBand
         title="Apply now to be notified"
-        primary={{ label: "Apply Now", href: "/contact" }}
+        primary={{ label: "Register Interest", href: applyHref("event") }}
         secondary={{ label: "Browse Training Courses", href: "/training/courses" }}
       />
     </main>

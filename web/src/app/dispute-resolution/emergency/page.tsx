@@ -1,4 +1,5 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function EmergencyArbitrationPage() {
   return (
@@ -36,7 +37,7 @@ export default function EmergencyArbitrationPage() {
         },
       ]}
       filingLabel="File an Emergency Application"
-      filingHref="/contact"
+      filingHref={applyHref("emergency")}
     />
   );
 }

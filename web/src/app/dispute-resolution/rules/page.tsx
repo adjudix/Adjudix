@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CodeExplainer } from "@/components/patterns/code-explainer";
+import { applyHref } from "@/lib/apply-forms";
 
 const DOCS = [
   {
@@ -66,7 +67,7 @@ export default function RulesHubPage() {
 
       <CtaBand
         title="Questions about a specific rule?"
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "About Adjudix", href: "/about" }}
       />
     </main>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { Reveal } from "@/components/ui/reveal";
+import { applyHref } from "@/lib/apply-forms";
 
 // Per the client's compare-tiers markup: five kinds, stars not tier numbers,
 // highest standing first, Corporate removed.
@@ -117,7 +118,7 @@ export default function MembershipPage() {
       <CtaBand
         title="See who's already a member"
         primary={{ label: "Our Esteemed Members", href: "/membership/directory" }}
-        secondary={{ label: "Talk to Us", href: "/contact" }}
+        secondary={{ label: "Apply for Membership", href: applyHref("membership") }}
       />
     </main>
   );

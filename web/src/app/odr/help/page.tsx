@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
+import { applyHref } from "@/lib/apply-forms";
 
 const FAQS = [
   {
@@ -41,7 +42,7 @@ export default function OdrHelpPage() {
 
       <CtaBand
         title="Still need help?"
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "Back to ODR Platform", href: "/odr" }}
       />
     </main>

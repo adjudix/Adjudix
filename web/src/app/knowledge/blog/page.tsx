@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { ARTICLES, readingMinutes } from "@/lib/articles";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function BlogPage() {
   return (
@@ -35,7 +36,7 @@ export default function BlogPage() {
 
       <CtaBand
         title="Get notified when we publish"
-        primary={{ label: "Subscribe", href: "/contact" }}
+        primary={{ label: "Subscribe", href: applyHref("subscribe") }}
         secondary={{ label: "Research & Publications", href: "/knowledge/research" }}
       />
     </main>

@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export interface MembershipTierPageProps {
   title: string;
@@ -21,7 +22,7 @@ export function MembershipTierPage({
   eligibility,
   benefits,
   fee,
-  applyHref = "/contact",
+  applyHref: href,
   stars,
   applyLabel = `Apply for ${title} Membership`,
   applyable = true,
@@ -74,7 +75,7 @@ export function MembershipTierPage({
       {applyable ? (
         <CtaBand
           title={applyLabel}
-          primary={{ label: applyLabel, href: applyHref }}
+          primary={{ label: applyLabel, href: href ?? applyHref("membership", { tier: title }) }}
           secondary={{ label: "Compare All Tiers", href: "/membership" }}
         />
       ) : (

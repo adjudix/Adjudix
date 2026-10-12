@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { ARTICLES, getArticle, readingMinutes } from "@/lib/articles";
+import { applyHref } from "@/lib/apply-forms";
 
 export function generateStaticParams() {
   return ARTICLES.map((article) => ({ slug: article.slug }));
@@ -72,7 +73,7 @@ export default async function ArticlePage({ params }: PageProps<"/knowledge/blog
       <CtaBand
         title="Talk to us about your dispute"
         description="Your first professional consultation is free."
-        primary={{ label: "Book a Consultation", href: "/contact" }}
+        primary={{ label: "Book a Consultation", href: applyHref("consultation") }}
         secondary={{ label: "All articles", href: "/knowledge/blog" }}
       />
     </main>

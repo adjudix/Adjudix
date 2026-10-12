@@ -2,7 +2,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 import { LinkButton } from "@/components/ui/link-button";
-import { enquiryHref, formatRupees, getTrack } from "@/lib/training-tracks";
+import { formatRupees, getTrack } from "@/lib/training-tracks";
+import { applyHref as formHref } from "@/lib/apply-forms";
 
 export interface CoursePageProps {
   // Key into TRAINING_TRACKS, which holds the fee.
@@ -15,8 +16,8 @@ export interface CoursePageProps {
 
 export function CoursePage({ slug, title, intro, who, curriculum }: CoursePageProps) {
   const track = getTrack(slug);
-  const applyHref = enquiryHref("Course Enrollment", "Professional Course", track.title);
-  const scholarshipHref = enquiryHref("Scholarship Application", "Professional Course", track.title);
+  const applyHref = formHref("course", { courseLevel: "Professional Course", course: track.title });
+  const scholarshipHref = formHref("scholarship", { courseLevel: "Professional Course", course: track.title });
   return (
     <main className="bg-canvas flex-1">
       <PageHeader

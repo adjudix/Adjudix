@@ -3,7 +3,8 @@
 // titles travel to the browser, not the full text of the Code.
 import { CODE_EDITIONS } from "@/lib/code-editions";
 import { getCodeText, sectionId } from "@/lib/code";
-import { STUDENT_COURSES, enquiryHref } from "@/lib/training-tracks";
+import { STUDENT_COURSES } from "@/lib/training-tracks";
+import { applyHref } from "@/lib/apply-forms";
 
 export interface SearchItem {
   title: string;
@@ -32,7 +33,7 @@ const PAGES: SearchItem[] = [
   { group: "Dispute Resolution", title: "Ad Hoc Platform", href: "/odr/ad-hoc", keywords: "ad-hoc" },
   { group: "Dispute Resolution", title: "Implementation of Orders & Awards", href: "/implementation", keywords: "enforcement execution recovery" },
   { group: "Dispute Resolution", title: "Rules & Fees Calculator", href: "/dispute-resolution/fees", keywords: "cost price charges fee schedule" },
-  { group: "Dispute Resolution", title: "Free Consultation", href: "/contact?type=Free+Consultation#enquiry", keywords: "advice talk" },
+  { group: "Dispute Resolution", title: "Free Consultation", href: applyHref("consultation"), keywords: "advice talk" },
   { group: "Dispute Resolution", title: "Portal Login", href: "/odr/portal", keywords: "sign in account" },
   { group: "Dispute Resolution", title: "ODR Help & FAQs", href: "/odr/help", keywords: "questions faq" },
   { group: "Dispute Resolution", title: "Security & Enforceability", href: "/odr/security", keywords: "data privacy valid" },
@@ -62,7 +63,7 @@ const PAGES: SearchItem[] = [
   { group: "Training", title: "Training Institute", href: "/training", keywords: "learn education" },
   { group: "Training", title: "Professional Courses", href: "/training/courses", keywords: "course programme" },
   { group: "Training", title: "Student Courses", href: "/training/courses#student-courses", keywords: "students law college" },
-  { group: "Training", title: "Scholarships", href: "/contact?type=Scholarship+Application#enquiry", keywords: "scholarship financial aid discount" },
+  { group: "Training", title: "Scholarships", href: applyHref("scholarship"), keywords: "scholarship financial aid discount" },
   { group: "Training", title: "Apprenticeships & Internships", href: "/training/apprenticeships", keywords: "internship apprentice students" },
   { group: "Training", title: "Certification & Competence Framework", href: "/training/certification", keywords: "certificate credential" },
   { group: "Training", title: "Upcoming Courses", href: "/training/calendar", keywords: "calendar schedule dates" },
@@ -76,7 +77,7 @@ const PAGES: SearchItem[] = [
   ...STUDENT_COURSES.map((course) => ({
     group: "Training",
     title: `${course.title} (Student Course)`,
-    href: enquiryHref("Course Enrollment", "Student Course", course.title),
+    href: applyHref("course", { courseLevel: "Student Course", course: course.title }),
     keywords: "students",
   })),
 
@@ -111,7 +112,7 @@ const PAGES: SearchItem[] = [
   { group: "About", title: "Education Partners", href: "/partners/education", keywords: "universities colleges" },
   { group: "About", title: "Training Partners", href: "/partners/training" },
   { group: "About", title: "Contact Us", href: "/contact", keywords: "email phone address query" },
-  { group: "About", title: "Careers at Adjudix", href: "/contact?type=Careers+at+Adjudix#enquiry", keywords: "jobs hiring" },
+  { group: "About", title: "Careers at Adjudix", href: applyHref("careers"), keywords: "jobs hiring" },
   { group: "About", title: "Privacy Policy", href: "/privacy" },
   { group: "About", title: "Terms & Conditions", href: "/terms" },
 ];

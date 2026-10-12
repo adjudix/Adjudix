@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function AnnualReportsPage() {
   return (
@@ -14,7 +15,7 @@ export default function AnnualReportsPage() {
       <CtaBand
         title="Request our annual report"
         description="Annual reports are shared on request through the Secretariat."
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "Knowledge Centre", href: "/knowledge" }}
       />
     </main>

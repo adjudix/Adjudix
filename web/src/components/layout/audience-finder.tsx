@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { applyHref } from "@/lib/apply-forms";
 
 // Mirrors iccwbo.org's homepage "Find what you are looking for" widget: a
 // small card, overlapping the hero, that routes visitors by who they are
@@ -26,7 +27,7 @@ const AUDIENCE_GROUPS = [
       { label: "I need urgent interim relief", href: "/dispute-resolution/emergency" },
       { label: "I'm a corporate client", href: "/dispute-resolution/corporate" },
       { label: "I want my order or award implemented", href: "/implementation" },
-      { label: "I want a free consultation", href: "/contact?type=Free+Consultation#enquiry" },
+      { label: "I want a free consultation", href: applyHref("consultation") },
       { label: "I want to know the fees", href: "/dispute-resolution/fees" },
     ],
   },
@@ -41,8 +42,9 @@ const AUDIENCE_GROUPS = [
     label: "Students",
     options: [
       { label: "I'm a student looking for a course", href: "/training/courses#student-courses" },
-      { label: "I want a scholarship", href: "/contact?type=Scholarship+Application#enquiry" },
-      { label: "I want an internship or apprenticeship", href: "/training/apprenticeships" },
+      { label: "I want a scholarship", href: applyHref("scholarship") },
+      { label: "I want an internship", href: applyHref("internship") },
+      { label: "I want an apprenticeship", href: applyHref("apprenticeship") },
       { label: "I want to take part in a competition", href: "/knowledge/competitions" },
       { label: "I want student membership", href: "/membership/student" },
     ],
@@ -53,7 +55,7 @@ const AUDIENCE_GROUPS = [
       { label: "I want professional training or certification", href: "/training/courses" },
       { label: "I want to join the panel", href: "/panel" },
       { label: "I want to become a member", href: "/membership" },
-      { label: "I want to teach or speak", href: "/contact?type=Faculty+%2F+Guest+Lecture#enquiry" },
+      { label: "I want to teach or speak", href: applyHref("faculty") },
     ],
   },
   {
@@ -63,7 +65,7 @@ const AUDIENCE_GROUPS = [
       { label: "I'm researching arbitration & ADR", href: "/knowledge" },
       { label: "I'm looking for events", href: "/events" },
       { label: "I want to partner with Adjudix", href: "/partners" },
-      { label: "Something else — contact us", href: "/contact" },
+      { label: "Something else — send us a query", href: applyHref("enquiry") },
     ],
   },
 ];

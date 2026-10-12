@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function LeadershipPage() {
   return (
@@ -52,7 +53,7 @@ export default function LeadershipPage() {
       <CtaBand
         title="Have a governance question?"
         description="Reach the Secretariat directly through our contact form."
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "Read Our Moral Code", href: "/about/moral-code" }}
       />
     </main>

@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
+import { applyHref } from "@/lib/apply-forms";
 
 const CATEGORIES = [
   { title: "Education Partners", description: "Law schools and universities referring students into our Training Institute.", href: "/partners/education" },
@@ -24,7 +25,7 @@ export default function PartnersPage() {
 
       <CtaBand
         title="Interested in partnering with Adjudix?"
-        primary={{ label: "Talk to Us", href: "/contact" }}
+        primary={{ label: "Become a Partner", href: applyHref("partnership") }}
       />
     </main>
   );

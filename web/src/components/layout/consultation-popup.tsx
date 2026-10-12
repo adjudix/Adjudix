@@ -5,6 +5,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { XIcon } from "lucide-react";
 import { LinkButton } from "@/components/ui/link-button";
 import { INTRO_DONE_EVENT } from "@/components/layout/page-loader";
+import { applyHref } from "@/lib/apply-forms";
 
 // Client brief (Oct 2026): pop-up offering the first professional
 // consultation free (₹4,999 struck to ₹0), with a countdown timer.
@@ -51,12 +52,18 @@ export function ConsultationPopup() {
   useEffect(() => {
     if (sessionStorage.getItem(SEEN_KEY)) return;
     let timer: number | undefined;
+    const show = () => {
+      // Never interrupt someone filling in a form; try again shortly.
+      if (window.location.pathname.startsWith("/apply") || window.location.pathname === "/contact") {
+        timer = window.setTimeout(show, 15_000);
+        return;
+      }
+      sessionStorage.setItem(SEEN_KEY, "1");
+      setRemaining(secondsLeft());
+      setOpen(true);
+    };
     const schedule = () => {
-      timer = window.setTimeout(() => {
-        sessionStorage.setItem(SEEN_KEY, "1");
-        setRemaining(secondsLeft());
-        setOpen(true);
-      }, SHOW_AFTER_INTRO_MS);
+      timer = window.setTimeout(show, SHOW_AFTER_INTRO_MS);
     };
     if (document.documentElement.dataset.introDone) schedule();
     else window.addEventListener(INTRO_DONE_EVENT, schedule, { once: true });
@@ -110,7 +117,7 @@ export function ConsultationPopup() {
           </div>
 
           <LinkButton
-            href="/contact"
+            href={applyHref("consultation")}
             size="lg"
             className="mt-6 w-full"
             onClick={() => setOpen(false)}

@@ -2,12 +2,16 @@
 
 import { useId, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export interface QueryField {
   name: string;
   label: string;
-  type?: "text" | "email" | "tel" | "textarea" | "select" | "file";
+  type?: "text" | "email" | "tel" | "textarea" | "select" | "file" | "date" | "month" | "url";
   required?: boolean;
+  placeholder?: string;
+  // Takes half the row from small screens up, so short fields sit in pairs.
+  half?: boolean;
   options?: string[];
   // A select's options in labelled groups (rendered as <optgroup>s).
   optionGroups?: { label: string; options: string[] }[];
@@ -30,21 +34,45 @@ export interface QueryFormProps {
   successTitle?: string;
   successBody?: string;
   messageLabel?: string;
+  messageRequired?: boolean;
+  // Leaves out the free-text message box.
+  noMessage?: boolean;
   // Adds a document upload after the message, labelled with this text.
   attachmentsLabel?: string;
+  organization?: "optional" | "required" | "hidden";
+  organizationLabel?: string;
+  // "either": email or phone, at least one. "email": email only (newsletters).
+  contact?: "either" | "email";
 }
 
 // Email and phone are each optional, but at least one is required
 // (client brief: "Either email or phone").
-const BASE_FIELDS: QueryField[] = [
-  { name: "name", label: "Full name", required: true },
-  { name: "organization", label: "Organization (optional)" },
-  { name: "email", label: "Email", type: "email" },
-  { name: "phone", label: "Phone", type: "tel" },
-];
+function baseFields(
+  organization: QueryFormProps["organization"],
+  organizationLabel: string | undefined,
+  contact: QueryFormProps["contact"],
+): QueryField[] {
+  // Name pairs with organization when there is one; otherwise it takes the
+  // full row so email and phone sit together beneath it.
+  const fields: QueryField[] = [{ name: "name", label: "Full name", required: true, half: organization !== "hidden" }];
+  if (organization !== "hidden") {
+    fields.push({
+      name: "organization",
+      label: organizationLabel ?? (organization === "required" ? "Organization" : "Organization (optional)"),
+      required: organization === "required",
+      half: true,
+    });
+  }
+  if (contact === "email") {
+    fields.push({ name: "email", label: "Email", type: "email", required: true });
+  } else {
+    fields.push({ name: "email", label: "Email", type: "email", half: true }, { name: "phone", label: "Phone", type: "tel", half: true });
+  }
+  return fields;
+}
 
 const controlClass =
-  "rounded-md border border-border bg-canvas px-4 py-2.5 font-body text-text outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+  "min-h-11 rounded-md border border-border bg-canvas px-4 py-2.5 font-body text-text outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
 function Control({
   field,
@@ -58,7 +86,16 @@ function Control({
   onSelect?: (name: string, value: string) => void;
 }) {
   if (field.type === "textarea") {
-    return <textarea id={id} name={field.name} required={field.required} rows={4} className={controlClass} />;
+    return (
+      <textarea
+        id={id}
+        name={field.name}
+        required={field.required}
+        placeholder={field.placeholder}
+        rows={4}
+        className={controlClass}
+      />
+    );
   }
   if (field.type === "select") {
     return (
@@ -109,6 +146,7 @@ function Control({
       type={field.type ?? "text"}
       inputMode={field.inputMode}
       required={field.required}
+      placeholder={field.placeholder}
       className={controlClass}
     />
   );
@@ -131,7 +169,12 @@ export function QueryForm({
   successTitle = "Received",
   successBody = "Thank you — a member of our team will be in touch shortly.",
   messageLabel = "Message",
+  messageRequired,
+  noMessage,
   attachmentsLabel,
+  organization = "optional",
+  organizationLabel,
+  contact = "either",
 }: QueryFormProps) {
   const formId = useId();
   const [submitted, setSubmitted] = useState(false);
@@ -141,9 +184,9 @@ export function QueryForm({
   const emailRef = useRef<HTMLInputElement | null>(null);
 
   const declaredFields: QueryField[] = [
-    ...BASE_FIELDS,
+    ...baseFields(organization, organizationLabel, contact),
     ...fields,
-    { name: "message", label: messageLabel, type: "textarea" },
+    ...(noMessage ? [] : [{ name: "message", label: messageLabel, type: "textarea" as const, required: messageRequired }]),
     ...(attachmentsLabel ? [{ name: "attachments", label: attachmentsLabel, type: "file" as const }] : []),
   ];
 
@@ -182,7 +225,7 @@ export function QueryForm({
     const data = new FormData(event.currentTarget);
     const email = String(data.get("email") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
-    if (!email && !phone) {
+    if (contact === "either" && !email && !phone) {
       setContactError(true);
       emailRef.current?.focus();
       return;
@@ -218,7 +261,7 @@ export function QueryForm({
   const contactHintId = `${formId}-contact-hint`;
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
       {/* Honeypot for bots; hidden from people and assistive tech. */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       {allFields.map((field) => {
@@ -226,7 +269,7 @@ export function QueryForm({
 
         if (field.group) {
           return (
-            <fieldset key={field.name} className="flex flex-col gap-1.5">
+            <fieldset key={field.name} className="flex flex-col gap-1.5 sm:col-span-2">
               <legend className="mb-1.5">
                 <Label field={field} />
               </legend>
@@ -252,9 +295,9 @@ export function QueryForm({
           );
         }
 
-        const isContact = field.name === "email" || field.name === "phone";
+        const isContact = contact === "either" && (field.name === "email" || field.name === "phone");
         return (
-          <div key={field.name} className="flex flex-col gap-1.5">
+          <div key={field.name} className={cn("flex flex-col gap-1.5", !field.half && "sm:col-span-2")}>
             <Label htmlFor={fieldId} field={field} />
             {isContact ? (
               <input
@@ -269,7 +312,7 @@ export function QueryForm({
             ) : (
               <Control field={field} id={fieldId} value={selected[field.name]} onSelect={onSelect} />
             )}
-            {field.name === "email" && (
+            {isContact && field.name === "email" && (
               <p id={contactHintId} className="text-left font-body text-xs text-text-muted">
                 Email <strong className="font-semibold">or</strong> phone — at least one is required.
               </p>
@@ -277,10 +320,10 @@ export function QueryForm({
           </div>
         );
       })}
-      <p role="alert" className="text-left font-body text-sm text-ember empty:hidden">
+      <p role="alert" className="text-left font-body text-sm text-ember empty:hidden sm:col-span-2">
         {contactError ? "Please enter either an email address or a phone number." : sendError}
       </p>
-      <Button type="submit" variant="primary" size="lg" loading={loading} className="mt-2 self-start">
+      <Button type="submit" variant="primary" size="lg" loading={loading} className="mt-2 justify-self-start sm:col-span-2">
         {submitLabel}
       </Button>
     </form>

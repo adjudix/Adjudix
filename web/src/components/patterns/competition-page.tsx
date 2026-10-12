@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export interface CompetitionPageProps {
   title: string;
@@ -45,7 +46,7 @@ export function CompetitionPage({ title, intro, format }: CompetitionPageProps) 
 
       <CtaBand
         title="Apply now, we will notify you"
-        primary={{ label: "Apply Now", href: "/contact" }}
+        primary={{ label: "Register Now", href: applyHref("competition", { competition: title }) }}
         secondary={{ label: "All Competitions", href: "/knowledge/competitions" }}
       />
     </main>

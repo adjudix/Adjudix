@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
 import { IDENTITY_NOTE, MEMBERS, PROFESSIONS } from "@/lib/members";
+import { applyHref } from "@/lib/apply-forms";
 
 // The panel is shown by profession (client brief): one common panel rather
 // than a separate roster per dispute type.
@@ -46,7 +47,7 @@ export default function PanelPage() {
       <CtaBand
         title="Apply to join our panel"
         description="Advocates, chartered accountants, company secretaries, and engineers of every discipline with relevant experience can apply."
-        primary={{ label: "Apply to the Panel", href: "/contact" }}
+        primary={{ label: "Apply to the Panel", href: applyHref("panel") }}
         secondary={{ label: "Our Esteemed Members", href: "/membership/directory" }}
       />
     </main>

@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
+import { applyHref } from "@/lib/apply-forms";
 
 const STEPS = [
   { title: "Written notice", description: "File a paper notice of arbitration or request for mediation with the Secretariat." },
@@ -29,7 +30,7 @@ export default function OfflineHandbookPage() {
       <CtaBand
         title="Prefer to file in person?"
         description="Contact the Secretariat directly to begin an offline filing."
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "Adjudix Code of ADR Procedure", href: "/dispute-resolution/rules/code-of-procedure" }}
       />
     </main>

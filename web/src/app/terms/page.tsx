@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
+import { applyHref } from "@/lib/apply-forms";
 
 const SECTIONS = [
   {
@@ -47,11 +48,13 @@ export default function TermsPage() {
             If you believe Adjudix, a panelist, or the ODR Platform has fallen short of the
             standards set out in our Moral Code of Principles or the Adjudix Code of ADR Procedure, submit a
             grievance through our{" "}
-            <Link href="/contact" className="text-primary hover:underline">
-              Contact Us
-            </Link>{" "}
-            form, selecting &quot;General Contact Query&quot; and describing the matter in
-            detail. The Secretariat reviews every grievance and responds directly.
+            <Link
+              href={applyHref("enquiry", { queryType: "Feedback or Grievance" })}
+              className="text-primary hover:underline"
+            >
+              grievance form
+            </Link>
+            , describing the matter in detail. The Secretariat reviews every grievance and responds directly.
           </p>
         </div>
       </section>

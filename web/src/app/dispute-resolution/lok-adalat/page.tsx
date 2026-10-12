@@ -1,4 +1,5 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function LokAdalatPage() {
   return (
@@ -51,7 +52,7 @@ export default function LokAdalatPage() {
         </section>
       }
       filingLabel="Check Eligibility"
-      filingHref="/contact"
+      filingHref={applyHref("lok-adalat")}
     />
   );
 }

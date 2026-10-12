@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function ResearchPage() {
   return (
@@ -26,7 +27,7 @@ export default function ResearchPage() {
 
       <CtaBand
         title="Interested in contributing research?"
-        primary={{ label: "Submit Now", href: "/contact" }}
+        primary={{ label: "Submit Now", href: applyHref("research") }}
         secondary={{ label: "Blogs & Articles", href: "/knowledge/blog" }}
       />
     </main>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Dispute resolution and assured implementation under one roof — arbitration, mediation, conciliation, Lok Adalat, emergency, hybrid, and corporate ADR.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children, modal }: LayoutProps<"/">) {
   return (
     /* the "light" class forces light mode regardless of OS preference while
        we're actively building — theme.css's dark media query is guarded
@@ -29,6 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
         <ConsultationPopup />
+        {/* Apply / enrol / request forms, opened over the current page. */}
+        {modal}
       </body>
     </html>
   );

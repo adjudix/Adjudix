@@ -122,11 +122,3 @@ export const COURSE_OPTIONS: Record<string, string[]> = {
     ...TRAINING_TRACKS.map((track) => `${track.title} (Student)`),
   ],
 };
-
-/** Link to the contact form with the enquiry type and course pre-selected. */
-export function enquiryHref(type: string, level?: string, course?: string): string {
-  const params = new URLSearchParams({ type });
-  if (level) params.set("level", level);
-  if (course) params.set("course", course);
-  return `/contact?${params.toString()}#enquiry`;
-}

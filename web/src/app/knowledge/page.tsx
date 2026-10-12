@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
+import { applyHref } from "@/lib/apply-forms";
 
 const SECTIONS = [
   {
@@ -37,7 +38,7 @@ export default function KnowledgePage() {
       <CtaBand
         title="Want new publications in your inbox?"
         description="Subscribe to be notified as we publish."
-        primary={{ label: "Subscribe", href: "/contact" }}
+        primary={{ label: "Subscribe", href: applyHref("subscribe") }}
         secondary={{ label: "Browse Competitions", href: "/knowledge/competitions" }}
       />
     </main>

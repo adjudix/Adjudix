@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { TRAINING_TRACKS } from "@/lib/training-tracks";
+import { applyHref } from "@/lib/apply-forms";
 
 export default function CalendarPage() {
   return (
@@ -30,7 +31,7 @@ export default function CalendarPage() {
 
       <CtaBand
         title="Apply for a course"
-        primary={{ label: "Apply Now", href: "/contact" }}
+        primary={{ label: "Apply Now", href: applyHref("course", { courseLevel: "Professional Course" }) }}
         secondary={{ label: "Browse Courses", href: "/training/courses" }}
       />
     </main>

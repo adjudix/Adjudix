@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 const POINTS = [
   {
@@ -43,7 +44,7 @@ export default function SecurityPage() {
 
       <CtaBand
         title="Questions about how your case is handled?"
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Contact Us", href: applyHref("enquiry") }}
         secondary={{ label: "Read Our Privacy Policy", href: "/privacy" }}
       />
     </main>

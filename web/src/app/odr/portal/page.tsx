@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { LinkButton } from "@/components/ui/link-button";
+import { applyHref } from "@/lib/apply-forms";
 
 const PORTALS = [
   {
@@ -32,7 +33,7 @@ export default function PortalPage() {
             <div key={portal.title} className="rounded-lg border border-border bg-surface p-6">
               <h2 className="font-heading text-lg font-semibold text-text">{portal.title}</h2>
               <p className="mt-2 font-body text-sm text-text-muted">{portal.description}</p>
-              <LinkButton variant="secondary" size="default" className="mt-4" href="/contact">
+              <LinkButton variant="secondary" size="default" className="mt-4" href={applyHref("enquiry")}>
                 Request Access
               </LinkButton>
             </div>

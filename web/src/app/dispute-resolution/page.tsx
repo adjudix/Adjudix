@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import { Reveal } from "@/components/ui/reveal";
+import { applyHref } from "@/lib/apply-forms";
 
 const SPECTRUM = [
   {
@@ -184,7 +185,7 @@ export default function DisputeResolutionPage() {
         title="Ready to start?"
         description="File a dispute online, or speak with our team about which mechanism fits your case."
         primary={{ label: "File a Dispute", href: "/odr/file" }}
-        secondary={{ label: "Talk to Us", href: "/contact" }}
+        secondary={{ label: "Free Consultation", href: applyHref("consultation") }}
       />
     </main>
   );

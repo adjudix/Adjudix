@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import Link from "next/link";
+import { applyHref } from "@/lib/apply-forms";
 
 const ROWS = [
   {
@@ -120,7 +121,7 @@ export default function AboutPage() {
         title="See who sits on our panel"
         description="Every arbitrator, conciliator, and mediator is vetted before appointment."
         primary={{ label: "View Our Panel", href: "/panel" }}
-        secondary={{ label: "Contact Us", href: "/contact" }}
+        secondary={{ label: "Contact Us", href: applyHref("enquiry") }}
       />
     </main>
   );

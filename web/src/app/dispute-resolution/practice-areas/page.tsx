@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
+import { applyHref } from "@/lib/apply-forms";
 
 const CATEGORIES = [
   { title: "Debt Recovery & Financial Claims", description: "Unpaid invoices, loan defaults, and disputed accounts.", href: "/dispute-resolution/practice-areas/debt-recovery" },
@@ -33,7 +34,7 @@ export default function PracticeAreasPage() {
       <CtaBand
         title="Not sure which category fits?"
         description="Tell us about your dispute and we'll route it to the right practice area."
-        primary={{ label: "Contact Us", href: "/contact" }}
+        primary={{ label: "Book a Free Consultation", href: applyHref("consultation") }}
         secondary={{ label: "File a Dispute", href: "/odr/file" }}
       />
     </main>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
+import { applyHref } from "@/lib/apply-forms";
 
 const BENEFITS = [
   {
@@ -65,7 +66,7 @@ export default function CorporatePage() {
       <CtaBand
         title="Set up a corporate relationship"
         description="Talk to our team about clause language, panel access, and pricing for your business."
-        primary={{ label: "Talk to Us", href: "/contact" }}
+        primary={{ label: "Talk to Us", href: applyHref("corporate") }}
         secondary={{ label: "Clause Drafting", href: "/dispute-resolution/clause-drafting" }}
       />
     </main>

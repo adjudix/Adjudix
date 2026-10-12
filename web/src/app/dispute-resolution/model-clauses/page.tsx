@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 const CLAUSES = [
   {
@@ -45,7 +46,7 @@ export default function ModelClausesPage() {
       <CtaBand
         title="Need clause language tailored to your contract?"
         primary={{ label: "Contract & Clause Drafting", href: "/dispute-resolution/clause-drafting" }}
-        secondary={{ label: "Talk to Us", href: "/contact" }}
+        secondary={{ label: "Get a Clause Drafted", href: applyHref("drafting", { service: "An ADR clause only" }) }}
       />
     </main>
   );

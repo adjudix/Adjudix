@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
+import { applyHref } from "@/lib/apply-forms";
 
 const STEPS = [
   { title: "Tell us your case", description: "Describe the dispute you and the other party are already resolving yourselves." },
@@ -25,7 +26,7 @@ export default function AdHocPage() {
       <CtaBand
         title="Need a neutral appointed?"
         description="Tell us about your case and the kind of appointment you need."
-        primary={{ label: "Request an Appointment", href: "/contact" }}
+        primary={{ label: "Request an Appointment", href: applyHref("ad-hoc") }}
         secondary={{ label: "View Our Panel", href: "/panel" }}
       />
     </main>

@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
+import { applyHref } from "@/lib/apply-forms";
 
 const STEPS = [
   { title: "Share your contract", description: "Send us the commercial contract or template you want to protect." },
@@ -25,7 +26,7 @@ export default function ClauseDraftingPage() {
       <CtaBand
         title="Get your contract reviewed"
         description="Start with our free model clauses, or request tailored language for a specific agreement."
-        primary={{ label: "Talk to Us", href: "/contact" }}
+        primary={{ label: "Request a Quote", href: applyHref("drafting") }}
         secondary={{ label: "See Model Clauses", href: "/dispute-resolution/model-clauses" }}
       />
     </main>

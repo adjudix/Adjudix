@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { FlipStack } from "@/components/ui/flip-stack";
 import { AudienceFinder } from "@/components/layout/audience-finder";
 import { CODE_EDITIONS } from "@/lib/code-editions";
+import { applyHref } from "@/lib/apply-forms";
 
 const PILLARS = [
   {
@@ -506,7 +507,7 @@ export default function Home() {
           </h2>
           <p className="font-body text-text-muted max-w-sm">
             Can&apos;t find what you&apos;re looking for?{" "}
-            <Link href="/contact" className="text-primary hover:underline">
+            <Link href={applyHref("enquiry")} className="text-primary hover:underline">
               Contact the registry
             </Link>{" "}
             directly.

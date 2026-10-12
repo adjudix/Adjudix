@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
+import { applyHref } from "@/lib/apply-forms";
 
 export interface PartnerCategoryPageProps {
   title: string;
@@ -45,7 +46,7 @@ export function PartnerCategoryPage({ title, intro, benefits, status }: PartnerC
 
       <CtaBand
         title={`Become a ${title}`}
-        primary={{ label: "Talk to Us", href: "/contact" }}
+        primary={{ label: "Become a Partner", href: applyHref("partnership", { partnerType: title.replace(/s$/, "") }) }}
         secondary={{ label: "All Partner Categories", href: "/partners" }}
       />
     </main>
