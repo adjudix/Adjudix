@@ -53,6 +53,10 @@ export async function POST(request: Request) {
     }
   }
 
+  // The same forms run on adjudixadr.in and adjudixadr.com; say which one.
+  const site = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  if (site) rows.push(["Submitted from", site]);
+
   if (files.length > MAX_FILES) return error(`Please attach at most ${MAX_FILES} documents.`, 400);
   if (files.some((file) => !ALLOWED_EXTENSIONS.test(file.name))) {
     return error("Documents must be PDF, Word, JPG, or PNG files.", 400);
@@ -62,7 +66,7 @@ export async function POST(request: Request) {
   }
 
   if (!mailConfigured()) {
-    console.error("[enquiry] SMTP is not configured — set SMTP_USER and SMTP_PASS.");
+    console.error("[enquiry] Email is not configured — set BREVO_API_KEY.");
     return error(`Online submissions are temporarily unavailable. Please email ${SECRETARIAT_EMAIL}.`, 503);
   }
 
