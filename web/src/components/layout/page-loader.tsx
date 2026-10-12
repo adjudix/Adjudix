@@ -1,19 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
-type Phase = "hidden" | "appear" | "handoff" | "done";
+type Phase = "hidden" | "appear" | "waiting" | "handoff" | "done";
+
+/** Fired on window (and marked on <html>) once the intro is out of the way. */
+export const INTRO_DONE_EVENT = "adjudix:intro-done";
 
 // The reel is 5.875s. The fallback fires a little after that in case the
 // video's "ended" event never arrives (autoplay blocked, load failure) —
-// normally the handoff is triggered by playback actually finishing, not by
-// this guess.
+// normally the scroll prompt is triggered by playback actually finishing,
+// not by this guess.
 const REEL_DURATION_MS = 5875;
 const FALLBACK_MS = REEL_DURATION_MS + 400;
 
 /**
  * One-time intro: the client's own animated logo reel plays centered, full
- * length, then hands off to its real position in the header top bar —
+ * length, then holds on its last frame with a prompt to scroll. The
+ * visitor's first scroll (or swipe, key press, or tap on the prompt) hands
+ * the logo off to its real position in the header top bar —
  * moved and scaled uniformly (never stretched to fit the header lockup's
  * different aspect ratio) while fading out. Runs once per full page load —
  * Next's App Router keeps the root layout mounted across client-side
@@ -25,6 +31,7 @@ export function PageLoader() {
   const logoRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const handoffFiredRef = useRef(false);
+  const reelEndedRef = useRef(false);
   const triggerHandoffRef = useRef<() => void>(() => {});
   const postHandoffTimersRef = useRef<number[]>([]);
 
@@ -89,26 +96,87 @@ export function PageLoader() {
 
     const timers = [
       window.setTimeout(() => setPhase("appear"), 100),
-      window.setTimeout(() => triggerHandoffRef.current(), FALLBACK_MS),
+      window.setTimeout(endReel, FALLBACK_MS),
     ];
 
     return () => timers.forEach(window.clearTimeout);
   }, []);
 
+  useEffect(() => {
+    if (phase !== "done") return;
+    document.documentElement.dataset.introDone = "true";
+    window.dispatchEvent(new Event(INTRO_DONE_EVENT));
+  }, [phase]);
+
+  // While the intro is up the page underneath must not scroll; once the reel
+  // has ended, the visitor's first scroll gesture is what moves the logo up.
+  useEffect(() => {
+    if (phase === "done") return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    return () => {
+      root.style.overflow = previous;
+    };
+  }, [phase === "done"]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (phase !== "waiting") return;
+    const go = () => triggerHandoffRef.current();
+    let touchY: number | null = null;
+
+    const onWheel = (event: WheelEvent) => {
+      if (event.deltaY > 0) go();
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (["ArrowDown", "PageDown", " ", "End", "Enter"].includes(event.key)) {
+        event.preventDefault();
+        go();
+      }
+    };
+    const onTouchStart = (event: TouchEvent) => {
+      touchY = event.touches[0]?.clientY ?? null;
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      const y = event.touches[0]?.clientY;
+      // A finger moving up the screen is a scroll down the page.
+      if (touchY !== null && y !== undefined && touchY - y > 24) go();
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [phase]);
+
+  // Fires once, whichever comes first: the reel finishing or the fallback.
+  function endReel() {
+    if (reelEndedRef.current) return;
+    reelEndedRef.current = true;
+    setPhase((current) => (current === "handoff" || current === "done" ? current : "waiting"));
+  }
+
   if (phase === "done") return null;
 
   const isHidden = phase === "hidden";
   const inHandoff = phase === "handoff";
+  const waiting = phase === "waiting";
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-canvas transition-opacity duration-1000 ${
+      className={`fixed inset-0 z-[100] flex touch-none items-center justify-center overflow-hidden bg-canvas transition-opacity duration-1000 ${
         inHandoff ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
-      aria-hidden="true"
     >
       <div
         ref={logoRef}
+        aria-hidden="true"
         className={`transition-all duration-1200 ease-in-out ${
           isHidden ? "scale-95 opacity-0" : inHandoff ? "opacity-0" : "scale-100 opacity-100"
         }`}
@@ -136,10 +204,27 @@ export function PageLoader() {
           autoPlay
           muted
           playsInline
-          onEnded={() => triggerHandoffRef.current()}
+          onEnded={endReel}
           onError={(e) => console.error("[PageLoader] video failed to load", e.currentTarget.error)}
         />
       </div>
+
+      {/* Appears once the reel has finished; the page waits for the visitor. */}
+      <button
+        type="button"
+        onClick={() => triggerHandoffRef.current()}
+        tabIndex={waiting ? 0 : -1}
+        aria-hidden={!waiting}
+        className={`absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 rounded-full px-5 py-3 text-muted-foreground transition-all duration-700 ease-out hover:text-primary focus-visible:outline-2 focus-visible:outline-primary md:bottom-14 ${
+          waiting ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        <span className="font-mono text-[0.7rem] font-semibold tracking-[0.3em] uppercase">Scroll to explore</span>
+        <span className="flex h-9 w-6 justify-center rounded-full border-2 border-current pt-1.5" aria-hidden="true">
+          <span className="h-2 w-1 animate-bounce rounded-full bg-current" />
+        </span>
+        <ChevronDown className="size-4 animate-bounce text-primary" aria-hidden="true" />
+      </button>
     </div>
   );
 }

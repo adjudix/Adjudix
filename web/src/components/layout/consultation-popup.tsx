@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import { XIcon } from "lucide-react";
 import { LinkButton } from "@/components/ui/link-button";
+import { INTRO_DONE_EVENT } from "@/components/layout/page-loader";
 
 // Client brief (Oct 2026): pop-up offering the first professional
 // consultation free (₹4,999 struck to ₹0), with a countdown timer.
-// Shown once per browser session, after the intro loader has finished.
-const SHOW_AFTER_MS = 12_000;
+// Shown once per browser session, a few seconds after the intro loader has
+// finished — the intro now waits for the visitor to scroll, so the delay
+// counts from its end rather than from page load.
+const SHOW_AFTER_INTRO_MS = 4_000;
 const SEEN_KEY = "adjudix-consultation-popup-seen";
 
 // The offer window ends at midnight after an irregular 3–5 day cycle, so the
@@ -47,12 +50,20 @@ export function ConsultationPopup() {
 
   useEffect(() => {
     if (sessionStorage.getItem(SEEN_KEY)) return;
-    const timer = window.setTimeout(() => {
-      sessionStorage.setItem(SEEN_KEY, "1");
-      setRemaining(secondsLeft());
-      setOpen(true);
-    }, SHOW_AFTER_MS);
-    return () => window.clearTimeout(timer);
+    let timer: number | undefined;
+    const schedule = () => {
+      timer = window.setTimeout(() => {
+        sessionStorage.setItem(SEEN_KEY, "1");
+        setRemaining(secondsLeft());
+        setOpen(true);
+      }, SHOW_AFTER_INTRO_MS);
+    };
+    if (document.documentElement.dataset.introDone) schedule();
+    else window.addEventListener(INTRO_DONE_EVENT, schedule, { once: true });
+    return () => {
+      window.removeEventListener(INTRO_DONE_EVENT, schedule);
+      window.clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
