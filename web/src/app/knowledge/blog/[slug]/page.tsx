@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_NAME } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-url";
+import { JsonLd } from "@/components/seo/json-ld";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/page-header";
@@ -38,6 +40,24 @@ export default async function ArticlePage({ params }: PageProps<"/knowledge/blog
         intro={article.summary}
       />
 
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.summary,
+          articleSection: article.category,
+          url: `${SITE_URL}/knowledge/blog/${article.slug}`,
+          mainEntityOfPage: `${SITE_URL}/knowledge/blog/${article.slug}`,
+          author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+          publisher: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/images/logo-mini.png` },
+          },
+          inLanguage: "en-IN",
+        }}
+      />
       <article className="mx-auto max-w-3xl px-6 py-16">
         {article.sections.map((section, i) => (
           <section key={section.heading ?? i} className="mt-10 first:mt-0">

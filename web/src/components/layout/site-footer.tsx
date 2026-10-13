@@ -53,9 +53,9 @@ export function SiteFooter() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           {FOOTER_GROUPS.map((group) => (
             <nav key={group.title} aria-label={group.title}>
-              <h3 className="font-heading text-sm font-semibold mb-3">
+              <h2 className="font-heading text-sm font-semibold mb-3">
                 {group.title}
-              </h3>
+              </h2>
               <ul className="flex flex-col gap-2">
                 {group.links.map((link) => (
                   <li key={link.label}>
@@ -77,8 +77,8 @@ export function SiteFooter() {
             <Image
               src="/images/logo-horizontal.png"
               alt="Adjudix Dispute Resolution Institute — Dispute Resolved & Implemented at your Doorstep"
-              width={1876}
-              height={434}
+              width={277}
+              height={64}
               className="h-14 w-auto md:h-16"
             />
           </div>
@@ -98,8 +98,8 @@ export function SiteFooter() {
                 <Image
                   src="/images/kapivic-logo.png"
                   alt=""
-                  width={545}
-                  height={569}
+                  width={16}
+                  height={16}
                   className="size-4 rounded-sm bg-white p-px"
                 />
                 Built by Kapivic — get one like this →

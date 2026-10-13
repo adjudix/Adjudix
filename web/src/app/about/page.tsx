@@ -121,6 +121,10 @@ export default function AboutPage() {
           <Link href="/about/moral-code" className="text-primary hover:underline">
             Moral Code of Principles &amp; Doctrines
           </Link>
+          , and each year&apos;s work is summarised in our{" "}
+          <Link href="/about/annual-reports" className="text-primary hover:underline">
+            Annual Reports
+          </Link>
           .
         </p>
       </section>

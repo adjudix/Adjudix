@@ -4,7 +4,7 @@ import { buildSearchIndex } from "@/lib/search-index";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { PageLoader } from "@/components/layout/page-loader";
 import { ConsultationPopup } from "@/components/layout/consultation-popup";
-import { SITE_NAME } from "@/lib/seo";
+import { SHARE_IMAGE, SITE_NAME } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -23,8 +23,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: SITE_NAME,
     description: DESCRIPTION,
+    images: [SHARE_IMAGE],
   },
-  twitter: { card: "summary", title: SITE_NAME, description: DESCRIPTION },
+  twitter: { card: "summary_large_image", title: SITE_NAME, description: DESCRIPTION, images: [SHARE_IMAGE.url] },
   // Search Console ownership: set GOOGLE_SITE_VERIFICATION in Vercel to the
   // content="…" value of the HTML-tag method (not needed for DNS verification).
   verification: process.env.GOOGLE_SITE_VERIFICATION
@@ -44,6 +45,13 @@ export default function RootLayout({ children, modal }: LayoutProps<"/">) {
           data-gr-* attributes onto <body> before React hydrates, which is a
           known false-positive hydration mismatch, not an app bug. */}
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {/* Without JavaScript the intro can't be dismissed and the scroll-reveal
+            never fires: skip the one and show everything for the other. */}
+        <noscript>
+          <style>
+            {"[data-intro]{display:none!important}html{overflow:auto!important}[data-reveal]{opacity:1!important;transform:none!important}"}
+          </style>
+        </noscript>
         <PageLoader />
         <SiteHeader searchItems={buildSearchIndex()} />
         <div className="flex flex-1 flex-col">{children}</div>

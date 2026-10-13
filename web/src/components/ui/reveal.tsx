@@ -44,6 +44,7 @@ export function Reveal({ children, className = "", delay = 0, direction = "up" }
   return (
     <div
       ref={ref}
+      data-reveal=""
       // motion-reduce: forces the visible end-state via CSS regardless of JS
       // visibility, so a reduced-motion viewer never waits on the observer.
       className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${

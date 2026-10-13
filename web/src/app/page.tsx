@@ -10,13 +10,14 @@ import { FlipStack } from "@/components/ui/flip-stack";
 import { AudienceFinder } from "@/components/layout/audience-finder";
 import { CODE_EDITIONS } from "@/lib/code-editions";
 import { applyHref } from "@/lib/apply-forms";
-import { SITE_NAME } from "@/lib/seo";
+import { SHARE_IMAGE, SITE_NAME } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site-url";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} — Arbitration, Mediation & ODR in India` },
   alternates: { canonical: "/" },
-  openGraph: { url: "/", siteName: SITE_NAME, locale: "en_IN", type: "website" },
+  openGraph: { url: "/", siteName: SITE_NAME, locale: "en_IN", type: "website", images: [SHARE_IMAGE] },
 };
 
 // Tells Google who the site belongs to (name, logo) for the knowledge panel
@@ -30,6 +31,13 @@ const ORGANIZATION_JSON_LD = {
       alternateName: ["Adjudix", "ADR-i"],
       url: SITE_URL,
       logo: `${SITE_URL}/images/logo-mini.png`,
+      email: "secretariat@adjudixadr.com",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "support@adjudixadr.com",
+        url: `${SITE_URL}/contact`,
+      },
     },
     { "@type": "WebSite", name: SITE_NAME, alternateName: "Adjudix", url: SITE_URL },
   ],
@@ -197,10 +205,7 @@ const FAQ_ITEMS = [
 export default function Home() {
   return (
     <main className="bg-canvas flex-1">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
-      />
+      <JsonLd data={ORGANIZATION_JSON_LD} />
       {/* Hero — Pattern D: photo shown whole, message in a floating card */}
       <section className="relative">
         <div className="relative h-[420px] md:h-[480px] w-full">

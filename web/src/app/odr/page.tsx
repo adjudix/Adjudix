@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { NumberedList } from "@/components/ui/numbered-list";
@@ -78,7 +79,10 @@ export default function OdrPage() {
             Every case filed through the platform is administered under the Arbitration and
             Conciliation Act, 1996, or the Mediation Act, 2023, depending on the mechanism chosen —
             not a private process with no statutory footing. See{" "}
-            <span className="font-medium text-text">Security &amp; Enforceability</span> for the
+            <Link href="/odr/security" className="font-medium text-primary hover:underline">
+              Security &amp; Enforceability
+            </Link>{" "}
+            for the
             full legal and data-security basis.
           </p>
         </Reveal>

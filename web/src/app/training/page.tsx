@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
@@ -30,7 +31,12 @@ export default function TrainingPage() {
           <p className="mt-4 font-body text-text-muted">
             Training at Adjudix isn&apos;t a standalone certificate mill — it&apos;s connected
             directly to panel eligibility and membership standing. What you learn in a track is
-            what a client is actually trusting when they see your credential.
+            what a client is actually trusting when they see your credential. Every track is
+            taught by our{" "}
+            <Link href="/training/faculty" className="text-primary hover:underline">
+              faculty
+            </Link>{" "}
+            of practising arbitrators, mediators, and conciliators.
           </p>
         </Reveal>
       </section>

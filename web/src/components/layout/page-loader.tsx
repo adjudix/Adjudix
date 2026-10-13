@@ -171,6 +171,7 @@ export function PageLoader() {
 
   return (
     <div
+      data-intro=""
       className={`fixed inset-0 z-[100] flex touch-none items-center justify-center overflow-hidden bg-canvas transition-opacity duration-1000 ${
         inHandoff ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
@@ -198,7 +199,7 @@ export function PageLoader() {
             if (el) el.muted = true;
           }}
           src="/video/logo-loop.mp4"
-          poster="/images/logo-full.png"
+          poster="/images/logo-full.webp"
           width={1376}
           height={768}
           className="h-60 w-auto md:h-80"
@@ -216,6 +217,8 @@ export function PageLoader() {
           alt=""
           width={1376}
           height={768}
+          // Drawn at the reel's size (h-60 / md:h-80), not full resolution.
+          sizes="(min-width: 768px) 573px, 430px"
           loading="eager"
           className={`absolute inset-0 h-full w-full transition-opacity duration-500 ease-out ${
             waiting || inHandoff ? "opacity-100" : "opacity-0"

@@ -86,7 +86,7 @@ export function SiteSearch({ items, className }: { items: SearchItem[]; classNam
         <div className="mx-auto w-full max-w-3xl pt-5 pr-14 pb-4 pl-4 md:px-6 md:pt-8">
           <SheetTitle className="sr-only">Search the site</SheetTitle>
           <div className="flex items-center gap-3">
-            <Image src="/images/logo-mini.png" alt="" width={512} height={512} className="size-11 shrink-0" />
+            <Image src="/images/logo-mini.png" alt="" width={44} height={44} className="size-11 shrink-0" />
             <div className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-surface px-4 focus-within:border-primary">
               <Search className="size-5 shrink-0 text-primary" aria-hidden="true" />
               <input

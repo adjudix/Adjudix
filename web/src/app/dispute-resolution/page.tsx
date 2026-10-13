@@ -142,6 +142,15 @@ export default function DisputeResolutionPage() {
           <div className="mt-8">
             <CardGrid items={MECHANISMS} />
           </div>
+          <p className="mt-8 font-body text-sm text-text-muted">
+            Every mechanism is available for{" "}
+            <Link href="/dispute-resolution/domestic" className="text-primary hover:underline">domestic</Link>{" "}
+            and{" "}
+            <Link href="/dispute-resolution/international" className="text-primary hover:underline">international</Link>{" "}
+            disputes, conducted{" "}
+            <Link href="/odr" className="text-primary hover:underline">online</Link>,{" "}
+            <Link href="/dispute-resolution/offline" className="text-primary hover:underline">in person</Link>, or as a hybrid of both.
+          </p>
         </div>
       </section>
 

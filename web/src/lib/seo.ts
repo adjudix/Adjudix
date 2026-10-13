@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 
 export const SITE_NAME = "Adjudix Dispute Resolution Institute";
 
+// Link-preview image (WhatsApp, LinkedIn, X, …) for every page.
+export const SHARE_IMAGE = {
+  url: "/images/og-default.png",
+  width: 1200,
+  height: 630,
+  alt: SITE_NAME,
+};
+
 // Per-page metadata: its own title and description (Search Console flags
 // pages that share them as duplicates), a canonical URL so Google never
 // splits a page across ?query variants, and matching social-share tags.
@@ -26,7 +34,13 @@ export function pageMetadata({
       url: path,
       title: `${title} | ${SITE_NAME}`,
       description,
+      images: [SHARE_IMAGE],
     },
-    twitter: { card: "summary", title: `${title} | ${SITE_NAME}`, description },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      images: [SHARE_IMAGE.url],
+    },
   };
 }

@@ -114,8 +114,8 @@ export default function CreditsPage() {
               <Image
                 src="/images/kapivic-logo.png"
                 alt="Kapivic"
-                width={545}
-                height={569}
+                width={44}
+                height={44}
                 className="size-11 rounded-md bg-white p-1"
               />
               <div>

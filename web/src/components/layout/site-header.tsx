@@ -166,8 +166,8 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
               id="site-logo-target"
               src="/images/logo-horizontal.png"
               alt="Adjudix Dispute Resolution Institute"
-              width={1876}
-              height={434}
+              width={242}
+              height={56}
               priority
               className="h-14 w-auto"
             />
@@ -283,8 +283,8 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
               id="site-logo-target-mobile"
               src="/images/logo-mini.png"
               alt="Adjudix"
-              width={512}
-              height={512}
+              width={36}
+              height={36}
               priority
               className="h-9 w-auto"
             />
@@ -312,8 +312,8 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                     <Image
                       src="/images/logo-mini.png"
                       alt=""
-                      width={512}
-                      height={512}
+                      width={28}
+                      height={28}
                       className="h-7 w-auto"
                     />
                     Adjudix

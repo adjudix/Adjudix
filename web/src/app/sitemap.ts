@@ -27,10 +27,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...CODE_EDITIONS.map((edition) => `/dispute-resolution/rules/code-of-procedure/${edition.year}`),
     ...ARTICLES.map((article) => `/knowledge/blog/${article.slug}`),
   ];
-  const lastModified = new Date();
+  // No lastModified: stamping every page with the build date would be
+  // inaccurate, and Google stops trusting a sitemap's dates once it notices.
   return routes.sort().map((route) => ({
     url: `${SITE_URL}${route}`,
-    lastModified,
     priority: route === "" ? 1 : route.split("/").length === 2 ? 0.8 : 0.6,
   }));
 }

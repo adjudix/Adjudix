@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { JsonLd } from "@/components/seo/json-ld";
+import { SITE_URL } from "@/lib/site-url";
 
 export interface Crumb {
   label: string;
@@ -15,7 +17,10 @@ export interface PageHeaderProps {
   image?: { src: string; alt: string };
 }
 
-function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Crumb[] }) {
+function Breadcrumbs({ breadcrumbs, title }: { breadcrumbs: Crumb[]; title: string }) {
+  // BreadcrumbList for search results: Home, each linked crumb, then this
+  // page (by its heading, without a URL, as schema.org allows for the last item).
+  const trail = [{ label: "Home", href: "/" }, ...breadcrumbs.filter((crumb) => crumb.href), { label: title }];
   return (
     <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1.5 font-body text-xs text-text-muted">
       <Link href="/" className="hover:text-text">
@@ -33,6 +38,18 @@ function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Crumb[] }) {
           )}
         </span>
       ))}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: trail.map((crumb, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: crumb.label,
+            ...(crumb.href && { item: `${SITE_URL}${crumb.href === "/" ? "" : crumb.href}` }),
+          })),
+        }}
+      />
     </nav>
   );
 }
@@ -43,7 +60,7 @@ export function PageHeader({ eyebrow, title, intro, breadcrumbs, image }: PageHe
       <section className="border-b border-border bg-surface px-6 py-14 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
           <Reveal>
-            {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+            {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} title={title} />}
             {eyebrow && (
               <span className="font-mono text-xs tracking-widest uppercase text-primary">
                 {eyebrow}
@@ -74,7 +91,7 @@ export function PageHeader({ eyebrow, title, intro, breadcrumbs, image }: PageHe
   return (
     <section className="border-b border-border bg-surface px-6 py-14 md:py-16">
       <Reveal className="mx-auto max-w-4xl">
-        {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+        {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} title={title} />}
         {eyebrow && (
           <span className="font-mono text-xs tracking-widest uppercase text-primary">
             {eyebrow}
