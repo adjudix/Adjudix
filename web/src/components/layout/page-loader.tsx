@@ -10,11 +10,11 @@ type Phase = "hidden" | "appear" | "waiting" | "handoff" | "done";
 /** Fired on window (and marked on <html>) once the intro is out of the way. */
 export const INTRO_DONE_EVENT = "adjudix:intro-done";
 
-// The reel is 5.375s. The fallback fires a little after that in case the
+// The reel is 4.375s (the first second of the client's clip is trimmed off). The fallback fires a little after that in case the
 // video's "ended" event never arrives (autoplay blocked, load failure) —
 // normally the scroll prompt is triggered by playback actually finishing,
 // not by this guess.
-const REEL_DURATION_MS = 5375;
+const REEL_DURATION_MS = 4375;
 const FALLBACK_MS = REEL_DURATION_MS + 400;
 
 /**
@@ -228,9 +228,9 @@ function IntroReel() {
           onEnded={endReel}
           onError={(e) => console.error("[PageLoader] video failed to load", e.currentTarget.error)}
         />
-        {/* The reel's last frame is still mid-sway; its first frame is the
-            logo at rest. Fade that frame in over the end so the intro holds
-            on the original logo while it waits for the visitor. */}
+        {/* The reel's last frame is still mid-sway; the client's original
+            clip opens on the logo at rest (this image). Fade it in over the
+            end so the intro holds on the original logo while it waits. */}
         <Image
           src="/images/logo-loader-rest.webp"
           alt=""
