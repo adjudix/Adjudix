@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata, SITE_NAME } from "@/lib/seo";
+import { pageMetadata, SHARE_IMAGE, SITE_NAME } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site-url";
 import { JsonLd } from "@/components/seo/json-ld";
 import Link from "next/link";
@@ -49,6 +49,7 @@ export default async function ArticlePage({ params }: PageProps<"/knowledge/blog
           articleSection: article.category,
           url: `${SITE_URL}/knowledge/blog/${article.slug}`,
           mainEntityOfPage: `${SITE_URL}/knowledge/blog/${article.slug}`,
+          image: `${SITE_URL}${SHARE_IMAGE.url}`,
           author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
           publisher: {
             "@type": "Organization",
