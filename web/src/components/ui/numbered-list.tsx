@@ -24,8 +24,8 @@ export function NumberedList({ items, columns = 3 }: NumberedListProps) {
         const number = String(index + 1).padStart(2, "0");
         const inner = (
           <>
-            <span className="font-mono text-xs tracking-widest text-primary">{number}</span>
-            <h3 className="mt-3 text-lg font-semibold text-text group-hover:text-primary">
+            <span className="font-mono text-xs tracking-widest text-primary-ink">{number}</span>
+            <h3 className="mt-3 text-lg font-semibold text-text group-hover:text-primary-ink">
               {item.title}
             </h3>
             <p className="mt-2 font-body text-sm text-text-muted">{item.description}</p>

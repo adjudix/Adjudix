@@ -26,7 +26,7 @@ export function ComparisonTable({
             <th className="py-3 pr-4 font-body text-sm font-semibold text-text-muted">
               Criterion
             </th>
-            <th className="py-3 pr-4 font-body text-sm font-semibold text-primary">
+            <th className="py-3 pr-4 font-body text-sm font-semibold text-primary-ink">
               {adjudixLabel}
             </th>
             <th className="py-3 font-body text-sm font-semibold text-text-muted">{otherLabel}</th>
@@ -44,7 +44,7 @@ export function ComparisonTable({
               <td className="py-4 pr-4 font-body text-sm text-text">
                 <span className="flex gap-2">
                   <CheckCircle2
-                    className="size-4 shrink-0 mt-0.5 text-primary"
+                    className="size-4 shrink-0 mt-0.5 text-primary-ink"
                     aria-hidden="true"
                   />
                   {row.adjudix}

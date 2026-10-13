@@ -56,10 +56,10 @@ export default function CodeOfProcedurePage() {
               className="group flex items-start justify-between gap-6 py-6"
             >
               <div>
-                <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">{section.title}</h2>
+                <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary-ink">{section.title}</h2>
                 <p className="mt-2 font-body text-sm text-text-muted">{section.body}</p>
               </div>
-              <span className="mt-1 shrink-0 font-body text-sm font-medium text-primary" aria-hidden="true">
+              <span className="mt-1 shrink-0 font-body text-sm font-medium text-primary-ink" aria-hidden="true">
                 Read &rarr;
               </span>
             </Link>
@@ -67,7 +67,7 @@ export default function CodeOfProcedurePage() {
         </div>
         <p className="mt-8 font-body text-sm text-text-muted">
           Every edition opens with a Preamble of{" "}
-          <Link href="/about/moral-code" className="font-medium text-primary hover:underline">
+          <Link href="/about/moral-code" className="font-medium text-primary-ink hover:underline">
             Moral Principles
           </Link>{" "}
           that bind the Institute and every neutral acting under the Code.
@@ -96,7 +96,7 @@ export default function CodeOfProcedurePage() {
                     <strong className="font-medium text-text">{version.edition}.</strong>{" "}
                     {version.summary}
                   </p>
-                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 font-body text-sm font-medium text-primary">
+                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 font-body text-sm font-medium text-primary-ink">
                     <Link href={READ(version.year)} className="hover:underline">
                       Read online &rarr;
                     </Link>

@@ -65,11 +65,11 @@ export default function CertificationPage() {
           </h2>
           <p className="mt-3 font-body text-text-muted">
             Completing a track is the entry route into{" "}
-            <Link href="/panel" className="text-primary hover:underline">
+            <Link href="/panel" className="text-primary-ink hover:underline">
               Professional Panel
             </Link>{" "}
             eligibility and{" "}
-            <Link href="/membership" className="text-primary hover:underline">
+            <Link href="/membership" className="text-primary-ink hover:underline">
               Associate membership
             </Link>
             . Certification alone doesn&apos;t guarantee panel appointment — panelists are also

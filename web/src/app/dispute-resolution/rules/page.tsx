@@ -62,9 +62,9 @@ export default function RulesHubPage() {
             <Link
               key={doc.title}
               href={doc.href}
-              className="group flex flex-col gap-1 py-6 transition-colors hover:text-primary"
+              className="group flex flex-col gap-1 py-6 transition-colors hover:text-primary-ink"
             >
-              <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">
+              <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary-ink">
                 {doc.title}
               </h2>
               <p className="font-body text-sm text-text-muted">{doc.description}</p>

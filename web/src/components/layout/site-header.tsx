@@ -131,10 +131,10 @@ const SECONDARY_LINKS: NavLink[] = [
 ];
 
 const navLinkClass =
-  "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2.5 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary data-popup-open:text-primary data-open:text-primary rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
+  "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2.5 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary-ink data-popup-open:text-primary-ink data-open:text-primary-ink rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
 
 const dropdownLinkClass =
-  "flex items-center justify-between gap-3 px-3 py-2 text-sm text-text hover:bg-surface hover:text-primary rounded-md";
+  "flex items-center justify-between gap-3 px-3 py-2 text-sm text-text hover:bg-surface hover:text-primary-ink rounded-md";
 
 function Stars({ count }: { count: number }) {
   return (

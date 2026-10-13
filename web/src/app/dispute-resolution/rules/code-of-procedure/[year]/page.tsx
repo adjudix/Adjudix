@@ -39,7 +39,7 @@ function withSectionLinks(text: string, valid: Set<string>): ReactNode[] {
     if (!valid.has(match[1])) continue;
     out.push(text.slice(last, match.index));
     out.push(
-      <a key={match.index} href={`#${sectionId(match[1])}`} className="font-medium text-primary underline-offset-2 hover:underline">
+      <a key={match.index} href={`#${sectionId(match[1])}`} className="font-medium text-primary-ink underline-offset-2 hover:underline">
         {match[0]}
       </a>,
     );
@@ -65,7 +65,7 @@ function Section({ section, year, valid }: { section: CodeSection; year: number;
       <div className="grid gap-x-6 sm:grid-cols-[4.5rem_1fr]">
         <a
           href={`#${id}`}
-          className="font-mono text-sm font-semibold text-primary hover:underline sm:pt-0.5 sm:text-right"
+          className="font-mono text-sm font-semibold text-primary-ink hover:underline sm:pt-0.5 sm:text-right"
           aria-label={`Link to Section ${section.no}`}
         >
           §&nbsp;{section.no}
@@ -167,7 +167,7 @@ export default async function CodeReaderPage({ params }: PageProps<"/dispute-res
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <span className="font-mono text-xs tracking-widest text-primary uppercase">
+              <span className="font-mono text-xs tracking-widest text-primary-ink uppercase">
                 The Adjudix Rule Book &middot; {edition.edition}
               </span>
               <h1 className="mt-4 max-w-3xl font-heading text-3xl font-semibold text-balance md:text-5xl">
@@ -238,11 +238,11 @@ export default async function CodeReaderPage({ params }: PageProps<"/dispute-res
             className="mt-8 scroll-mt-[calc(var(--site-header-h,0px)+4.5rem)] lg:mt-0 lg:scroll-mt-[calc(var(--site-header-h,0px)+1.5rem)]"
           >
             <div className="rounded-xl border border-border bg-surface p-6 md:p-10">
-              <span className="font-mono text-xs tracking-widest text-primary uppercase">Preamble</span>
+              <span className="font-mono text-xs tracking-widest text-primary-ink uppercase">Preamble</span>
               <h2 className="mt-2 font-heading text-2xl font-semibold text-foreground md:text-3xl">Moral Principles</h2>
               <p className="mt-2 text-left font-body text-sm text-muted-foreground">
                 The Adjudix code of conduct. It opens the rule book and binds every neutral acting under it.{" "}
-                <Link href="/about/moral-code" className="font-medium text-primary hover:underline">
+                <Link href="/about/moral-code" className="font-medium text-primary-ink hover:underline">
                   About the Moral Code
                 </Link>
               </p>
@@ -259,7 +259,7 @@ export default async function CodeReaderPage({ params }: PageProps<"/dispute-res
                 {code.principles.map((principle, i) => (
                   <li key={principle.title} className="rounded-lg border border-border bg-canvas p-5">
                     <div className="flex items-baseline gap-3">
-                      <span className="font-heading text-2xl font-semibold text-primary">{ROMAN[i]}</span>
+                      <span className="font-heading text-2xl font-semibold text-primary-ink">{ROMAN[i]}</span>
                       <h3 className="font-heading text-base font-semibold text-foreground">{principle.title}</h3>
                     </div>
                     <p className="mt-2 text-left font-body text-sm leading-relaxed text-muted-foreground hyphens-none">{principle.body}</p>
@@ -277,7 +277,7 @@ export default async function CodeReaderPage({ params }: PageProps<"/dispute-res
           {code.parts.map((part) => (
             <section key={part.no} id={partId(part.no)} className="mt-16 scroll-mt-[calc(var(--site-header-h,0px)+4.5rem)] lg:scroll-mt-[calc(var(--site-header-h,0px)+1.5rem)]">
               <div className="flex items-center gap-4">
-                <span className="font-mono text-xs font-semibold tracking-widest text-primary uppercase">Part {part.no}</span>
+                <span className="font-mono text-xs font-semibold tracking-widest text-primary-ink uppercase">Part {part.no}</span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
               <h2 className="mt-3 font-heading text-2xl font-semibold text-foreground md:text-3xl">{part.title}</h2>
@@ -290,7 +290,7 @@ export default async function CodeReaderPage({ params }: PageProps<"/dispute-res
                 >
                   <div className="flex flex-wrap items-center gap-3 rounded-lg bg-surface px-5 py-4">
                     <h3 className="font-heading text-lg font-semibold text-foreground">
-                      <span className="mr-2 font-mono text-sm font-semibold text-primary">Chapter {chapter.no}</span>
+                      <span className="mr-2 font-mono text-sm font-semibold text-primary-ink">Chapter {chapter.no}</span>
                       {chapter.title}
                     </h3>
                     {chapter.since === code.year && code.year !== 2018 && <NewBadge year={code.year} />}

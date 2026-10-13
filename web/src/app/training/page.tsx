@@ -33,7 +33,7 @@ export default function TrainingPage() {
             directly to panel eligibility and membership standing. What you learn in a track is
             what a client is actually trusting when they see your credential. Every track is
             taught by our{" "}
-            <Link href="/training/faculty" className="text-primary hover:underline">
+            <Link href="/training/faculty" className="text-primary-ink hover:underline">
               faculty
             </Link>{" "}
             of practising arbitrators, mediators, and conciliators.

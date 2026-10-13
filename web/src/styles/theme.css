@@ -44,6 +44,7 @@
   --color-navy-50:  #F4F7FB;
 
   /* E · Bright amber-gold — the locked primary accent, and its scale */
+  --color-gold-800: #8A6312; /* gold for text on light grounds: 5.4:1 on white, 5.0:1 on navy-50 */
   --color-gold-700: #B3841F;
   --color-gold-600: #D19E24;
   --color-gold-500: #EEB32B;
@@ -85,6 +86,9 @@
   --adj-primary:            var(--color-gold-500);
   --adj-primary-foreground: #1A1508;
   --adj-primary-hover:      var(--color-gold-600);
+  /* Gold as TEXT (eyebrows, links, numerals). Bright gold-500 is only 1.8:1
+     on white, so light grounds use gold-800; dark grounds switch back below. */
+  --adj-primary-ink:        var(--color-gold-800);
 
   --adj-secondary-text:     var(--color-navy-800);
   --adj-secondary-border:   var(--color-navy-500);
@@ -125,6 +129,7 @@
     --adj-primary:            var(--color-gold-500);
     --adj-primary-foreground: #1A1508;
     --adj-primary-hover:      var(--color-gold-600);
+    --adj-primary-ink:        var(--color-gold-500);
 
     --adj-secondary-text:    #F1F0EE;
     --adj-secondary-border:  #3A3A46;
@@ -151,6 +156,7 @@
   --adj-primary:            var(--color-gold-500);
   --adj-primary-foreground: #1A1508;
   --adj-primary-hover:      var(--color-gold-600);
+  --adj-primary-ink:        var(--color-gold-500);
 
   --adj-secondary-text:    #F1F0EE;
   --adj-secondary-border:  #3A3A46;
@@ -179,6 +185,7 @@
   --color-border-on-hero:       var(--adj-border-on-hero);
 
   --color-primary-hover:        var(--adj-primary-hover);
+  --color-primary-ink:          var(--adj-primary-ink);
   --color-secondary-text:       var(--adj-secondary-text);
   --color-secondary-border:     var(--adj-secondary-border);
 
@@ -189,4 +196,13 @@
   --font-heading: var(--font-heading);
   --font-body:    var(--font-body);
   --font-mono:    var(--font-mono);
+}
+
+/* -------------------------------------------------------------------- */
+/* 5. Dark (hero/navy) sections keep the bright gold for gold text —     */
+/*    text-primary-ink inherits this from whichever ancestor sets it.    */
+/* -------------------------------------------------------------------- */
+.bg-hero,
+.text-text-on-hero {
+  --adj-primary-ink: var(--color-gold-500);
 }

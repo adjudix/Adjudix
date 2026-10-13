@@ -123,7 +123,7 @@ export default function CreditsPage() {
                 <p className="font-body text-xs text-text-on-hero-muted">Core Private Limited</p>
               </div>
             </div>
-            <span className="mt-8 block font-mono text-xs tracking-widest uppercase text-primary">
+            <span className="mt-8 block font-mono text-xs tracking-widest uppercase text-primary-ink">
               This Website
             </span>
             <h1 className="mt-3 font-heading text-3xl font-semibold text-balance md:text-5xl">
@@ -167,7 +167,7 @@ export default function CreditsPage() {
                   In the matter of the Adjudix website
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1 font-mono text-[0.7rem] font-semibold text-primary">
+              <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1 font-mono text-[0.7rem] font-semibold text-primary-ink">
                 Live
               </span>
             </div>
@@ -190,7 +190,7 @@ export default function CreditsPage() {
                 <p className="mt-1 font-heading text-sm font-semibold">Delivered & maintained</p>
               </div>
               <div
-                className="flex size-20 -rotate-12 flex-col items-center justify-center rounded-full border-2 border-double border-primary font-mono text-[0.6rem] font-bold tracking-widest text-primary"
+                className="flex size-20 -rotate-12 flex-col items-center justify-center rounded-full border-2 border-double border-primary font-mono text-[0.6rem] font-bold tracking-widest text-primary-ink"
                 aria-hidden="true"
               >
                 <span>KAPIVIC</span>
@@ -216,7 +216,7 @@ export default function CreditsPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <Reveal>
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">How They Work</span>
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">How They Work</span>
           <h2 className="mt-3 font-heading text-2xl font-semibold text-text md:text-3xl">
             From the first brief to ongoing support
           </h2>
@@ -224,7 +224,7 @@ export default function CreditsPage() {
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {PROCESS.map((item, index) => (
             <Reveal key={item.step} delay={index * 90} className="rounded-lg border border-border bg-surface p-6">
-              <span className="font-mono text-sm font-semibold text-primary">{item.step}</span>
+              <span className="font-mono text-sm font-semibold text-primary-ink">{item.step}</span>
               <h3 className="mt-3 font-heading text-lg font-semibold text-text">{item.title}</h3>
               <p className="mt-2 font-body text-sm text-text-muted">{item.body}</p>
             </Reveal>
@@ -235,7 +235,7 @@ export default function CreditsPage() {
       <section className="border-y border-border bg-surface px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">What They Build</span>
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">What They Build</span>
             <h2 className="mt-3 font-heading text-2xl font-semibold text-text md:text-3xl">
               Digital systems for institutions and practices
             </h2>
@@ -255,7 +255,7 @@ export default function CreditsPage() {
       </section>
 
       <Reveal className="mx-auto max-w-6xl px-6 py-16">
-        <span className="font-mono text-xs tracking-widest uppercase text-primary">
+        <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
           Industries They&apos;ve Worked In
         </span>
         <div className="mt-5 flex flex-wrap gap-2">
@@ -272,7 +272,7 @@ export default function CreditsPage() {
 
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <Reveal>
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">Built for Adjudix</span>
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">Built for Adjudix</span>
           <h2 className="mt-3 font-heading text-2xl font-semibold text-text md:text-3xl">
             What&apos;s actually running here
           </h2>

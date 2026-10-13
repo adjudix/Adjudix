@@ -40,7 +40,7 @@ export default function CoursesPage() {
           <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {STUDENT_COURSES.map((course, i) => (
               <li key={course.slug} className="flex flex-col rounded-lg border border-border bg-canvas p-6">
-                <span className="font-mono text-xs font-semibold text-primary">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-mono text-xs font-semibold text-primary-ink">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-2 font-heading text-lg font-semibold text-foreground">{course.title}</h3>
                 <p className="mt-2 flex-1 text-left font-body text-sm text-muted-foreground">{course.description}</p>
                 <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-body text-sm font-medium">
@@ -52,7 +52,7 @@ export default function CoursesPage() {
                   </Link>
                   <Link
                     href={applyHref("scholarship", { courseLevel: "Student Course", course: course.title, status: "Student" })}
-                    className="text-primary hover:underline"
+                    className="text-primary-ink hover:underline"
                   >
                     Apply for Scholarship
                   </Link>
@@ -64,7 +64,7 @@ export default function CoursesPage() {
             Every professional track above is also offered as a student course &mdash; the same
             Competence Framework, taught for those building toward the profession. Looking for
             hands-on experience?{" "}
-            <Link href="/training/apprenticeships" className="font-medium text-primary hover:underline">
+            <Link href="/training/apprenticeships" className="font-medium text-primary-ink hover:underline">
               Apprenticeships &amp; internships
             </Link>
             .

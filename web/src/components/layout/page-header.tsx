@@ -62,7 +62,7 @@ export function PageHeader({ eyebrow, title, intro, breadcrumbs, image }: PageHe
           <Reveal>
             {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} title={title} />}
             {eyebrow && (
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                 {eyebrow}
               </span>
             )}
@@ -93,7 +93,7 @@ export function PageHeader({ eyebrow, title, intro, breadcrumbs, image }: PageHe
       <Reveal className="mx-auto max-w-4xl">
         {breadcrumbs && breadcrumbs.length > 0 && <Breadcrumbs breadcrumbs={breadcrumbs} title={title} />}
         {eyebrow && (
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
             {eyebrow}
           </span>
         )}

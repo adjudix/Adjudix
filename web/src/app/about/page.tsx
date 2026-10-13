@@ -114,15 +114,15 @@ export default function AboutPage() {
           the Adjudix Code of ADR Procedure, empanelling and reviewing arbitrators, conciliators, and
           mediators, and overseeing the Training Institute&apos;s curriculum. The full governance
           structure is set out on the{" "}
-          <Link href="/about/leadership" className="text-primary hover:underline">
+          <Link href="/about/leadership" className="text-primary-ink hover:underline">
             Leadership &amp; Governance
           </Link>{" "}
           page. Adjudix&apos;s founding ethical commitments are set out in full in the{" "}
-          <Link href="/about/moral-code" className="text-primary hover:underline">
+          <Link href="/about/moral-code" className="text-primary-ink hover:underline">
             Moral Code of Principles &amp; Doctrines
           </Link>
           , and each year&apos;s work is summarised in our{" "}
-          <Link href="/about/annual-reports" className="text-primary hover:underline">
+          <Link href="/about/annual-reports" className="text-primary-ink hover:underline">
             Annual Reports
           </Link>
           .

@@ -67,7 +67,7 @@ export function MembershipTierPage({
 
       <section className="bg-surface px-6 py-16">
         <div className="mx-auto max-w-3xl">
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">Fee</span>
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">Fee</span>
           <p className="mt-2 font-body text-lg text-text">{fee}</p>
         </div>
       </section>

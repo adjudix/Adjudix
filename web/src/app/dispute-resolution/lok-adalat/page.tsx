@@ -46,7 +46,7 @@ export default function LokAdalatPage() {
       ]}
       extra={
         <section className="mx-auto max-w-3xl px-6 py-16">
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
             Only at Adjudix
           </span>
           <h2 className="mt-3 font-heading text-2xl font-semibold text-text">Adjudix Lok Adalat</h2>

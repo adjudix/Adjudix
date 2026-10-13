@@ -87,7 +87,7 @@ function TocList({
           <a
             href={`#${part.id}`}
             onClick={onNavigate}
-            className="block px-3 font-mono text-[0.7rem] font-semibold tracking-widest text-primary uppercase hover:underline"
+            className="block px-3 font-mono text-[0.7rem] font-semibold tracking-widest text-primary-ink uppercase hover:underline"
           >
             {part.label}
           </a>
@@ -145,9 +145,9 @@ export function CodeToc({ year, parts }: CodeTocProps) {
                 type="button"
                 className="flex w-full items-center gap-3 rounded-md py-1.5 text-left font-body text-sm"
               >
-                <List className="size-4 shrink-0 text-primary" aria-hidden="true" />
+                <List className="size-4 shrink-0 text-primary-ink" aria-hidden="true" />
                 <span className="min-w-0 flex-1 truncate text-foreground">{activeLabel}</span>
-                <span className="shrink-0 font-medium text-primary">Contents</span>
+                <span className="shrink-0 font-medium text-primary-ink">Contents</span>
               </button>
             }
           />

@@ -85,7 +85,7 @@ function SelectItem({
     >
       <span className="absolute left-2.5 flex size-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className="size-3.5 text-primary" aria-hidden="true" />
+          <Check className="size-3.5 text-primary-ink" aria-hidden="true" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -101,7 +101,7 @@ function SelectGroupLabel({ className, ...props }: React.ComponentProps<typeof S
   return (
     <SelectPrimitive.GroupLabel
       className={cn(
-        "px-2.5 pt-3 pb-1 font-mono text-[0.68rem] font-semibold tracking-widest text-primary uppercase",
+        "px-2.5 pt-3 pb-1 font-mono text-[0.68rem] font-semibold tracking-widest text-primary-ink uppercase",
         className
       )}
       {...props}

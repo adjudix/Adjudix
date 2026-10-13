@@ -52,7 +52,7 @@ export default function ApprenticeshipsPage() {
         <div className="grid gap-6 md:grid-cols-2">
           {PROGRAMMES.map((programme) => (
             <article key={programme.title} className="flex flex-col rounded-2xl border border-border bg-surface p-8">
-              <p className="font-mono text-xs font-semibold tracking-widest text-primary uppercase">{programme.eyebrow}</p>
+              <p className="font-mono text-xs font-semibold tracking-widest text-primary-ink uppercase">{programme.eyebrow}</p>
               <h2 className="mt-2 font-heading text-2xl font-semibold text-foreground">{programme.title}</h2>
               <p className="mt-3 text-left font-body text-muted-foreground hyphens-none">{programme.body}</p>
               <ul className="mt-5 flex flex-1 flex-col gap-2">

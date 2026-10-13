@@ -79,7 +79,7 @@ export default function MembershipPage() {
                   className="border-b border-border align-top transition-colors hover:bg-surface"
                 >
                   <td className="py-4 pr-4 font-body text-sm font-medium">
-                    <Link href={tier.href} className="text-primary hover:underline">
+                    <Link href={tier.href} className="text-primary-ink hover:underline">
                       {tier.title}
                     </Link>
                     <span className="mt-1 block text-primary-hover" aria-label={tier.stars}>
@@ -102,20 +102,20 @@ export default function MembershipPage() {
           </h2>
           <p className="mt-3 font-body text-text-muted">
             If you&apos;re a student, start with{" "}
-            <Link href="/membership/student" className="text-primary hover:underline">
+            <Link href="/membership/student" className="text-primary-ink hover:underline">
               Student
             </Link>{" "}
             membership — it&apos;s free. Early-career professionals who have completed an
             Apprenticeship or Internship qualify for{" "}
-            <Link href="/membership/affiliated" className="text-primary hover:underline">
+            <Link href="/membership/affiliated" className="text-primary-ink hover:underline">
               Affiliate
             </Link>
             . If you&apos;ve completed a Training Programme, you likely qualify for{" "}
-            <Link href="/membership/associated" className="text-primary hover:underline">
+            <Link href="/membership/associated" className="text-primary-ink hover:underline">
               Associate
             </Link>
             . Senior practitioners with an established record should look at{" "}
-            <Link href="/membership/fellow" className="text-primary hover:underline">
+            <Link href="/membership/fellow" className="text-primary-ink hover:underline">
               Fellow
             </Link>
             .

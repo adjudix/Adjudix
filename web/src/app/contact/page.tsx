@@ -42,7 +42,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                   <dt className="font-medium text-text">{box.team}</dt>
                   <dd className="mt-0.5">{box.purpose}</dd>
                   <dd>
-                    <a href={`mailto:${box.email}`} className="text-primary hover:underline">
+                    <a href={`mailto:${box.email}`} className="text-primary-ink hover:underline">
                       {box.email}
                     </a>
                   </dd>

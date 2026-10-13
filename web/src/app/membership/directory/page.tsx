@@ -35,7 +35,7 @@ export default function DirectoryPage() {
               <h2 id={`tier-${tierId}`} className="font-heading text-2xl font-semibold text-text">
                 {tier.label}s
               </h2>
-              <span className="font-mono text-xs tracking-wider text-primary">[{tier.postNominal}]</span>
+              <span className="font-mono text-xs tracking-wider text-primary-ink">[{tier.postNominal}]</span>
               <span className="font-body text-sm text-text-muted">({members.length})</span>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

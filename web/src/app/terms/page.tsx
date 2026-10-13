@@ -58,7 +58,7 @@ export default function TermsPage() {
             grievance through our{" "}
             <Link
               href={applyHref("enquiry", { queryType: "Feedback or Grievance" })}
-              className="text-primary hover:underline"
+              className="text-primary-ink hover:underline"
             >
               grievance form
             </Link>

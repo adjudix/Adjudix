@@ -93,7 +93,7 @@ export function SiteFooter() {
               </span>
               <Link
                 href="/credits"
-                className="inline-flex items-center gap-2 self-start border-b border-transparent pb-px text-xs font-semibold text-primary transition-colors hover:border-primary hover:text-text-on-hero"
+                className="inline-flex items-center gap-2 self-start border-b border-transparent pb-px text-xs font-semibold text-primary-ink transition-colors hover:border-primary hover:text-text-on-hero"
               >
                 <Image
                   src="/images/kapivic-logo.png"

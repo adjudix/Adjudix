@@ -60,7 +60,7 @@ export function CoursePage({ slug, title, intro, who, curriculum }: CoursePagePr
       <section className="mx-auto max-w-4xl px-6 py-16">
         <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
               Course fee
             </span>
             <p className="mt-2 font-heading text-3xl font-semibold text-text">
@@ -76,7 +76,7 @@ export function CoursePage({ slug, title, intro, who, curriculum }: CoursePagePr
             <LinkButton href={applyHref} size="lg">
               Apply Now
             </LinkButton>
-            <Link href={scholarshipHref} className="text-sm font-medium text-primary hover:underline">
+            <Link href={scholarshipHref} className="text-sm font-medium text-primary-ink hover:underline">
               Apply for Scholarship
             </Link>
           </div>

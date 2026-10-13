@@ -115,7 +115,7 @@ export function FeeCalculator() {
         ))}
       </dl>
       <div className="flex items-baseline justify-between gap-4 border-t border-border pt-4">
-        <span className="font-mono text-xs tracking-widest uppercase text-primary">
+        <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
           Indicative total of the platform
         </span>
         <span className="font-mono text-3xl font-semibold tabular-nums text-text">{formatINR(fees.total)}</span>

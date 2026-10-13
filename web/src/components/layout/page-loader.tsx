@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
@@ -26,8 +27,26 @@ const FALLBACK_MS = REEL_DURATION_MS + 400;
  * Next's App Router keeps the root layout mounted across client-side
  * navigations, so this never re-plays on an internal link click, only on a
  * hard load/refresh.
+ *
+ * Only when that load starts on the home page: on any other page the intro
+ * would hide the content a visitor (often arriving from search) came for.
  */
 export function PageLoader() {
+  // The first path only — the root layout stays mounted, so a later client-side
+  // navigation to "/" doesn't start the intro.
+  const [onHome] = useState(usePathname() === "/");
+
+  useEffect(() => {
+    if (onHome) return;
+    // No intro: let what waits for it (the consultation pop-up) start now.
+    document.documentElement.dataset.introDone = "true";
+    window.dispatchEvent(new Event(INTRO_DONE_EVENT));
+  }, [onHome]);
+
+  return onHome ? <IntroReel /> : null;
+}
+
+function IntroReel() {
   const [phase, setPhase] = useState<Phase>("hidden");
   const logoRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -232,7 +251,7 @@ export function PageLoader() {
         onClick={() => triggerHandoffRef.current()}
         tabIndex={waiting ? 0 : -1}
         aria-hidden={!waiting}
-        className={`absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 rounded-full px-5 py-3 text-muted-foreground transition-all duration-700 ease-out hover:text-primary focus-visible:outline-2 focus-visible:outline-primary md:bottom-14 ${
+        className={`absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 rounded-full px-5 py-3 text-muted-foreground transition-all duration-700 ease-out hover:text-primary-ink focus-visible:outline-2 focus-visible:outline-primary md:bottom-14 ${
           waiting ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >
@@ -240,7 +259,7 @@ export function PageLoader() {
         <span className="flex h-9 w-6 justify-center rounded-full border-2 border-current pt-1.5" aria-hidden="true">
           <span className="h-2 w-1 animate-bounce rounded-full bg-current" />
         </span>
-        <ChevronDown className="size-4 animate-bounce text-primary" aria-hidden="true" />
+        <ChevronDown className="size-4 animate-bounce text-primary-ink" aria-hidden="true" />
       </button>
     </div>
   );

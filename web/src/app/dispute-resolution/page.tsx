@@ -144,12 +144,12 @@ export default function DisputeResolutionPage() {
           </div>
           <p className="mt-8 font-body text-sm text-text-muted">
             Every mechanism is available for{" "}
-            <Link href="/dispute-resolution/domestic" className="text-primary hover:underline">domestic</Link>{" "}
+            <Link href="/dispute-resolution/domestic" className="text-primary-ink hover:underline">domestic</Link>{" "}
             and{" "}
-            <Link href="/dispute-resolution/international" className="text-primary hover:underline">international</Link>{" "}
+            <Link href="/dispute-resolution/international" className="text-primary-ink hover:underline">international</Link>{" "}
             disputes, conducted{" "}
-            <Link href="/odr" className="text-primary hover:underline">online</Link>,{" "}
-            <Link href="/dispute-resolution/offline" className="text-primary hover:underline">in person</Link>, or as a hybrid of both.
+            <Link href="/odr" className="text-primary-ink hover:underline">online</Link>,{" "}
+            <Link href="/dispute-resolution/offline" className="text-primary-ink hover:underline">in person</Link>, or as a hybrid of both.
           </p>
         </div>
       </section>
@@ -158,7 +158,7 @@ export default function DisputeResolutionPage() {
         <div className="grid gap-10 md:grid-cols-2">
           <Reveal>
             <div className="rounded-lg border border-border p-8 transition-shadow hover:shadow-lg hover:shadow-primary/5">
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                 By dispute type
               </span>
               <h2 className="mt-3 font-heading text-xl font-semibold text-text">
@@ -169,7 +169,7 @@ export default function DisputeResolutionPage() {
               </p>
               <Link
                 href="/dispute-resolution/practice-areas"
-                className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
+                className="mt-4 inline-block text-sm font-medium text-primary-ink hover:underline"
               >
                 Browse Practice Areas &rarr;
               </Link>
@@ -177,7 +177,7 @@ export default function DisputeResolutionPage() {
           </Reveal>
           <Reveal delay={100}>
             <div className="rounded-lg border border-border p-8 transition-shadow hover:shadow-lg hover:shadow-primary/5">
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                 For businesses
               </span>
               <h2 className="mt-3 font-heading text-xl font-semibold text-text">
@@ -189,7 +189,7 @@ export default function DisputeResolutionPage() {
               </p>
               <Link
                 href="/dispute-resolution/corporate"
-                className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
+                className="mt-4 inline-block text-sm font-medium text-primary-ink hover:underline"
               >
                 Corporate Dispute Resolution Services &rarr;
               </Link>

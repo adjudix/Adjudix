@@ -62,7 +62,7 @@ function CardFace({ card }: { card: FlipCard }) {
       <div className="flex items-center justify-between">
         <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
         {card.eyebrow && (
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
             {card.eyebrow}
           </span>
         )}
@@ -111,7 +111,7 @@ function CardBack({ card, isTopOfPile }: { card: FlipCard; isTopOfPile: boolean 
         <div className="flex items-center justify-between">
           <span className="font-heading text-sm font-semibold tracking-wide">Adjudix</span>
           {card.eyebrow && (
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
               {card.eyebrow}
             </span>
           )}
@@ -238,7 +238,7 @@ export function FlipStack({ panel, cards, aspectClassName = "aspect-[4/5] md:asp
             onClick={goPrev}
             disabled={!canPrev}
             aria-label="Previous"
-            className="flex size-9 items-center justify-center rounded-full border border-border text-text transition-colors hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-30"
+            className="flex size-9 items-center justify-center rounded-full border border-border text-text transition-colors hover:border-primary hover:text-primary-ink disabled:pointer-events-none disabled:opacity-30"
           >
             <ChevronLeft className="size-4" aria-hidden="true" />
           </button>
@@ -247,7 +247,7 @@ export function FlipStack({ panel, cards, aspectClassName = "aspect-[4/5] md:asp
             onClick={goNext}
             disabled={!canNext}
             aria-label="Next"
-            className="flex size-9 items-center justify-center rounded-full border border-border text-text transition-colors hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-30"
+            className="flex size-9 items-center justify-center rounded-full border border-border text-text transition-colors hover:border-primary hover:text-primary-ink disabled:pointer-events-none disabled:opacity-30"
           >
             <ChevronRight className="size-4" aria-hidden="true" />
           </button>

@@ -34,7 +34,7 @@ export default function PanelPage() {
         return (
           <section key={profession.id} aria-labelledby={`panel-${profession.id}`} className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex items-baseline gap-3">
-              <span className="font-mono text-sm font-semibold text-primary">{profession.numeral}.</span>
+              <span className="font-mono text-sm font-semibold text-primary-ink">{profession.numeral}.</span>
               <h2 id={`panel-${profession.id}`} className="font-heading text-2xl font-semibold text-text">
                 {profession.title}
               </h2>

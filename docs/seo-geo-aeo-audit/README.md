@@ -7,9 +7,9 @@
 | Date | 13 Oct 2026 |
 | Stack | Next.js 16.3.5 App Router, React 19.2.8; all pages static (SSG) except `/contact` and `/apply/[form]` (server-rendered on request); Vercel |
 | Routes | 93 indexable + 20 noindex form routes = 113 rendered, 113 audited by crawler (100%); 4 dynamic-route edge cases checked |
-| Violations | 14 recorded: 2 High, 6 Medium, 5 Low, 1 informational |
-| Fixed and verified | 8 (V-01, V-03–V-06, V-09–V-11); V-02 mitigated |
-| Remaining | 0 Critical, 0 High; 2 Medium needing an owner decision (V-07, V-08); 2 Low accepted (V-12, V-13); 1 informational (V-14) |
+| Violations | 15 recorded: 2 High, 7 Medium, 5 Low, 1 informational |
+| Fixed and verified | 10 (V-01, V-03–V-11); V-02 mitigated |
+| Remaining | 0 Critical, 0 High; 1 Medium needing an owner decision (V-15); 2 Low accepted (V-12, V-13); 1 informational (V-14) |
 
 Files: [route-inventory.md](route-inventory.md) · [violation-register.md](violation-register.md) · [unverified-checks.md](unverified-checks.md)
 
@@ -24,18 +24,17 @@ Files: [route-inventory.md](route-inventory.md) · [violation-register.md](viola
 - **Build / lint / types / tests:** `next build` OK; `eslint src` clean; `tsc --noEmit` clean; Vitest 27/27 pass (5 new SEO assertions: sitemap covers every page and excludes forms/API, every page exports metadata with a canonical, robots shape, `pageMetadata` canonical/OG, JSON-LD script escaping).
 - **Sitemap / robots / canonical:** pass (see register, "Checked and passing").
 - **Structured data:** Organization + WebSite (home), BreadcrumbList (96 pages), FAQPage (13), Article (10). JSON parses everywhere; FAQ and Article text verified against visible text by the crawler. Google Rich Results eligibility is UNVERIFIED (external tool).
-- **Lighthouse, mobile lab, local build (after fixes):** home SEO 100, accessibility 99, best practices 96, performance 75 (LCP 5.8 s, CLS 0, TBT 150 ms); arbitration page SEO 100, accessibility 96, best practices 96, performance 88 (LCP 4.0 s, CLS 0, TBT 60 ms). No field (CrUX) data available yet.
+- **Lighthouse, mobile lab, local build (final):** inner pages (arbitration, blog post, Fellow membership) performance 94–95, accessibility 100, best practices 100, SEO 100, LCP 3.0 s, CLS 0, TBT 50–70 ms; home performance 72, accessibility 99, SEO 100, LCP 5.8 s (intro). No field (CrUX) data available yet.
 - **GEO:** entity name consistent ("Adjudix Dispute Resolution Institute", alternates "Adjudix", "ADR-i"); public pages server-rendered and open to all major search and AI crawlers; no fabricated authority found.
 - **AEO:** 13 pages carry visible FAQs that match their FAQPage markup; mechanism pages state legal basis, process, and next step in plain language.
 - **Geographic SEO:** N/A beyond India context — no address or phone published; no location pages; nothing invented.
+
+4. **Owner decisions (follow-up).** Intro limited to the home page (V-07) and gold text made AA-compliant (V-08). Re-measured: inner pages performance 94–95, accessibility 100, best practices 100, SEO 100, LCP 3.0 s, CLS 0; home performance 72, accessibility 99, LCP 5.8 s (intro, by choice). Re-measuring found V-15.
 
 ## Verdict
 
 **CONDITIONAL — EXPLICIT ACCEPTANCE REQUIRED**
 
-No Critical or High violations remain. Two Medium items are deliberate design choices that only the owner can change:
+No Critical or High violations remain, and V-07 and V-08 are resolved. One Medium item remains, again a design choice:
 
-- **V-07** — the full-screen logo intro on every fresh page load keeps mobile LCP at 4–6 s (target ≤ 2.5 s).
-- **V-08** — gold small text fails WCAG AA contrast.
-
-Accept them as-is, or approve the suggested changes, to reach full release.
+- **V-15** — page headers fade in only after JavaScript runs, which holds inner-page mobile LCP at 3.0 s (target ≤ 2.5 s). Accept it, or approve showing on-screen content immediately (animating only what's below the fold).

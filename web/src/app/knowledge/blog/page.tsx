@@ -30,8 +30,8 @@ export default function BlogPage() {
                 href={`/knowledge/blog/${article.slug}`}
                 className="group flex h-full flex-col rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary/50"
               >
-                <span className="font-mono text-xs tracking-widest uppercase text-primary">{article.category}</span>
-                <h2 className="mt-3 font-heading text-lg leading-snug font-semibold text-text group-hover:text-primary">
+                <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">{article.category}</span>
+                <h2 className="mt-3 font-heading text-lg leading-snug font-semibold text-text group-hover:text-primary-ink">
                   {article.title}
                 </h2>
                 <p className="mt-2 mb-4 text-left font-body text-sm text-text-muted">{article.summary}</p>

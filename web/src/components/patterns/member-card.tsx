@@ -25,13 +25,13 @@ export function MemberCard({ member, role }: { member: Member; role?: string }) 
       <div className="flex items-start gap-4">
         <span
           aria-hidden="true"
-          className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-canvas font-heading text-base font-semibold text-primary"
+          className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-canvas font-heading text-base font-semibold text-primary-ink"
         >
           {initials(member.name)}
         </span>
         <div className="min-w-0">
           <h3 className="font-heading text-lg leading-snug font-semibold text-text">{member.name}</h3>
-          <p className="mt-0.5 font-mono text-xs tracking-wider text-primary">{tier.postNominal}</p>
+          <p className="mt-0.5 font-mono text-xs tracking-wider text-primary-ink">{tier.postNominal}</p>
         </div>
       </div>
       <p className="mt-4 mb-5 text-left font-body text-sm text-text-muted">{member.credentials}</p>

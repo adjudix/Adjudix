@@ -88,7 +88,7 @@ export function SiteSearch({ items, className }: { items: SearchItem[]; classNam
           <div className="flex items-center gap-3">
             <Image src="/images/logo-mini.png" alt="" width={44} height={44} className="size-11 shrink-0" />
             <div className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-surface px-4 focus-within:border-primary">
-              <Search className="size-5 shrink-0 text-primary" aria-hidden="true" />
+              <Search className="size-5 shrink-0 text-primary-ink" aria-hidden="true" />
               <input
                 ref={inputRef}
                 type="search"
@@ -130,7 +130,7 @@ export function SiteSearch({ items, className }: { items: SearchItem[]; classNam
                         setQuery(suggestion);
                         inputRef.current?.focus();
                       }}
-                      className="rounded-full border border-border px-3 py-1 font-body text-sm text-text hover:border-primary hover:text-primary"
+                      className="rounded-full border border-border px-3 py-1 font-body text-sm text-text hover:border-primary hover:text-primary-ink"
                     >
                       {suggestion}
                     </button>
@@ -140,7 +140,7 @@ export function SiteSearch({ items, className }: { items: SearchItem[]; classNam
             ) : results.length === 0 ? (
               <p className="px-1 py-4 text-left font-body text-sm text-text-muted">
                 Nothing found for &ldquo;{query}&rdquo;. Try another word, or{" "}
-                <button type="button" className="font-medium text-primary hover:underline" onClick={() => go({ title: "", group: "", href: "/contact" })}>
+                <button type="button" className="font-medium text-primary-ink hover:underline" onClick={() => go({ title: "", group: "", href: "/contact" })}>
                   ask us directly
                 </button>
                 .

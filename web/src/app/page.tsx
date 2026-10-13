@@ -282,7 +282,7 @@ export default function Home() {
               />
             </div>
             <div className="rounded-lg border border-border bg-canvas p-8 flex flex-col justify-center md:h-full">
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                 Panel coverage
               </span>
               <span className="mt-3 font-mono text-5xl font-semibold text-text">10</span>
@@ -326,7 +326,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
               For businesses
             </span>
             <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
@@ -365,7 +365,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <span className="font-mono text-xs tracking-widest uppercase text-primary">
+              <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                 The Rule Book
               </span>
               <h2 className="mt-3 max-w-xl font-heading text-2xl font-semibold text-balance md:text-3xl">
@@ -408,11 +408,11 @@ export default function Home() {
                     </span>
                   )}
                   <div className="flex items-center justify-between gap-3">
-                    <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                    <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                       {edition.edition}
                     </span>
                     {edition.current && (
-                      <span className="rounded-full bg-primary/15 px-2.5 py-0.5 font-mono text-[0.7rem] font-semibold text-primary">
+                      <span className="rounded-full bg-primary/15 px-2.5 py-0.5 font-mono text-[0.7rem] font-semibold text-primary-ink">
                         Current
                       </span>
                     )}
@@ -463,12 +463,12 @@ export default function Home() {
                         className={
                           edition.current
                             ? "rounded-full bg-primary px-4 py-2 text-primary-foreground hover:bg-primary-hover"
-                            : "rounded-full border border-primary px-4 py-2 text-primary hover:bg-primary hover:text-primary-foreground"
+                            : "rounded-full border border-primary px-4 py-2 text-primary-ink hover:bg-primary hover:text-primary-foreground"
                         }
                       >
                         Read online
                       </Link>
-                      <a href={edition.pdf} download className="text-primary hover:underline">
+                      <a href={edition.pdf} download className="text-primary-ink hover:underline">
                         PDF
                       </a>
                     </div>
@@ -489,7 +489,7 @@ export default function Home() {
             cards={MEMBERSHIP_CARDS}
             panel={
               <div className="flex h-full flex-col justify-center bg-surface p-8 md:p-10">
-                <span className="font-mono text-xs tracking-widest uppercase text-primary">
+                <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
                   Membership
                 </span>
                 <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-balance max-w-sm text-text">
@@ -519,7 +519,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold text-text text-balance max-w-md">
-              Certainty is not the <em className="italic text-primary">exception</em>,
+              Certainty is not the <em className="italic text-primary-ink">exception</em>,
               it&apos;s the procedure
             </h2>
             <p className="font-body text-text-muted max-w-sm">
@@ -541,7 +541,7 @@ export default function Home() {
           </h2>
           <p className="font-body text-text-muted max-w-sm">
             Can&apos;t find what you&apos;re looking for?{" "}
-            <Link href={applyHref("enquiry")} className="text-primary hover:underline">
+            <Link href={applyHref("enquiry")} className="text-primary-ink hover:underline">
               Contact the registry
             </Link>{" "}
             directly.

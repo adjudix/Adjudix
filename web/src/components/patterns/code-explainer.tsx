@@ -31,10 +31,10 @@ export function CodeExplainer({ className = "" }: { className?: string }) {
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         {CODES.map((code) => (
           <div key={code.title} className="border-l-2 border-primary pl-4">
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">{code.tag}</span>
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">{code.tag}</span>
             <h3 className="mt-1 font-heading text-base font-semibold text-text">{code.title}</h3>
             <p className="mt-2 text-left font-body text-sm text-text-muted">{code.body}</p>
-            <Link href={code.href} className="mt-3 inline-block font-body text-sm font-medium text-primary hover:underline">
+            <Link href={code.href} className="mt-3 inline-block font-body text-sm font-medium text-primary-ink hover:underline">
               {code.cta} &rarr;
             </Link>
           </div>

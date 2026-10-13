@@ -79,7 +79,7 @@ export default function OdrPage() {
             Every case filed through the platform is administered under the Arbitration and
             Conciliation Act, 1996, or the Mediation Act, 2023, depending on the mechanism chosen —
             not a private process with no statutory footing. See{" "}
-            <Link href="/odr/security" className="font-medium text-primary hover:underline">
+            <Link href="/odr/security" className="font-medium text-primary-ink hover:underline">
               Security &amp; Enforceability
             </Link>{" "}
             for the

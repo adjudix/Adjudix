@@ -88,7 +88,7 @@ export default async function ArticlePage({ params }: PageProps<"/knowledge/blog
           href={`/knowledge/blog/${next.slug}`}
           className="mt-8 block rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary/50"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">Next article</span>
+          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">Next article</span>
           <span className="mt-2 block font-heading text-lg font-semibold text-text">{next.title}</span>
         </Link>
       </article>
