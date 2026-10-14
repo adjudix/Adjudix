@@ -13,6 +13,9 @@ export function ApplyFormBody({
     <QueryForm
       formName={form.title}
       fields={withPrefill(form, params)}
+      kind={form.kind}
+      sections={form.sections}
+      tone={form.tone}
       submitLabel={form.submitLabel}
       successTitle={form.successTitle}
       successBody={form.successBody}

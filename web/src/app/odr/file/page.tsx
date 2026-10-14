@@ -22,6 +22,13 @@ export default function FileDisputePage() {
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
           formName="New dispute filing"
+          kind="filing"
+          sections={[
+            { title: "The dispute", fields: ["disputeType", "amount", "message"] },
+            { title: "The parties", fields: ["claimant", "respondent"] },
+            { title: "Documents", fields: ["attachments"], description: "Agreements, notices, invoices: anything that shows what happened." },
+            { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+          ]}
           fields={[
             {
               name: "disputeType",

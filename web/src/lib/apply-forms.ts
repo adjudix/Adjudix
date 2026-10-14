@@ -2,7 +2,7 @@
 // asking only for what the Secretariat needs to act on that request. They
 // open as a modal over the page the visitor is on (see app/@modal), and as a
 // standalone page at /apply/<slug> when linked to directly.
-import type { QueryField } from "@/components/patterns/query-form";
+import type { FormKind, FormSection, QueryField } from "@/components/patterns/query-form";
 import { COMPETITIONS } from "@/lib/competitions";
 import { COURSE_OPTIONS } from "@/lib/training-tracks";
 
@@ -15,6 +15,11 @@ export interface ApplyForm {
   /** Section shown in the page's breadcrumbs. */
   section: { label: string; href: string };
   fields: QueryField[];
+  /** Which layout suits the task (see FormKind). */
+  kind: FormKind;
+  /** Titled groups of field names, in order. Unlisted fields join the last. */
+  sections?: FormSection[];
+  tone?: "urgent";
   submitLabel: string;
   successTitle: string;
   successBody: string;
@@ -160,11 +165,17 @@ const DISPUTE_QUERIES = ["File a Dispute", "Respond to a Dispute", "Emergency Ar
 
 export const ENQUIRY_FORM: ApplyForm = {
   slug: "enquiry",
+  kind: "enquiry",
+  sections: [
+    { title: "What is your query about?", fields: ["queryType", "courseLevel", "course", "institution", "studyYear", "profession", "practiceArea"] },
+    { title: "Who are we speaking to?", fields: ["name", "organization", "email", "phone", "location"] },
+    { title: "Your message", fields: ["message"] },
+  ],
   title: "Send us a query",
   intro: "Choose what your query is about and it will be routed to the right team. We usually reply within one working day.",
   section: { label: "Contact", href: "/contact" },
   fields: [
-    { name: "queryType", label: "Type of query", type: "select", required: true, optionGroups: QUERY_GROUPS },
+    { name: "queryType", label: "Type of query", type: "select", required: true, optionGroups: QUERY_GROUPS, display: "tiles" },
     {
       name: "courseLevel",
       label: "Course type",
@@ -218,6 +229,12 @@ const FORMS: ApplyForm[] = [
   // ── Disputes ────────────────────────────────────────────────────────────
   {
     slug: "consultation",
+    kind: "enquiry",
+    sections: [
+      { title: "Tell us about the matter", fields: ["practiceArea", "role", "amount", "message"] },
+      { title: "How should we call you?", fields: ["mode", "slot", "location"] },
+      { title: "Who are we speaking to?", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Book your free consultation",
     intro: "Tell us briefly about the matter and how to reach you. A member of our professional panel will call you back to discuss your options — at no charge.",
     section: SECTIONS.disputes,
@@ -244,6 +261,13 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "emergency",
+    kind: "filing",
+    tone: "urgent",
+    sections: [
+      { title: "The relief", fields: ["relief", "urgency", "agreement", "message"], description: "What you need, and why it cannot wait." },
+      { title: "The parties", fields: ["name", "organization", "otherParty", "amount"] },
+      { title: "Contact & documents", fields: ["email", "phone", "attachments"], description: "The Secretariat will contact you here today." },
+    ],
     title: "Emergency arbitration application",
     intro: "For interim relief that cannot wait for the tribunal to be constituted. The Secretariat reviews every application on the day it is received.",
     section: SECTIONS.disputes,
@@ -277,6 +301,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "lok-adalat",
+    kind: "filing",
+    sections: [
+      { title: "The dispute", fields: ["practiceArea", "pending", "court", "otherParty", "amount", "message"] },
+      { title: "The sitting", fields: ["mode", "attachments"] },
+      { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Check Lok Adalat eligibility",
     intro: "Lok Adalat suits disputes the parties are willing to settle. Tell us about yours and we will confirm whether it can be listed for a sitting.",
     section: SECTIONS.disputes,
@@ -303,6 +333,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "implementation",
+    kind: "filing",
+    sections: [
+      { title: "The order", fields: ["orderType", "forum", "orderDate", "challenge", "attachments"] },
+      { title: "Recovery", fields: ["otherParty", "amount", "message"] },
+      { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Implement an order or award",
     intro: "Share the order you hold and who it is against. We will tell you the route to implementation and what it involves.",
     section: { label: "Implementation", href: "/implementation" },
@@ -335,6 +371,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "ad-hoc",
+    kind: "filing",
+    sections: [
+      { title: "The appointment", fields: ["neutral", "tribunal", "agreed", "practiceArea"] },
+      { title: "The dispute", fields: ["otherParty", "amount", "message", "attachments"] },
+      { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Request an ad hoc appointment",
     intro: "Where the parties have agreed to Adjudix appointing a neutral outside full institutional administration, tell us who is needed and for what.",
     section: { label: "ODR Platform", href: "/odr" },
@@ -361,6 +403,11 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "corporate",
+    kind: "application",
+    sections: [
+      { title: "Your company", fields: ["organization", "name", "designation", "email", "phone"] },
+      { title: "The matter", fields: ["issue", "service", "amount", "message"] },
+    ],
     title: "Corporate dispute resolution",
     intro: "For companies with a live dispute, or wanting a standing arrangement for resolving them. Our corporate desk will respond within one working day.",
     section: SECTIONS.disputes,
@@ -393,6 +440,11 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "drafting",
+    kind: "application",
+    sections: [
+      { title: "What you need", fields: ["service", "contractType", "mechanism", "deadline", "message", "attachments"] },
+      { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Contract & clause drafting",
     intro: "Tell us what you need drafted or reviewed. We will reply with the scope, timeline, and fee before any work begins.",
     section: SECTIONS.disputes,
@@ -433,6 +485,11 @@ const FORMS: ApplyForm[] = [
   // ── Training ────────────────────────────────────────────────────────────
   {
     slug: "course",
+    kind: "registration",
+    sections: [
+      { title: "Choose your course", fields: ["courseLevel", "course", "mode"] },
+      { title: "About you", fields: ["name", "email", "phone", "status", "institution", "studyYear", "profession", "experience", "location", "message"] },
+    ],
     title: "Enrol in a course",
     intro: "Choose your course and tell us a little about yourself. The Training Institute will send you the next cohort's dates, format, and fee.",
     section: SECTIONS.training,
@@ -449,6 +506,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "scholarship",
+    kind: "application",
+    sections: [
+      { title: "Your course", fields: ["courseLevel", "course"] },
+      { title: "About you", fields: ["name", "email", "phone", "status", "institution", "studyYear", "profession", "experience", "location"] },
+      { title: "Your application", fields: ["income", "message", "attachments"] },
+    ],
     title: "Apply for a scholarship",
     intro: "Scholarships cover part or all of the course fee and are awarded on merit and need. Applications are reviewed before each cohort begins.",
     section: SECTIONS.training,
@@ -474,6 +537,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "internship",
+    kind: "application",
+    sections: [
+      { title: "About you", fields: ["name", "email", "phone", "institution", "studyYear"] },
+      { title: "The internship", fields: ["duration", "start", "workMode", "interest", "message"] },
+      { title: "Documents", fields: ["attachments"] },
+    ],
     title: "Apply for an internship",
     intro: "Internships are open to law and allied students: research, case preparation, drafting, and observing proceedings alongside the Secretariat and panel.",
     section: SECTIONS.training,
@@ -500,6 +569,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "apprenticeship",
+    kind: "application",
+    sections: [
+      { title: "About you", fields: ["name", "email", "phone", "profession", "experience", "location"] },
+      { title: "Your practice", fields: ["track", "practiceArea", "availability", "message"] },
+      { title: "Documents", fields: ["attachments"] },
+    ],
     title: "Apply for an apprenticeship",
     intro: "Apprentices shadow an active panelist on real cases, then practise under supervision before independent panel appointment.",
     section: SECTIONS.training,
@@ -527,6 +602,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "faculty",
+    kind: "application",
+    sections: [
+      { title: "About you", fields: ["name", "organization", "email", "phone", "profession", "experience"] },
+      { title: "What you would teach", fields: ["format", "topics", "message"] },
+      { title: "Documents", fields: ["attachments"] },
+    ],
     title: "Apply to teach",
     intro: "We invite practitioners to teach Training Institute courses, give guest lectures, and judge or coach moots.",
     section: SECTIONS.training,
@@ -555,6 +636,12 @@ const FORMS: ApplyForm[] = [
   // ── Joining ─────────────────────────────────────────────────────────────
   {
     slug: "panel",
+    kind: "application",
+    sections: [
+      { title: "About you", fields: ["name", "organization", "email", "phone", "location"] },
+      { title: "Your practice", fields: ["profession", "experience", "role", "practiceArea", "registration", "languages"] },
+      { title: "Profile & credentials", fields: ["message", "attachments"], description: "Attach a CV, or write a brief profile." },
+    ],
     title: "Apply to the Professional Panel",
     intro: "Panelists are appointed as arbitrators, mediators, and conciliators in Adjudix proceedings. Applications are reviewed by the Appointments Committee.",
     section: { label: "Our Professional Panel", href: "/panel" },
@@ -584,12 +671,18 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "membership",
+    kind: "application",
+    sections: [
+      { title: "Choose your tier", fields: ["tier"] },
+      { title: "About you", fields: ["name", "email", "phone", "profession", "experience", "institution", "studyYear", "qualification", "location"] },
+      { title: "Anything else", fields: ["message", "attachments"] },
+    ],
     title: "Apply for membership",
     intro: "Choose the membership tier you are applying for. Eligibility for each tier is set out on its page.",
     section: SECTIONS.membership,
     organization: "hidden",
     fields: [
-      { name: "tier", label: "Membership tier", type: "select", required: true, options: ["Fellow", "Associate", "Affiliate", "Student"], half: true },
+      { name: "tier", label: "Membership tier", type: "select", required: true, options: ["Fellow", "Associate", "Affiliate", "Student"], display: "cards-large" },
       {
         name: "profession",
         label: "Profession",
@@ -634,6 +727,11 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "partnership",
+    kind: "application",
+    sections: [
+      { title: "Your organisation", fields: ["organization", "name", "designation", "email", "phone", "website"] },
+      { title: "The partnership", fields: ["partnerType", "message"] },
+    ],
     title: "Partner with Adjudix",
     intro: "Corporate, education, and training partnerships. Tell us about your organisation and what you have in mind.",
     section: { label: "Our Partners", href: "/partners" },
@@ -659,6 +757,12 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "careers",
+    kind: "application",
+    sections: [
+      { title: "About you", fields: ["name", "email", "phone", "location"] },
+      { title: "The role", fields: ["role", "experience", "message"] },
+      { title: "Documents", fields: ["attachments"] },
+    ],
     title: "Careers at Adjudix",
     intro: "Tell us the kind of role you're looking for. We keep every application on file and contact you when a matching role opens.",
     section: SECTIONS.about,
@@ -678,6 +782,11 @@ const FORMS: ApplyForm[] = [
   // ── Knowledge & events ──────────────────────────────────────────────────
   {
     slug: "competition",
+    kind: "registration",
+    sections: [
+      { title: "Choose your competition", fields: ["competition", "participation", "teamSize"] },
+      { title: "About you", fields: ["name", "email", "phone", "institution", "studyYear", "message"] },
+    ],
     title: "Register for a competition",
     intro: "Register now and we will send you the dates, rules, and problem for the next edition.",
     section: SECTIONS.knowledge,
@@ -710,6 +819,11 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "event",
+    kind: "registration",
+    sections: [
+      { title: "Choose your events", fields: ["event", "attendingAs", "attendees", "mode"] },
+      { title: "About you", fields: ["name", "organization", "email", "phone", "location"] },
+    ],
     title: "Register for events",
     intro: "Register your interest and we will send you invitations to upcoming events.",
     section: { label: "Events", href: "/events" },
@@ -740,6 +854,11 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "research",
+    kind: "application",
+    sections: [
+      { title: "Your submission", fields: ["submissionType", "title", "coAuthors", "message", "attachments"] },
+      { title: "About you", fields: ["name", "organization", "email", "phone"] },
+    ],
     title: "Submit your research",
     intro: "Articles, papers, and case comments on arbitration and ADR are reviewed by our editorial board for publication.",
     section: SECTIONS.knowledge,
@@ -766,6 +885,7 @@ const FORMS: ApplyForm[] = [
   },
   {
     slug: "subscribe",
+    kind: "subscribe",
     title: "Subscribe to updates",
     intro: "New articles, research, events, and course cohorts — sent to your inbox, never more than twice a month.",
     section: SECTIONS.knowledge,

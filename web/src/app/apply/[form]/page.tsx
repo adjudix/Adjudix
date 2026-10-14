@@ -30,7 +30,7 @@ export default async function ApplyPage({ params, searchParams }: PageProps<"/ap
         intro={form.intro}
       />
       <section className="mx-auto max-w-3xl px-6 py-12 md:py-16">
-        <div className="rounded-2xl border border-border bg-surface p-6 sm:p-10">
+        <div className="rounded-2xl border border-border bg-surface p-6 [--form-ground:var(--color-surface)] sm:p-10">
           <ApplyFormBody form={form} params={await searchParams} />
         </div>
       </section>

@@ -22,6 +22,12 @@ export default function RespondPage() {
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
           formName="Response to a dispute"
+          kind="filing"
+          sections={[
+            { title: "The case", fields: ["caseReference", "relationship", "message"] },
+            { title: "Documents", fields: ["attachments"] },
+            { title: "Your details", fields: ["name", "organization", "email", "phone"] },
+          ]}
           fields={[
             {
               name: "caseReference",
