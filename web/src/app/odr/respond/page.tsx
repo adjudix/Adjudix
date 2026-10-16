@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
+import { ODR_RESPONSE } from "@/lib/odr-forms";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -21,7 +22,7 @@ export default function RespondPage() {
 
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
-          formName="Response to a dispute"
+          formName={ODR_RESPONSE.formName}
           kind="filing"
           sections={[
             { title: "The case", fields: ["caseReference", "relationship", "message"] },
@@ -42,10 +43,11 @@ export default function RespondPage() {
                     "Arbitration",
                     "Mediation",
                     "Conciliation",
-                    "Lok Adalat",
+                    "Adjudix Lok Adalat",
                     "Emergency Arbitration",
                     "Hybrid (Med-Arb)",
                     "Corporate ADR",
+                    "Other / not listed",
                   ],
                 },
                 { name: "caseNumber", label: "Case number" },
@@ -56,8 +58,8 @@ export default function RespondPage() {
           ]}
           attachmentsLabel="Attach documents"
           submitLabel="Submit Response"
-          successTitle="Response recorded"
-          successBody="Thank you — you'll receive access to the case file and next steps by email."
+          successTitle={ODR_RESPONSE.successTitle}
+          successBody={ODR_RESPONSE.successBody}
         />
       </section>
     </main>

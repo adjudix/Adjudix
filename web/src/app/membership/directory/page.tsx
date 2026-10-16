@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { IdentityNote, MemberCard } from "@/components/patterns/member-card";
-import { IDENTITY_NOTE, MEMBERS, TIERS, TIER_ORDER } from "@/lib/members";
+import { IDENTITY_NOTE, MEMBERS, membershipCode, TIERS, TIER_ORDER } from "@/lib/members";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -48,6 +48,39 @@ export default function DirectoryPage() {
           </section>
         );
       })}
+
+      {/* Register of Members, by membership code (client markup, Oct 2026). */}
+      <section aria-labelledby="register" className="mx-auto max-w-6xl px-6 py-12">
+        <h2 id="register" className="font-heading text-2xl font-semibold text-text">
+          Register of Members
+        </h2>
+        <p className="mt-2 max-w-2xl font-body text-sm text-text-muted">
+          Every member carries a membership code: the tier (H Honorary, F Fellow, A Associate, Af
+          Affiliate, S Student), a serial number, and the year of enrolment.
+        </p>
+        <div className="mt-6 overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[32rem] border-collapse text-left font-body text-sm">
+            <thead className="bg-surface text-xs uppercase tracking-wide text-text-muted">
+              <tr>
+                <th scope="col" className="px-4 py-3 font-semibold">Membership code</th>
+                <th scope="col" className="px-4 py-3 font-semibold">Name</th>
+                <th scope="col" className="px-4 py-3 font-semibold">Membership</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TIER_ORDER.flatMap((tierId) => MEMBERS.filter((member) => member.tier === tierId)).map((member) => (
+                <tr key={member.name} className="border-t border-border">
+                  <td className="px-4 py-2.5 font-mono text-xs tabular-nums text-primary-ink">{membershipCode(member)}</td>
+                  <td className="px-4 py-2.5 text-text">{member.name}</td>
+                  <td className="px-4 py-2.5 text-text-muted">
+                    {TIERS[member.tier].label} [{TIERS[member.tier].postNominal}]
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <CtaBand
         title="Become a member"

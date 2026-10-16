@@ -1,4 +1,5 @@
 import { MechanismPage } from "@/components/patterns/mechanism-page";
+import { LinkButton } from "@/components/ui/link-button";
 import { applyHref } from "@/lib/apply-forms";
 import { pageMetadata } from "@/lib/seo";
 
@@ -45,18 +46,25 @@ export default function LokAdalatPage() {
         },
       ]}
       extra={
-        <section className="mx-auto max-w-3xl px-6 py-16">
-          <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
-            Only at Adjudix
-          </span>
-          <h2 className="mt-3 font-heading text-2xl font-semibold text-text">Adjudix Lok Adalat</h2>
-          <p className="mt-3 font-body text-text-muted">
-            An Adjudix Lok Adalat can be convened during any ADR proceeding. For a single day, a
-            new ADR professional is engaged; each party submits its confidential settlement
-            proposal to them, and they act as a conciliator, keeping every proposal secret. That
-            secrecy is what makes an out-of-the-box settlement possible — one neither side would
-            have put on the table in open proceedings.
-          </p>
+        // Highlighted on the client's markup (Oct 2026): set apart as a lit
+        // panel rather than another plain text section.
+        <section className="px-6 py-16">
+          <div className="mx-auto max-w-4xl rounded-lg bg-hero p-8 ring-1 ring-primary/40 text-text-on-hero shadow-xl md:p-10">
+            <span className="rounded-full bg-primary px-3 py-1 font-mono text-[0.7rem] font-semibold tracking-widest uppercase text-primary-foreground">
+              Only at Adjudix
+            </span>
+            <h2 className="mt-5 font-heading text-3xl font-semibold md:text-4xl">Adjudix Lok Adalat</h2>
+            <p className="mt-4 max-w-2xl font-body text-text-on-hero-muted md:text-lg">
+              An Adjudix Lok Adalat can be convened during any ADR proceeding. For a single day, a
+              new ADR professional is engaged; each party submits its confidential settlement
+              proposal to them, and they act as a conciliator, keeping every proposal secret. That
+              secrecy is what makes an out-of-the-box settlement possible — one neither side would
+              have put on the table in open proceedings.
+            </p>
+            <LinkButton href={applyHref("lok-adalat")} className="mt-6">
+              Convene an Adjudix Lok Adalat
+            </LinkButton>
+          </div>
         </section>
       }
       filingLabel="Check Eligibility"

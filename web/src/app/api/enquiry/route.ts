@@ -1,17 +1,20 @@
-import { mailConfigured, sendToSecretariat, SECRETARIAT_EMAIL } from "@/lib/mail";
+import { acknowledgementEmail, newReference, secretariatEmail, type Submission } from "@/lib/email-templates";
+import { formMeta } from "@/lib/form-meta";
+import { mailConfigured, QUERY_EMAIL, SECRETARIAT_EMAIL, sendToInbox, sendToVisitor, type Inbox } from "@/lib/mail";
 
-// Receives every QueryForm submission (contact, file a dispute, respond to a
-// dispute) and emails it, with any attached documents, to the Secretariat.
+// Receives every QueryForm submission and emails it, with any attached
+// documents, to the mailbox that handles it — case filings (a new or pending
+// case) to the Secretariat, everything else to Query — then sends the visitor
+// a branded acknowledgement with the same reference.
 
 const MAX_FILES = 5;
 const MAX_TOTAL_BYTES = 10 * 1024 * 1024;
 const ALLOWED_EXTENSIONS = /\.(pdf|docx?|jpe?g|png)$/i;
 // Fields the form sends for routing, not for the Secretariat to read.
 const META_FIELDS = new Set(["_form", "_labels", "website"]);
-
-function escapeHtml(value: string) {
-  return value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-}
+// Shown together as the sender's contact card rather than as answers.
+const CONTACT_FIELDS = new Set(["name", "email", "phone", "organization"]);
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function error(message: string, status: number) {
   return Response.json({ error: message }, { status });
@@ -42,20 +45,17 @@ export async function POST(request: Request) {
   if (!name) return error("Please enter your name.", 400);
   if (!email && !phone) return error("Please enter either an email address or a phone number.", 400);
 
-  const rows: [string, string][] = [];
+  const organization = String(data.get("organization") ?? "").trim();
+  const answers: Submission["answers"] = [];
   const files: File[] = [];
   for (const [key, value] of data.entries()) {
-    if (META_FIELDS.has(key)) continue;
+    if (META_FIELDS.has(key) || CONTACT_FIELDS.has(key)) continue;
     if (typeof value === "string") {
-      if (value.trim()) rows.push([labels[key] ?? key, value.trim()]);
+      if (value.trim()) answers.push({ key, label: labels[key] ?? key, value: value.trim() });
     } else if (value.size > 0) {
       files.push(value);
     }
   }
-
-  // The same forms run on adjudixadr.in and adjudixadr.com; say which one.
-  const site = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
-  if (site) rows.push(["Submitted from", site]);
 
   if (files.length > MAX_FILES) return error(`Please attach at most ${MAX_FILES} documents.`, 400);
   if (files.some((file) => !ALLOWED_EXTENSIONS.test(file.name))) {
@@ -65,29 +65,35 @@ export async function POST(request: Request) {
     return error("Attachments must total 10 MB or less.", 400);
   }
 
+  const meta = formMeta(formName);
+  const inbox: Inbox = meta.kind === "filing" ? "secretariat" : "query";
+  const inboxEmail = inbox === "secretariat" ? SECRETARIAT_EMAIL : QUERY_EMAIL;
+
   if (!mailConfigured()) {
     console.error("[enquiry] Email is not configured — set BREVO_API_KEY.");
-    return error(`Online submissions are temporarily unavailable. Please email ${SECRETARIAT_EMAIL}.`, 503);
+    return error(`Online submissions are temporarily unavailable. Please email ${inboxEmail}.`, 503);
   }
 
-  const subject = `${formName}: ${name}`;
-  const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
-  const html = `<h2 style="font-family:sans-serif">${escapeHtml(formName)}</h2>
-<table cellpadding="6" style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
-${rows
-  .map(
-    ([label, value]) =>
-      `<tr><th align="left" valign="top" style="border-bottom:1px solid #ddd">${escapeHtml(label)}</th><td style="border-bottom:1px solid #ddd;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`,
-  )
-  .join("\n")}
-</table>
-${files.length ? `<p style="font-family:sans-serif">${files.length} document(s) attached.</p>` : ""}`;
+  const submission: Submission = {
+    reference: newReference(),
+    formName,
+    kind: meta.kind,
+    urgent: meta.urgent,
+    receivedAt: new Date(),
+    // The same forms run on adjudixadr.in and adjudixadr.com; say which one.
+    site: request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? undefined,
+    name,
+    email,
+    phone,
+    organization,
+    organizationLabel: labels.organization ?? "Organisation",
+    answers,
+    files: files.map((file) => ({ name: file.name, size: file.size })),
+  };
 
   try {
-    await sendToSecretariat({
-      subject,
-      text,
-      html,
+    await sendToInbox(inbox, {
+      ...secretariatEmail(submission),
       replyTo: email || undefined,
       attachments: await Promise.all(
         files.map(async (file) => ({
@@ -99,8 +105,19 @@ ${files.length ? `<p style="font-family:sans-serif">${files.length} document(s) 
     });
   } catch (cause) {
     console.error("[enquiry] sending failed", cause);
-    return error(`We couldn't send your submission. Please try again or email ${SECRETARIAT_EMAIL}.`, 502);
+    return error(`We couldn't send your submission. Please try again or email ${inboxEmail}.`, 502);
   }
 
-  return new Response(null, { status: 204 });
+  // The Secretariat has it, so a failed acknowledgement only loses the receipt.
+  let acknowledged = false;
+  if (EMAIL_PATTERN.test(email)) {
+    try {
+      await sendToVisitor(inbox, email, acknowledgementEmail(submission, meta));
+      acknowledged = true;
+    } catch (cause) {
+      console.error("[enquiry] acknowledgement failed", cause);
+    }
+  }
+
+  return Response.json({ reference: submission.reference, acknowledged });
 }

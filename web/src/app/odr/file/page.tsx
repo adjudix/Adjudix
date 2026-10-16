@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { QueryForm } from "@/components/patterns/query-form";
+import { ODR_FILING } from "@/lib/odr-forms";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -21,7 +22,7 @@ export default function FileDisputePage() {
 
       <section className="mx-auto max-w-2xl px-6 py-16">
         <QueryForm
-          formName="New dispute filing"
+          formName={ODR_FILING.formName}
           kind="filing"
           sections={[
             { title: "The dispute", fields: ["disputeType", "amount", "message"] },
@@ -55,8 +56,8 @@ export default function FileDisputePage() {
           messageLabel="Message (brief)"
           attachmentsLabel="Attach relevant documents"
           submitLabel="Submit Filing"
-          successTitle="Filing received"
-          successBody="Thank you — our Secretariat will review your filing and appoint a neutral from our Professional Panel for the relevant practice area. You'll receive a case reference number shortly."
+          successTitle={ODR_FILING.successTitle}
+          successBody={ODR_FILING.successBody}
         />
       </section>
     </main>

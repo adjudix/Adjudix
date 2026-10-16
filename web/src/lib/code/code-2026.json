@@ -452,7 +452,10 @@
         "Where the tribunal is to consist of three arbitrators, each party shall nominate one arbitrator, and the two arbitrators so nominated shall nominate the presiding arbitrator, each within fifteen days. Where a nomination is not made in time, the Secretariat shall make the appointment.",
         "No agreement shall confer on one party alone the right to appoint a sole arbitrator.",
         "Every appointment is subject to the arbitrator's written disclosure and confirmation under the following Section.",
-        "Where a party is a frequent user of the Institute, the Secretariat shall disclose to the other parties, on request, the number of proceedings involving that party in which the proposed arbitrator has been appointed in the preceding three years, and shall rotate appointments in such proceedings so that no neutral becomes dependent on the repeat appointments of one party."
+        "Where a party is a frequent user of the Institute, the Secretariat shall disclose to the other parties, on request, the number of proceedings involving that party in which the proposed arbitrator has been appointed in the preceding three years, and shall rotate appointments in such proceedings so that no neutral becomes dependent on the repeat appointments of one party.",
+        "Where the Secretariat is to appoint a sole arbitrator, it shall propose to the parties three eligible neutrals from the Panel suited to the subject matter of the dispute, and each party may rank them in order of first, second, and third preference within seven days. The neutral with the best combined ranking shall be appointed; where the rankings are tied or are not returned in time, the appointment shall be made by draw of lots from the three neutrals proposed.",
+        "Where the Secretariat is to constitute a tribunal of three arbitrators, the tribunal shall include at least one Chartered Accountant, Company Secretary, or engineer where the subject matter of the dispute so requires, and the Secretariat shall make each appointment by draw of lots from the eligible neutrals on the Panel of the relevant profession.",
+        "Every draw of lots shall be random, shall be conducted by the Secretariat in the presence of, or by video link open to, the parties or their representatives, and shall be recorded in writing together with the names of every neutral included in the draw; the record shall be furnished to any party, and to any court, on request."
        ],
        "since": 2018
       },
@@ -774,6 +777,7 @@
        "title": "Initiation of Med-Arb Hybrid Proceedings",
        "body": [
         "The Med-Arb Protocol applies where the parties have agreed, before or after a dispute has arisen, to resolve the dispute by mediation followed, if settlement is not reached, by arbitration under this Code.",
+        "Med-Arb under this Code is of two kinds: (a) Same-Neutral Med-Arb, in which the person appointed as mediator continues, if the mediation fails, as the sole arbitrator; and (b) Separate-Neutral Med-Arb, in which the mediator does not serve as arbitrator and the Institute appoints a different person to arbitrate.",
         "On registration of a Med-Arb proceeding, the Secretariat shall appoint a mediator and fix the period of the mediation phase, which shall not exceed sixty days unless the parties agree otherwise."
        ],
        "since": 2026
@@ -791,8 +795,10 @@
        "no": "53",
        "title": "Dual Role of Neutral (Opt-In / Consent Requirements)",
        "body": [
-        "Unless the parties agree otherwise, the arbitrator in the arbitration phase shall be a person other than the mediator.",
-        "The parties may agree that the mediator shall act as arbitrator only by an express agreement in writing, made after the mediation phase has ended, which records that each party has been informed of the consequences of that choice and consents to it freely."
+        "The parties may choose, in their agreement or at any time before the mediation phase ends, either Same-Neutral Med-Arb or Separate-Neutral Med-Arb.",
+        "Where the agreement of the parties is silent on whether the mediator may act as arbitrator, the parties shall be deemed to have chosen Same-Neutral Med-Arb, and the mediator shall continue as the sole arbitrator in the arbitration phase, so that the arbitrator is acquainted with the negotiations that took place in the mediation phase.",
+        "In Separate-Neutral Med-Arb, the Institute shall appoint as arbitrator a person other than the mediator, in accordance with the appointment provisions of this Code.",
+        "By choosing, or being deemed to have chosen, Same-Neutral Med-Arb, each party agrees that the mediator may act as arbitrator in the same dispute and waives any objection to the arbitrator's appointment on the ground only of the arbitrator's earlier role as mediator."
        ],
        "since": 2026
       },
@@ -800,8 +806,8 @@
        "no": "54",
        "title": "Protection of Information Disclosed in Mediation Phase",
        "body": [
-        "No information disclosed in the mediation phase, and in particular no information given in a private session, shall be placed before the arbitrator or relied upon in the arbitration phase, save with the consent of the party that disclosed it.",
-        "Where the mediator acts as arbitrator under the preceding Section, the mediator shall, before the arbitration phase begins, disclose to all parties any confidential information received in private session which the mediator considers material to the dispute, or shall decline to act."
+        "In Separate-Neutral Med-Arb, no information disclosed in the mediation phase, and in particular no information given in a private session, shall be placed before the arbitrator or relied upon in the arbitration phase, save with the consent of the party that disclosed it.",
+        "In Same-Neutral Med-Arb, the arbitrator may take into account the course of the negotiations in the mediation phase; but, so that each party may answer the case against it, the arbitrator shall, before the arbitration phase begins, disclose to all parties the substance of any confidential information received in private session which the arbitrator considers material to the dispute, and shall not rely on any such information that has not been so disclosed."
        ],
        "since": 2026
       },
@@ -906,7 +912,7 @@
        "title": "Fees of the Institute and of Neutrals",
        "body": [
         "The filing fee, administrative fee, and the fees of arbitrators and other neutrals shall be as set out in the Schedule of Fees in force on the date of commencement of the proceeding.",
-        "The tribunal and administrative fees shall be fixed on the basis of the claim or counter-claim, whichever is higher. For disputes that cannot be quantified, the Secretariat shall fix the fee having regard to the facts of the case.",
+        "The tribunal and administrative fees shall be fixed on the basis of the claim. A counter-claim shall attract fees on the same pattern, as if it were an independent claim. For disputes that cannot be quantified, the Secretariat shall fix the fee having regard to the facts of the case.",
         "No neutral shall accept any fee or payment from a party other than through, or as directed by, the Secretariat."
        ],
        "since": 2018
@@ -915,9 +921,9 @@
        "no": "63",
        "title": "Deposits and Allocation of Costs",
        "body": [
-        "The parties shall deposit the fees in the instalments set out in the Schedule of Fees, in equal shares unless the Schedule provides otherwise. Where a party fails to pay its share, the other party may pay it.",
+        "The parties shall deposit the fees in the instalments set out in the Schedule of Fees, in equal shares unless the Schedule provides otherwise. Where the respondent fails to deposit its share, the claimant shall deposit it in order to continue the proceedings, subject to the final outcome of the matter.",
         "The costs of the arbitration comprise the fees of the Institute and of the tribunal, the fees and expenses of any expert appointed by the tribunal, and the reasonable legal and other costs incurred by the parties.",
-        "The tribunal shall, in its award, determine the costs of the arbitration and which party shall bear them, in accordance with Section 31A of the Act, having regard to the conduct of the parties, including the extent to which each has conducted the arbitration in an expeditious and cost-effective manner, the outcome, and any offer of settlement.",
+        "The neutral shall, in the award, determine the costs and which party shall bear them, in accordance with Section 31A of the Act, and may apply (a) the loser-pays principle, (b) the principle of equal or proportional payment, or (c) the claimant-pays principle, as the neutral deems fit in the nature of the case, having regard to the conduct of the parties, including the extent to which each has conducted the proceeding in an expeditious and cost-effective manner, the outcome, and any offer of settlement.",
         "Where all claims are withdrawn or the proceeding ends before a final award, the Secretariat shall fix the fees payable to the Institute and the neutral, and any refund due."
        ],
        "since": 2018

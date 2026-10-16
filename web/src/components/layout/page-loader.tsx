@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
@@ -10,12 +10,18 @@ type Phase = "hidden" | "appear" | "waiting" | "handoff" | "done";
 /** Fired on window (and marked on <html>) once the intro is out of the way. */
 export const INTRO_DONE_EVENT = "adjudix:intro-done";
 
-// The reel is 4.375s (the first second of the client's clip is trimmed off). The fallback fires a little after that in case the
-// video's "ended" event never arrives (autoplay blocked, load failure) —
-// normally the scroll prompt is triggered by playback actually finishing,
-// not by this guess.
+// The reel is 4.375s (the first second of the client's clip is trimmed off).
+// Once playback starts, a fallback fires a little after the reel's end in case
+// the "ended" event never arrives — normally the scroll prompt is triggered by
+// playback actually finishing, not by this guess.
 const REEL_DURATION_MS = 4375;
-const FALLBACK_MS = REEL_DURATION_MS + 400;
+const END_SLACK_MS = 400;
+// If the reel hasn't started by now (Safari autoplay off, iOS/iPadOS Low Power
+// Mode, slow network), show the still logo instead of a blank box or
+// Safari's native play button.
+const START_TIMEOUT_MS = 2500;
+// How long the still logo holds before the scroll prompt appears.
+const STILL_HOLD_MS = 1200;
 
 /**
  * One-time intro: the client's own animated logo reel plays centered, full
@@ -48,6 +54,10 @@ export function PageLoader() {
 
 function IntroReel() {
   const [phase, setPhase] = useState<Phase>("hidden");
+  // True when the reel can't play and the still logo stands in for it.
+  const [stillOnly, setStillOnly] = useState(false);
+  const reelTimersRef = useRef<number[]>([]);
+  const reelStartedRef = useRef(false);
   const logoRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const handoffFiredRef = useRef(false);
@@ -114,13 +124,31 @@ function IntroReel() {
       return;
     }
 
-    const timers = [
+    const timers = reelTimersRef.current;
+    timers.push(
       window.setTimeout(() => setPhase("appear"), 100),
-      window.setTimeout(endReel, FALLBACK_MS),
-    ];
+      window.setTimeout(() => {
+        if (!reelStartedRef.current) showStill();
+      }, START_TIMEOUT_MS),
+    );
 
-    return () => timers.forEach(window.clearTimeout);
-  }, []);
+    // Ask for playback explicitly too: when Safari won't autoplay (its
+    // "Never Auto-Play" setting, Low Power Mode on iPhone/iPad) the attribute
+    // fails silently and leaves the native play button on screen, while
+    // play() rejects with NotAllowedError so we can swap in the still logo
+    // right away. An AbortError only means an autoplay attempt already in
+    // flight superseded this call — playback is fine, so ignore it.
+    const video = videoRef.current;
+    video?.play()?.catch((error: unknown) => {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      if (!reelStartedRef.current) showStill();
+    });
+
+    return () => {
+      timers.forEach(window.clearTimeout);
+      timers.length = 0;
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (phase !== "done") return;
@@ -182,6 +210,27 @@ function IntroReel() {
     setPhase((current) => (current === "handoff" || current === "done" ? current : "waiting"));
   }
 
+  // The reel is actually moving: arm the end fallback from where it is now,
+  // so a reel that started late isn't cut off by a timer counted from mount.
+  function onReelPlaying(event: SyntheticEvent<HTMLVideoElement>) {
+    if (reelStartedRef.current || stillOnly) return;
+    reelStartedRef.current = true;
+    const elapsedMs = event.currentTarget.currentTime * 1000;
+    reelTimersRef.current.push(
+      window.setTimeout(endReel, Math.max(0, REEL_DURATION_MS - elapsedMs) + END_SLACK_MS),
+    );
+  }
+
+  // The reel can't play: hide the video (and any native play button with it),
+  // show the still logo, and move on to the scroll prompt shortly after.
+  function showStill() {
+    if (reelStartedRef.current || reelEndedRef.current) return;
+    reelStartedRef.current = true;
+    setStillOnly(true);
+    videoRef.current?.pause();
+    reelTimersRef.current.push(window.setTimeout(endReel, STILL_HOLD_MS));
+  }
+
   if (phase === "done") return null;
 
   const isHidden = phase === "hidden";
@@ -217,16 +266,25 @@ function IntroReel() {
             videoRef.current = el;
             if (el) el.muted = true;
           }}
+          // H.264 Main profile, no audio track, index at the front of the
+          // file — the widest-supported format on macOS, iOS and iPadOS.
           src="/video/logo-loop.mp4"
-          poster="/images/logo-full.webp"
           width={1376}
           height={768}
-          className="h-60 w-auto md:h-80"
+          className={`h-60 w-auto md:h-80 ${stillOnly ? "invisible" : ""}`}
           autoPlay
           muted
           playsInline
+          preload="auto"
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
+          onPlaying={onReelPlaying}
           onEnded={endReel}
-          onError={(e) => console.error("[PageLoader] video failed to load", e.currentTarget.error)}
+          onError={(e) => {
+            console.error("[PageLoader] video failed to load", e.currentTarget.error);
+            showStill();
+          }}
         />
         {/* The reel's last frame is still mid-sway; the client's original
             clip opens on the logo at rest (this image). Fade it in over the
@@ -240,7 +298,7 @@ function IntroReel() {
           sizes="(min-width: 768px) 573px, 430px"
           loading="eager"
           className={`absolute inset-0 h-full w-full transition-opacity duration-500 ease-out ${
-            waiting || inHandoff ? "opacity-100" : "opacity-0"
+            stillOnly || waiting || inHandoff ? "opacity-100" : "opacity-0"
           }`}
         />
       </div>

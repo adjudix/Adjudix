@@ -12,10 +12,11 @@ export const metadata = pageMetadata({
 
 // Mail IDs by purpose, as confirmed by the client (domain adjudixADR.com).
 const MAILBOXES = [
-  { team: "Secretariat", purpose: "For all formal communications", email: "secretariat@adjudixadr.com" },
-  { team: "HR", purpose: "For relationship building", email: "hr@adjudixadr.com" },
-  { team: "Customer Support", purpose: "For any help or support", email: "support@adjudixadr.com" },
-  { team: "Director", purpose: "Only in an emergency", email: "director@adjudixadr.com" },
+  { team: "Queries", purpose: "For general queries and contact", email: "query@adjudixADR.com" },
+  { team: "Secretariat", purpose: "Only for communication on a new or pending case", email: "secretariat@adjudixADR.com" },
+  { team: "HR", purpose: "For relationship building", email: "hr@adjudixADR.com" },
+  { team: "Customer Support", purpose: "For any help or support", email: "support@adjudixADR.com" },
+  { team: "Director", purpose: "Only in an emergency", email: "director@adjudixADR.com" },
 ];
 
 export default async function ContactPage({ searchParams }: PageProps<"/contact">) {

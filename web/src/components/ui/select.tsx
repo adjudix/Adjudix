@@ -58,7 +58,7 @@ function SelectContent({
       >
         <SelectPrimitive.Popup
           className={cn(
-            "max-h-[min(22rem,var(--available-height))] w-full origin-(--transform-origin) overflow-auto rounded-md border border-border bg-popover p-1.5 text-popover-foreground shadow-lg outline-none transition-[opacity,transform] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+            "scrollbar-refined max-h-[min(22rem,var(--available-height))] w-full origin-(--transform-origin) overflow-auto rounded-md border border-border bg-popover p-1.5 text-popover-foreground shadow-lg outline-none transition-[opacity,transform] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
             className
           )}
         >

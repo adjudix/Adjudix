@@ -179,6 +179,9 @@ export function QueryForm({
   const formRef = useRef<HTMLFormElement>(null);
   const headingRefs = useRef<(HTMLElement | null)[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  // From the server: the reference quoted in both emails, and whether the
+  // acknowledgement reached the visitor's inbox.
+  const [receipt, setReceipt] = useState<{ reference?: string; acknowledged?: boolean }>({});
   const [loading, setLoading] = useState(false);
   const [sendError, setSendError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -362,6 +365,7 @@ export function QueryForm({
         const body = await response.json().catch(() => null);
         throw new Error(body?.error ?? "We couldn't send your submission. Please try again.");
       }
+      setReceipt((await response.json().catch(() => null)) ?? {});
       setSubmitted(true);
     } catch (cause) {
       setSendError(cause instanceof Error ? cause.message : "We couldn't send your submission. Please try again.");
@@ -380,6 +384,17 @@ export function QueryForm({
         <p className="mt-3 max-w-md text-center font-body text-[0.95rem] leading-relaxed text-muted-foreground">
           {successBody}
         </p>
+        {receipt.reference && (
+          <div className="mt-6 rounded-lg border border-border bg-muted px-6 py-4">
+            <p className="font-body text-xs font-semibold uppercase tracking-wide text-muted-foreground">Your reference</p>
+            <p className="mt-1 font-mono text-lg font-semibold tracking-wider text-foreground">{receipt.reference}</p>
+          </div>
+        )}
+        {receipt.acknowledged && (
+          <p className="mt-4 max-w-md text-center font-body text-sm text-muted-foreground">
+            A confirmation has been sent to your email. If it isn&apos;t in your inbox, check spam or promotions.
+          </p>
+        )}
       </div>
     );
   }
@@ -823,7 +838,7 @@ function TextControl({
     onInput,
   };
   if (field.type === "textarea") {
-    return <textarea {...common} rows={5} className={cn(inputClass, "h-auto min-h-32 resize-y py-3 leading-relaxed")} />;
+    return <textarea {...common} rows={5} className={cn(inputClass, "scrollbar-refined h-auto min-h-32 resize-y py-3 leading-relaxed")} />;
   }
   const autoComplete =
     field.name === "name" ? "name" : field.name === "email" ? "email" : field.name === "phone" ? "tel" : field.name === "organization" ? "organization" : undefined;

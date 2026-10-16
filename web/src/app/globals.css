@@ -116,3 +116,53 @@
     hyphens: auto;
   }
 }
+
+/*
+  A slim, rounded scrollbar for scrolling panels (the form pop-up, dropdown
+  lists, message boxes) in place of the browser's default grey bar. The thumb
+  floats inside a transparent track and darkens while hovered or dragged.
+  Chrome and Safari take the ::-webkit- rules; Firefox, which has no
+  pseudo-elements, gets the thin standard bar in the same colour.
+*/
+@utility scrollbar-refined {
+  --scrollbar-thumb: color-mix(in oklab, var(--muted-foreground) 32%, transparent);
+  --scrollbar-thumb-hover: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 9999px;
+    min-height: 40px;
+  }
+  &::-webkit-scrollbar-thumb:hover,
+  &::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+}
+
+/* The intro reel never shows browser chrome. When Safari won't autoplay it
+   draws its own big play button over the video for a moment, before the
+   loader swaps in the still logo — keep that button from ever appearing. */
+[data-intro] video::-webkit-media-controls,
+[data-intro] video::-webkit-media-controls-panel,
+[data-intro] video::-webkit-media-controls-overlay-play-button,
+[data-intro] video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+}

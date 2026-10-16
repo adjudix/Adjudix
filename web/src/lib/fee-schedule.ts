@@ -83,8 +83,9 @@ export const PAYMENT_SCHEDULE = [
 export const TERMS = [
   "Registration charges are paid by the party filing the notice or application; the consultation fee, if availed, at the time of the appointment.",
   "In emergency arbitration, the entire fee is deposited by the applicant when filing the application.",
-  "The tribunal and administrative fees are fixed on the claim or the counter-claim, whichever is higher.",
-  "Fees are payable in equal shares by the parties. If one party does not pay its share, the other may pay it; if neither does, the tribunal may suspend or terminate the proceedings for that claim or counter-claim.",
+  "The tribunal and administrative fees are fixed on the claim. A counter-claim attracts fees on the same pattern, as if it were an independent claim.",
+  "Fees are payable in equal shares by the parties. If the respondent does not deposit its share, the claimant shall deposit it in order to continue the proceedings, subject to the final outcome of the matter. If neither party deposits, the tribunal may suspend or terminate the proceedings for that claim or counter-claim.",
+  "In the award, the neutral may apply (i) the loser-pays principle, (ii) the principle of equal or proportional payment, or (iii) the claimant-pays principle, as the neutral deems fit in the nature of the case.",
   "Amounts in a currency other than Indian Rupees are converted at the current official rate of exchange.",
   "The arbitrator's fee carries no GST. All other charges carry GST at 18%.",
   "For disputes that cannot be quantified, Adjudix fixes the fee on the facts of the case.",

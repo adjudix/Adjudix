@@ -1,4 +1,4 @@
-import { TIERS, type Member } from "@/lib/members";
+import { membershipCode, TIERS, type Member } from "@/lib/members";
 
 // Monogram from the name, honorific dropped ("Mr. Bhavesh Tiwari" -> "BT").
 function initials(name: string) {
@@ -31,7 +31,10 @@ export function MemberCard({ member, role }: { member: Member; role?: string }) 
         </span>
         <div className="min-w-0">
           <h3 className="font-heading text-lg leading-snug font-semibold text-text">{member.name}</h3>
-          <p className="mt-0.5 font-mono text-xs tracking-wider text-primary-ink">{tier.postNominal}</p>
+          <p className="mt-0.5 font-mono text-xs tracking-wider text-primary-ink">
+            {tier.postNominal}
+            <span className="text-text-muted"> · {membershipCode(member)}</span>
+          </p>
         </div>
       </div>
       <p className="mt-4 mb-5 text-left font-body text-sm text-text-muted">{member.credentials}</p>

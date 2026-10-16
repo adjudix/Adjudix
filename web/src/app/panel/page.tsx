@@ -22,7 +22,7 @@ export default function PanelPage() {
       <PageHeader
         eyebrow="Dispute Resolution"
         title="Our Professional Panel"
-        intro="Advocates, chartered accountants, civil engineers, IT engineers, and other professionals — vetted before appointment to any case and bound by the Adjudix Code of ADR Procedure, 2026."
+        intro="Advocates, chartered accountants, civil engineers, IT engineers, architects, interior designers, and other professionals — vetted before appointment to any case and bound by the Adjudix Code of ADR Procedure, 2026."
       />
 
       <section className="mx-auto max-w-6xl px-6 pt-16">
@@ -54,7 +54,7 @@ export default function PanelPage() {
 
       <CtaBand
         title="Apply to join our panel"
-        description="Advocates, chartered accountants, company secretaries, and engineers of every discipline with relevant experience can apply."
+        description="Advocates, chartered accountants, company secretaries, engineers of every discipline, architects, and interior designers with relevant experience can apply."
         primary={{ label: "Apply to the Panel", href: applyHref("panel") }}
         secondary={{ label: "Our Esteemed Members", href: "/membership/directory" }}
       />

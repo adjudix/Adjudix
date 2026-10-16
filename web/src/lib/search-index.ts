@@ -100,6 +100,7 @@ const PAGES: SearchItem[] = [
   { group: "Knowledge", title: "Competitions", href: "/knowledge/competitions", keywords: "moot contest" },
   { group: "Knowledge", title: "Mock Arbitration", href: "/knowledge/competitions/mock-arbitration", keywords: "moot" },
   { group: "Knowledge", title: "Mock Conciliation", href: "/knowledge/competitions/mock-conciliation" },
+  { group: "Knowledge", title: "Hybrid Med-Arb Competition", href: "/knowledge/competitions/hybrid-med-arb" },
   { group: "Knowledge", title: "Arbitral Award Writing", href: "/knowledge/competitions/award-writing" },
   { group: "Knowledge", title: "Blog / Article Writing Competition", href: "/knowledge/competitions/blog-writing" },
 

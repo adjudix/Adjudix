@@ -75,6 +75,10 @@ export function formatRupees(value: number): string {
 // Student courses (client markup, Oct 2026: "Basics of ADR, Career building
 // in ADR, and such"). Taught for students of law, commerce, and engineering;
 // student members receive student pricing, and scholarships are available.
+// Each student course costs a token fee, refunded in full once the student
+// completes the course and passes its test (client markup, Oct 2026).
+export const STUDENT_COURSE_FEE = 99;
+
 export interface StudentCourse {
   slug: string;
   title: string;

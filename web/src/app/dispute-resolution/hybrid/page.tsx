@@ -24,7 +24,7 @@ export default function HybridPage() {
         },
         {
           title: "Arbitration phase",
-          description: "The case proceeds to a binding arbitral award, often before a different neutral than the mediator.",
+          description: "Unsettled issues proceed to a binding arbitral award — before the same neutral, or a separate one if the clause says so.",
         },
       ]}
       legalBasis="The mediation phase is conducted under the Mediation Act, 2023, and the arbitration phase under the Arbitration and Conciliation Act, 1996. The two-stage structure is set out in the parties' arbitration clause or submission agreement, and in the Adjudix Code of ADR Procedure."
@@ -35,7 +35,7 @@ export default function HybridPage() {
         },
         {
           question: "Does the same neutral handle both phases?",
-          answer: "Not by default — Adjudix generally appoints a different arbitrator than the mediator, so the arbitrator isn't influenced by anything said during confidential mediation sessions.",
+          answer: "You choose. Adjudix offers two kinds of Med-Arb: with the same neutral, who already knows the negotiations from mediation and carries on as arbitrator; or with separate neutrals, where the Institute appoints a different arbitrator. If your clause doesn't say, the same neutral continues. Our model clauses cover both options.",
         },
       ]}
     />

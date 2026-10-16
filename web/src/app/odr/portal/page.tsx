@@ -1,6 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { LinkButton } from "@/components/ui/link-button";
-import { applyHref } from "@/lib/apply-forms";
+import { PortalAccess } from "@/components/patterns/portal-access";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -35,22 +34,23 @@ export default function PortalPage() {
         intro="Role-based access for parties, arbitrators, and case managers. Portal accounts are issued once a case is filed or an appointment is confirmed."
       />
 
-      <section className="mx-auto max-w-4xl px-6 py-16">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {PORTALS.map((portal) => (
-            <div key={portal.title} className="rounded-lg border border-border bg-surface p-6">
-              <h2 className="font-heading text-lg font-semibold text-text">{portal.title}</h2>
-              <p className="mt-2 font-body text-sm text-text-muted">{portal.description}</p>
-              <LinkButton variant="secondary" size="default" className="mt-4" href={applyHref("enquiry")}>
-                Request Access
-              </LinkButton>
-            </div>
-          ))}
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-start">
+        <PortalAccess />
+        <div>
+          <h2 className="font-heading text-xl font-semibold text-text">Who the portal is for</h2>
+          <ul className="mt-5 flex flex-col gap-3">
+            {PORTALS.map((portal) => (
+              <li key={portal.title} className="rounded-lg border border-border bg-surface p-5">
+                <h3 className="font-heading text-base font-semibold text-text">{portal.title}</h3>
+                <p className="mt-1 font-body text-sm text-text-muted">{portal.description}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 font-body text-sm text-text-muted">
+            Sign up once; the Secretariat verifies every account before it is activated, so only
+            the parties and neutrals on a case can see it.
+          </p>
         </div>
-        <p className="mt-8 font-body text-sm text-text-muted">
-          Portal credentials are issued by the Secretariat. If you&apos;ve filed a case or
-          accepted a panel appointment, contact us directly for your access credentials.
-        </p>
       </section>
     </main>
   );

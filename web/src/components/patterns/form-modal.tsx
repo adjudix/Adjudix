@@ -41,7 +41,7 @@ export function FormModal({
               <XIcon className="size-5" aria-hidden="true" />
             </Dialog.Close>
           </div>
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8">{children}</div>
+          <div className="scrollbar-refined min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-gutter:stable] px-6 py-6 sm:px-8">{children}</div>
         </Dialog.Popup>
       </Dialog.Portal>
     </Dialog.Root>

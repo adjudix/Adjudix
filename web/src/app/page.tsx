@@ -31,11 +31,11 @@ const ORGANIZATION_JSON_LD = {
       alternateName: ["Adjudix", "ADR-i"],
       url: SITE_URL,
       logo: `${SITE_URL}/images/logo-mini.png`,
-      email: "secretariat@adjudixadr.com",
+      email: "query@adjudixADR.com",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer support",
-        email: "support@adjudixadr.com",
+        email: "query@adjudixADR.com",
         url: `${SITE_URL}/contact`,
       },
     },
@@ -322,43 +322,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Corporate Dispute Resolution — Pattern A: editorial split, no scrim */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
-              For businesses
-            </span>
-            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
-              Corporate dispute resolution, built for how businesses actually decide
-            </h2>
-            <p className="mt-4 font-body text-text-muted">
-              Bespoke panel access, arbitration clauses ready to insert into commercial
-              contracts, and a dedicated relationship team, for businesses that need
-              disputes resolved without disrupting the underlying commercial
-              relationship.
-            </p>
-            <LinkButton
-              variant="secondary"
-              size="default"
-              className="mt-6"
-              href="/dispute-resolution/corporate"
-            >
-              Corporate Dispute Resolution Services
-            </LinkButton>
-          </div>
-          <div className="relative aspect-4/3 overflow-hidden rounded-lg order-first md:order-last">
-            <Image
-              src="/images/boardroom-collaboration.jpg"
-              alt="A panel presenting a case analysis to a seated group around a conference table"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </Reveal>
-      </section>
-
       {/* Rule Book — the three editions of the Code side by side, each one
           building on the last; the current edition is the lit card */}
       <section className="bg-hero px-6 py-20 text-text-on-hero">
@@ -369,7 +332,7 @@ export default function Home() {
                 The Rule Book
               </span>
               <h2 className="mt-3 max-w-xl font-heading text-2xl font-semibold text-balance md:text-3xl">
-                The Adjudix Code of ADR Procedure, in three editions
+                The Adjudix Code of ADR Procedure
               </h2>
               <p className="mt-4 max-w-xl text-left font-body text-text-on-hero-muted">
                 Our rule book: every case at Adjudix runs on this published Code. Each edition builds
@@ -478,6 +441,43 @@ export default function Home() {
             ))}
           </ol>
         </div>
+      </section>
+
+      {/* Corporate Dispute Resolution — Pattern A: editorial split, no scrim */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
+          <div>
+            <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
+              For businesses
+            </span>
+            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold text-text text-balance">
+              Corporate dispute resolution, built for how businesses actually decide
+            </h2>
+            <p className="mt-4 font-body text-text-muted">
+              Bespoke panel access, arbitration clauses ready to insert into commercial
+              contracts, and a dedicated relationship team, for businesses that need
+              disputes resolved without disrupting the underlying commercial
+              relationship.
+            </p>
+            <LinkButton
+              variant="secondary"
+              size="default"
+              className="mt-6"
+              href="/dispute-resolution/corporate"
+            >
+              Corporate Dispute Resolution Services
+            </LinkButton>
+          </div>
+          <div className="relative aspect-4/3 overflow-hidden rounded-lg order-first md:order-last">
+            <Image
+              src="/images/boardroom-collaboration.jpg"
+              alt="A panel presenting a case analysis to a seated group around a conference table"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
       </section>
 
       {/* Membership — an open-book spread: a static left page and a stack of

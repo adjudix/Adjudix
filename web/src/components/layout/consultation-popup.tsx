@@ -103,13 +103,16 @@ export function ConsultationPopup() {
           </p>
           <Dialog.Description className="mt-3 text-center font-body text-sm text-text-muted">
             Avail your free consultation with our professional panel — on any dispute,
-            implementation, or drafting matter.
+            implementation, or drafting matter, etc.
           </Dialog.Description>
 
           <div className="mt-6 rounded-md bg-surface px-4 py-3">
             <p className="text-center text-xs text-text-muted">Offer ends in</p>
+            {/* Same typeface as the price above, days and time alike (client
+                asked for one font across the pop-up); tabular figures keep
+                the ticking digits from shifting. */}
             <p
-              className="mt-1 font-mono text-2xl font-semibold tabular-nums text-text"
+              className="mt-1 font-heading text-2xl font-semibold tabular-nums text-text"
               aria-live="off"
             >
               {formatCountdown(remaining)}

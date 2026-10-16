@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -18,7 +18,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SiteSearch } from "@/components/layout/site-search";
 import type { SearchItem } from "@/lib/search-index";
@@ -62,24 +62,24 @@ const NAV_GROUPS: NavGroup[] = [
         label: "By Type",
         links: [
           { label: "Domestic Dispute Resolution", href: "/dispute-resolution/domestic" },
-          { label: "International Dispute Resolution", href: "/dispute-resolution/international" },
+          { label: "International Dispute Resolution", href: "/dispute-resolution/international", highlight: true },
           { label: "Online Dispute Resolution", href: "/odr" },
           { label: "Offline Dispute Resolution", href: "/dispute-resolution/offline" },
-          { label: "Hybrid Dispute Resolution", href: "/dispute-resolution/hybrid" },
-          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
-          { label: "Practice Areas", href: "/dispute-resolution/practice-areas" },
+          { label: "Hybrid Dispute Resolution", href: "/dispute-resolution/hybrid", highlight: true },
+          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency", highlight: true },
+          { label: "Practice Areas", href: "/dispute-resolution/practice-areas", highlight: true },
         ],
       },
       {
         label: "Mechanisms & Services",
         links: [
-          { label: "Hybrid ADR Mechanism", href: "/dispute-resolution/hybrid" },
+          { label: "Hybrid ADR Mechanism", href: "/dispute-resolution/hybrid", highlight: true },
           { label: "Arbitration", href: "/dispute-resolution/arbitration" },
           { label: "Mediation", href: "/dispute-resolution/mediation" },
           { label: "Conciliation", href: "/dispute-resolution/conciliation" },
-          { label: "Lok Adalat", href: "/dispute-resolution/lok-adalat" },
-          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
-          { label: "Corporate Dispute Resolution", href: "/dispute-resolution/corporate" },
+          { label: "Adjudix Lok Adalat", href: "/dispute-resolution/lok-adalat", highlight: true },
+          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency", highlight: true },
+          { label: "Corporate Dispute Resolution", href: "/dispute-resolution/corporate", highlight: true },
         ],
       },
     ],
@@ -147,9 +147,37 @@ function Stars({ count }: { count: number }) {
 function LinkLabel({ link }: { link: NavLink }) {
   return (
     <>
-      <span className={cn(link.highlight && "font-semibold text-ember")}>{link.label}</span>
+      <span className={cn("flex items-center gap-2", link.highlight && "font-semibold text-ember")}>
+        {/* A sub-item hangs off the item above it with a small corner
+            connector, so it reads as part of that item, not a stray indent. */}
+        {link.nested && (
+          <span
+            className="-mt-1.5 size-2.5 shrink-0 rounded-bl-sm border-b border-l border-text-muted/60"
+            aria-hidden="true"
+          />
+        )}
+        {link.label}
+      </span>
       {link.stars ? <Stars count={link.stars} /> : null}
     </>
+  );
+}
+
+const mobileLinkClass = "flex items-center justify-between gap-3 py-1.5 text-sm text-text";
+
+// One fold-out menu in the phone menu sheet.
+function MobileGroup({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <details className="group border-b border-border">
+      <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-[0.95rem] font-semibold text-text [&::-webkit-details-marker]:hidden">
+        {label}
+        <ChevronDown
+          className="size-4 text-text-muted transition-transform group-open:rotate-180"
+          aria-hidden="true"
+        />
+      </summary>
+      <div className="flex flex-col pb-3 pl-3">{children}</div>
+    </details>
   );
 }
 
@@ -220,7 +248,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                     <NavigationMenuContent>
                       <ul className="grid w-72 gap-1 p-1">
                         {group.children.map((child) => (
-                          <li key={child.label} className={cn(child.nested && "ml-4")}>
+                          <li key={child.label} className={cn(child.nested && "-mt-1 ml-3")}>
                             <NavigationMenuLink
                               render={
                                 <Link href={child.href} className={dropdownLinkClass}>
@@ -293,20 +321,26 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
           <div className="flex items-center gap-2">
             <SiteSearch items={searchItems} className="w-9 justify-center px-0" />
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              {/* Labelled and filled in the brand gold so visitors notice the
+                  menu holds every service (client markup, Oct 2026). */}
               <SheetTrigger
                 render={
                   <button
                     type="button"
                     aria-label="Open menu"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-text hover:bg-surface"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3.5 font-body text-sm font-semibold text-primary-foreground shadow-sm ring-2 ring-primary/30 ring-offset-2 ring-offset-canvas hover:bg-primary-hover"
                   >
-                    <Menu className="size-5" aria-hidden="true" />
+                    <Menu className="size-4" aria-hidden="true" />
+                    Menu
                   </button>
                 }
               />
               {/* The list scrolls inside its own area, sized to the visible viewport
                   (dvh) so iOS Safari's toolbar can't hide the bottom links. */}
-              <SheetContent side="right" className="w-80 gap-0 overflow-hidden data-[side=right]:h-dvh">
+              <SheetContent
+                side="right"
+                className="w-[22rem] max-w-[calc(100vw-2rem)] gap-0 overflow-hidden data-[side=right]:h-dvh"
+              >
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2.5 font-heading">
                     <Image
@@ -320,80 +354,89 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                   </SheetTitle>
                 </SheetHeader>
                 <nav
-                  className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-4 pb-8"
+                  className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-8"
                   aria-label="Mobile"
                   // Any link tapped in the menu closes it, so the page it opens is visible.
                   onClick={(event) => {
                     if ((event.target as HTMLElement).closest("a")) setMenuOpen(false);
                   }}
                 >
-                  {NAV_GROUPS.map((group) => (
-                    <div key={group.label} className="border-b border-border py-2">
+                  {/* The actions people come for most, first. */}
+                  <div className="grid grid-cols-2 gap-2 pb-3">
+                    <Link
+                      href="/odr/file"
+                      className="rounded-md bg-primary px-3 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+                    >
+                      File a Dispute
+                    </Link>
+                    <Link
+                      href="/dispute-resolution/emergency"
+                      className="rounded-md border border-ember px-3 py-2.5 text-center text-sm font-semibold text-ember"
+                    >
+                      Emergency Arbitration
+                    </Link>
+                  </div>
+
+                  {/* Each menu folds open on its own, so the list stays short
+                      enough to scan instead of one long scroll of links. */}
+                  {NAV_GROUPS.map((group) =>
+                    group.sections || group.children ? (
+                      <MobileGroup key={group.label} label={group.label}>
+                        {group.href && (
+                          <Link href={group.href} className="py-1.5 text-sm font-medium text-primary-ink">
+                            {group.label} — overview
+                          </Link>
+                        )}
+                        {group.sections?.map((section) => (
+                          <div key={section.label} className="mt-2">
+                            <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-text-muted">
+                              {section.label}
+                            </p>
+                            <div className="mt-1 flex flex-col">
+                              {section.links.map((link) => (
+                                <Link key={link.label} href={link.href} className={mobileLinkClass}>
+                                  <LinkLabel link={link} />
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                        {group.children?.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            className={cn(mobileLinkClass, child.nested && "ml-1")}
+                          >
+                            <LinkLabel link={child} />
+                          </Link>
+                        ))}
+                      </MobileGroup>
+                    ) : (
                       <Link
-                        href={group.href ?? "#"}
-                        className="block py-1.5 text-sm font-medium text-text"
+                        key={group.label}
+                        href={group.href!}
+                        className="border-b border-border py-3 text-[0.95rem] font-semibold text-text"
                       >
                         {group.label}
                       </Link>
-                      {group.sections && (
-                        <div className="ml-3 mt-1 flex flex-col gap-3">
-                          {group.sections.map((section) => (
-                            <div key={section.label}>
-                              <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
-                                {section.label}
-                              </p>
-                              <div className="mt-1 flex flex-col gap-1">
-                                {section.links.map((link) => (
-                                  <Link
-                                    key={link.label}
-                                    href={link.href}
-                                    className="py-1 text-sm text-text-muted"
-                                  >
-                                    {link.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {group.children && (
-                        <div className="ml-3 mt-1 flex flex-col gap-1">
-                          {group.children.map((child) => (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              className={cn(
-                                "flex items-center justify-between gap-3 py-1 text-sm text-text-muted",
-                                child.nested && "ml-3"
-                              )}
-                            >
-                              <LinkLabel link={child} />
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                  <div className="flex flex-col gap-1 border-b border-border py-2">
+                    )
+                  )}
+                  <MobileGroup label="Services & Programmes">
                     {SECONDARY_LINKS.map((link) => (
-                      <Link key={link.href} href={link.href} className="py-1 text-sm text-text-muted">
+                      <Link key={link.href} href={link.href} className={mobileLinkClass}>
                         {link.label}
                       </Link>
                     ))}
+                  </MobileGroup>
+
+                  <div className="mt-4 flex flex-col gap-2">
+                    <Link href="/contact" className="text-sm font-medium text-text">
+                      Contact Us
+                    </Link>
+                    <Link href="/odr/portal" className="text-sm font-medium text-text">
+                      Portal Login
+                    </Link>
                   </div>
-                  <Link
-                    href="/dispute-resolution/emergency"
-                    className="mt-4 text-sm font-medium text-ember"
-                  >
-                    Emergency Arbitration
-                  </Link>
-                  <Link href="/contact" className="mt-2 text-sm text-text-muted">
-                    Contact
-                  </Link>
-                  <Link href="/odr/portal" className="mt-2 text-sm text-text-muted">
-                    Portal Login
-                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>

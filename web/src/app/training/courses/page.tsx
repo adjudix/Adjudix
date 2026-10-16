@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { CardGrid } from "@/components/ui/card-grid";
 import Link from "next/link";
-import { STUDENT_COURSES, TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
+import { formatRupees, STUDENT_COURSE_FEE, STUDENT_COURSES, TRAINING_TRACKS as TRACKS } from "@/lib/training-tracks";
 import { applyHref } from "@/lib/apply-forms";
 import { pageMetadata } from "@/lib/seo";
 
@@ -37,12 +37,20 @@ export default function CoursesPage() {
             For students of law, commerce, and engineering who want to build a career in ADR. Student
             members receive student pricing, and scholarships are available on every course.
           </p>
+          <p className="mt-5 inline-flex max-w-3xl flex-wrap items-baseline gap-x-2 rounded-md bg-primary/10 px-4 py-3 text-left font-body text-sm text-text">
+            <strong className="font-heading text-lg font-semibold">{formatRupees(STUDENT_COURSE_FEE)}</strong>
+            per course, refunded in full when you complete the course and pass its test.
+          </p>
           <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {STUDENT_COURSES.map((course, i) => (
               <li key={course.slug} className="flex flex-col rounded-lg border border-border bg-canvas p-6">
                 <span className="font-mono text-xs font-semibold text-primary-ink">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-2 font-heading text-lg font-semibold text-foreground">{course.title}</h3>
                 <p className="mt-2 flex-1 text-left font-body text-sm text-muted-foreground">{course.description}</p>
+                <p className="mt-4 font-body text-sm text-text">
+                  <span className="font-heading text-base font-semibold">{formatRupees(STUDENT_COURSE_FEE)}</span>{" "}
+                  <span className="text-muted-foreground">· refundable</span>
+                </p>
                 <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-body text-sm font-medium">
                   <Link
                     href={applyHref("course", { courseLevel: "Student Course", course: course.title, status: "Student" })}
