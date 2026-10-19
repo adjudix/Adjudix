@@ -84,6 +84,7 @@ const PAGES: SearchItem[] = [
   // People & membership
   { group: "People", title: "Our Professional Panel", href: "/panel", keywords: "arbitrators mediators advocates lawyers engineers chartered accountants" },
   { group: "People", title: "Our Esteemed Members", href: "/membership/directory", keywords: "members directory" },
+  { group: "People", title: "Register of Members", href: "/membership/register", keywords: "membership code register list members" },
   { group: "People", title: "Membership", href: "/membership", keywords: "join tiers" },
   { group: "People", title: "Fellow Membership", href: "/membership/fellow" },
   { group: "People", title: "Associate Membership", href: "/membership/associated" },

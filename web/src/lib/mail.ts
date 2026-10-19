@@ -1,23 +1,25 @@
-// Form submissions are sent through Brevo's transactional email API. Case
-// filings (a new or pending case) go to the Secretariat; every other form —
-// the contact form, applications, registrations — goes to the Query mailbox
-// (client brief, Oct 2026). One key serves every deployment (adjudixadr.in
-// and adjudixadr.com alike).
+// Form submissions are sent through Brevo's transactional email API.
+// query@adjudixADR.com is the main mailbox (client, Oct 2026): every form is
+// delivered there and every email is sent from it. Case filings can be
+// routed to a separate mailbox (e.g. the Secretariat) by setting MAIL_TO.
+// One key serves every deployment (adjudixadr.in and adjudixadr.com alike).
 // Configure on the host (and in .env.local for local testing):
 //   BREVO_API_KEY                      required (Brevo > SMTP & API > API keys)
-//   MAIL_FROM                          default secretariat@adjudixADR.com —
+//   MAIL_FROM                          default query@adjudixADR.com —
 //                                      must be a verified sender in Brevo
-//   MAIL_TO                            default secretariat@adjudixADR.com
 //   QUERY_MAIL_TO                      default query@adjudixADR.com
+//   MAIL_TO                            case filings; default QUERY_MAIL_TO
 export const SECRETARIAT_EMAIL = "secretariat@adjudixADR.com";
 export const QUERY_EMAIL = "query@adjudixADR.com";
 
 export type Inbox = "secretariat" | "query";
 
+function mainInbox() {
+  return process.env.QUERY_MAIL_TO?.trim() || QUERY_EMAIL;
+}
+
 function inboxAddress(inbox: Inbox) {
-  return inbox === "secretariat"
-    ? process.env.MAIL_TO?.trim() || SECRETARIAT_EMAIL
-    : process.env.QUERY_MAIL_TO?.trim() || QUERY_EMAIL;
+  return inbox === "secretariat" ? process.env.MAIL_TO?.trim() || mainInbox() : mainInbox();
 }
 
 export interface OutgoingMail {
@@ -46,7 +48,7 @@ async function send(mail: Delivery) {
       accept: "application/json",
     },
     body: JSON.stringify({
-      sender: { name: mail.senderName, email: process.env.MAIL_FROM?.trim() || SECRETARIAT_EMAIL },
+      sender: { name: mail.senderName, email: process.env.MAIL_FROM?.trim() || QUERY_EMAIL },
       to: [{ email: mail.to }],
       ...(mail.replyTo ? { replyTo: { email: mail.replyTo } } : {}),
       subject: mail.subject,
@@ -77,7 +79,7 @@ export function sendToVisitor(inbox: Inbox, to: string, mail: Omit<OutgoingMail,
   return send({
     ...mail,
     to,
-    senderName: "Adjudix Secretariat",
+    senderName: "Adjudix",
     replyTo: inboxAddress(inbox),
   });
 }

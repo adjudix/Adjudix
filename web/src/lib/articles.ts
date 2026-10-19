@@ -2,10 +2,19 @@
 // possible" on our services, USPs, and business model, 1–2 pages each).
 // Rendered by /knowledge/blog and /knowledge/blog/[slug].
 
+// One box in a flow chart. A step with `branches` splits into the outcomes
+// listed side by side (e.g. "settled" / "not settled").
+export interface FlowStep {
+  title: string;
+  detail: string;
+  branches?: { title: string; detail: string }[];
+}
+
 export interface ArticleSection {
   heading?: string;
   paragraphs: string[];
   points?: string[];
+  flow?: FlowStep[];
 }
 
 export interface Article {
@@ -164,7 +173,12 @@ export const ARTICLES: Article[] = [
       {
         heading: "The confidentiality question",
         paragraphs: [
-          "The hard part of any hybrid process is what happens to information shared in mediation. A party that speaks candidly to a mediator in private session should not find those words used against it by the same person acting as arbitrator. The Adjudix protocol deals with this directly: by default, a different neutral conducts the arbitration phase, and what is said in mediation stays out of the arbitral record. Parties who want the same neutral throughout must give informed, written consent, with clear rules about what may and may not be relied on.",
+          "The hard part of any hybrid process is what happens to information shared in mediation. A party that speaks candidly to a mediator in private session should know in advance whether that same person may later decide the case. The Adjudix Code answers this by offering Med-Arb in two kinds, chosen in the clause or at the start of the case.",
+        ],
+        points: [
+          "Same-Neutral Med-Arb (Option A) — the mediator continues as arbitrator if mediation fails, already knowing the negotiations that took place. It is quicker and cheaper, because no one has to learn the case afresh, and the parties waive any objection based on what the neutral learnt in mediation.",
+          "Separate-Neutral Med-Arb (Option B) — a different neutral conducts the arbitration, and nothing said in mediation goes to the arbitrator. It suits parties who want to speak with complete freedom in mediation.",
+          "A silent clause — where the agreement does not say which kind applies, the Code deems it Same-Neutral Med-Arb. Parties who want separate neutrals should say so in their clause.",
         ],
       },
       {
@@ -200,6 +214,111 @@ export const ARTICLES: Article[] = [
         heading: "The result",
         paragraphs: [
           "Parties get the cost and relationship benefits of a negotiated outcome without the risk of an inconclusive process. That combination — resolution first, then assured implementation — is why the hybrid model is the lead service at Adjudix.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "adjudix-process-flow-chart",
+    title: "From Dispute to Final Outcome: The Adjudix Process as a Flow Chart",
+    category: "Study Material",
+    summary:
+      "One page, every stage: how a case moves at Adjudix from the first notice to a settlement or an enforceable award, including where Med-Arb branches.",
+    sections: [
+      {
+        paragraphs: [
+          "Every dispute at Adjudix follows the same backbone, whatever the mechanism. The chart below shows the stages in order, and where a hybrid Med-Arb case branches depending on whether the parties settle.",
+        ],
+      },
+      {
+        heading: "The flow",
+        paragraphs: [],
+        flow: [
+          { title: "Dispute arises", detail: "A party believes the other has breached the contract, failed to pay, or otherwise wronged it." },
+          { title: "Free consultation", detail: "A first professional consultation to identify the right mechanism — arbitration, mediation, conciliation, Med-Arb, or Adjudix Lok Adalat." },
+          { title: "Filing with the Secretariat", detail: "The claimant files the request with the Secretariat, with the agreement, a short statement of the claim, and the filing fee." },
+          { title: "Notice to the other side", detail: "The Secretariat notifies the respondent, who files a response and any counter-claim." },
+          { title: "Appointment of the neutral", detail: "A mediator, conciliator, or arbitrator is appointed from the Professional Panel — by the parties, by preference ranking, or by draw of lots — after written disclosure of independence." },
+          {
+            title: "Mediation phase (Med-Arb and mediation)",
+            detail: "Joint and private sessions within an agreed window to find terms both parties can accept.",
+            branches: [
+              { title: "Settled", detail: "Terms are recorded as a settlement agreement or a consent award, binding and enforceable." },
+              { title: "Not settled", detail: "In Med-Arb the case converts to arbitration, with the same neutral (Option A) or a separate one (Option B)." },
+            ],
+          },
+          { title: "Arbitration", detail: "Pleadings, case management, evidence, and hearings — online, offline, or hybrid — under the Adjudix Code of ADR Procedure." },
+          { title: "Award", detail: "A written, reasoned, signed award that decides the dispute and the costs." },
+          { title: "Implementation", detail: "Adjudix supports implementing the award or settlement, in India and abroad." },
+        ],
+      },
+      {
+        heading: "Where urgent relief fits",
+        paragraphs: [
+          "If a party needs protection before the tribunal exists — freezing an asset, stopping a sale — it can apply for emergency arbitration at any point before the tribunal is constituted. The emergency arbitrator's order holds the position until the tribunal takes over.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "mediation-act-2023",
+    title: "The Mediation Act, 2023: What It Changes and What It Means for You",
+    category: "Study Material",
+    summary:
+      "A plain-language guide to India's first standalone mediation law — pre-litigation mediation, time limits, confidentiality, and enforcing a mediated settlement.",
+    sections: [
+      {
+        paragraphs: [
+          "Until 2023, mediation in India rested on a patchwork: court-annexed mediation under the Code of Civil Procedure, conciliation under Part III of the Arbitration and Conciliation Act, 1996, and pre-institution mediation under the Commercial Courts Act, 2015. The Mediation Act, 2023 brings mediation under one law for the first time, and gives a settlement reached in mediation real legal force.",
+        ],
+      },
+      {
+        heading: "Pre-litigation mediation",
+        paragraphs: [
+          "Before filing a civil or commercial suit, the parties may, voluntarily and by mutual consent, try to settle the dispute through pre-litigation mediation — whether or not their contract contains a mediation clause. The aim is to resolve disputes before they reach an already crowded court system.",
+        ],
+      },
+      {
+        heading: "Time limits",
+        paragraphs: [
+          "A mediation under the Act must be completed within 120 days from the date the parties first appear before the mediator. The parties may extend this by consent for a further period of up to 60 days. The fixed window keeps mediation from becoming a delaying tactic.",
+        ],
+      },
+      {
+        heading: "Confidentiality",
+        paragraphs: [
+          "Everything said, shown, or offered in mediation is confidential. The mediator, the parties, and everyone else involved may not disclose it, and it cannot be relied on as evidence in later arbitral or court proceedings. This is what lets parties speak candidly in private sessions.",
+        ],
+      },
+      {
+        heading: "The mediated settlement agreement",
+        paragraphs: [
+          "If the parties settle, they sign a mediated settlement agreement, which the mediator authenticates. Under the Act it is final and binding on the parties, and it can be enforced in the same manner as a judgment or decree of a court.",
+          "A challenge is allowed only on narrow grounds — fraud, corruption, impersonation, or that the dispute was not fit for mediation — and must be brought within a limited period after the settlement is received.",
+        ],
+      },
+      {
+        heading: "Online and community mediation",
+        paragraphs: [
+          "The Act recognises online mediation, conducted through electronic means with the parties' consent, on the same footing as mediation in person. It also provides for community mediation, to settle disputes likely to affect peace and harmony among residents of a locality.",
+        ],
+      },
+      {
+        heading: "What cannot be mediated",
+        paragraphs: [
+          "A schedule to the Act lists disputes not fit for mediation — among them criminal prosecutions, matters affecting the rights of third parties who are not part of the mediation, and certain disputes reserved for statutory bodies. When in doubt, the free consultation at Adjudix will tell you whether your dispute qualifies.",
+        ],
+      },
+      {
+        heading: "The Mediation Council of India",
+        paragraphs: [
+          "The Act establishes the Mediation Council of India to register mediators, recognise mediation service providers and mediation institutes, and set standards for training and conduct. Its provisions are being brought into force in stages, so always check which parts apply on the date of your mediation.",
+        ],
+      },
+      {
+        heading: "Mediation at Adjudix",
+        paragraphs: [
+          "Adjudix mediation follows the Mediation Act, 2023 and the Adjudix Code of ADR Procedure. And where the parties want a guaranteed outcome, Hybrid Med-Arb adds an arbitration phase if mediation does not settle the dispute.",
         ],
       },
     ],
@@ -639,7 +758,12 @@ export function getArticle(slug: string) {
 // Rough reading time at ~220 words a minute.
 export function readingMinutes(article: Article) {
   const words = article.sections
-    .flatMap((s) => [...s.paragraphs, ...(s.points ?? []), s.heading ?? ""])
+    .flatMap((s) => [
+      ...s.paragraphs,
+      ...(s.points ?? []),
+      ...(s.flow ?? []).flatMap((step) => [step.title, step.detail, ...(step.branches ?? []).map((b) => b.detail)]),
+      s.heading ?? "",
+    ])
     .join(" ")
     .split(/\s+/).length;
   return Math.max(1, Math.round(words / 220));

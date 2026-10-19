@@ -352,7 +352,7 @@ ${extras.length ? `<p style="margin:12px 0 0;font-family:${SANS};font-size:13px;
     ),
     row(
       `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:16px 18px;background:${C.ground};border-radius:6px">
-<p style="margin:0;font-family:${SANS};font-size:14px;line-height:1.6;color:${C.muted}"><strong style="color:${C.ink}">Something to add or correct?</strong> Just reply to this email. It reaches the Secretariat directly.${
+<p style="margin:0;font-family:${SANS};font-size:14px;line-height:1.6;color:${C.muted}"><strong style="color:${C.ink}">Something to add or correct?</strong> Just reply to this email. It reaches our team directly.${
         s.urgent
           ? ` If the matter becomes critical before we reach you, write to <a href="mailto:director@adjudixADR.com" style="color:${C.ember}">director@adjudixADR.com</a>.`
           : ""

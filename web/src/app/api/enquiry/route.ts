@@ -3,9 +3,9 @@ import { formMeta } from "@/lib/form-meta";
 import { mailConfigured, QUERY_EMAIL, SECRETARIAT_EMAIL, sendToInbox, sendToVisitor, type Inbox } from "@/lib/mail";
 
 // Receives every QueryForm submission and emails it, with any attached
-// documents, to the mailbox that handles it — case filings (a new or pending
-// case) to the Secretariat, everything else to Query — then sends the visitor
-// a branded acknowledgement with the same reference.
+// documents, to the mailbox that handles it — the Query mailbox, unless
+// MAIL_TO routes case filings elsewhere — then sends the visitor a branded
+// acknowledgement with the same reference.
 
 const MAX_FILES = 5;
 const MAX_TOTAL_BYTES = 10 * 1024 * 1024;

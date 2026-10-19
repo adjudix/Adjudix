@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/site-url";
 import { JsonLd } from "@/components/seo/json-ld";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowDown } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { ARTICLES, getArticle, readingMinutes } from "@/lib/articles";
@@ -76,6 +77,37 @@ export default async function ArticlePage({ params }: PageProps<"/knowledge/blog
                   <li key={point.slice(0, 40)}>{point}</li>
                 ))}
               </ul>
+            )}
+            {section.flow && (
+              <ol className="mt-6 flex flex-col items-stretch" aria-label="Flow chart">
+                {section.flow.map((step, stepIndex) => (
+                  <li key={step.title} className="flex flex-col items-center">
+                    {stepIndex > 0 && (
+                      <ArrowDown className="my-2 size-5 text-primary-ink" aria-hidden="true" />
+                    )}
+                    <div className="w-full rounded-lg border border-border bg-surface px-5 py-4">
+                      <p className="flex items-baseline gap-3 font-heading text-base font-semibold text-text">
+                        <span className="font-mono text-xs text-primary-ink">{String(stepIndex + 1).padStart(2, "0")}</span>
+                        {step.title}
+                      </p>
+                      <p className="mt-1 font-body text-sm leading-relaxed text-text-muted">{step.detail}</p>
+                    </div>
+                    {step.branches && (
+                      <>
+                        <ArrowDown className="my-2 size-5 text-primary-ink" aria-hidden="true" />
+                        <div className="grid w-full gap-3 sm:grid-cols-2">
+                          {step.branches.map((branch) => (
+                            <div key={branch.title} className="rounded-lg border border-primary/40 bg-primary/10 px-5 py-4">
+                              <p className="font-heading text-base font-semibold text-text">{branch.title}</p>
+                              <p className="mt-1 font-body text-sm leading-relaxed text-text-muted">{branch.detail}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ol>
             )}
           </section>
         ))}

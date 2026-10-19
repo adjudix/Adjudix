@@ -21,6 +21,7 @@ import {
 import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SiteSearch } from "@/components/layout/site-search";
+import { LanguagePicker } from "@/components/layout/language-picker";
 import type { SearchItem } from "@/lib/search-index";
 
 interface NavLink {
@@ -105,6 +106,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Student", href: "/membership/student", stars: 2 },
       { label: "Special Honorary (beyond stars)", href: "/membership/honorary" },
       { label: "Our Esteemed Members", href: "/membership/directory", highlight: true },
+      { label: "Register of Members", href: "/membership/register" },
     ],
   },
   {
@@ -147,7 +149,7 @@ function Stars({ count }: { count: number }) {
 function LinkLabel({ link }: { link: NavLink }) {
   return (
     <>
-      <span className={cn("flex items-center gap-2", link.highlight && "font-semibold text-ember")}>
+      <span className={cn("flex items-center gap-2", link.highlight && "font-semibold text-primary-ink")}>
         {/* A sub-item hangs off the item above it with a small corner
             connector, so it reads as part of that item, not a stray indent. */}
         {link.nested && (
@@ -157,6 +159,9 @@ function LinkLabel({ link }: { link: NavLink }) {
           />
         )}
         {link.label}
+        {/* Highlighted items (client markup) carry the brand gold, so they
+            stand out while staying in the site's palette. */}
+        {link.highlight && <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />}
       </span>
       {link.stars ? <Stars count={link.stars} /> : null}
     </>
@@ -188,7 +193,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
       <div className="hidden md:block border-b border-border bg-surface">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
+        <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
               id="site-logo-target"
@@ -200,6 +205,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
               className="h-14 w-auto"
             />
           </Link>
+          <LanguagePicker className="absolute right-6 text-xs font-medium" />
         </div>
       </div>
 
@@ -436,6 +442,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                     <Link href="/odr/portal" className="text-sm font-medium text-text">
                       Portal Login
                     </Link>
+                    <LanguagePicker className="mt-2 text-sm font-medium" />
                   </div>
                 </nav>
               </SheetContent>

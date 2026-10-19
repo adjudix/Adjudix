@@ -37,6 +37,18 @@ export default function MediationPage() {
           question: "What happens if mediation doesn't reach a settlement?",
           answer: "The parties remain free to pursue arbitration, litigation, or another mechanism. Nothing said during mediation can be used against a party later.",
         },
+        {
+          question: "What is the Mediation Act, 2023?",
+          answer: "India's first standalone law on mediation. It covers pre-litigation mediation, institutional and online mediation, the confidentiality of what is said in mediation, and the enforcement of mediated settlements, and it sets up the Mediation Council of India to regulate mediators and mediation institutions.",
+        },
+        {
+          question: "How long can a mediation under the Act take?",
+          answer: "The Act sets a limit of 120 days from the first appearance before the mediator, which the parties may extend by consent for up to 60 more days. Most Adjudix mediations finish well inside that window.",
+        },
+        {
+          question: "Can a mediated settlement be challenged?",
+          answer: "Only on narrow grounds: fraud, corruption, impersonation, or that the dispute was not fit for mediation. Otherwise a signed mediated settlement agreement is final and binding and can be enforced like a court judgment.",
+        },
       ]}
     />
   );
