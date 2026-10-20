@@ -1,0 +1,49 @@
+import { editableMetadata, editablePage } from "@/lib/pages/editable";
+import { PageHeader } from "@/components/layout/page-header";
+import { CtaBand } from "@/components/layout/cta-band";
+import { NumberedList } from "@/components/ui/numbered-list";
+import { pageMetadata } from "@/lib/seo";
+
+const metadata = pageMetadata({
+  title: "Online Procedure Handbook",
+  description:
+    "Step-by-step guidance for parties, panelists, and case managers using the ODR Platform — everything the Adjudix Code of ADR Procedure requires, translated…",
+  path: "/dispute-resolution/rules/online-handbook",
+});
+
+const STEPS = [
+  { title: "Create an account", description: "Register on the ODR Platform as a party, then verify your identity." },
+  { title: "File or respond", description: "Submit a new case, or respond to a case you've been named in, with a reference number." },
+  { title: "Track your case", description: "Follow every filing, hearing date, and order from your case dashboard." },
+];
+
+function OnlineHandbookPage() {
+  return (
+    <main className="bg-canvas flex-1">
+      <PageHeader
+        eyebrow="Rules & Governance"
+        title="Online Procedure Handbook"
+        breadcrumbs={[
+          { label: "Dispute Resolution", href: "/dispute-resolution" },
+          { label: "Rules & Governance", href: "/dispute-resolution/rules" },
+          { label: "Online Handbook" },
+        ]}
+        intro="Step-by-step guidance for parties, panelists, and case managers using the ODR Platform — everything the Adjudix Code of ADR Procedure requires, translated into the platform's actual screens and workflow."
+      />
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <NumberedList items={STEPS} />
+      </section>
+
+      <CtaBand
+        title="Ready to use the platform?"
+        primary={{ label: "Go to the ODR Platform", href: "/odr" }}
+        secondary={{ label: "Get Help", href: "/odr/help" }}
+      />
+    </main>
+  );
+}
+
+// The console can replace this page with blocks (see lib/pages/editable).
+export const generateMetadata = editableMetadata("/dispute-resolution/rules/online-handbook", metadata);
+export default editablePage("/dispute-resolution/rules/online-handbook", OnlineHandbookPage, metadata);

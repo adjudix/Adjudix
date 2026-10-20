@@ -1,8 +1,8 @@
 import { readdirSync } from "node:fs";
 import path from "node:path";
 import type { MetadataRoute } from "next";
-import { ARTICLES } from "@/lib/articles";
-import { CODE_EDITIONS } from "@/lib/code-editions";
+import { getArticles, getCodeEditions } from "@/lib/content/data";
+import { getPageDoc, listPublishedPagePaths } from "@/lib/pages";
 import { SITE_URL } from "@/lib/site-url";
 
 // Every static page under src/app, found by walking the folders at build time
@@ -16,20 +16,29 @@ function staticRoutes(dir: string, route = ""): string[] {
   const routes = entries.some((entry) => entry.name === "page.tsx") ? [route] : [];
   for (const entry of entries) {
     if (!entry.isDirectory() || SKIP.has(entry.name) || /^[@[_]/.test(entry.name)) continue;
+    // Route groups add no segment; the console's group is never listed.
+    if (entry.name.startsWith("(")) {
+      if (entry.name !== "(console)") routes.push(...staticRoutes(path.join(dir, entry.name), route));
+      continue;
+    }
     routes.push(...staticRoutes(path.join(dir, entry.name), `${route}/${entry.name}`));
   }
   return routes;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [CODE_EDITIONS, ARTICLES, consolePaths] = await Promise.all([getCodeEditions(), getArticles(), listPublishedPagePaths()]);
+  // Pages made in the console, unless kept out of search.
+  const consolePages = (await Promise.all(consolePaths.map(async (p) => ((await getPageDoc(p))?.noindex ? null : p)))).filter((p): p is string => Boolean(p));
   const routes = [
     ...staticRoutes(path.join(process.cwd(), "src/app")),
     ...CODE_EDITIONS.map((edition) => `/dispute-resolution/rules/code-of-procedure/${edition.year}`),
     ...ARTICLES.map((article) => `/knowledge/blog/${article.slug}`),
+    ...consolePages,
   ];
   // No lastModified: stamping every page with the build date would be
   // inaccurate, and Google stops trusting a sitemap's dates once it notices.
-  return routes.sort().map((route) => ({
+  return [...new Set(routes)].sort().map((route) => ({
     url: `${SITE_URL}${route}`,
     priority: route === "" ? 1 : route.split("/").length === 2 ? 0.8 : 0.6,
   }));

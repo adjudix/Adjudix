@@ -1,52 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { DEFAULT_SETTINGS, type SiteSettings } from "@/lib/site-settings";
 
-// Columns follow the client's Oct 2026 footer markup. The Institute column is
-// organised around their Who / What / Why / How / Where framing.
-const FOOTER_GROUPS = [
-  {
-    title: "Dispute Resolution",
-    links: [
-      { label: "ADR Mechanisms", href: "/dispute-resolution" },
-      { label: "Emergency Arbitration", href: "/dispute-resolution/emergency" },
-      { label: "Practice Areas", href: "/dispute-resolution/practice-areas" },
-      { label: "Rules & Governance", href: "/dispute-resolution/rules" },
-      { label: "Corporate Services", href: "/dispute-resolution/corporate" },
-      { label: "Implementation", href: "/implementation" },
-    ],
-  },
-  {
-    title: "ODR Platform",
-    links: [
-      { label: "How It Works", href: "/odr" },
-      { label: "File a Dispute", href: "/odr/file" },
-      { label: "Respond to a Dispute", href: "/odr/respond" },
-      { label: "Portal Login", href: "/odr/portal" },
-    ],
-  },
-  {
-    title: "Training Institute",
-    links: [
-      { label: "Professional Courses", href: "/training/courses" },
-      { label: "Student Courses", href: "/training/courses#student-courses" },
-      { label: "Apprenticeships & Internships", href: "/training/apprenticeships" },
-    ],
-  },
-  {
-    title: "Institute",
-    links: [
-      { label: "Who We Are", href: "/about/our-story" },
-      { label: "What We Do", href: "/dispute-resolution" },
-      { label: "Why Us", href: "/about" },
-      { label: "Our Professional Panel", href: "/panel" },
-      { label: "Online & Offline", href: "/dispute-resolution/offline" },
-      { label: "Our Partners", href: "/partners" },
-      { label: "Contact Us", href: "/contact" },
-    ],
-  },
-];
-
-export function SiteFooter() {
+export function SiteFooter({
+  groups: FOOTER_GROUPS = DEFAULT_SETTINGS.footerGroups,
+  copyright = DEFAULT_SETTINGS.copyright,
+}: {
+  groups?: SiteSettings["footerGroups"];
+  copyright?: string;
+}) {
   return (
     <footer className="bg-hero text-text-on-hero">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -86,7 +48,7 @@ export function SiteFooter() {
           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <p className="text-xs text-text-on-hero-muted">
-                &copy; {new Date().getFullYear()} Adjudix Dispute Resolution Institute. All rights reserved.
+                &copy; {new Date().getFullYear()} {copyright}
               </p>
               <span className="hidden text-xs text-text-on-hero-muted sm:inline" aria-hidden="true">
                 &middot;

@@ -22,115 +22,8 @@ import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SiteSearch } from "@/components/layout/site-search";
 import { LanguagePicker } from "@/components/layout/language-picker";
+import { DEFAULT_SETTINGS, type NavGroup, type NavLink } from "@/lib/site-settings";
 import type { SearchItem } from "@/lib/search-index";
-
-interface NavLink {
-  label: string;
-  href: string;
-  // Membership tiers carry a star rating (client brief: stars, not "Tier 01").
-  stars?: number;
-  // Rendered indented beneath the previous link (Competitions under Events).
-  nested?: boolean;
-  // Bold + ember, for links the client asked to stand out.
-  highlight?: boolean;
-}
-
-interface NavSection {
-  label: string;
-  links: NavLink[];
-}
-
-interface NavGroup {
-  label: string;
-  href?: string;
-  children?: NavLink[];
-  // Grouped, labeled columns for a mega-menu-style dropdown — used where a
-  // flat list would bury an important distinction (Dispute Resolution's
-  // types vs. its mechanisms/services) in one long list.
-  sections?: NavSection[];
-}
-
-// Main (large) row. Structure follows the client's Oct 2026 markup: Events
-// moved under Knowledge, Our Professional Panel and Implementation promoted
-// to top level.
-const NAV_GROUPS: NavGroup[] = [
-  { label: "About", href: "/about" },
-  {
-    label: "Dispute Resolution",
-    href: "/dispute-resolution",
-    sections: [
-      {
-        label: "By Type",
-        links: [
-          { label: "Domestic Dispute Resolution", href: "/dispute-resolution/domestic" },
-          { label: "International Dispute Resolution", href: "/dispute-resolution/international", highlight: true },
-          { label: "Online Dispute Resolution", href: "/odr" },
-          { label: "Offline Dispute Resolution", href: "/dispute-resolution/offline" },
-          { label: "Hybrid Dispute Resolution", href: "/dispute-resolution/hybrid", highlight: true },
-          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency", highlight: true },
-          { label: "Practice Areas", href: "/dispute-resolution/practice-areas", highlight: true },
-        ],
-      },
-      {
-        label: "Mechanisms & Services",
-        links: [
-          { label: "Hybrid ADR Mechanism", href: "/dispute-resolution/hybrid", highlight: true },
-          { label: "Arbitration", href: "/dispute-resolution/arbitration" },
-          { label: "Mediation", href: "/dispute-resolution/mediation" },
-          { label: "Conciliation", href: "/dispute-resolution/conciliation" },
-          { label: "Adjudix Lok Adalat", href: "/dispute-resolution/lok-adalat", highlight: true },
-          { label: "Emergency Arbitration", href: "/dispute-resolution/emergency", highlight: true },
-          { label: "Corporate Dispute Resolution", href: "/dispute-resolution/corporate", highlight: true },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Training & Certification Courses",
-    href: "/training",
-    children: [
-      { label: "Professional Courses", href: "/training/courses" },
-      { label: "Student Courses", href: "/training/courses#student-courses" },
-      { label: "Faculty", href: "/training/faculty" },
-      { label: "Upcoming Courses", href: "/training/calendar" },
-    ],
-  },
-  {
-    label: "Memberships",
-    href: "/membership",
-    children: [
-      { label: "Compare Tiers", href: "/membership" },
-      { label: "Fellow", href: "/membership/fellow", stars: 5 },
-      { label: "Associate", href: "/membership/associated", stars: 4 },
-      { label: "Affiliate", href: "/membership/affiliated", stars: 3 },
-      { label: "Student", href: "/membership/student", stars: 2 },
-      { label: "Special Honorary (beyond stars)", href: "/membership/honorary" },
-      { label: "Our Esteemed Members", href: "/membership/directory", highlight: true },
-      { label: "Register of Members", href: "/membership/register" },
-    ],
-  },
-  {
-    label: "Knowledge",
-    href: "/knowledge",
-    children: [
-      { label: "Blogs & Articles", href: "/knowledge/blog" },
-      { label: "Research & Publications", href: "/knowledge/research" },
-      { label: "Events", href: "/events" },
-      { label: "Competitions", href: "/knowledge/competitions", nested: true },
-    ],
-  },
-  { label: "Our Professional Panel", href: "/panel" },
-  { label: "Implementation of ADR Orders", href: "/implementation" },
-];
-
-// Second (small) row, left side: services and programmes the client added.
-const SECONDARY_LINKS: NavLink[] = [
-  { label: "Contract & Clause Drafting", href: "/dispute-resolution/clause-drafting" },
-  { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
-  { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
-  { label: "Apprenticeship & Internships", href: "/training/apprenticeships" },
-  { label: "Our Esteemed Partners", href: "/partners" },
-];
 
 const navLinkClass =
   "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2.5 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary-ink data-popup-open:text-primary-ink data-open:text-primary-ink rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
@@ -186,7 +79,17 @@ function MobileGroup({ label, children }: { label: string; children: ReactNode }
   );
 }
 
-export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
+export function SiteHeader({
+  searchItems,
+  navGroups: NAV_GROUPS = DEFAULT_SETTINGS.navGroups,
+  secondaryLinks: SECONDARY_LINKS = DEFAULT_SETTINGS.secondaryLinks,
+  languages = DEFAULT_SETTINGS.languages,
+}: {
+  searchItems: SearchItem[];
+  navGroups?: NavGroup[];
+  secondaryLinks?: NavLink[];
+  languages?: { code: string; label: string }[];
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -205,7 +108,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
               className="h-14 w-auto"
             />
           </Link>
-          <LanguagePicker className="absolute right-6 text-xs font-medium" />
+          <LanguagePicker languages={languages} className="absolute right-6 text-xs font-medium" />
         </div>
       </div>
 
@@ -442,7 +345,7 @@ export function SiteHeader({ searchItems }: { searchItems: SearchItem[] }) {
                     <Link href="/odr/portal" className="text-sm font-medium text-text">
                       Portal Login
                     </Link>
-                    <LanguagePicker className="mt-2 text-sm font-medium" />
+                    <LanguagePicker languages={languages} className="mt-2 text-sm font-medium" />
                   </div>
                 </nav>
               </SheetContent>

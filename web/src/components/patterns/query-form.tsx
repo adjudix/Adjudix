@@ -25,6 +25,7 @@ import {
   MAX_ATTACHMENT_BYTES,
   inputClass,
 } from "@/components/forms/controls";
+import { baseFields, flatten } from "@/lib/forms/fields";
 import { cn } from "@/lib/utils";
 
 export interface QueryField {
@@ -73,6 +74,10 @@ export interface FormSection {
 export interface QueryFormProps {
   // Names the form in the email the Secretariat receives.
   formName: string;
+  // The form's slug in the console, by which the server finds and checks it.
+  formKey?: string;
+  // The console's live preview: checks answers as usual but sends nothing.
+  preview?: boolean;
   fields: QueryField[];
   kind?: FormKind;
   sections?: FormSection[];
@@ -91,30 +96,6 @@ export interface QueryFormProps {
   organizationLabel?: string;
   // "either": email or phone, at least one. "email": email only (newsletters).
   contact?: "either" | "email";
-}
-
-// Email and phone are each optional, but at least one is required
-// (client brief: "Either email or phone").
-function baseFields(
-  organization: QueryFormProps["organization"],
-  organizationLabel: string | undefined,
-  contact: QueryFormProps["contact"],
-): QueryField[] {
-  const fields: QueryField[] = [{ name: "name", label: "Full name", required: true, half: organization !== "hidden" }];
-  if (organization !== "hidden") {
-    fields.push({
-      name: "organization",
-      label: organizationLabel ?? (organization === "required" ? "Organization" : "Organization (optional)"),
-      required: organization === "required",
-      half: true,
-    });
-  }
-  if (contact === "email") {
-    fields.push({ name: "email", label: "Email", type: "email", required: true });
-  } else {
-    fields.push({ name: "email", label: "Email", type: "email", half: true }, { name: "phone", label: "Phone", type: "tel", half: true });
-  }
-  return fields;
 }
 
 const GROUP_ICONS: Record<string, LucideIcon> = {
@@ -155,11 +136,10 @@ function validate(field: QueryField, raw: FormDataEntryValue | null): string | u
   return undefined;
 }
 
-const flatten = (fields: QueryField[]) =>
-  fields.flatMap((field) => (field.group ? field.group.map((sub) => ({ ...sub, required: sub.required ?? field.required })) : [field]));
-
 export function QueryForm({
   formName,
+  formKey,
+  preview,
   fields,
   kind = "application",
   sections: declaredSections,
@@ -355,9 +335,15 @@ export function QueryForm({
       return;
     }
     setSendError("");
+    if (preview) {
+      setReceipt({ reference: "ADX-PREVIEW" });
+      setSubmitted(true);
+      return;
+    }
     setLoading(true);
     const data = new FormData(event.currentTarget);
     data.set("_form", formName);
+    if (formKey) data.set("_formKey", formKey);
     data.set("_labels", JSON.stringify(labels));
     try {
       const response = await fetch("/api/enquiry", { method: "POST", body: data });

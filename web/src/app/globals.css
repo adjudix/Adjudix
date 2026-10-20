@@ -166,3 +166,15 @@
   -webkit-appearance: none;
   opacity: 0 !important;
 }
+
+/*
+  The console's phone-width form preview. The form's two-column grids switch
+  on at the sm breakpoint of the whole window, so inside the narrow preview
+  they are folded back into one column here.
+*/
+.preview-phone :is(.sm\:grid-cols-2, .sm\:grid-cols-3) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.preview-phone .sm\:col-span-2 {
+  grid-column: auto;
+}

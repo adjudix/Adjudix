@@ -2,11 +2,12 @@ import { PageHeader } from "@/components/layout/page-header";
 import Link from "next/link";
 import { CtaBand } from "@/components/layout/cta-band";
 import { LinkButton } from "@/components/ui/link-button";
-import { formatRupees, getTrack } from "@/lib/training-tracks";
+import { getTrack } from "@/lib/content/data";
+import { formatRupees } from "@/lib/training-tracks";
 import { applyHref as formHref } from "@/lib/apply-forms";
 
 export interface CoursePageProps {
-  // Key into TRAINING_TRACKS, which holds the fee.
+  // Key into the Training tracks collection, which holds the fee.
   slug: string;
   title: string;
   intro: string;
@@ -14,8 +15,8 @@ export interface CoursePageProps {
   curriculum: { title: string; body: string }[];
 }
 
-export function CoursePage({ slug, title, intro, who, curriculum }: CoursePageProps) {
-  const track = getTrack(slug);
+export async function CoursePage({ slug, title, intro, who, curriculum }: CoursePageProps) {
+  const track = await getTrack(slug);
   const applyHref = formHref("course", { courseLevel: "Professional Course", course: track.title });
   const scholarshipHref = formHref("scholarship", { courseLevel: "Professional Course", course: track.title });
   return (

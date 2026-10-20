@@ -8,17 +8,6 @@ import { cn } from "@/lib/utils";
 // (<host-with-dashes>.translate.goog), which needs no script on our pages and
 // keeps the English site as the one source of truth. Only works on the public
 // domain; the proxy cannot reach localhost.
-const LANGUAGES = [
-  { code: "hi", label: "हिन्दी (Hindi)" },
-  { code: "fr", label: "Français (French)" },
-  { code: "de", label: "Deutsch (German)" },
-  { code: "es", label: "Español (Spanish)" },
-  { code: "pt", label: "Português (Portuguese)" },
-  { code: "ru", label: "Русский (Russian)" },
-  { code: "ar", label: "العربية (Arabic)" },
-  { code: "zh-CN", label: "中文 (Chinese)" },
-  { code: "ja", label: "日本語 (Japanese)" },
-];
 
 function translatedUrl(code: string) {
   const { hostname, pathname, search, hash } = window.location;
@@ -31,7 +20,7 @@ function translatedUrl(code: string) {
   return `https://${proxyHost}${pathname}?${query}${hash}`;
 }
 
-export function LanguagePicker({ className }: { className?: string }) {
+export function LanguagePicker({ className, languages }: { className?: string; languages: { code: string; label: string }[] }) {
   return (
     <label className={cn("inline-flex items-center gap-1.5 text-text-muted hover:text-text", className)}>
       <Languages className="size-3.5 shrink-0" aria-hidden="true" />
@@ -46,7 +35,7 @@ export function LanguagePicker({ className }: { className?: string }) {
         className="field-sizing-content max-w-24 cursor-pointer appearance-none truncate bg-transparent pr-1 font-body text-inherit focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <option value="">English</option>
-        {LANGUAGES.map((language) => (
+        {languages.map((language) => (
           <option key={language.code} value={language.code}>
             {language.label}
           </option>

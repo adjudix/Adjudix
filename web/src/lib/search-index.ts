@@ -1,9 +1,9 @@
 // The header search index: every page on the site, plus each section of the
-// current rule book. Built on the server (in the root layout) so only the
+// current rule book. Built on the server (in the site layout) so only the
 // titles travel to the browser, not the full text of the Code.
-import { CODE_EDITIONS } from "@/lib/code-editions";
-import { getCodeText, sectionId } from "@/lib/code";
-import { STUDENT_COURSES } from "@/lib/training-tracks";
+import "server-only";
+import { sectionId } from "@/lib/code";
+import { getArticles, getCodeEditions, getCodeText, getStudentCourses } from "@/lib/content/data";
 import { applyHref } from "@/lib/apply-forms";
 
 export interface SearchItem {
@@ -74,12 +74,6 @@ const PAGES: SearchItem[] = [
   { group: "Training", title: "Mediator Track", href: "/training/courses/mediator" },
   { group: "Training", title: "Contract Drafting Track", href: "/training/courses/contract-drafting" },
   { group: "Training", title: "Hybrid ADR Track", href: "/training/courses/hybrid" },
-  ...STUDENT_COURSES.map((course) => ({
-    group: "Training",
-    title: `${course.title} (Student Course)`,
-    href: applyHref("course", { courseLevel: "Student Course", course: course.title }),
-    keywords: "students",
-  })),
 
   // People & membership
   { group: "People", title: "Our Professional Panel", href: "/panel", keywords: "arbitrators mediators advocates lawyers engineers chartered accountants" },
@@ -119,18 +113,31 @@ const PAGES: SearchItem[] = [
   { group: "About", title: "Terms & Conditions", href: "/terms" },
 ];
 
-export function buildSearchIndex(): SearchItem[] {
-  const current = CODE_EDITIONS.find((edition) => edition.current)!;
-  const code = getCodeText(current.year)!;
-  const sections: SearchItem[] = code.parts.flatMap((part) =>
+export async function buildSearchIndex(): Promise<SearchItem[]> {
+  const [editions, { courses }, articles] = await Promise.all([getCodeEditions(), getStudentCourses(), getArticles()]);
+  const current = editions.find((edition) => edition.current) ?? editions[editions.length - 1];
+  const code = current ? await getCodeText(current.year) : undefined;
+  const studentCourses: SearchItem[] = courses.map((course) => ({
+    group: "Training",
+    title: `${course.title} (Student Course)`,
+    href: applyHref("course", { courseLevel: "Student Course", course: course.title }),
+    keywords: "students",
+  }));
+  const articleItems: SearchItem[] = articles.map((article) => ({
+    group: "Articles",
+    title: article.title,
+    href: `/knowledge/blog/${article.slug}`,
+    keywords: article.category,
+  }));
+  const sections: SearchItem[] = (code?.parts ?? []).flatMap((part) =>
     part.chapters.flatMap((chapter) =>
       chapter.sections.map((section) => ({
-        group: `Rule Book ${current.year}`,
+        group: `Rule Book ${current!.year}`,
         title: `§ ${section.no} ${section.title}`,
-        href: `/dispute-resolution/rules/code-of-procedure/${current.year}#${sectionId(section.no)}`,
+        href: `/dispute-resolution/rules/code-of-procedure/${current!.year}#${sectionId(section.no)}`,
         keywords: chapter.title,
       })),
     ),
   );
-  return [...PAGES, ...sections];
+  return [...PAGES, ...studentCourses, ...articleItems, ...sections];
 }

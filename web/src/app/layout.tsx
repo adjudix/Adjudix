@@ -1,9 +1,4 @@
 import type { Metadata } from "next";
-import { SiteHeader } from "@/components/layout/site-header";
-import { buildSearchIndex } from "@/lib/search-index";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { PageLoader } from "@/components/layout/page-loader";
-import { ConsultationPopup } from "@/components/layout/consultation-popup";
 import { SHARE_IMAGE, SITE_NAME } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
@@ -33,6 +28,8 @@ export const metadata: Metadata = {
     : undefined,
 };
 
+// Shared by the public site, app/(site), and the admin console,
+// app/(console); each group adds its own chrome.
 export default function RootLayout({ children, modal }: LayoutProps<"/">) {
   return (
     /* the "light" class forces light mode regardless of OS preference while
@@ -45,18 +42,7 @@ export default function RootLayout({ children, modal }: LayoutProps<"/">) {
           data-gr-* attributes onto <body> before React hydrates, which is a
           known false-positive hydration mismatch, not an app bug. */}
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {/* Without JavaScript the intro can't be dismissed and the scroll-reveal
-            never fires: skip the one and show everything for the other. */}
-        <noscript>
-          <style>
-            {"[data-intro]{display:none!important}html{overflow:auto!important}[data-reveal]{opacity:1!important;transform:none!important}"}
-          </style>
-        </noscript>
-        <PageLoader />
-        <SiteHeader searchItems={buildSearchIndex()} />
-        <div className="flex flex-1 flex-col">{children}</div>
-        <SiteFooter />
-        <ConsultationPopup />
+        {children}
         {/* Apply / enrol / request forms, opened over the current page. */}
         {modal}
       </body>

@@ -6,6 +6,7 @@ import { XIcon } from "lucide-react";
 import { LinkButton } from "@/components/ui/link-button";
 import { INTRO_DONE_EVENT } from "@/components/layout/page-loader";
 import { applyHref } from "@/lib/apply-forms";
+import { DEFAULT_SETTINGS, type ConsultationOffer } from "@/lib/site-settings";
 
 // Client brief (Oct 2026): pop-up offering the first professional
 // consultation free (₹4,999 struck to ₹0), with a countdown timer.
@@ -45,12 +46,12 @@ function formatCountdown(total: number) {
   return days > 0 ? `${days}d ${clock}` : clock;
 }
 
-export function ConsultationPopup() {
+export function ConsultationPopup({ offer = DEFAULT_SETTINGS.consultation }: { offer?: ConsultationOffer }) {
   const [open, setOpen] = useState(false);
   const [remaining, setRemaining] = useState(0);
 
   useEffect(() => {
-    if (sessionStorage.getItem(SEEN_KEY)) return;
+    if (!offer.enabled || sessionStorage.getItem(SEEN_KEY)) return;
     let timer: number | undefined;
     const show = () => {
       // Never interrupt someone filling in a form; try again shortly.
@@ -63,7 +64,7 @@ export function ConsultationPopup() {
       setOpen(true);
     };
     const schedule = () => {
-      timer = window.setTimeout(show, SHOW_AFTER_INTRO_MS);
+      timer = window.setTimeout(show, Math.max(5, offer.delaySeconds) * 1000 || SHOW_AFTER_INTRO_MS);
     };
     if (document.documentElement.dataset.introDone) schedule();
     else window.addEventListener(INTRO_DONE_EVENT, schedule, { once: true });
@@ -71,7 +72,7 @@ export function ConsultationPopup() {
       window.removeEventListener(INTRO_DONE_EVENT, schedule);
       window.clearTimeout(timer);
     };
-  }, []);
+  }, [offer.enabled, offer.delaySeconds]);
 
   useEffect(() => {
     if (!open) return;
@@ -92,18 +93,17 @@ export function ConsultationPopup() {
           </Dialog.Close>
 
           <p className="text-xs font-semibold uppercase tracking-wide text-ember">
-            Limited offer
+            {offer.eyebrow}
           </p>
           <Dialog.Title className="mt-2 font-heading text-2xl font-semibold text-text">
-            Your first professional consultation is free
+            {offer.title}
           </Dialog.Title>
           <p className="mt-4 font-heading text-3xl font-semibold text-text">
-            <span className="mr-3 text-xl text-text-muted line-through">₹4,999/-</span>
-            ₹0/-
+            {offer.wasPrice && <span className="mr-3 text-xl text-text-muted line-through">{offer.wasPrice}</span>}
+            {offer.price}
           </p>
           <Dialog.Description className="mt-3 text-center font-body text-sm text-text-muted">
-            Avail your free consultation with our professional panel — on any dispute,
-            implementation, or drafting matter, etc.
+            {offer.body}
           </Dialog.Description>
 
           <div className="mt-6 rounded-md bg-surface px-4 py-3">
@@ -120,12 +120,12 @@ export function ConsultationPopup() {
           </div>
 
           <LinkButton
-            href={applyHref("consultation")}
+            href={offer.buttonHref || applyHref("consultation")}
             size="lg"
             className="mt-6 w-full"
             onClick={() => setOpen(false)}
           >
-            Avail Free Consultation
+            {offer.buttonLabel}
           </LinkButton>
         </Dialog.Popup>
       </Dialog.Portal>

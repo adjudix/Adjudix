@@ -732,7 +732,7 @@ const FORMS: ApplyForm[] = [
     slug: "partnership",
     kind: "application",
     sections: [
-      { title: "Your organisation", fields: ["organization", "name", "designation", "email", "phone", "website"] },
+      { title: "Your organisation", fields: ["organization", "name", "designation", "email", "phone", "orgWebsite"] },
       { title: "The partnership", fields: ["partnerType", "message"] },
     ],
     title: "Partner with Adjudix",
@@ -750,7 +750,7 @@ const FORMS: ApplyForm[] = [
         options: ["Corporate Partner", "Education Partner", "Training Partner", "Other"],
         half: true,
       },
-      { name: "website", label: "Website (optional)", type: "url", placeholder: "https://", half: true },
+      { name: "orgWebsite", label: "Website (optional)", type: "url", placeholder: "https://", half: true },
     ],
     messageLabel: "What would you like to partner on?",
     messageRequired: true,

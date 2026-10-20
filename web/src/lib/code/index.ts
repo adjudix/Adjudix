@@ -44,6 +44,9 @@ const TEXTS: Record<string, CodeText> = {
   "2026": code2026 as CodeText,
 };
 
+/** Every edition, oldest first — the defaults of the console's Code text collection. */
+export const CODE_TEXTS: CodeText[] = Object.values(TEXTS);
+
 export function getCodeText(year: string): CodeText | undefined {
   return TEXTS[year];
 }

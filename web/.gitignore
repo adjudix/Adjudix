@@ -43,3 +43,7 @@ next-env.d.ts
 
 # python
 __pycache__/
+
+# local database (lib/db)
+/.data/
+/public/uploads/

@@ -74,15 +74,14 @@ export const TIER_ORDER: MembershipTier[] = ["honorary", "fellow", "associate", 
 const REGISTER_YEAR = "26";
 
 // Membership codes, numbered within each tier in register order (the order
-// of MEMBERS). The client fixed H-001 to H-003; the rest follow in sequence.
-const CODES = new Map<Member, string>();
-for (const tier of TIER_ORDER) {
-  MEMBERS.filter((member) => member.tier === tier).forEach((member, index) => {
-    CODES.set(member, `${TIERS[tier].codePrefix}-${String(index + 1).padStart(3, "0")}/${REGISTER_YEAR}`);
-  });
-}
-
-/** The member's code in the Register of Members, e.g. "H-001/26". */
-export function membershipCode(member: Member) {
-  return CODES.get(member)!;
+// of the members list). The client fixed H-001 to H-003; the rest follow in sequence.
+/** Each member's code in the Register of Members, e.g. "H-001/26". */
+export function membershipCodes(members: Member[]): Map<Member, string> {
+  const codes = new Map<Member, string>();
+  for (const tier of TIER_ORDER) {
+    members
+      .filter((member) => member.tier === tier)
+      .forEach((member, index) => codes.set(member, `${TIERS[tier].codePrefix}-${String(index + 1).padStart(3, "0")}/${REGISTER_YEAR}`));
+  }
+  return codes;
 }

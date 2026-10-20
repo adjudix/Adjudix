@@ -93,6 +93,35 @@ export const TERMS = [
   "International arbitration fees are fixed in US dollars at registration and confirmed to the parties in writing.",
 ];
 
+/** Every rate in one object — the shape the console's Fee schedule edits. */
+export interface FeeSchedule {
+  smallCauseLimit: number;
+  tribunalSlabs: Slab[];
+  adminSlabs: Slab[];
+  smallCause: { to: number; label: string; tribunal: number; admin: number }[];
+  registration: { regular: { item: string; fee: number }[]; smallCause: { item: string; fee: number }[] };
+  bandedFees: { bands: string[]; rows: { item: string; fees: number[]; smallCause: number }[] };
+  soleArbitratorUplift: number;
+  fastTrackFactor: number;
+  gstRate: number;
+  paymentSchedule: { share: string; when: string }[];
+  terms: string[];
+}
+
+export const DEFAULT_FEE_SCHEDULE: FeeSchedule = {
+  smallCauseLimit: SMALL_CAUSE_LIMIT,
+  tribunalSlabs: TRIBUNAL_SLABS,
+  adminSlabs: ADMIN_SLABS,
+  smallCause: SMALL_CAUSE,
+  registration: REGISTRATION,
+  bandedFees: BANDED_FEES,
+  soleArbitratorUplift: SOLE_ARBITRATOR_UPLIFT,
+  fastTrackFactor: FAST_TRACK_FACTOR,
+  gstRate: GST_RATE,
+  paymentSchedule: PAYMENT_SCHEDULE,
+  terms: TERMS,
+};
+
 function slabFee(amount: number, slabs: Slab[]) {
   const slab = slabs.find((s) => amount <= s.to) ?? slabs[slabs.length - 1];
   const fee = slab.base + Math.ceil(Math.max(0, amount - slab.from) / LAKH) * slab.perLakh;
@@ -109,25 +138,30 @@ export interface FeeEstimate {
   total: number;
 }
 
-export function estimateFees(amount: number, arbitrators: 1 | 3, fastTrack: boolean): FeeEstimate {
-  const smallCause = amount < SMALL_CAUSE_LIMIT;
+export function estimateFees(
+  amount: number,
+  arbitrators: 1 | 3,
+  fastTrack: boolean,
+  schedule: FeeSchedule = DEFAULT_FEE_SCHEDULE,
+): FeeEstimate {
+  const smallCause = amount < schedule.smallCauseLimit;
   let perArbitrator: number;
   let admin: number;
   if (smallCause) {
-    const band = SMALL_CAUSE.find((b) => amount <= b.to) ?? SMALL_CAUSE[SMALL_CAUSE.length - 1];
+    const band = schedule.smallCause.find((b) => amount <= b.to) ?? schedule.smallCause[schedule.smallCause.length - 1];
     perArbitrator = band.tribunal;
     admin = band.admin;
   } else {
-    perArbitrator = slabFee(amount, TRIBUNAL_SLABS);
-    admin = slabFee(amount, ADMIN_SLABS);
+    perArbitrator = slabFee(amount, schedule.tribunalSlabs);
+    admin = slabFee(amount, schedule.adminSlabs);
   }
-  if (arbitrators === 1) perArbitrator *= 1 + SOLE_ARBITRATOR_UPLIFT;
-  if (fastTrack) perArbitrator *= FAST_TRACK_FACTOR;
+  if (arbitrators === 1) perArbitrator *= 1 + schedule.soleArbitratorUplift;
+  if (fastTrack) perArbitrator *= schedule.fastTrackFactor;
   perArbitrator = Math.round(perArbitrator);
 
-  const filing = smallCause ? REGISTRATION.smallCause[0].fee : REGISTRATION.regular[0].fee;
+  const filing = (smallCause ? schedule.registration.smallCause[0]?.fee : schedule.registration.regular[0]?.fee) ?? 0;
   const tribunal = perArbitrator * arbitrators;
-  const gst = Math.round((filing + admin) * GST_RATE);
+  const gst = Math.round((filing + admin) * schedule.gstRate);
   return { smallCause, filing, tribunalPerArbitrator: perArbitrator, tribunal, admin, gst, total: filing + tribunal + admin + gst };
 }
 

@@ -37,10 +37,11 @@ const STILL_HOLD_MS = 1200;
  * Only when that load starts on the home page: on any other page the intro
  * would hide the content a visitor (often arriving from search) came for.
  */
-export function PageLoader() {
+export function PageLoader({ enabled = true }: { enabled?: boolean }) {
   // The first path only — the root layout stays mounted, so a later client-side
-  // navigation to "/" doesn't start the intro.
-  const [onHome] = useState(usePathname() === "/");
+  // navigation to "/" doesn't start the intro. Site settings can turn it off.
+  const path = usePathname();
+  const [onHome] = useState(enabled && path === "/");
 
   useEffect(() => {
     if (onHome) return;

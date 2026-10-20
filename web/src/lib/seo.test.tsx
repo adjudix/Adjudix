@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -9,24 +10,30 @@ import { JsonLd } from "@/components/seo/json-ld";
 
 const APP = path.join(process.cwd(), "src/app");
 
+// The admin console is never listed or indexed, so it is left out here.
 function pageFiles(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
     const full = path.join(dir, name);
+    if (name === "(console)") return [];
     if (statSync(full).isDirectory()) return pageFiles(full);
     return name === "page.tsx" ? [full] : [];
   });
 }
 
-describe("search engine setup", () => {
-  const urls = sitemap().map((entry) => entry.url.slice(SITE_URL.length) || "/");
+vi.mock("@/db", () => ({ databaseConfigured: () => false, db: () => null, schema: {} }));
+
+describe("search engine setup", async () => {
+  const urls = (await sitemap()).map((entry) => entry.url.slice(SITE_URL.length) || "/");
 
   it("lists every static page in the sitemap, and no forms or API routes", () => {
     for (const file of pageFiles(APP)) {
-      const route = "/" + path.relative(APP, path.dirname(file)).split(path.sep).join("/");
+      // Route groups such as (site) add no segment to the address.
+      const segments = path.relative(APP, path.dirname(file)).split(path.sep).filter((segment) => !segment.startsWith("("));
+      const route = "/" + segments.join("/");
       if (/[@[]/.test(route) || route.startsWith("/apply")) continue;
-      expect(urls).toContain(route === "/." ? "/" : route);
+      expect(urls).toContain(route === "/." || route === "/" ? "/" : route);
     }
-    expect(urls.some((url) => url.startsWith("/apply") || url.startsWith("/api"))).toBe(false);
+    expect(urls.some((url) => url.startsWith("/apply") || url.startsWith("/api") || url.includes("console"))).toBe(false);
     expect(new Set(urls).size).toBe(urls.length);
   });
 
@@ -34,7 +41,7 @@ describe("search engine setup", () => {
     for (const file of pageFiles(APP)) {
       const source = readFileSync(file, "utf8");
       if (file.includes("@modal") || file.includes(`${path.sep}apply${path.sep}`)) continue;
-      expect({ file, ok: /export const metadata|export async function generateMetadata/.test(source) }).toEqual({ file, ok: true });
+      expect({ file, ok: /export const metadata|export async function generateMetadata|export const generateMetadata/.test(source) }).toEqual({ file, ok: true });
       expect({ file, ok: /pageMetadata\(|canonical/.test(source) }).toEqual({ file, ok: true });
     }
   });

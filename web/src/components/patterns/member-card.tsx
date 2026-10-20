@@ -1,4 +1,4 @@
-import { membershipCode, TIERS, type Member } from "@/lib/members";
+import { TIERS, type Member } from "@/lib/members";
 
 // Monogram from the name, honorific dropped ("Mr. Bhavesh Tiwari" -> "BT").
 function initials(name: string) {
@@ -18,7 +18,7 @@ function TierMark({ stars }: { stars: number | "beyond" }) {
 }
 
 // No photographs by design — a monogram stands in (see IDENTITY_NOTE).
-export function MemberCard({ member, role }: { member: Member; role?: string }) {
+export function MemberCard({ member, code, role }: { member: Member; code?: string; role?: string }) {
   const tier = TIERS[member.tier];
   return (
     <article className="flex h-full flex-col rounded-lg border border-border bg-surface p-6">
@@ -33,7 +33,7 @@ export function MemberCard({ member, role }: { member: Member; role?: string }) 
           <h3 className="font-heading text-lg leading-snug font-semibold text-text">{member.name}</h3>
           <p className="mt-0.5 font-mono text-xs tracking-wider text-primary-ink">
             {tier.postNominal}
-            <span className="text-text-muted"> · {membershipCode(member)}</span>
+            {code && <span className="text-text-muted"> · {code}</span>}
           </p>
         </div>
       </div>
