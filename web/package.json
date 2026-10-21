@@ -12,7 +12,10 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/console/migrate.ts",
     "console:super": "tsx scripts/console/super-admin.ts",
-    "pages:wrap": "node scripts/pages/index-pages.mjs --wrap"
+    "pages:wrap": "node scripts/pages/index-pages.mjs --wrap",
+    "i18n:extract": "tsx scripts/i18n/extract.ts",
+    "i18n:compile": "tsx scripts/i18n/compile.ts",
+    "i18n:status": "tsx scripts/i18n/compile.ts --status"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -41,6 +44,7 @@
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
     "@types/jest-axe": "^3.5.9",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^22.20.2",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19",

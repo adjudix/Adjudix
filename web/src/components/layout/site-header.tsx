@@ -21,7 +21,7 @@ import {
 import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SiteSearch } from "@/components/layout/site-search";
-import { LanguagePicker } from "@/components/layout/language-picker";
+import { LanguageBar, LanguageGrid } from "@/components/layout/language-picker";
 import { DEFAULT_SETTINGS, type NavGroup, type NavLink } from "@/lib/site-settings";
 import type { SearchItem } from "@/lib/search-index";
 
@@ -108,7 +108,7 @@ export function SiteHeader({
               className="h-14 w-auto"
             />
           </Link>
-          <LanguagePicker languages={languages} className="absolute right-6 text-xs font-medium" />
+          <LanguageBar languages={languages} className="absolute end-6" />
         </div>
       </div>
 
@@ -286,6 +286,8 @@ export function SiteHeader({
                     </Link>
                   </div>
 
+                  <LanguageGrid languages={languages} className="border-b border-border pb-4" />
+
                   {/* Each menu folds open on its own, so the list stays short
                       enough to scan instead of one long scroll of links. */}
                   {NAV_GROUPS.map((group) =>
@@ -345,7 +347,6 @@ export function SiteHeader({
                     <Link href="/odr/portal" className="text-sm font-medium text-text">
                       Portal Login
                     </Link>
-                    <LanguagePicker languages={languages} className="mt-2 text-sm font-medium" />
                   </div>
                 </nav>
               </SheetContent>

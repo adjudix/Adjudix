@@ -178,3 +178,46 @@
 .preview-phone .sm\:col-span-2 {
   grid-column: auto;
 }
+
+/* Translations (components/i18n). Hidden until the words are swapped in, so
+   English never flashes first; the inline script lifts it after 3 s anyway. */
+html[data-i18n-pending] body {
+  visibility: hidden;
+}
+/* Scripts the brand fonts don't cover. The brand font stays first, so Latin
+   text keeps its look and only the other script uses Noto. Fonts load only
+   for that language (LocaleScript). */
+html:lang(ar) {
+  --font-heading: "Newsreader", "Noto Naskh Arabic", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans Arabic", monospace;
+}
+html:lang(hi) {
+  --font-heading: "Newsreader", "Noto Serif Devanagari", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Noto Sans Devanagari", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans Devanagari", monospace;
+}
+html:lang(zh) {
+  --font-heading: "Newsreader", "Noto Serif SC", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Noto Sans SC", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans SC", monospace;
+}
+html:lang(ja) {
+  --font-heading: "Newsreader", "Noto Serif JP", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Noto Sans JP", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans JP", monospace;
+}
+html:lang(ru) {
+  --font-heading: "Newsreader", "Noto Serif", Georgia, serif;
+}
+/* Letter-spaced capitals are a Latin device; other scripts read better without. */
+html:lang(ar) .tracking-widest,
+html:lang(hi) .tracking-widest,
+html:lang(zh) .tracking-widest,
+html:lang(ja) .tracking-widest {
+  letter-spacing: normal;
+}
+/* Any letter-spacing pulls Arabic letters apart, so none at all there. */
+html:lang(ar) * {
+  letter-spacing: 0 !important;
+}

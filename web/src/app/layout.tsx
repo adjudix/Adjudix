@@ -36,8 +36,10 @@ export default function RootLayout({ children, modal }: LayoutProps<"/">) {
        we're actively building — theme.css's dark media query is guarded
        with :not(.light) specifically for this. Remove once a real
        theme-switcher (next-themes) is wired up and dark mode should follow
-       user/OS choice instead of being hardcoded. */
-    <html lang="en" className="h-full antialiased light">
+       user/OS choice instead of being hardcoded.
+       suppressHydrationWarning: LocaleScript sets lang and dir before React
+       hydrates, for translated pages. */
+    <html lang="en" className="h-full antialiased light" suppressHydrationWarning>
       {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
           data-gr-* attributes onto <body> before React hydrates, which is a
           known false-positive hydration mismatch, not an app bug. */}

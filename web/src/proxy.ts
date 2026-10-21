@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { findLocale, LOCALE_COOKIE, localeForCountry } from "@/lib/i18n/locales";
 
 // The admin console lives in app/(console)/console, but is only reachable at
 // the private address in ADMIN_PATH (e.g. "adx-7f3k2q"). Visiting /console
@@ -31,7 +32,20 @@ export function proxy(request: NextRequest) {
     return response;
   }
 
-  return NextResponse.next();
+  return withLocale(request, NextResponse.next());
+}
+
+// The visitor's language (see lib/i18n/locales.ts). A ?lang=fr link sets it;
+// otherwise, on the first visit, it follows the country Vercel reports, with
+// India and unlisted countries in English. Once set — automatically or from
+// the language menu — it is kept for a year and never re-guessed.
+const YEAR = 60 * 60 * 24 * 365;
+
+function withLocale(request: NextRequest, response: NextResponse) {
+  const chosen = findLocale(request.nextUrl.searchParams.get("lang"));
+  const code = chosen?.code ?? (request.cookies.has(LOCALE_COOKIE) ? null : localeForCountry(request.headers.get("x-vercel-ip-country")));
+  if (code) response.cookies.set(LOCALE_COOKIE, code, { path: "/", maxAge: YEAR, sameSite: "lax" });
+  return response;
 }
 
 export const config = {

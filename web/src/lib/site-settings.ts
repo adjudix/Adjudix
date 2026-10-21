@@ -1,3 +1,4 @@
+import { LOCALES } from "@/lib/i18n/locales";
 import { option, type FieldSpec } from "@/lib/content/schema";
 
 // Site-wide settings: the header and footer menus, the announcement bar,
@@ -168,18 +169,10 @@ export const MAILBOXES: { team: string; purpose: string; email: string }[] = [
   { team: "Director", purpose: "Only in an emergency", email: "director@adjudixADR.com" },
 ];
 
-// Languages in the translation menu (Google's translation proxy).
-export const LANGUAGES: { code: string; label: string }[] = [
-  { code: "hi", label: "हिन्दी (Hindi)" },
-  { code: "fr", label: "Français (French)" },
-  { code: "de", label: "Deutsch (German)" },
-  { code: "es", label: "Español (Spanish)" },
-  { code: "pt", label: "Português (Portuguese)" },
-  { code: "ru", label: "Русский (Russian)" },
-  { code: "ar", label: "العربية (Arabic)" },
-  { code: "zh-CN", label: "中文 (Chinese)" },
-  { code: "ja", label: "日本語 (Japanese)" },
-];
+// Languages offered in the language menu. The menu's order and names are
+// fixed (lib/i18n/locales.ts): French, German, Spanish and Arabic on the top
+// bar, the rest under "More". Each needs a dictionary (src/i18n/TRANSLATING.md).
+export const LANGUAGES: { code: string; label: string }[] = LOCALES.map(({ code, label }) => ({ code, label }));
 
 export interface Announcement {
   enabled: boolean;
@@ -335,12 +328,12 @@ export const SETTINGS_FIELDS: FieldSpec[] = [
   { key: "introReel", label: "Play the logo intro on the home page", type: "boolean" },
   {
     key: "languages",
-    label: "Translation menu",
+    label: "Language menu",
     type: "list",
     singular: "language",
     titleKey: "label",
     of: [
-      { key: "code", label: "Language code", type: "text", half: true, help: "As Google Translate uses it: hi, fr, zh-CN…" },
+      { key: "code", label: "Language code", type: "text", half: true, help: "One of fr, de, es, ar, hi, zh, ja, ru, pt. Remove a language to hide it from the menu." },
       { key: "label", label: "Shown as", type: "text", half: true },
     ],
   },
