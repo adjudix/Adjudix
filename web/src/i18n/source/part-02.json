@@ -1,5 +1,4 @@
 {
- "Dedicated relationship team": "/dispute-resolution/corporate",
  "One point of contact across every matter, not a new intake process each time.": "/dispute-resolution/corporate",
  "Set up a corporate relationship": "/dispute-resolution/corporate",
  "Talk to our team about clause language, panel access, and pricing for your business.": "/dispute-resolution/corporate",
@@ -52,7 +51,7 @@
  "Administrative fee": "/dispute-resolution/fees",
  "GST @ {0}% (on filing and administrative fees)": "/dispute-resolution/fees",
  "Indicative total of the platform": "/dispute-resolution/fees",
- "Just for example — an estimate under the Adjudix fee schedule below. A sole arbitrator receives {0}% more than each member of a three-member tribunal; fast-track tribunal fees are {1}% of the regular fee; emergency arbitration is the whole regular fee plus {2}%. Travel, hearing-room, and other charges are extra. The confirmed fee is set when a case is registered.": "/dispute-resolution/fees",
+ "Just for example — an estimate under the Adjudix fee schedule below. A sole arbitrator receives {0}% more than each member of a three-member tribunal. Fast track (the whole arbitration on priority) is the regular fee plus {1}%; emergency arbitration, a separate process for urgent interim relief, is the regular fee plus {2}%. Travel, hearing-room, and other charges are extra. The confirmed fee is set when a case is registered.": "/dispute-resolution/fees",
  "Adjudix Arbitration Fee Schedule": "/dispute-resolution/fees",
  "Domestic arbitration, for claims of ₹{0} and above, and small cause arbitration for claims below ₹{1}.": "/dispute-resolution/fees",
  "Registration charges": "/dispute-resolution/fees",
@@ -64,7 +63,7 @@
  "Application — interpretation, correction, or additional award": "/dispute-resolution/fees",
  "Scrutiny of award": "/dispute-resolution/fees",
  "Arbitral tribunal fee (per arbitrator)": "/dispute-resolution/fees",
- "A sole arbitrator receives an additional {0}%. Fast-track arbitration is charged at {1}% of this schedule. “Per lakh” means per lakh or part thereof.": "/dispute-resolution/fees",
+ "A sole arbitrator receives an additional {0}%. Fast-track arbitration costs the whole fee plus {1}%. “Per lakh” means per lakh or part thereof.": "/dispute-resolution/fees",
  "Arbitral tribunal fee": "/dispute-resolution/fees",
  "Amount in dispute": "/dispute-resolution/fees",
  "Fee per arbitrator": "/dispute-resolution/fees",
@@ -282,6 +281,5 @@
  "Disagreements arising from an employment relationship, resolved confidentially and without the reputational exposure of a public tribunal filing.": "/dispute-resolution/practice-areas/employment",
  "Disputes over severance, notice, or termination terms": "/dispute-resolution/practice-areas/employment",
  "Non-compete and confidentiality-clause disagreements": "/dispute-resolution/practice-areas/employment",
- "Disputes over bonus, commission, or incentive calculations": "/dispute-resolution/practice-areas/employment",
- "Workplace grievances the parties agree to resolve outside statutory forums": "/dispute-resolution/practice-areas/employment"
+ "Disputes over bonus, commission, or incentive calculations": "/dispute-resolution/practice-areas/employment"
 }

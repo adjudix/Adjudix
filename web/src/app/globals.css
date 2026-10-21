@@ -184,6 +184,15 @@
 html[data-i18n-pending] body {
   visibility: hidden;
 }
+/* Translations run longer than English (German compounds most of all), so
+   a word that doesn't fit a phone-width button or card breaks, hyphenated. */
+html[data-locale] body {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+html[data-locale] :is(a, button, label, h1, h2, h3, h4) {
+  overflow-wrap: anywhere;
+}
 /* Scripts the brand fonts don't cover. The brand font stays first, so Latin
    text keeps its look and only the other script uses Noto. Fonts load only
    for that language (LocaleScript). */

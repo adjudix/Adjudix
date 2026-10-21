@@ -151,6 +151,7 @@ export function LanguageGrid({ languages, className }: { languages: { code: stri
             key={locale.code}
             locale={locale}
             active={locale.code === active}
+            stacked
             className={cn("border px-2 py-2 text-center text-sm", locale.code === active ? "border-primary bg-primary/10" : "border-border")}
           />
         ))}

@@ -1,6 +1,6 @@
 {
  "About Adjudix | Adjudix Dispute Resolution Institute": "/about",
- "Read this page in another language": "/about",
+ "More": "/about",
  "About": "/about",
  "Dispute Resolution": "/about",
  "Training & Certification Courses": "/about",
@@ -88,6 +88,7 @@
  "Privacy Policy": "/about",
  "Terms & Conditions": "/about",
  "Adjudix Dispute Resolution Institute": "/about",
+ "Language": "/about",
  "Services": "/about",
  "Search the site": "/about",
  "Open menu": "/about",
@@ -352,5 +353,6 @@
  "Bespoke panel access": "/dispute-resolution/corporate",
  "A relationship team matches each dispute to the right practice area and neutral, every time.": "/dispute-resolution/corporate",
  "Ready-to-insert clauses": "/dispute-resolution/corporate",
- "Arbitration and mediation clauses drafted for your standard commercial contracts.": "/dispute-resolution/corporate"
+ "Arbitration and mediation clauses drafted for your standard commercial contracts.": "/dispute-resolution/corporate",
+ "Dedicated relationship team": "/dispute-resolution/corporate"
 }

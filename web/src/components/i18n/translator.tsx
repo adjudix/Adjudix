@@ -108,7 +108,7 @@ export function Translator() {
           observer?.disconnect();
           const batch = new Set<string>();
           for (const el of dirty) {
-            if (!el.isConnected) continue;
+            if (!el.isConnected || el.closest("[data-no-translate],[translate=no],.notranslate")) continue;
             // Translate from the nearest block, so a changed word is read with its sentence.
             const block = el.closest("p,li,h1,h2,h3,h4,h5,h6,td,th,dt,dd,button,label,option,figcaption,blockquote,div,section,nav") ?? el;
             translateTree(block, dictionary, batch);

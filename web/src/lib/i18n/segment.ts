@@ -125,7 +125,8 @@ export function collectUnits(root: Element, sourceOf: SourceOf = asIs): TextUnit
   const fromRun = (run: Node[]) => {
     const ownText = run.some((node) => node.nodeType === 3 && LETTER.test(node.nodeValue ?? ""));
     const elements = run.filter(
-      (node): node is Element => node.nodeType === 1 && !VOID.has((node as Element).tagName) && LETTER.test(node.textContent ?? ""),
+      (node): node is Element =>
+        node.nodeType === 1 && !VOID.has((node as Element).tagName) && !skipped(node as Element) && LETTER.test(node.textContent ?? ""),
     );
     if (!ownText && elements.length > 0) {
       elements.forEach((el) => fromRun(Array.from(el.childNodes)));
