@@ -19,6 +19,7 @@ function Page() {
       eligibility={[
         "Conferred by the institute, on the recommendation of the Advisory Council",
         "Recognises exceptional contribution to ADR, the judiciary, or the profession",
+        "Or conferred as an honour on a dignitary",
         "Cannot be applied for",
       ]}
       benefits={[

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { Check, Copy, FileText, Film, Trash2, Upload } from "lucide-react";
 import { useConsoleHref } from "@/components/console/base";
+import { useConfirm } from "@/components/console/confirm";
 import { consoleButton, consoleInput, Notice, timeAgo } from "@/components/console/ui";
 import { cn } from "@/lib/utils";
 import { deleteMedia, listMedia, updateAlt, type MediaRow } from "@/app/(console)/console/(app)/media/actions";
@@ -32,6 +33,7 @@ export function MediaLibrary({
   const [copied, setCopied] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [, start] = useTransition();
+  const confirm = useConfirm();
   const input = useRef<HTMLInputElement>(null);
 
   const refresh = useCallback(() => {
@@ -181,7 +183,8 @@ export function MediaLibrary({
               {canDelete && (
                 <button
                   type="button"
-                  onClick={() =>
+                  onClick={async () => {
+                    if (!(await confirm({ title: `Delete ${current.filename}?`, body: "The file is deleted for good. Any page or collection still using its address will show a broken image or link.", action: "Delete file" }))) return;
                     start(async () => {
                       const result = await deleteMedia(current.id);
                       if (!result.ok) setError(result.error);
@@ -189,8 +192,8 @@ export function MediaLibrary({
                         setSelected(null);
                         refresh();
                       }
-                    })
-                  }
+                    });
+                  }}
                   className={consoleButton.danger}
                 >
                   <Trash2 aria-hidden="true" /> Delete

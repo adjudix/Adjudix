@@ -18,6 +18,11 @@ export interface NavLink {
   highlight?: boolean;
 }
 
+// A second-row item: a link, or a small dropdown (Knowledge, Oct 2026).
+export interface SecondaryLink extends NavLink {
+  children?: NavLink[];
+}
+
 export interface NavSection {
   label: string;
   links: NavLink[];
@@ -35,7 +40,8 @@ export interface NavGroup {
 
 // Main (large) row. Structure follows the client's Oct 2026 markup: Events
 // moved under Knowledge, Our Professional Panel and Implementation promoted
-// to top level.
+// to top level. Later (23 Oct): Model Clauses after the panel, Contract &
+// Clause Drafting at the end, Knowledge down to the second row.
 export const NAV_GROUPS: NavGroup[] = [
   { label: "About", href: "/about" },
   {
@@ -83,15 +89,24 @@ export const NAV_GROUPS: NavGroup[] = [
     href: "/membership",
     children: [
       { label: "Compare Tiers", href: "/membership" },
+      { label: "Special Honorary (beyond stars)", href: "/membership/honorary" },
       { label: "Fellow", href: "/membership/fellow", stars: 5 },
       { label: "Associate", href: "/membership/associated", stars: 4 },
       { label: "Affiliate", href: "/membership/affiliated", stars: 3 },
       { label: "Student", href: "/membership/student", stars: 2 },
-      { label: "Special Honorary (beyond stars)", href: "/membership/honorary" },
       { label: "Our Esteemed Members", href: "/membership/directory", highlight: true },
       { label: "Register of Members", href: "/membership/register" },
     ],
   },
+  { label: "Our Professional Panel", href: "/panel" },
+  { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
+  { label: "Implementation of ADR Orders", href: "/implementation" },
+  { label: "Contract & Clause Drafting", href: "/dispute-resolution/clause-drafting" },
+];
+
+// Second (small) row, left side: services and programmes the client added.
+export const SECONDARY_LINKS: SecondaryLink[] = [
+  { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
   {
     label: "Knowledge",
     href: "/knowledge",
@@ -102,15 +117,6 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Competitions", href: "/knowledge/competitions", nested: true },
     ],
   },
-  { label: "Our Professional Panel", href: "/panel" },
-  { label: "Implementation of ADR Orders", href: "/implementation" },
-];
-
-// Second (small) row, left side: services and programmes the client added.
-export const SECONDARY_LINKS: NavLink[] = [
-  { label: "Contract & Clause Drafting", href: "/dispute-resolution/clause-drafting" },
-  { label: "Rules & Fees Calculator", href: "/dispute-resolution/fees" },
-  { label: "Model Clauses", href: "/dispute-resolution/model-clauses" },
   { label: "Apprenticeship & Internships", href: "/training/apprenticeships" },
   { label: "Our Esteemed Partners", href: "/partners" },
 ];
@@ -198,7 +204,7 @@ export interface ConsultationOffer {
 export interface SiteSettings {
   announcement: Announcement;
   navGroups: NavGroup[];
-  secondaryLinks: NavLink[];
+  secondaryLinks: SecondaryLink[];
   footerGroups: typeof FOOTER_GROUPS;
   copyright: string;
   mailboxes: typeof MAILBOXES;
@@ -274,7 +280,15 @@ export const SETTINGS_FIELDS: FieldSpec[] = [
       },
     ],
   },
-  { key: "secondaryLinks", label: "Second menu row", type: "list", singular: "link", titleKey: "label", of: navLink },
+  {
+    key: "secondaryLinks",
+    label: "Second menu row",
+    type: "list",
+    singular: "link",
+    titleKey: "label",
+    help: "A link, or a small dropdown when it has dropdown links.",
+    of: [...navLink, { key: "children", label: "Dropdown links", type: "list", singular: "link", titleKey: "label", of: navLink }],
+  },
   {
     key: "footerGroups",
     label: "Footer columns",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ConsoleBaseProvider } from "@/components/console/base";
+import { ConfirmProvider } from "@/components/console/confirm";
 import { consoleBase } from "@/lib/console/paths";
 
 // The admin console. Reached only through the proxy's rewrite from
@@ -20,7 +21,9 @@ export default function ConsoleLayout({ children }: { children: React.ReactNode 
   if (consoleBase() === "/") notFound();
   return (
     <ConsoleBaseProvider base={consoleBase()}>
-      <div className="flex min-h-dvh flex-1 flex-col bg-surface font-body text-foreground">{children}</div>
+      <ConfirmProvider>
+        <div className="flex min-h-dvh flex-1 flex-col bg-surface font-body text-foreground">{children}</div>
+      </ConfirmProvider>
     </ConsoleBaseProvider>
   );
 }

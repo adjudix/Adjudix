@@ -14,27 +14,34 @@ const metadata = pageMetadata({
 });
 
 // Per the client's compare-tiers markup: five kinds, stars not tier numbers,
-// highest standing first, Corporate removed.
+// highest standing first (Special Honorary on top, Oct 2026), Corporate removed.
 const TIERS = [
+  {
+    title: "Special Honorary",
+    stars: "Beyond stars",
+    eligibility: "Conferred for exceptional contribution to ADR, or as an honour to a dignitary",
+    entry: "Cannot be claimed — it is earned",
+    href: "/membership/honorary",
+  },
   {
     title: "Fellow",
     stars: "★★★★★",
-    eligibility: "Senior practitioners with a sustained record of panel appointments",
+    eligibility: "Senior practitioners and experts in their field",
     entry: "By nomination or application, reviewed by the Advisory Council",
     href: "/membership/fellow",
   },
   {
     title: "Associate",
     stars: "★★★★",
-    eligibility: "Completed a Training Institute track, or equivalent experience",
-    entry: "Free, after completion of a Training Programme under Adjudix",
+    eligibility: "Completed any of our Professional Training & Certification Courses, or equivalent experience",
+    entry: "Free, after completion of a Training Programme under Adjudix, or on payment of a membership fee subject to review by the Advisory Council",
     href: "/membership/associated",
   },
   {
     title: "Affiliate",
     stars: "★★★",
     eligibility: "Open to early-career professionals",
-    entry: "Free, after completing an Apprenticeship or Internship",
+    entry: "Free, after completing an Apprenticeship or Internship, or on payment of a membership fee subject to review by the Advisory Council",
     href: "/membership/affiliated",
   },
   {
@@ -43,13 +50,6 @@ const TIERS = [
     eligibility: "Students of law, CA/CS, commerce, or engineering",
     entry: "Free for students",
     href: "/membership/student",
-  },
-  {
-    title: "Special Honorary",
-    stars: "Beyond stars",
-    eligibility: "Conferred for exceptional contribution to ADR",
-    entry: "Cannot be claimed — it is earned",
-    href: "/membership/honorary",
   },
 ];
 

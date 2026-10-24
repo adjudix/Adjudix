@@ -51,6 +51,8 @@ describe("page index", () => {
     const { listPages, loadersSource } = await import("../../../scripts/pages/index-pages.mjs");
     const editable = (listPages() as { file: string }[]).filter((page) => readFileSync(page.file, "utf8").includes("editablePage("));
     const current = readFileSync(path.join(process.cwd(), "src/lib/pages/loaders.ts"), "utf8");
-    expect(current).toBe(loadersSource(editable));
+    // Git may check the file out with Windows line endings.
+    const unix = (text: string) => text.split(String.fromCharCode(13)).join("");
+    expect(unix(current)).toBe(loadersSource(editable));
   });
 });

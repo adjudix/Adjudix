@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   NavigationMenu,
@@ -22,11 +23,14 @@ import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SiteSearch } from "@/components/layout/site-search";
 import { LanguageBar, LanguageGrid } from "@/components/layout/language-picker";
-import { DEFAULT_SETTINGS, type NavGroup, type NavLink } from "@/lib/site-settings";
+import { DEFAULT_SETTINGS, type NavGroup, type SecondaryLink } from "@/lib/site-settings";
 import type { SearchItem } from "@/lib/search-index";
 
 const navLinkClass =
-  "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2.5 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary-ink data-popup-open:text-primary-ink data-open:text-primary-ink rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
+  "inline-flex items-center px-1.5 py-2 text-[0.84rem] font-medium xl:px-2 xl:text-[0.92rem] tracking-tight text-text transition-colors hover:text-primary-ink data-popup-open:text-primary-ink data-open:text-primary-ink rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
+
+const secondaryLinkClass =
+  "inline-flex h-auto items-center p-0 text-xs font-medium text-text-muted transition-colors hover:text-text data-popup-open:text-text data-open:text-text rounded-none bg-transparent hover:bg-transparent focus:bg-transparent";
 
 const dropdownLinkClass =
   "flex items-center justify-between gap-3 px-3 py-2 text-sm text-text hover:bg-surface hover:text-primary-ink rounded-md";
@@ -39,7 +43,7 @@ function Stars({ count }: { count: number }) {
   );
 }
 
-function LinkLabel({ link }: { link: NavLink }) {
+function LinkLabel({ link }: { link: Pick<NavGroup, "label"> & { stars?: number; nested?: boolean; highlight?: boolean } }) {
   return (
     <>
       <span className={cn("flex items-center gap-2", link.highlight && "font-semibold text-primary-ink")}>
@@ -79,6 +83,49 @@ function MobileGroup({ label, children }: { label: string; children: ReactNode }
   );
 }
 
+// One head in the phone menu: a plain link, or a fold-out of its links.
+function MobileNavItem({ group }: { group: NavGroup }) {
+  if (!group.sections && !group.children) {
+    return (
+      <Link href={group.href!} className="border-b border-border py-3 text-[0.95rem] font-semibold text-text">
+        {group.label}
+      </Link>
+    );
+  }
+  return (
+    <MobileGroup label={group.label}>
+      {group.href && (
+        <Link href={group.href} className="py-1.5 text-sm font-medium text-primary-ink">
+          {group.label} — overview
+        </Link>
+      )}
+      {group.sections?.map((section) => (
+        <div key={section.label} className="mt-2">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-text-muted">
+            {section.label}
+          </p>
+          <div className="mt-1 flex flex-col">
+            {section.links.map((link) => (
+              <Link key={link.label} href={link.href} className={mobileLinkClass}>
+                <LinkLabel link={link} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
+      {group.children?.map((child) => (
+        <Link
+          key={child.label}
+          href={child.href}
+          className={cn(mobileLinkClass, child.nested && "ml-1")}
+        >
+          <LinkLabel link={child} />
+        </Link>
+      ))}
+    </MobileGroup>
+  );
+}
+
 export function SiteHeader({
   searchItems,
   navGroups: NAV_GROUPS = DEFAULT_SETTINGS.navGroups,
@@ -87,17 +134,24 @@ export function SiteHeader({
 }: {
   searchItems: SearchItem[];
   navGroups?: NavGroup[];
-  secondaryLinks?: NavLink[];
+  secondaryLinks?: SecondaryLink[];
   languages?: { code: string; label: string }[];
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  // On the home page the logo takes you back to the top (client, Oct 2026).
+  const onLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur supports-backdrop-filter:bg-canvas/80">
       {/* Top bar: brand mark only, centered */}
       <div className="hidden md:block border-b border-border bg-surface">
         <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-center px-6">
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href="/" onClick={onLogoClick} className="flex shrink-0 items-center">
             <Image
               id="site-logo-target"
               src="/images/logo-horizontal.png"
@@ -117,7 +171,7 @@ export function SiteHeader({
       <div className="hidden md:block border-b border-border">
         <div className="mx-auto flex min-h-14 max-w-7xl items-center justify-center px-4 py-1 xl:px-6 xl:py-0">
           <NavigationMenu>
-            <NavigationMenuList className="flex-wrap xl:gap-0.5">
+            <NavigationMenuList className="flex-wrap">
               {NAV_GROUPS.map((group) =>
                 group.sections ? (
                   <NavigationMenuItem key={group.label}>
@@ -190,13 +244,42 @@ export function SiteHeader({
       {/* Secondary row (tablet and up, small): services on the left, utility links on the right */}
       <div className="hidden md:block border-b border-border bg-surface">
         <div className="mx-auto flex min-h-10 max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-1 px-4 py-2 text-xs font-medium xl:justify-between xl:px-6 xl:py-0">
-          <nav aria-label="Services" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
-            {SECONDARY_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} className="text-text-muted hover:text-text">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <NavigationMenu aria-label="Services">
+            <NavigationMenuList className="flex-wrap justify-center gap-x-5 gap-y-1">
+              {SECONDARY_LINKS.map((link) => (
+                <NavigationMenuItem key={link.label}>
+                  {link.children ? (
+                    <>
+                      <NavigationMenuTrigger className={secondaryLinkClass}>{link.label}</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-64 gap-1 p-1">
+                          {link.children.map((child) => (
+                            <li key={child.label} className={cn(child.nested && "-mt-1 ml-3")}>
+                              <NavigationMenuLink
+                                render={
+                                  <Link href={child.href} className={dropdownLinkClass}>
+                                    <LinkLabel link={child} />
+                                  </Link>
+                                }
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <NavigationMenuLink
+                      render={
+                        <Link href={link.href} className={secondaryLinkClass}>
+                          {link.label}
+                        </Link>
+                      }
+                    />
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
           <div className="flex items-center gap-5">
             <SiteSearch items={searchItems} className="h-7" />
             <Link href="/dispute-resolution/emergency" className="text-ember hover:opacity-80">
@@ -215,7 +298,7 @@ export function SiteHeader({
       {/* Compact bar (phones, below md): logo + menu sheet */}
       <div className="border-b border-border md:hidden">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href="/" onClick={onLogoClick} className="flex shrink-0 items-center">
             <Image
               id="site-logo-target-mobile"
               src="/images/logo-mini.png"
@@ -286,59 +369,16 @@ export function SiteHeader({
                     </Link>
                   </div>
 
-                  <LanguageGrid languages={languages} className="border-b border-border pb-4" />
-
                   {/* Each menu folds open on its own, so the list stays short
-                      enough to scan instead of one long scroll of links. */}
-                  {NAV_GROUPS.map((group) =>
-                    group.sections || group.children ? (
-                      <MobileGroup key={group.label} label={group.label}>
-                        {group.href && (
-                          <Link href={group.href} className="py-1.5 text-sm font-medium text-primary-ink">
-                            {group.label} — overview
-                          </Link>
-                        )}
-                        {group.sections?.map((section) => (
-                          <div key={section.label} className="mt-2">
-                            <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-text-muted">
-                              {section.label}
-                            </p>
-                            <div className="mt-1 flex flex-col">
-                              {section.links.map((link) => (
-                                <Link key={link.label} href={link.href} className={mobileLinkClass}>
-                                  <LinkLabel link={link} />
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                        {group.children?.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            className={cn(mobileLinkClass, child.nested && "ml-1")}
-                          >
-                            <LinkLabel link={child} />
-                          </Link>
-                        ))}
-                      </MobileGroup>
-                    ) : (
-                      <Link
-                        key={group.label}
-                        href={group.href!}
-                        className="border-b border-border py-3 text-[0.95rem] font-semibold text-text"
-                      >
-                        {group.label}
-                      </Link>
-                    )
-                  )}
-                  <MobileGroup label="Services & Programmes">
-                    {SECONDARY_LINKS.map((link) => (
-                      <Link key={link.href} href={link.href} className={mobileLinkClass}>
-                        {link.label}
-                      </Link>
-                    ))}
-                  </MobileGroup>
+                      enough to scan instead of one long scroll of links. The
+                      second-row heads follow as heads of their own (client,
+                      Oct 2026), not folded into one group. */}
+                  {NAV_GROUPS.map((group) => (
+                    <MobileNavItem key={group.label} group={group} />
+                  ))}
+                  {SECONDARY_LINKS.map((link) => (
+                    <MobileNavItem key={link.label} group={link} />
+                  ))}
 
                   <div className="mt-4 flex flex-col gap-2">
                     <Link href="/contact" className="text-sm font-medium text-text">
@@ -348,6 +388,9 @@ export function SiteHeader({
                       Portal Login
                     </Link>
                   </div>
+
+                  {/* Language comes last on phones (client, Oct 2026). */}
+                  <LanguageGrid languages={languages} className="mt-6 border-t border-border pt-4" />
                 </nav>
               </SheetContent>
             </Sheet>

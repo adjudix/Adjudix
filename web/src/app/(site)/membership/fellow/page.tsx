@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 const metadata = pageMetadata({
   title: "Fellow Membership",
   description:
-    "Senior recognition for a sustained record of panel appointments — the credential that signals a practitioner has genuinely built a career in institutional…",
+    "Senior recognition for practitioners and experts in their field — the credential that signals a practitioner has genuinely built a career in institutional…",
   path: "/membership/fellow",
 });
 
@@ -15,9 +15,9 @@ function Page() {
       title="Fellow"
       stars={5}
       applyLabel="Apply for Fellowship"
-      intro="Senior recognition for a sustained record of panel appointments — the credential that signals a practitioner has genuinely built a career in institutional ADR, not just completed a course."
+      intro="Senior recognition for practitioners and experts in their field — the credential that signals a practitioner has genuinely built a career in institutional ADR, not just completed a course."
       eligibility={[
-        "Senior practitioners with a sustained record of panel appointments",
+        "Senior practitioners and experts in their field",
         "Or senior practitioners nominated by the Advisory Council on the basis of standing outside Adjudix",
         "Reviewed and approved case by case, not automatically granted",
       ]}

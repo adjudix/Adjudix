@@ -16,7 +16,7 @@ function Page() {
       stars={4}
       intro="Full standing, case-eligible once CPD and experience thresholds are met — the membership most Training Institute graduates move into."
       eligibility={[
-        "Completed a Training Programme under Adjudix, or equivalent experience",
+        "Completed any of our Professional Training & Certification Courses",
         "Or equivalent demonstrated professional experience in ADR",
         "In good standing with any relevant professional body (Bar Council, ICAI, ICSI, or engineering council)",
       ]}
@@ -25,7 +25,7 @@ function Page() {
         "Use of the Associate Member designation",
         "Continuing education and CPD tracking through the Training Institute",
       ]}
-      fee="Free, after completion of a Training Programme under Adjudix."
+      fee="Free, after completion of a Training Programme under Adjudix, or on payment of a membership fee subject to review by the Advisory Council."
     />
   );
 }

@@ -51,9 +51,10 @@ export function FeeCalculator({ schedule }: { schedule: FeeSchedule }) {
   const [amount, setAmount] = useState("1000000");
   const [arbitrators, setArbitrators] = useState<1 | 3>(1);
   const [fastTrack, setFastTrack] = useState(false);
+  const [emergency, setEmergency] = useState(false);
   const numericAmount = Number(amount) || 0;
   const displayAmount = amount ? new Intl.NumberFormat("en-IN").format(numericAmount) : "";
-  const fees = useMemo(() => estimateFees(numericAmount, arbitrators, fastTrack, schedule), [numericAmount, arbitrators, fastTrack, schedule]);
+  const fees = useMemo(() => estimateFees(numericAmount, arbitrators, fastTrack, schedule, emergency), [numericAmount, arbitrators, fastTrack, schedule, emergency]);
 
   const rows = [
     { label: "Filing fee", value: fees.filing },
@@ -96,14 +97,26 @@ export function FeeCalculator({ schedule }: { schedule: FeeSchedule }) {
           ]}
         />
         <Toggle
-          legend="Procedure"
-          value={fastTrack ? "fast" : "regular"}
-          onChange={(value) => setFastTrack(value === "fast")}
+          legend="Arbitration"
+          value={emergency ? "emergency" : "regular"}
+          onChange={(value) => setEmergency(value === "emergency")}
           options={[
             { value: "regular", label: "Regular" },
-            { value: "fast", label: "Fast track" },
+            { value: "emergency", label: "Emergency" },
           ]}
         />
+        {/* Emergency arbitration is its own process, so it has no fast track. */}
+        {!emergency && (
+          <Toggle
+            legend="Procedure"
+            value={fastTrack ? "fast" : "regular"}
+            onChange={(value) => setFastTrack(value === "fast")}
+            options={[
+              { value: "regular", label: "Regular" },
+              { value: "fast", label: "Fast track" },
+            ]}
+          />
+        )}
       </div>
 
       <dl className="mt-6 divide-y divide-border border-t border-border">
@@ -116,14 +129,19 @@ export function FeeCalculator({ schedule }: { schedule: FeeSchedule }) {
       </dl>
       <div className="flex items-baseline justify-between gap-4 border-t border-border pt-4">
         <span className="font-mono text-xs tracking-widest uppercase text-primary-ink">
-          Indicative total of the platform
+          {fees.emergency
+            ? `Emergency arbitration · regular fee + ${Math.round(schedule.emergencyUplift * 100)}%`
+            : fees.fastTrack
+              ? `Fast track · regular fee + ${Math.round(schedule.fastTrackUplift * 100)}%`
+              : "Indicative total of the platform"}
         </span>
         <span className="font-mono text-3xl font-semibold tabular-nums text-text">{formatINR(fees.total)}</span>
       </div>
       <p className="mt-4 text-left font-body text-xs text-text-muted">
         Just for example — an estimate under the Adjudix fee schedule below. A sole arbitrator
-        receives {Math.round(schedule.soleArbitratorUplift * 100)}% more than each member of a three-member tribunal; fast-track tribunal fees
-        are {Math.round(schedule.fastTrackFactor * 100)}% of the regular fee. Travel, hearing-room, and other charges are extra. The
+        receives {Math.round(schedule.soleArbitratorUplift * 100)}% more than each member of a three-member tribunal. Fast track (the
+        whole arbitration on priority) is the regular fee plus {Math.round(schedule.fastTrackUplift * 100)}%; emergency arbitration, a
+        separate process for urgent interim relief, is the regular fee plus {Math.round(schedule.emergencyUplift * 100)}%. Travel, hearing-room, and other charges are extra. The
         confirmed fee is set when a case is registered.
       </p>
     </div>

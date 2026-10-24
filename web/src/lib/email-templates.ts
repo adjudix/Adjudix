@@ -26,7 +26,8 @@ const SERIF = "Georgia,'Times New Roman',serif";
 const SANS = "'Segoe UI',Helvetica,Arial,sans-serif";
 
 const ORG = "Adjudix Dispute Resolution Institute";
-const MOTTO = "Adjudication · Diligentia · Remèdes · Intelligence";
+// The tagline under the logo (client, Oct 2026).
+const MOTTO = "Dispute Resolved & Implemented under one Roof";
 
 export interface Submission {
   reference: string;

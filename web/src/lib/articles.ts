@@ -441,7 +441,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "Dispute resolved, and implemented",
         paragraphs: [
-          "That is the promise behind the Adjudix tagline: Dispute Resolved & Implemented at your Doorstep. Resolution and implementation are designed together, from the first consultation to the final recovery.",
+          "That is the promise behind the Adjudix tagline: Dispute Resolved & Implemented under one Roof. Resolution and implementation are designed together, from the first consultation to the final recovery.",
         ],
       },
     ],
@@ -707,7 +707,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "Resolution and implementation, under one roof",
         paragraphs: [
-          "Most institutions end their role with the award. Adjudix does not. Our model treats the dispute as resolved only when the outcome has been implemented — the award paid, the settlement performed, the order complied with — in India or anywhere in the world. That is what “Dispute Resolved & Implemented at your Doorstep” means.",
+          "Most institutions end their role with the award. Adjudix does not. Our model treats the dispute as resolved only when the outcome has been implemented — the award paid, the settlement performed, the order complied with — in India or anywhere in the world. That is what “Dispute Resolved & Implemented under one Roof” means.",
         ],
       },
       {

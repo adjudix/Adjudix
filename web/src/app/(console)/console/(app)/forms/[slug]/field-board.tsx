@@ -20,6 +20,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Plus, Trash2 } from "lucide-react";
 import type { FormSection } from "@/components/patterns/query-form";
 import { consoleButton } from "@/components/console/ui";
+import { useConfirm } from "@/components/console/confirm";
 import type { FieldKind } from "@/lib/forms/builder-model";
 import { cn } from "@/lib/utils";
 
@@ -258,6 +259,7 @@ function SectionDrop({
   children: ReactNode;
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: `${SECTION}${index}` });
+  const confirm = useConfirm();
   return (
     <div ref={setNodeRef} className={cn("flex flex-col gap-0.5 rounded-xl pb-1 transition-colors", isOver && "bg-(--color-gold-100)/35")}>
       {(sections.length > 1 || canStructure) && (
@@ -276,7 +278,8 @@ function SectionDrop({
               type="button"
               aria-label={`Remove section ${index + 1}`}
               title="Remove section (its fields join the next one)"
-              onClick={() => {
+              onClick={async () => {
+                if (!(await confirm({ title: `Remove the section “${section.title || `Section ${index + 1}`}”?`, body: "Its fields aren't deleted: they move into the neighbouring section.", action: "Remove section" }))) return;
                 const target = index === 0 ? 1 : index - 1;
                 onLayout(
                   layout

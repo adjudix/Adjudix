@@ -5,7 +5,7 @@ import type { CodeEdition } from "@/lib/code-editions";
 import type { CodeText } from "@/lib/code";
 import { getCollectionDef } from "@/lib/content/collections";
 import { getContent } from "@/lib/content/store";
-import type { FeeSchedule } from "@/lib/fee-schedule";
+import { EMERGENCY_UPLIFT, FAST_TRACK_UPLIFT, type FeeSchedule } from "@/lib/fee-schedule";
 import type { Member } from "@/lib/members";
 import type { ModelClause } from "@/lib/model-clauses";
 import { DEFAULT_SETTINGS, type NavLink, type SiteSettings } from "@/lib/site-settings";
@@ -78,7 +78,14 @@ export const getFeeSchedule = cache(async (): Promise<FeeSchedule> => {
   const stored = await read<Omit<FeeSchedule, "tribunalSlabs" | "adminSlabs"> & { tribunalSlabs: StoredSlab[]; adminSlabs: StoredSlab[] }>("fee-schedule");
   const slabs = (list: StoredSlab[]) =>
     list.map((slab) => ({ ...slab, to: slab.to ?? Infinity, ceiling: slab.ceiling ?? undefined }));
-  return { ...stored, tribunalSlabs: slabs(stored.tribunalSlabs), adminSlabs: slabs(stored.adminSlabs) };
+  return {
+    ...stored,
+    // A schedule published before the emergency uplift existed takes the default.
+    emergencyUplift: typeof stored.emergencyUplift === "number" ? stored.emergencyUplift : EMERGENCY_UPLIFT,
+    fastTrackUplift: typeof stored.fastTrackUplift === "number" ? stored.fastTrackUplift : FAST_TRACK_UPLIFT,
+    tribunalSlabs: slabs(stored.tribunalSlabs),
+    adminSlabs: slabs(stored.adminSlabs),
+  };
 });
 
 export const SETTINGS_TYPE = "settings";
@@ -96,6 +103,9 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
     children: group.children?.length ? group.children.map(link) : undefined,
     sections: group.sections?.length ? group.sections.map((section) => ({ ...section, links: section.links.map(link) })) : undefined,
   }));
-  settings.secondaryLinks = settings.secondaryLinks.map(link);
+  settings.secondaryLinks = settings.secondaryLinks.map((item) => ({
+    ...link(item),
+    children: item.children?.length ? item.children.map(link) : undefined,
+  }));
   return settings;
 });

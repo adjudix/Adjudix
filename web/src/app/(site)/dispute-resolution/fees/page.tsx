@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CtaBand } from "@/components/layout/cta-band";
 import { getFeeSchedule } from "@/lib/content/data";
 import {
+  estimateFees,
   formatSlab,
 } from "@/lib/fee-schedule";
 import { FeeCalculator } from "./fee-calculator";
@@ -94,7 +95,7 @@ async function FeesPage() {
 
           <Block
             title="Arbitral tribunal fee (per arbitrator)"
-            note={`A sole arbitrator receives an additional ${Math.round(schedule.soleArbitratorUplift * 100)}%. Fast-track arbitration is charged at ${Math.round(schedule.fastTrackFactor * 100)}% of this schedule. “Per lakh” means per lakh or part thereof.`}
+            note={`A sole arbitrator receives an additional ${Math.round(schedule.soleArbitratorUplift * 100)}%. Fast-track arbitration costs the whole fee plus ${Math.round(schedule.fastTrackUplift * 100)}%. “Per lakh” means per lakh or part thereof.`}
           >
             <Table
               caption="Arbitral tribunal fee"
@@ -123,9 +124,24 @@ async function FeesPage() {
             />
           </Block>
 
-          <Block title="Emergency arbitration and additional fees">
+          <Block
+            title="Emergency arbitration"
+            note={`Emergency arbitration costs the whole fee of a regular arbitration for the same claim — filing, tribunal, and administrative fees, with GST — plus ${Math.round(schedule.emergencyUplift * 100)}%. Choose “Emergency” in the calculator above to see the figure for your claim.`}
+          >
             <Table
-              caption="Emergency arbitration and additional fees"
+              caption="Emergency arbitration fees"
+              head={["Claim", "Regular arbitration (sole arbitrator)", `Emergency arbitration (+${Math.round(schedule.emergencyUplift * 100)}%)`]}
+              rows={[300_000, 1_000_000, 5_000_000, 20_000_000].map((claim) => {
+                const regular = estimateFees(claim, 1, false, schedule);
+                const emergency = estimateFees(claim, 1, false, schedule, true);
+                return [inr(claim), inr(regular.total), inr(emergency.total)];
+              })}
+            />
+          </Block>
+
+          <Block title="Additional fees">
+            <Table
+              caption="Additional fees"
               head={["Item", ...BANDED_FEES.bands, "Small cause"]}
               rows={BANDED_FEES.rows.map((row) => [row.item, ...row.fees.map(inr), inr(row.smallCause)])}
             />

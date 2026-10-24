@@ -4,6 +4,7 @@ import { Plus, X } from "lucide-react";
 import { SortableList } from "@/components/console/sortable";
 import { consoleInput, consoleTextarea } from "@/components/console/ui";
 import { newRowId, useRowIds } from "@/components/console/use-row-ids";
+import { useConfirm } from "@/components/console/confirm";
 import { cn } from "@/lib/utils";
 
 /**
@@ -27,6 +28,7 @@ export function StringList({
   placeholder?: string;
 }) {
   const [ids, setIds] = useRowIds(value.length);
+  const confirm = useConfirm();
 
   const update = (next: string[], nextIds = ids) => {
     setIds(nextIds);
@@ -63,7 +65,11 @@ export function StringList({
             <button
               type="button"
               aria-label={`Remove ${singular} ${index + 1}`}
-              onClick={() => update(value.filter((_, i) => i !== index), ids.filter((_, i) => i !== index))}
+              onClick={async () => {
+                // An empty row goes without asking.
+                if (row.text.trim() && !(await confirm({ title: `Remove this ${singular}?`, body: `“${row.text.slice(0, 120)}” will be removed.`, action: `Remove ${singular}` }))) return;
+                update(value.filter((_, i) => i !== index), ids.filter((_, i) => i !== index));
+              }}
               className="mt-1 inline-flex size-7 shrink-0 items-center justify-center rounded-md text-(--color-ink-500) hover:bg-ember/8 hover:text-ember"
             >
               <X className="size-4" aria-hidden="true" />

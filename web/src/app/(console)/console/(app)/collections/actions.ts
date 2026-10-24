@@ -6,6 +6,7 @@ import { getCollectionDef, type CollectionDef } from "@/lib/content/collections"
 import { COLLECTION_TYPE, HIDDEN } from "@/lib/content/data";
 import { discardDraft, loadDoc, publishDoc, restoreVersion, saveDraft } from "@/lib/content/drafts";
 import { cleanRecord, missingRequired } from "@/lib/content/schema";
+import { duplicateCodes, type Member } from "@/lib/members";
 
 export type Result = { ok: true } | { ok: false; error: string };
 
@@ -42,11 +43,23 @@ function problems(def: CollectionDef, value: unknown) {
   );
 }
 
+/** Rules beyond the fields' own: each collection's checks across items. */
+function conflicts(key: string, value: unknown): string | null {
+  if (key === "members") {
+    // Hidden members keep their numbers, so they count too.
+    const clash = duplicateCodes(value as Member[])[0];
+    if (clash) return `Membership number already taken: ${clash.code} is used by ${clash.names.join(" and ")}. Give each member a different number.`;
+  }
+  return null;
+}
+
 export async function saveCollectionDraft(key: string, input: unknown) {
   return guard(async () => {
     const user = await authorize("collections", "edit");
     const def = definition(key);
     const value = clean(def, input);
+    const conflict = conflicts(key, value);
+    if (conflict) return { ok: false, error: conflict };
     if (def.kind === "list" && !can(user, "collections", "structure")) {
       const before = (await loadDoc<unknown[]>(COLLECTION_TYPE, key, def.defaults() as unknown[])).value;
       if (before.length !== (value as unknown[]).length) {
@@ -67,6 +80,8 @@ export async function publishCollection(key: string, input?: unknown) {
       if (!saved.ok) return saved;
     }
     const current = (await loadDoc(COLLECTION_TYPE, key, def.defaults())).value;
+    const conflict = conflicts(key, current);
+    if (conflict) return { ok: false, error: conflict };
     const missing = problems(def, current);
     if (missing.length) {
       return { ok: false, error: `Fill these in before publishing: ${missing.slice(0, 4).join("; ")}${missing.length > 4 ? ` and ${missing.length - 4} more` : ""}.` };

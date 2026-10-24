@@ -12,6 +12,7 @@ import { SortableList } from "@/components/console/sortable";
 import { Switch } from "@/components/console/switch";
 import { Badge, consoleButton, consoleInput, consoleTextarea, Field, Notice } from "@/components/console/ui";
 import { useHistory, useUndoShortcuts } from "@/components/console/use-history";
+import { useConfirm } from "@/components/console/confirm";
 import { BLOCK_MAP, BLOCK_TYPES, newBlockId, type Block, type BlockType, type PageDoc } from "@/lib/blocks/types";
 import { blankRecord } from "@/lib/content/schema";
 import { cn } from "@/lib/utils";
@@ -65,6 +66,7 @@ export function PageEditor({
   const [confirm, setConfirm] = useState<"revert" | "delete" | null>(null);
   const [pending, start] = useTransition();
   const media = useMediaPicker();
+  const ask = useConfirm();
 
   const readOnly = !permissions.edit;
   const canStructure = permissions.structure && !readOnly;
@@ -278,7 +280,9 @@ export function PageEditor({
                     <button type="button" aria-label="Duplicate block" title="Duplicate" onClick={() => duplicate(block.id)} className={consoleButton.icon}>
                       <Copy aria-hidden="true" />
                     </button>
-                    <button type="button" aria-label="Delete block" title="Delete" onClick={() => remove(block.id)} className={cn(consoleButton.icon, "hover:bg-ember/8 hover:text-ember")}>
+                    <button type="button" aria-label="Delete block" title="Delete" onClick={async () => {
+                      if (await ask({ title: `Delete this ${type.label.toLowerCase()} block?`, body: "It's removed from the page's draft. Undo brings it back; to keep it but not show it, hide it instead.", action: "Delete block" })) remove(block.id);
+                    }} className={cn(consoleButton.icon, "hover:bg-ember/8 hover:text-ember")}>
                       <Trash2 aria-hidden="true" />
                     </button>
                   </div>

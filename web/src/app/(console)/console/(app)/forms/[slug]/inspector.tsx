@@ -3,6 +3,7 @@
 import { Plus, Trash2, X } from "lucide-react";
 import type { QueryField } from "@/components/patterns/query-form";
 import { StringList } from "@/components/console/string-list";
+import { useConfirm } from "@/components/console/confirm";
 import { Switch } from "@/components/console/switch";
 import { consoleButton, consoleInput, Field } from "@/components/console/ui";
 import { BUILT_IN_LABELS, changeKind, FIELD_KINDS, kindOf, KIND_LABEL } from "@/lib/forms/builder-model";
@@ -78,6 +79,7 @@ function SectionPicker({ sectionTitles, sectionIndex, onMove, disabled }: Pick<P
 }
 
 function BuiltInInspector({ form, name, onForm, readOnly, canStructure, ...rest }: Props & { name: string }) {
+  const confirm = useConfirm();
   const disabled = readOnly;
   return (
     <Shell eyebrow="Built-in field" title={BUILT_IN_LABELS[name]}>
@@ -114,7 +116,9 @@ function BuiltInInspector({ form, name, onForm, readOnly, canStructure, ...rest 
           </Field>
           <Switch label="Required" disabled={disabled} checked={Boolean(form.messageRequired)} onChange={(on) => onForm({ messageRequired: on || undefined })} />
           {canStructure && (
-            <button type="button" disabled={disabled} onClick={() => onForm({ noMessage: true })} className={consoleButton.danger}>
+            <button type="button" disabled={disabled} onClick={async () => {
+              if (await confirm({ title: "Remove the message box?", body: "Visitors will no longer be able to write a free-text message on this form.", action: "Remove message box" })) onForm({ noMessage: true });
+            }} className={consoleButton.danger}>
               <Trash2 aria-hidden="true" /> Remove the message box
             </button>
           )}
@@ -126,7 +130,9 @@ function BuiltInInspector({ form, name, onForm, readOnly, canStructure, ...rest 
             <input id="att-label" disabled={disabled} value={form.attachmentsLabel ?? ""} onChange={(e) => onForm({ attachmentsLabel: e.target.value || "Documents" })} className={consoleInput} />
           </Field>
           {canStructure && (
-            <button type="button" disabled={disabled} onClick={() => onForm({ attachmentsLabel: undefined })} className={consoleButton.danger}>
+            <button type="button" disabled={disabled} onClick={async () => {
+              if (await confirm({ title: "Remove document upload?", body: "Visitors will no longer be able to attach files to this form.", action: "Remove upload" })) onForm({ attachmentsLabel: undefined });
+            }} className={consoleButton.danger}>
               <Trash2 aria-hidden="true" /> Remove document upload
             </button>
           )}
@@ -139,6 +145,7 @@ function BuiltInInspector({ form, name, onForm, readOnly, canStructure, ...rest 
 
 function FieldInspector({ form, field, onChange, onRename, onDelete, readOnly, canStructure, keyError, ...rest }: Props & { field: QueryField }) {
   const kind = kindOf(field);
+  const confirm = useConfirm();
   const set = (patch: Partial<QueryField>) => {
     const next = { ...field, ...patch };
     for (const key of Object.keys(next) as (keyof QueryField)[]) if (next[key] === undefined || next[key] === "") delete next[key];
@@ -232,7 +239,9 @@ function FieldInspector({ form, field, onChange, onRename, onDelete, readOnly, c
                     onChange={(e) => set({ optionGroups: field.optionGroups!.map((g, i) => (i === gi ? { ...g, label: e.target.value } : g)) })}
                     className={cn(consoleInput, "h-9 font-medium")}
                   />
-                  <button type="button" aria-label={`Remove topic ${group.label}`} onClick={() => set({ optionGroups: field.optionGroups!.filter((_, i) => i !== gi) })} className={consoleButton.icon}>
+                  <button type="button" aria-label={`Remove topic ${group.label}`} onClick={async () => {
+                    if (await confirm({ title: `Remove the topic “${group.label}”?`, body: `Its ${group.options.length} choices go with it.`, action: "Remove topic" })) set({ optionGroups: field.optionGroups!.filter((_, i) => i !== gi) });
+                  }} className={consoleButton.icon}>
                     <X aria-hidden="true" />
                   </button>
                 </div>
@@ -273,7 +282,9 @@ function FieldInspector({ form, field, onChange, onRename, onDelete, readOnly, c
                 <input aria-label={`Part ${pi + 1} label`} value={part.label} onChange={(e) => set({ group: field.group!.map((p, i) => (i === pi ? { ...p, label: e.target.value } : p)) })} className={cn(consoleInput, "h-9")} />
                 <input aria-label={`Part ${pi + 1} key`} value={part.name} disabled={!canStructure} onChange={(e) => set({ group: field.group!.map((p, i) => (i === pi ? { ...p, name: e.target.value.replace(/\s+/g, "") } : p)) })} className={cn(consoleInput, "h-9 font-mono text-xs")} />
                 {canStructure && field.group!.length > 1 ? (
-                  <button type="button" aria-label={`Remove part ${pi + 1}`} onClick={() => set({ group: field.group!.filter((_, i) => i !== pi) })} className={consoleButton.icon}>
+                  <button type="button" aria-label={`Remove part ${pi + 1}`} onClick={async () => {
+                    if (await confirm({ title: `Remove “${part.label}”?`, action: "Remove part" })) set({ group: field.group!.filter((_, i) => i !== pi) });
+                  }} className={consoleButton.icon}>
                     <X aria-hidden="true" />
                   </button>
                 ) : (

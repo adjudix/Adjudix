@@ -9,9 +9,11 @@ import { SortableList } from "@/components/console/sortable";
 import { Badge, consoleButton, consoleInput, EmptyState, Notice } from "@/components/console/ui";
 import { useHistory, useUndoShortcuts } from "@/components/console/use-history";
 import { newRowId, useRowIds } from "@/components/console/use-row-ids";
+import { useConfirm } from "@/components/console/confirm";
 import { useMediaPicker } from "@/components/console/media-picker";
 import type { CollectionDef } from "@/lib/content/collections";
 import { blankRecord } from "@/lib/content/schema";
+import { duplicateCodes, type Member } from "@/lib/members";
 import { cn } from "@/lib/utils";
 import { discardCollectionDraft, publishCollection, restoreCollectionVersion, saveCollectionDraft } from "../actions";
 
@@ -47,6 +49,8 @@ export function CollectionEditor({
   const readOnly = !permissions.edit;
   useUndoShortcuts(history.undo, history.redo, !readOnly);
   const dirty = JSON.stringify(value) !== saved;
+  // Live check while typing; the server refuses the same clash on save.
+  const clashes = def.key === "members" && Array.isArray(value) ? duplicateCodes(value as Member[]) : [];
 
   function run(task: () => Promise<{ ok: true } | { ok: false; error: string }>, success: string) {
     setMessage(null);
@@ -98,6 +102,11 @@ export function CollectionEditor({
         <p className="max-w-3xl text-sm text-muted-foreground">{def.description}</p>
         {def.note && <Notice tone="warning">{def.note}</Notice>}
         {readOnly && <Notice>Your role can view this collection but not change it.</Notice>}
+        {clashes.map((clash) => (
+          <Notice key={clash.code} tone="error">
+            Membership number already taken: <strong className="font-semibold">{clash.code}</strong> is used by {clash.names.join(" and ")}. Give each member a different number before saving.
+          </Notice>
+        ))}
         {def.kind === "record" ? (
           <div className="max-w-4xl rounded-2xl border border-border bg-canvas p-5 sm:p-6">
             <SchemaFields fields={def.fields} value={value as Item} onChange={(next, group) => history.set(next, group)} idPrefix={def.key} media={media.picker} disabled={readOnly} />
@@ -128,6 +137,7 @@ function ListEditor({
 }) {
   // Stable row ids that survive reordering, adding and removing.
   const [ids, setIds] = useRowIds(items.length);
+  const confirm = useConfirm();
   const [selected, setSelected] = useState<string | null>(ids[0] ?? null);
   const [query, setQuery] = useState("");
 
@@ -238,7 +248,13 @@ function ListEditor({
                       <button type="button" onClick={() => duplicate(index)} className={consoleButton.secondary}>
                         <Copy aria-hidden="true" /> Duplicate
                       </button>
-                      <button type="button" onClick={() => remove(index)} className={consoleButton.danger}>
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          if (await confirm({ title: `Delete “${titleOf(current, index)}”?`, body: `This ${def.singular ?? "item"} is removed from the list. Until you save or publish, Undo brings it back. To keep it but take it off the site, use Hide from site instead.`, action: `Delete ${def.singular ?? "item"}` })) remove(index);
+                        }}
+                        className={consoleButton.danger}
+                      >
                         <Trash2 aria-hidden="true" /> Delete
                       </button>
                     </>

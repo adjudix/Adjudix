@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { ChevronDown, Copy, Plus, Trash2 } from "lucide-react";
 import { SortableList } from "@/components/console/sortable";
 import { StringList } from "@/components/console/string-list";
 import { Switch } from "@/components/console/switch";
 import { newRowId, useRowIds } from "@/components/console/use-row-ids";
+import { useConfirm } from "@/components/console/confirm";
 import { consoleButton, consoleInput, consoleTextarea, Field } from "@/components/console/ui";
 import { blankRecord, type FieldSpec } from "@/lib/content/schema";
 import { cn } from "@/lib/utils";
@@ -166,30 +167,7 @@ function FieldControl({
       );
     case "numbers": {
       const list = Array.isArray(value) ? value.map(Number) : [];
-      return (
-        <fieldset disabled={disabled} className="flex flex-col gap-2">
-          <legend className="mb-1.5 text-sm font-medium">{label}</legend>
-          <div className="flex flex-wrap gap-2">
-            {list.map((n, index) => (
-              <span key={index} className="flex items-center gap-1">
-                <input
-                  aria-label={`${spec.label} ${index + 1}`}
-                  type="number"
-                  value={n}
-                  onChange={(e) => onChange(list.map((x, i) => (i === index ? Number(e.target.value) : x)))}
-                  className={cn(consoleInput, "h-9 w-32 tabular-nums")}
-                />
-                <button type="button" aria-label={`Remove ${spec.singular ?? "value"} ${index + 1}`} onClick={() => onChange(list.filter((_, i) => i !== index))} className={consoleButton.icon}>
-                  <Trash2 aria-hidden="true" />
-                </button>
-              </span>
-            ))}
-            <button type="button" onClick={() => onChange([...list, 0])} className={cn(consoleButton.secondary, "h-9")}>
-              <Plus aria-hidden="true" /> Add {spec.singular ?? "value"}
-            </button>
-          </div>
-        </fieldset>
-      );
+      return <NumberList spec={spec} label={label} list={list} onChange={onChange} disabled={disabled} />;
     }
     case "object":
       return (
@@ -219,6 +197,7 @@ function ListField({
   disabled?: boolean;
 }) {
   const [ids, setIds] = useRowIds(value.length);
+  const confirm = useConfirm();
   const [open, setOpen] = useState<string | null>(null);
 
   const titleOf = (item: Record_, index: number) => {
@@ -271,7 +250,10 @@ function ListField({
                   type="button"
                   aria-label={`Remove ${titleOf(row.item, index)}`}
                   title="Remove"
-                  onClick={() => update(value.filter((_, i) => i !== index), ids.filter((_, i) => i !== index))}
+                  onClick={async () => {
+                    if (!(await confirm({ title: `Remove “${titleOf(row.item, index)}”?`, body: `This ${spec.singular ?? "item"} and everything in it will be removed.`, action: `Remove ${spec.singular ?? "item"}` }))) return;
+                    update(value.filter((_, i) => i !== index), ids.filter((_, i) => i !== index));
+                  }}
                   className={cn(consoleButton.icon, "hover:bg-ember/8 hover:text-ember")}
                 >
                   <Trash2 aria-hidden="true" />
@@ -297,6 +279,54 @@ function ListField({
       >
         <Plus className="size-4" aria-hidden="true" /> Add {spec.singular ?? "item"}
       </button>
+    </fieldset>
+  );
+}
+
+function NumberList({
+  spec,
+  label,
+  list,
+  onChange,
+  disabled,
+}: {
+  spec: Extract<FieldSpec, { type: "numbers" }>;
+  label: ReactNode;
+  list: number[];
+  onChange: (next: Value) => void;
+  disabled?: boolean;
+}) {
+  const confirm = useConfirm();
+  return (
+    <fieldset disabled={disabled} className="flex flex-col gap-2">
+      <legend className="mb-1.5 text-sm font-medium">{label}</legend>
+      <div className="flex flex-wrap gap-2">
+        {list.map((n, index) => (
+          <span key={index} className="flex items-center gap-1">
+            <input
+              aria-label={`${spec.label} ${index + 1}`}
+              type="number"
+              value={n}
+              onChange={(e) => onChange(list.map((x, i) => (i === index ? Number(e.target.value) : x)))}
+              className={cn(consoleInput, "h-9 w-32 tabular-nums")}
+            />
+            <button
+              type="button"
+              aria-label={`Remove ${spec.singular ?? "value"} ${index + 1}`}
+              onClick={async () => {
+                if (n !== 0 && !(await confirm({ title: `Remove ${new Intl.NumberFormat("en-IN").format(n)}?`, action: `Remove ${spec.singular ?? "value"}` }))) return;
+                onChange(list.filter((_, i) => i !== index));
+              }}
+              className={consoleButton.icon}
+            >
+              <Trash2 aria-hidden="true" />
+            </button>
+          </span>
+        ))}
+        <button type="button" onClick={() => onChange([...list, 0])} className={cn(consoleButton.secondary, "h-9")}>
+          <Plus aria-hidden="true" /> Add {spec.singular ?? "value"}
+        </button>
+      </div>
     </fieldset>
   );
 }

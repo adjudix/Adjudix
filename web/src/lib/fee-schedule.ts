@@ -42,50 +42,55 @@ export const REGISTRATION = {
   regular: [
     { item: "Filing fee — arbitration", fee: 5_000 },
     { item: "Consultation / orientation (if availed)", fee: 2_500 },
-    { item: "Application — emergency arbitrator", fee: 2_500 },
     { item: "Application — interpretation, correction, or additional award", fee: 3_500 },
     { item: "Scrutiny of award", fee: 3_500 },
   ],
   smallCause: [
     { item: "Filing fee — arbitration", fee: 2_500 },
     { item: "Consultation / orientation (if availed)", fee: 2_000 },
-    { item: "Application — emergency arbitrator", fee: 1_750 },
     { item: "Application — interpretation, correction, or additional award", fee: 2_500 },
     { item: "Scrutiny of award", fee: 2_500 },
   ],
 };
 
 // Flat fees by claim band: interpretation/correction/additional award (per
-// arbitrator), scrutiny (per member), emergency arbitrator, and emergency
-// administrative fee. Small cause claims use the single figures.
+// arbitrator) and scrutiny (per member). Small cause claims use the single
+// figures. (Emergency arbitration is priced from the whole fee instead; see
+// EMERGENCY_UPLIFT.)
 export const BANDED_FEES = {
   bands: ["Up to ₹25,00,000", "₹25,00,001 – ₹1,00,00,000", "Above ₹1,00,00,000"],
   rows: [
     { item: "Interpretation, correction, or additional award (per arbitrator)", fees: [10_000, 25_000, 50_000], smallCause: 5_000 },
     { item: "Scrutiny fee (per member)", fees: [15_000, 25_000, 50_000], smallCause: 7_500 },
-    { item: "Emergency arbitrator fee", fees: [15_000, 25_000, 50_000], smallCause: 7_500 },
-    { item: "Emergency arbitration administrative fee", fees: [5_000, 7_500, 15_000], smallCause: 2_500 },
   ],
 };
 
 export const SOLE_ARBITRATOR_UPLIFT = 0.2;
-export const FAST_TRACK_FACTOR = 0.8;
+// Emergency arbitration costs the whole fee of a regular arbitration for the
+// same claim — filing, tribunal, administrative fees and GST — plus 15%
+// (client, Oct 2026).
+export const EMERGENCY_UPLIFT = 0.15;
+// Fast track runs the whole arbitration faster, on priority, so it costs the
+// whole fee of a regular arbitration plus 15% (client, Oct 2026). Emergency
+// arbitration is separate (EMERGENCY_UPLIFT); the two never apply together.
+export const FAST_TRACK_UPLIFT = 0.15;
 export const GST_RATE = 0.18;
 
+// Four equal instalments, all deposited by the claimant (client, Oct 2026).
+// Who finally bears them is the neutral's call in the award (see TERMS).
 export const PAYMENT_SCHEDULE = [
-  { share: "25%", when: "Deposited by the claimant when filing the statement of claim." },
-  { share: "25%", when: "Deposited by the respondent when filing the response or statement of defence." },
-  { share: "30%", when: "Deposited by the parties equally within 10 days of the completion of pleadings." },
-  { share: "20%", when: "Deposited by the parties equally before the hearing date." },
-  { share: "Balance", when: "Deposited by the parties within 10 days after the matter is reserved for award." },
+  { share: "25%", when: "Deposited by the claimant at the time of filing." },
+  { share: "25%", when: "Deposited by the claimant before the stage of evidence." },
+  { share: "25%", when: "Deposited by the claimant before final arguments." },
+  { share: "25%", when: "Deposited by the claimant before the final order." },
 ];
 
 export const TERMS = [
   "Registration charges are paid by the party filing the notice or application; the consultation fee, if availed, at the time of the appointment.",
   "In emergency arbitration, the entire fee is deposited by the applicant when filing the application.",
   "The tribunal and administrative fees are fixed on the claim. A counter-claim attracts fees on the same pattern, as if it were an independent claim.",
-  "Fees are payable in equal shares by the parties. If the respondent does not deposit its share, the claimant shall deposit it in order to continue the proceedings, subject to the final outcome of the matter. If neither party deposits, the tribunal may suspend or terminate the proceedings for that claim or counter-claim.",
-  "In the award, the neutral may apply (i) the loser-pays principle, (ii) the principle of equal or proportional payment, or (iii) the claimant-pays principle, as the neutral deems fit in the nature of the case.",
+  "The claimant deposits the fees in the instalments above, subject to the final outcome of the matter. If a deposit is not made, the tribunal may suspend or terminate the proceedings for that claim or counter-claim.",
+  "Who finally bears the amount paid as fees is decided at the discretion of the neutral, applying (i) the loser-pays principle — the party that loses the case bears the fees and costs; (ii) the equal-pay principle — the parties bear them equally; (iii) the claimant-pays principle — the claimant bears them; or (iv) the proportionate-pay principle — the parties bear them in the ratio decided by the neutral.",
   "Amounts in a currency other than Indian Rupees are converted at the current official rate of exchange.",
   "The arbitrator's fee carries no GST. All other charges carry GST at 18%.",
   "For disputes that cannot be quantified, Adjudix fixes the fee on the facts of the case.",
@@ -102,7 +107,8 @@ export interface FeeSchedule {
   registration: { regular: { item: string; fee: number }[]; smallCause: { item: string; fee: number }[] };
   bandedFees: { bands: string[]; rows: { item: string; fees: number[]; smallCause: number }[] };
   soleArbitratorUplift: number;
-  fastTrackFactor: number;
+  fastTrackUplift: number;
+  emergencyUplift: number;
   gstRate: number;
   paymentSchedule: { share: string; when: string }[];
   terms: string[];
@@ -116,7 +122,8 @@ export const DEFAULT_FEE_SCHEDULE: FeeSchedule = {
   registration: REGISTRATION,
   bandedFees: BANDED_FEES,
   soleArbitratorUplift: SOLE_ARBITRATOR_UPLIFT,
-  fastTrackFactor: FAST_TRACK_FACTOR,
+  fastTrackUplift: FAST_TRACK_UPLIFT,
+  emergencyUplift: EMERGENCY_UPLIFT,
   gstRate: GST_RATE,
   paymentSchedule: PAYMENT_SCHEDULE,
   terms: TERMS,
@@ -130,6 +137,8 @@ function slabFee(amount: number, slabs: Slab[]) {
 
 export interface FeeEstimate {
   smallCause: boolean;
+  emergency: boolean;
+  fastTrack: boolean;
   filing: number;
   tribunalPerArbitrator: number;
   tribunal: number;
@@ -143,6 +152,7 @@ export function estimateFees(
   arbitrators: 1 | 3,
   fastTrack: boolean,
   schedule: FeeSchedule = DEFAULT_FEE_SCHEDULE,
+  emergency = false,
 ): FeeEstimate {
   const smallCause = amount < schedule.smallCauseLimit;
   let perArbitrator: number;
@@ -156,13 +166,22 @@ export function estimateFees(
     admin = slabFee(amount, schedule.adminSlabs);
   }
   if (arbitrators === 1) perArbitrator *= 1 + schedule.soleArbitratorUplift;
-  if (fastTrack) perArbitrator *= schedule.fastTrackFactor;
   perArbitrator = Math.round(perArbitrator);
 
   const filing = (smallCause ? schedule.registration.smallCause[0]?.fee : schedule.registration.regular[0]?.fee) ?? 0;
-  const tribunal = perArbitrator * arbitrators;
   const gst = Math.round((filing + admin) * schedule.gstRate);
-  return { smallCause, filing, tribunalPerArbitrator: perArbitrator, tribunal, admin, gst, total: filing + tribunal + admin + gst };
+  // Emergency and fast track each raise every part of the regular fee;
+  // emergency is its own process, so it takes precedence over fast track.
+  const uplift = emergency ? (schedule.emergencyUplift ?? EMERGENCY_UPLIFT) : fastTrack ? (schedule.fastTrackUplift ?? FAST_TRACK_UPLIFT) : 0;
+  const up = (value: number) => Math.round(value * (1 + uplift));
+  const parts = { filing: up(filing), tribunalPerArbitrator: up(perArbitrator), tribunal: up(perArbitrator) * arbitrators, admin: up(admin), gst: up(gst) };
+  return {
+    smallCause,
+    emergency,
+    fastTrack: fastTrack && !emergency,
+    ...parts,
+    total: parts.filing + parts.tribunal + parts.admin + parts.gst,
+  };
 }
 
 export function formatSlab(slab: Slab) {

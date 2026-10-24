@@ -83,12 +83,25 @@ const SHOWCASE_TILES = [
   },
 ];
 
-// Stars replace "Tier 01/02/03" labels (client brief), highest standing first.
+// Stars replace "Tier 01/02/03" labels (client brief), highest standing first
+// (Special Honorary on top, Oct 2026).
 const MEMBERSHIP_CARDS = [
+  {
+    eyebrow: "Beyond stars",
+    title: "Honorary",
+    description: "Special Honorary Membership, conferred by the institute.",
+    points: [
+      "Cannot be applied for or claimed — it is earned",
+      "Conferred for exceptional contribution to ADR, or as an honour to a dignitary",
+      "Listed among Our Esteemed Members",
+    ],
+    backImage: "/images/columns-detail.jpg",
+    backAlt: "Classical stone columns",
+  },
   {
     eyebrow: "★★★★★",
     title: "Fellow",
-    description: "Senior recognition for a sustained record of panel appointments.",
+    description: "Senior recognition for practitioners and experts in their field.",
     points: [
       "Priority consideration for high-value appointments",
       "Use of the Fellow designation",
@@ -132,18 +145,6 @@ const MEMBERSHIP_CARDS = [
     ],
     backImage: "/images/membership-roundtable.jpg",
     backAlt: "Members in discussion around a table",
-  },
-  {
-    eyebrow: "Beyond stars",
-    title: "Honorary",
-    description: "Special Honorary Membership, conferred by the institute.",
-    points: [
-      "Cannot be applied for or claimed — it is earned",
-      "Conferred for exceptional contribution to ADR",
-      "Listed among Our Esteemed Members",
-    ],
-    backImage: "/images/columns-detail.jpg",
-    backAlt: "Classical stone columns",
   },
 ];
 

@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { History, RotateCcw } from "lucide-react";
 import { ConsoleLink } from "@/components/console/base";
+import { useConfirm } from "@/components/console/confirm";
 import { Dialog } from "@/components/console/dialog";
 import { Badge, consoleButton, Notice, timeAgo } from "@/components/console/ui";
 
@@ -54,6 +55,7 @@ export function PublishBar({
   onRestore: (id: number) => void;
 }) {
   const [history, setHistory] = useState(false);
+  const confirm = useConfirm();
 
   useEffect(() => {
     if (!dirty) return;
@@ -100,7 +102,14 @@ export function PublishBar({
           <History aria-hidden="true" /> History
         </button>
         {canEdit && (hasDraft || dirty) && (
-          <button type="button" onClick={onDiscard} disabled={pending} className={consoleButton.ghost}>
+          <button
+            type="button"
+            onClick={async () => {
+              if (await confirm({ title: "Discard your changes?", body: "Everything since the last publish is thrown away, and the editor goes back to what is live.", action: "Discard changes" })) onDiscard();
+            }}
+            disabled={pending}
+            className={consoleButton.ghost}
+          >
             Discard
           </button>
         )}
@@ -134,9 +143,9 @@ export function PublishBar({
               {canEdit && index > 0 && (
                 <button
                   type="button"
-                  onClick={() => {
+                  onClick={async () => {
                     setHistory(false);
-                    onRestore(version.id);
+                    if (await confirm({ title: "Restore this version?", body: "It replaces your current draft. What is live doesn't change until you publish.", action: "Restore version" })) onRestore(version.id);
                   }}
                   className={consoleButton.secondary}
                 >

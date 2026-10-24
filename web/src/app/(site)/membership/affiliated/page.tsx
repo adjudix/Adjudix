@@ -25,7 +25,7 @@ function Page() {
         "Invitations to Adjudix events and webinars",
         "A defined path toward Associate membership",
       ]}
-      fee="Free, after completing an Apprenticeship or Internship."
+      fee="Free, after completing an Apprenticeship or Internship, or on payment of a membership fee subject to review by the Advisory Council."
     />
   );
 }

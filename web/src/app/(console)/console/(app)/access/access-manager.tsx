@@ -4,6 +4,7 @@ import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Check, Copy, KeyRound, Mail, MoreHorizontal, Plus, ShieldCheck, Trash2, UserPlus } from "lucide-react";
 import { Dialog } from "@/components/console/dialog";
+import { useConfirm } from "@/components/console/confirm";
 import { Badge, consoleButton, consoleInput, Field, Notice, initials, timeAgo } from "@/components/console/ui";
 import { cn } from "@/lib/utils";
 import {
@@ -59,6 +60,7 @@ export function AccessManager({
 }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const confirm = useConfirm();
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState<string>(roles[0]?.id ?? NEW_ROLE);
   const selected = roles.find((role) => role.id === selectedId);
@@ -235,7 +237,10 @@ export function AccessManager({
           </p>
           <div className="flex flex-wrap justify-between gap-2">
             {selected ? (
-              <button type="button" disabled={pending} onClick={() => run(() => deleteRole(selected.id), () => pickRole(roles.find((r) => r.id !== selected.id)?.id ?? NEW_ROLE))} className={consoleButton.danger}>
+              <button type="button" disabled={pending} onClick={async () => {
+                  if (!(await confirm({ title: `Delete the role “${selected.name}”?`, body: "Roles still held by a user can't be deleted; give those users another role first.", action: "Delete role" }))) return;
+                  run(() => deleteRole(selected.id), () => pickRole(roles.find((r) => r.id !== selected.id)?.id ?? NEW_ROLE));
+                }} className={consoleButton.danger}>
                 <Trash2 aria-hidden="true" /> Delete role
               </button>
             ) : (

@@ -8,6 +8,7 @@ import { ClosedForm } from "@/components/patterns/apply-form";
 import { ConsoleLink } from "@/components/console/base";
 import { PublishBar, type VersionRow } from "@/components/console/publish-bar";
 import { useHistory, useUndoShortcuts } from "@/components/console/use-history";
+import { useConfirm } from "@/components/console/confirm";
 import { Switch } from "@/components/console/switch";
 import { consoleButton, Notice } from "@/components/console/ui";
 import { BUILT_IN_LABELS, FIELD_KINDS, kindOf, KIND_LABEL, layoutOf, renameField, uniqueName } from "@/lib/forms/builder-model";
@@ -48,6 +49,7 @@ export function FormBuilder({
 }) {
   const router = useRouter();
   const history = useHistory<FormConfig>(initial);
+  const confirm = useConfirm();
   const form = history.value;
   const setForm = history.set;
   useUndoShortcuts(history.undo, history.redo, !readOnlyFlag(permissions));
@@ -310,7 +312,11 @@ export function FormBuilder({
               onRename={rename}
               onForm={patch}
               onMove={(target) => selected && moveTo(selected, target)}
-              onDelete={() => selected && deleteField(selected)}
+              onDelete={async () => {
+                if (!selected) return;
+                const name = customField?.label || selected;
+                if (await confirm({ title: `Delete the field “${name}”?`, body: "Visitors stop seeing it once you publish. Past submissions keep their answers. Undo brings it back.", action: "Delete field" })) deleteField(selected);
+              }}
             />
           </section>
 

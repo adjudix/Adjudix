@@ -23,7 +23,13 @@ function professionTitle(member: Member) {
 async function RegisterPage() {
   const members = await getMembers();
   const codes = membershipCodes(members);
-  const register = TIER_ORDER.flatMap((tierId) => members.filter((member) => member.tier === tierId));
+  // In number order within each tier: the panel's order (Brijesh Tiwari,
+  // Sudeep Bhargava, ...) differs from the order of their numbers.
+  const register = TIER_ORDER.flatMap((tierId) =>
+    members
+      .filter((member) => member.tier === tierId)
+      .sort((a, b) => (codes.get(a) ?? "").localeCompare(codes.get(b) ?? "", undefined, { numeric: true })),
+  );
 
   return (
     <main className="bg-canvas flex-1">
